@@ -9,7 +9,7 @@
         return false;
       });
     });
-	
+
 	//contact 2
     $(function() {
       $('#contact-btn-2').click(function() {
@@ -20,7 +20,7 @@
         return false;
       });
     });
-	
+
 	//contact 3
     $(function() {
       $('#contact-btn-3').click(function() {
@@ -31,7 +31,7 @@
         return false;
       });
     });
-	
+
 	//about me
     $(function() {
       $('#about-btn').click(function() {
@@ -42,7 +42,7 @@
         return false;
       });
     });
-	
+
 	//home
     $(function() {
       $('#home-btn').click(function() {
@@ -53,7 +53,7 @@
         return false;
       });
     });
-	
+
 	//timeline
     $(function() {
       $('#timeline-btn').click(function() {
@@ -64,7 +64,7 @@
         return false;
       });
     });
-	
+
 	//projects
     $(function() {
       $('#projects-btn').click(function() {
@@ -75,7 +75,7 @@
         return false;
       });
     });
-	
+
 	//apps
     $(function() {
       $('#apps-btn').click(function() {
@@ -86,7 +86,7 @@
         return false;
       });
     });
-	
+
 	//apps 2
     $(function() {
       $('#apps-btn-2').click(function() {
@@ -103,7 +103,7 @@
 		document.getElementById("mySidebar").style.display = "block";
 		document.getElementById("myOverlay").style.display = "block";
 	}
-	
+
 	function w3_close() {
 		document.getElementById("mySidebar").style.display = "none";
 		document.getElementById("myOverlay").style.display = "none";
@@ -117,7 +117,7 @@
 	  captionText.innerHTML = element.alt;
 	}
 
-/** show all button in TIMELINE*/									
+/** show all button in TIMELINE*/
 	function showAll() {
 		if (document.getElementById("one").checked == true){
 			document.getElementById("timeline-highlight").style.display = "none";
@@ -127,3 +127,24 @@
 			document.getElementById("timeline-all").style.display = "none";
 		}
 	}
+
+/** determine height of project images */
+
+function resizeProjectDivs(){
+  var project2 = document.getElementById('project-2');
+  var project1 = document.getElementById('project-1');
+  var project3 = document.getElementById('project-3');
+
+  var biggest = Math.max(project1.offsetHeight, project2.offsetHeight, project3.offsetHeight);
+  console.log("project1: " + project1.offsetHeight + "px > " + biggest + "px");
+  console.log("project2: " + project2.offsetHeight + "px > " + biggest + "px");
+  console.log("project3: " + project3.offsetHeight + "px > " + biggest + "px");
+
+  document.getElementById('project-1').style.height = biggest + "px";
+  document.getElementById('project-2').style.height = biggest + "px";
+  document.getElementById('project-3').style.height = biggest + "px";
+}
+
+window.onload = function(){
+  resizeProjectDivs();
+}
