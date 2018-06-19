@@ -147,4 +147,26 @@ function resizeProjectDivs(){
 
 window.onload = function(){
   resizeProjectDivs();
+  resizeAppDivs();
+}
+
+function resizeAppDivs(){
+  var app1a = document.getElementById('app-1-a');
+  var app1b = document.getElementById('app-1-b');
+  var app1c = document.getElementById('app-1-c');
+
+  var app2a = document.getElementById('app-2-a');
+  var app2b = document.getElementById('app-2-b');
+  var app2c = document.getElementById('app-2-c');
+
+  var biggestA = Math.max(app1a.offsetHeight, app2a.offsetHeight);
+  var biggestB = Math.max(app1b.offsetHeight, app2b.offsetHeight);
+  var biggestC = Math.max(app1c.offsetHeight, app2c.offsetHeight);
+
+  document.getElementById('app-1-a').style.height = biggestA + "px";
+  document.getElementById('app-2-a').style.height = biggestA + "px";
+  document.getElementById('app-1-b').style.height = biggestB + "px";
+  document.getElementById('app-2-b').style.height = biggestB + "px";
+  document.getElementById('app-1-c').style.height = biggestC + "px";
+  document.getElementById('app-2-c').style.height = biggestC + "px";
 }
