@@ -98,6 +98,17 @@
       });
     });
 
+    //apps 3
+      $(function() {
+        $('#apps-btn-3').click(function() {
+          $('html,body').animate({
+            scrollTop: $("#apps").offset().top },
+            1000 //time in milliseconds
+          );
+          return false;
+        });
+      });
+
 /** sidebar */
 	function w3_open() {
 		document.getElementById("mySidebar").style.display = "block";
