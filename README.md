@@ -29,6 +29,13 @@ I'm a 9th grade student with a passion for web development, and this site is sor
 | ------------- |------------- |
 | November, 2017  | Completed the CS Principals Part 2 course offered by Trinity College through the edX platform |
 
+| &nbsp; | First Place Pitch|
+| ------------- |------------- |
+| September, 2018  | Pitched the winning entry for artificial intelligence: [Mathü](https://mathu.ca), at the 24-hour *Imagine Hackathon* in Brampton |
+
+| &nbsp; | 3rd Place Pitch at Startup Weekend|
+| ------------- |------------- |
+| November, 2018  | Presented [StoAR](https://stoar.ca)–an AR tool for SMEs to showcase their products–at the 54-hour *Startup Weekend*. The MVP was pitched to a panel of judges, including an investor from Dragon's Den.|
 
 ## Projects
 A tab for some cool projects that are worth sharing. Click on the images to find out more.
