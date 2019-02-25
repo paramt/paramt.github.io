@@ -80,23 +80,24 @@ body {font-size:16px;}
     <hr style="width:50px;border:5px solid red" class="w3-round">
   </div>
 
-  <div class="w3-row-padding">
+  <div class="w3-row-padding" id="refresh-container">
     <div class="w3-half">
       <img src="resources/img/gallery/india.jpg" style="width:100%" onclick="onClick(this)" alt="The landscape of Gujurat, India">
-      <img src="resources/img/gallery/glider.jpg" style="width:100%" onclick="onClick(this)" alt="RCAC Hangar, Canadian Forces Base Borden">
-      <img src="resources/img/gallery/saratoga.jpg" style="width:100%" onclick="onClick(this)" alt="Sunrise over the town of Saratoga, California">
+      <img src="resources/img/gallery/quebec.jpg" style="width:100%" onclick="onClick(this)" alt="Statue of Samuel de Champlain, Ottawa">
+
     </div>
 
     <div class="w3-half">
       <img src="resources/img/gallery/eglx.jpg" style="width:100%" onclick="onClick(this)" alt="Enthusiast Gaming Expo 2018">
-      <img src="resources/img/gallery/quebec.jpg" style="width:100%" onclick="onClick(this)" alt="Statue of Samuel de Champlain, Ottawa">
+      <img src="resources/img/gallery/saratoga.jpg" style="width:100%" onclick="onClick(this)" alt="Sunrise over the town of Saratoga, California">
+
+    </div>
+
+    <div class="w3-half">
+      <img src="resources/img/gallery/glider.jpg" style="width:100%" onclick="onClick(this)" alt="RCAC Hangar, Canadian Forces Base Borden">
       <img src="resources/img/gallery/chicago.jpg" style="width:100%" onclick="onClick(this)" alt="Takeoff from Chicago O'Hare International Aiport">
     </div>
   </div>
-
-  <!-- TODO: load first 2-4 images and hide the rest, load only when 'View All Images' button is clicked
-  <button href="projects" target="_blank" style="margin-left:1.5%;width:97%;margin-top:15px;" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('extra-img').style.display = 'block'">View All Images</button>
-  -->
 
   <!-- Modal for full size images on click-->
   <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
