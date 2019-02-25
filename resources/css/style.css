@@ -417,3 +417,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 /*adding some colors for fun*/
 #one+label:before, #one+label:after {color: hsl(4, 90%, 58%);}
+
+.gallery-img{
+  width:33.3333%
+}
