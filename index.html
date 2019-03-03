@@ -11,10 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="resources/css/style.css">
+    <link rel="stylesheet" href="resources/css/animate.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
     <meta name="google-site-verification" content="F5d76HbKwxqSA5Uk1SvxOe-lGGJ4SKKocfZR1rCG-ic"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png?v=Jykxe5GA2w">
+    <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png?v=Jykxe5GA2w">
+    <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png?v=Jykxe5GA2w">
+    <link rel="manifest" href="resources/favicon/site.webmanifest?v=Jykxe5GA2w">
+    <link rel="mask-icon" href="resources/favicon/safari-pinned-tab.svg?v=Jykxe5GA2w" color="#5bbad5">
+    <link rel="shortcut icon" href="resources/favicon/favicon.ico?v=Jykxe5GA2w">
+    <meta name="msapplication-TileColor" content="#e68b8b">
+    <meta name="msapplication-config" content="resources/favicon/browserconfig.xml?v=Jykxe5GA2w">
+    <meta name="theme-color" content="#ffffff">
   </head>
 
   <body>
@@ -22,38 +33,26 @@
     <img src="resources/img/profile-pic.png" class="main-pic" id="main-pic">
 
     <div class="container">
-      <h1 class="main-text">Param Thakkar</h1>
-      <p class="icons" onmouseover="highlight(this)" onmouseout="unHighlight(this)" >
-        <a class="icon" target="_blank" href="https://github.com/paramt"><i class="fab fa-github"></i></a>
-        <a class="icon" target="_blank" href="https://twitter.com/paramoham"><i class="fab fa-twitter"></i></a>
-        <a class="icon" target="_blank" href="https://www.instagram.com/xparam/"><i class="fab fa-instagram"></i></a>
-        <a class="icon" target="_blank" href="mailto:contact@param.me"><i class="fas fa-envelope"></i></a>
+      <h1 id="main-text" class="main-text">Param Thakkar</h1>
+      <p id="icons" class="icons" onmouseover="highlight(this)" onmouseout="unHighlight(this)">
+        <a title="paramt" class="icon" target="_blank" href="https://github.com/paramt"><i class="fab fa-github"></i></a>
+        <a title="contact@param.me" class="icon" target="_blank" href="mailto:contact@param.me"><i class="fas fa-envelope"></i></a>
+        <a title="paramt" class="icon" target="_blank" href="https://www.linkedin.com/in/paramt/"><i class="fab fa-linkedin"></i></a>
+        <a title="@paramoham" class="icon" target="_blank" href="https://twitter.com/paramoham"><i class="fab fa-twitter"></i></a>
+        <a title="xparam" class="icon" target="_blank" href="https://www.instagram.com/xparam/"><i class="fab fa-instagram"></i></a>
       </p>
+    </div>
+
+    <div class="separator">
+
+    </div>
+
+    <div class="content">
+      <h1><br><br>Coming Soon</h1>
     </div>
 
     <span id="arrow"><i class="fas fa-angle-down"></i></span>
 
-    <script>
-      document.getElementById('main-pic').ondragstart = function() { return false; };
-      window.onload = function(){
-        window.setTimeout(function(){
-          document.getElementById("arrow").style.opacity = "1";
-          document.getElementById('arrow').classList = 'animated bounce';
-        }, 1500)
-      }
-
-      function highlight(element){
-        for(var i = 0; i < document.getElementsByClassName("icon").length; i++){
-          document.getElementsByClassName("icon")[i].style = "color: #cccccc"
-        }
-        element.style = "color: white;"
-      }
-
-      function unHighlight(element){
-        for(var i = 0; i < document.getElementsByClassName("icon").length; i++){
-          document.getElementsByClassName("icon")[i].style = "color: white"
-        }
-      }
-    </script>
+    <script type="text/javascript" src="resources/js/script.js"></script>
   </body>
 </html>
