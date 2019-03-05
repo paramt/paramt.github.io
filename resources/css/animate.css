@@ -17,10 +17,6 @@
   animation-name: fadeIn;
 }
 
-.fadeInHalf {
-  -webkit-animation-name: fadeInHalf;
-  animation-name: fadeInHalf;
-}
 
 .fadeOutUp {
   -webkit-animation-name: fadeOutUp;
@@ -113,25 +109,6 @@
   }
 }
 
-@-webkit-keyframes fadeInHalf {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 0.4;
-  }
-}
-
-@keyframes fadeInHalf {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 0.4;
-  }
-}
 
 @-webkit-keyframes fadeOutUp {
   from {

@@ -1,13 +1,19 @@
-document.getElementById('main-pic').ondragstart = function() { return false; };
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+}
+
 window.onload = function(){
+  resizeProjectDivs();
+  shiftProjectExtra();
+
   window.setTimeout(function(){
     document.getElementById("arrow").style.opacity = "1";
     document.getElementById('arrow').classList = 'animated bounce';
   }, 1500)
 
   window.setTimeout(function(){
-    document.getElementById("main-pic").className = "main-pic animated fadeInHalf";
-  }, 200)
+    document.getElementById("transition-overlay").style.opacity = "0";
+  }, 0)
 
   window.setTimeout(function(){
     document.getElementById("main-text").style.visibility = "visible";
@@ -34,10 +40,41 @@ function unHighlight(element){
 
 window.addEventListener("scroll", function(){
   var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+
   if(scrollTop !== 0){
     document.getElementById('arrow').classList = 'animated fadeOutUp';
   } else {
     document.getElementById('arrow').classList = 'animated bounce';
   }
 
+  if(scrollTop < document.body.offsetHeight){
+    document.body.style.backgroundColor = "#932524";
+  }
+
+  if(scrollTop > document.body.offsetHeight){
+    document.body.style.backgroundColor = "#5e825f";
+  }
+
+  if(scrollTop > document.body.offsetHeight*1.75 + document.getElementById("c1").offsetHeight){
+    document.body.style.backgroundColor = "#9da4b8";
+  }
+
 }, false);
+
+function resizeProjectDivs(){
+  var project1 = document.getElementById("p1");
+  var project2 = document.getElementById("p2");
+  var project3 = document.getElementById("p3");
+
+  var biggest = Math.max(project1.offsetHeight, project2.offsetHeight, project3.offsetHeight);
+
+  project1.style.height = biggest + "px";
+  project2.style.height = biggest + "px";
+  project3.style.height = biggest + "px";
+}
+
+function shiftProjectExtra(){
+  document.getElementById("pm1").style.bottom = "-" + String(parseInt(document.getElementById("pm1").offsetHeight) - 1) + "px";
+  document.getElementById("pm2").style.bottom = "-" + String(parseInt(document.getElementById("pm2").offsetHeight) - 1) + "px";
+  document.getElementById("pm3").style.bottom = "-" + String(parseInt(document.getElementById("pm3").offsetHeight) - 1) + "px";
+}

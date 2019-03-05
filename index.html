@@ -28,27 +28,50 @@
     <meta name="theme-color" content="#ffffff">
   </head>
 
-  <body>
+  <body onresize="resizeProjectDivs()">
 
-    <img src="resources/img/profile-pic.png" class="main-pic" id="main-pic">
+    <img src="resources/img/profile-pic.png" id="main-pic">
+    <div id="overlay"></div><div id="transition-overlay"></div>
 
     <div class="container">
       <h1 id="main-text" class="main-text">Param Thakkar</h1>
-      <p id="icons" class="icons" onmouseover="highlight(this)" onmouseout="unHighlight(this)">
+      <span id="icons" class="icons" onmouseover="highlight(this)" onmouseout="unHighlight(this)">
         <a title="paramt" class="icon" target="_blank" href="https://github.com/paramt"><i class="fab fa-github"></i></a>
         <a title="contact@param.me" class="icon" target="_blank" href="mailto:contact@param.me"><i class="fas fa-envelope"></i></a>
         <a title="paramt" class="icon" target="_blank" href="https://www.linkedin.com/in/paramt/"><i class="fab fa-linkedin"></i></a>
         <a title="@paramoham" class="icon" target="_blank" href="https://twitter.com/paramoham"><i class="fab fa-twitter"></i></a>
         <a title="xparam" class="icon" target="_blank" href="https://www.instagram.com/xparam/"><i class="fab fa-instagram"></i></a>
-      </p>
+      </span>
     </div>
 
-    <div class="separator">
+    <div class="content" id="c1">
+      <h1>Projects</h1>
+      <div class="projects">
+        <div class="project" id="p1">
+          <h2>Meme Adviser</h2>
+          <p>A reddit bot that analyzes the market at <a href="https://www.reddit.com/r/MemeEconomy" target="_blank">r/MemeEconomy</a> and provides insightful information on investments.</p>
+          <div class="project-more" id="pm1" onclick="window.open('https://www.param.me/MemeAdviser', '_blank')">
+            <p>View project</p>
+          </div>
+        </div>
 
-    </div>
+        <div class="project" id="p2">
+          <h2>Mathu</h2>
+          <p>An AI that adapts and grows to individual students' needs. Mathü came first place at the <i>Imagine Hackathon</i> in September 2018.</p>
+          <div class="project-more" id="pm2" onclick="window.open('https://mathu.ca', '_blank')">
+            <p>View project</p>
+          </div>
+        </div>
 
-    <div class="content">
-      <h1><br><br>Coming Soon</h1>
+        <div class="project" id="p3">
+          <h2>1 Point</h2>
+          <p>A dynamic URL shortener capable of pointing users to different destinations based on region, client, hardware, or other similar factors.</p>
+          <div class="project-more" id="pm3" onclick="window.open('https://1pt.co', '_blank')">
+            <p>View project</p>
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <span id="arrow"><i class="fas fa-angle-down"></i></span>

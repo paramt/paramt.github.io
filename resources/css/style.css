@@ -5,12 +5,30 @@
 
 body{
   background-color: #932524;
-  overflow-x: hidden;
+
 }
 
 h1{
   color: white;
   font-size: 5em;
+}
+
+h2{
+  color: white;
+  font-size: 3em;
+}
+
+p{
+  color: white;
+  font-size: 1.5em;
+}
+
+a{
+  color: #4a8cf7;
+}
+
+a:hover{
+  color: white;
 }
 
 html, body, .container{
@@ -25,14 +43,58 @@ html, body, .container{
 }
 
 .content{
+  width: 100%;
+  background-color: black;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10%;
+
+  min-height: 100%;
 }
 
-.main-pic{
+.projects{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.project{
+  margin: 10px;
+  width: 20vw;
+  background-color: #191919;
+  border-radius: 10px 10px 0 0;
+  padding: 1vh 20px 0.5vh 20px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.project-more{
+  width:100%;
+  padding: 2vh 0 2vh 0;
+  border-radius: 0px 0px 10px 10px;
+  background-color:#282828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: -15%;
+  margin: 0px;
+}
+
+.project-more:hover{
+  cursor: pointer;
+  background-color: #333333
+}
+
+#main-pic{
   height: 80vh;
   opacity: 0.4;
   position: fixed;
@@ -40,8 +102,26 @@ html, body, .container{
   right: 0;
   bottom: 0;
   margin: 0 auto;
-  opacity: 0;
   z-index: -1;
+}
+
+#overlay{
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  position: fixed;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+#transition-overlay{
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  position: fixed;
+  opacity: 1;
+  z-index: -1;
+  transition: opacity 1.1s;
 }
 
 .main-text{
@@ -55,12 +135,12 @@ html, body, .container{
   visibility: hidden;
 }
 
-a{
+.icons a{
   color: white;
   font-size: 3.5em;
 }
 
-a:hover{
+.icons a:hover{
   color: white !important;
 }
 
@@ -72,7 +152,7 @@ a:hover{
   position: absolute;
   bottom: 5vh;
   left: 0px;
-  width: 100vw;
+  width: 100%;
   font-size: 3em;
   color: white;
   opacity: 0;
