@@ -1,3 +1,7 @@
+if (window.innerWidth < 1250) {
+  window.location.href = "https://www.param.me/old"
+}
+
 window.onbeforeunload = function () {
   window.scrollTo(0, 0);
 }
