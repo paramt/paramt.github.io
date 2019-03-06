@@ -8,23 +8,33 @@ body{
 
 }
 
+h1, h2, h3, p, #arrow{
+  color: white
+}
+
 h1{
-  color: white;
   font-size: 5em;
 }
 
 h2{
-  color: white;
   font-size: 3em;
 }
 
+h3{
+  font-size: 1.5em;
+  margin-bottom: 2vh;
+  font-weight: 100;
+  color: #dbdbdb;
+}
+
 p{
-  color: white;
   font-size: 1.5em;
 }
 
 a{
-  color: #4a8cf7;
+  color: #4589f7;
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
 a:hover{
@@ -50,7 +60,7 @@ html, body, .container{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  margin-bottom: 75vh;
   min-height: 100%;
 }
 
@@ -59,6 +69,10 @@ html, body, .container{
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+
+.content h1{
+  padding-bottom: 5vh;
 }
 
 .project{
@@ -80,13 +94,14 @@ html, body, .container{
   width:100%;
   padding: 2vh 0 2vh 0;
   border-radius: 0px 0px 10px 10px;
-  background-color:#282828;
+  background-color: #1e1e1e;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   bottom: -15%;
   margin: 0px;
+  transition: background-color 0.2s;
 }
 
 .project-more:hover{
@@ -154,7 +169,6 @@ html, body, .container{
   left: 0px;
   width: 100%;
   font-size: 3em;
-  color: white;
   opacity: 0;
   text-align: center;
   transition: opacity 0.5s
