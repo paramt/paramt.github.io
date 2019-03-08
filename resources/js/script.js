@@ -1,4 +1,4 @@
-if (window.innerWidth < 1250) {
+if (window.innerWidth < 460) {
   window.location.href = "https://www.param.me/old"
 }
 
@@ -9,11 +9,12 @@ window.onbeforeunload = function () {
 window.onload = function(){
   resizeProjectDivs();
   shiftProjectExtra();
+  checkToMobilify();
 
   window.setTimeout(function(){
     document.getElementById("arrow").style.opacity = "1";
     document.getElementById('arrow').classList = 'animated bounce';
-  }, 1500)
+  }, 1300)
 
   window.setTimeout(function(){
     document.getElementById("transition-overlay").style.opacity = "0";
@@ -81,4 +82,22 @@ function shiftProjectExtra(){
   document.getElementById("pm1").style.bottom = "-" + String(parseInt(document.getElementById("pm1").offsetHeight) - 1) + "px";
   document.getElementById("pm2").style.bottom = "-" + String(parseInt(document.getElementById("pm2").offsetHeight) - 1) + "px";
   document.getElementById("pm3").style.bottom = "-" + String(parseInt(document.getElementById("pm3").offsetHeight) - 1) + "px";
+
+  document.getElementsByClassName("filler")[0].style.height = parseInt(document.getElementById("pm1").offsetHeight) + "px";
+}
+
+function checkToMobilify(){
+  if(window.innerHeight < 850){
+    document.getElementById("c1").style.padding = "100px 0 100px 0";
+  }
+
+  if(window.innerWidth <= 1000){
+    document.getElementById("c1").style.padding = "100px 0 100px 0";
+    document.getElementsByClassName("filler")[0].style.height = "0px";
+  }
+
+  if(document.getElementById("main-pic").offsetWidth > window.innerWidth){
+    document.getElementById("main-pic").style.width = "100vw";
+  }
+
 }

@@ -50,6 +50,7 @@ html, body, .container{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .content{
@@ -60,7 +61,6 @@ html, body, .container{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 75vh;
   min-height: 100%;
 }
 
@@ -76,7 +76,7 @@ html, body, .container{
 }
 
 .project{
-  margin: 10px;
+  margin: 10px 30px 30px 0;
   width: 20vw;
   background-color: #191919;
   border-radius: 10px 10px 0 0;
@@ -109,6 +109,10 @@ html, body, .container{
   background-color: #333333
 }
 
+.filler{
+  width: 100%;
+}
+
 #main-pic{
   height: 80vh;
   opacity: 0.4;
@@ -118,6 +122,7 @@ html, body, .container{
   bottom: 0;
   margin: 0 auto;
   z-index: -1;
+  object-fit: cover;
 }
 
 #overlay{
@@ -174,20 +179,96 @@ html, body, .container{
   transition: opacity 0.5s
 }
 
-@media only screen and (max-width: 1600px) {
+@media only screen and (max-width: 1800px) {
   .icons{
     width: 30%;
   }
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1600px) {
+  .project{
+    width: 22vw;
+  }
   .icons{
     width: 35%;
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1400px) {
   .icons{
     width: 40%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .icons{
+    width: 45%;
+  }
+  .project{
+    width: 25vw;
+    margin: 10px 10px 10px 0;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .icons{
+    width: 50%;
+  }
+
+  .project{
+    width: 50vw;
+    margin-bottom: 100px;
+  }
+
+  .projects{
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .icons{
+    width: 60%;
+  }
+
+  .project{
+    width: 60vw;
+    margin-bottom: 100px;
+  }
+
+  .projects{
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 700px){
+  h1{
+    font-size: 4.5em;
+  }
+
+  h2{
+    font-size: 2.5em;
+  }
+
+  h3{
+    font-size: 1.2em;
+  }
+
+  p{
+    font-size: 1.2em;
+  }
+
+  .icons a{
+    color: white;
+    font-size: 3em;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  h1{
+    font-size: 4em;
+  }
+
+  .icons{
+    width: 70%;
   }
 }

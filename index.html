@@ -28,7 +28,7 @@
     <meta name="theme-color" content="#ffffff">
   </head>
 
-  <body onresize="shiftProjectExtra()">
+  <body onresize="shiftProjectExtra(); checkToMobilify();">
 
     <img src="resources/img/profile-pic.png" id="main-pic">
     <div id="overlay"></div><div id="transition-overlay"></div>
@@ -49,7 +49,7 @@
       <div class="projects">
         <div class="project" id="p1">
           <h2>Meme Adviser</h2>
-          <h3>February 2019 | <a href="https://www.github.com/paramt/MemeAdviser">Github</a></h3>
+          <h3>Feb 2019 | <a href="https://www.github.com/paramt/MemeAdviser" target="_blank">Github</a></h3>
           <p>A reddit bot that analyzes the market at <a href="https://www.reddit.com/r/MemeEconomy" target="_blank">r/MemeEconomy</a> and provides insightful information on investments.</p>
           <div class="project-more" id="pm1" onclick="window.open('https://www.param.me/MemeAdviser', '_blank')">
             <p>View project <i class="fas fa-angle-right"></i></p>
@@ -58,7 +58,7 @@
 
         <div class="project" id="p2">
           <h2>Mathu</h2>
-          <h3>September 2018 | <a href="https://www.github.com/paramt/mathu">Github</a></h3>
+          <h3>Sep 2018 | <a href="https://www.github.com/paramt/mathu" target="_blank">Github</a></h3>
           <p>An AI that adapts and grows to individual students' needs. Mathü came first place at the <i>Imagine Hackathon</i> in September 2018.</p>
           <div class="project-more" id="pm2" onclick="window.open('https://mathu.ca', '_blank')" onmouseover="showArrow(1)">
             <p>View project <i class="fas fa-angle-right"></i></p>
@@ -67,7 +67,7 @@
 
         <div class="project" id="p3">
           <h2>1 Point</h2>
-          <h3>August 2018 | <a href="https://www.github.com/paramt/1pt">Github</a></h3>
+          <h3>Aug 2018 | <a href="https://www.github.com/paramt/1pt" target="_blank">Github</a></h3>
           <p>A dynamic URL shortener capable of pointing users to different destinations based on region, client, hardware, or other similar factors.</p>
           <div class="project-more" id="pm3" onclick="window.open('https://1pt.co', '_blank')">
             <p>View project <i class="fas fa-angle-right"></i></p>
@@ -75,6 +75,8 @@
         </div>
 
       </div>
+
+      <div class="filler"></div>
     </div>
 
     <span id="arrow"><i class="fas fa-angle-down"></i></span>
