@@ -1,4 +1,4 @@
-# <img src="resources/img/circle.png" width=45> Param Thakkar
+# <img src="resources/img/circle.png" width=42 align=center> Param Thakkar
 
 ### :email: contact@param.me
 ### :school: Port Credit SS
