@@ -258,7 +258,6 @@ html, body, .container{
   }
 
   .icons a{
-    color: white;
     font-size: 3em;
   }
 }
@@ -270,5 +269,31 @@ html, body, .container{
 
   .icons{
     width: 70%;
+  }
+}
+
+@media only screen and (max-width: 480px){
+  h1{
+    font-size: 3em;
+  }
+
+  h2{
+    font-size: 2em;
+  }
+
+  h3{
+    font-size: 1.5em;
+  }
+
+  p{
+    font-size: 1.2em;
+  }
+
+  .icons{
+    width: 70%;
+  }
+
+  .icons a{
+    font-size: 2.5em;
   }
 }
