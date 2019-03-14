@@ -53,11 +53,11 @@ window.addEventListener("scroll", function(){
   }
 
   if(scrollTop > document.body.offsetHeight){
-    document.body.style.backgroundColor = "#5e825f";
+    document.body.style.backgroundColor = "#9da4b8";
   }
 
   if(scrollTop > document.body.offsetHeight*1.75 + document.getElementById("c1").offsetHeight){
-    document.body.style.backgroundColor = "#9da4b8";
+    document.body.style.backgroundColor = "#5e825f";
   }
 
 }, false);
@@ -96,4 +96,31 @@ function checkToMobilify(){
     document.getElementById("main-pic").style.width = "100vw";
   }
 
+}
+
+document.getElementById("link1").onmouseout = function(){
+  document.getElementById('arrow1').className = 'fas fa-angle-right animated fadeOutLeft';
+}
+
+document.getElementById("link1").onmouseover = function(){
+  document.getElementById('arrow1').style.opacity = '1';
+  document.getElementById('arrow1').className = 'fas fa-angle-right animated fadeInLeft';
+}
+
+document.getElementById("link2").onmouseout = function(){
+  document.getElementById('arrow2').className = 'fas fa-angle-right animated fadeOutLeft';
+}
+
+document.getElementById("link2").onmouseover = function(){
+  document.getElementById('arrow2').style.opacity = '1';
+  document.getElementById('arrow2').className = 'fas fa-angle-right animated fadeInLeft';
+}
+
+document.getElementById("link3").onmouseout = function(){
+  document.getElementById('arrow3').className = 'fas fa-angle-right animated fadeOutLeft';
+}
+
+document.getElementById("link3").onmouseover = function(){
+  document.getElementById('arrow3').style.opacity = '1';
+  document.getElementById('arrow3').className = 'fas fa-angle-right animated fadeInLeft';
 }
