@@ -56,7 +56,7 @@ window.addEventListener("scroll", function(){
     document.body.style.backgroundColor = "#9da4b8";
   }
 
-  if(scrollTop > document.body.offsetHeight*1.75 + document.getElementById("c1").offsetHeight){
+  if(scrollTop > document.body.offsetHeight*1.75 + document.getElementById("projects").offsetHeight){
     document.body.style.backgroundColor = "#5e825f";
   }
 
@@ -84,11 +84,11 @@ function shiftProjectExtra(){
 
 function checkToMobilify(){
   if(window.innerHeight < 850){
-    document.getElementById("c1").style.padding = "100px 0 100px 0";
+    document.getElementById("projects").style.padding = "100px 0 100px 0";
   }
 
   if(window.innerWidth <= 1000){
-    document.getElementById("c1").style.padding = "100px 0 100px 0";
+    document.getElementById("projects").style.padding = "100px 0 100px 0";
     document.getElementsByClassName("filler")[0].style.height = "0px";
   }
 

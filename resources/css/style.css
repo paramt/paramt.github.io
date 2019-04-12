@@ -114,12 +114,12 @@ html, body, .container{
   width: 100%;
 }
 
-#c2 a{
+#more a{
   color: white;
   transition: color 0.35s;
 }
 
-#c2 a:hover{
+#more a:hover{
   color: #4589f7;
 }
 
@@ -295,7 +295,7 @@ html, body, .container{
     font-size: 2em;
   }
 
-  #c2 h2{
+  #more h2{
     font-size: 1.8em;
   }
 
