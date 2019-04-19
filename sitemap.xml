@@ -2,14 +2,61 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://www.param.me/</loc>
-    <lastmod>2019-04-12T20:15:52+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.00</priority>
   </url>
+  
   <url>
-    <loc>https://www.param.me/resume/ParamThakkarResume.pdf</loc>
-    <lastmod>2019-04-12T20:15:52+00:00</lastmod>
+    <loc>https://www.param.me/projects/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
+    <priority>0.75</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.param.me/resume/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://www.param.me/discord-emoji/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <url>
+    <loc>https://code.param.me/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.param.me/meme/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.param.me/MemeAdviser/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.param.me/trackarma/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.50</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.param.me/kevlar/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.25</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.param.me/email-status/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.00</priority>
   </url>
 </urlset>
