@@ -15,5 +15,5 @@ for(var i = 0; i<directories.length; i++){
 if(closest){
   window.location.href = "https://www.param.me/" + closest;
 } else {
-  window.location.href;
+  window.location.href = "https://www.param.me/";
 }
