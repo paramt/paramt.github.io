@@ -9,7 +9,7 @@ body{
 }
 
 h1, h2, h3, p, #arrow{
-  color: white
+  color: white;
 }
 
 h1{
@@ -107,7 +107,7 @@ html, body, .container{
 
 .project-more:hover{
   cursor: pointer;
-  background-color: #333333
+  background-color: #333333;
 }
 
 .filler{
