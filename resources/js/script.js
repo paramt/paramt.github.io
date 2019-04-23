@@ -3,7 +3,6 @@ window.onbeforeunload = function () {
 }
 
 window.onload = function(){
-  resizeProjectDivs();
   shiftProjectExtra();
   checkToMobilify();
 
@@ -61,18 +60,6 @@ window.addEventListener("scroll", function(){
   }
 
 }, false);
-
-function resizeProjectDivs(){
-  var project1 = document.getElementById("p1");
-  var project2 = document.getElementById("p2");
-  var project3 = document.getElementById("p3");
-
-  var biggest = Math.max(project1.offsetHeight, project2.offsetHeight, project3.offsetHeight);
-
-  project1.style.height = biggest + "px";
-  project2.style.height = biggest + "px";
-  project3.style.height = biggest + "px";
-}
 
 function shiftProjectExtra(){
   document.getElementById("pm1").style.bottom = "-" + String(parseInt(document.getElementById("pm1").offsetHeight) - 1) + "px";
