@@ -77,7 +77,7 @@ html, body, .container{
 }
 
 .project{
-  margin: 10px 30px 30px 0;
+  margin: 10px 15px 0 15px;
   width: 20vw;
   background-color: #191919;
   border-radius: 10px 10px 0 0;
@@ -87,7 +87,6 @@ html, body, .container{
   align-items: center;
   justify-content: center;
   position: relative;
-  margin-bottom: 0;
 }
 
 .project-more{
@@ -111,6 +110,27 @@ html, body, .container{
 
 .filler{
   width: 100%;
+}
+
+button{
+  background-color: #1e1e1e;
+  width: 98%;
+  width: -moz-calc(100% - 30px);
+  width: -webkit-calc(100% - 30px);
+  width: -o-calc(100% - 30px);
+  width: calc(100% - 30px);
+  margin: 5vh 15px 0 15px;
+  padding: 2vh 0 2vh 0;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.2s;
+  font-size: inherit;
+}
+
+button:hover{
+  cursor: pointer;
+  background-color: #333333;
 }
 
 #more a{
@@ -215,7 +235,16 @@ html, body, .container{
   }
   .project{
     width: 25vw;
-    margin: 10px 10px 10px 0;
+    margin: 10px;
+  }
+
+  button{
+    width: 98%;
+    width: -moz-calc(100% - 20px);
+    width: -webkit-calc(100% - 20px);
+    width: -o-calc(100% - 20px);
+    width: calc(100% - 20px);
+    margin: 5vh 10px 0 10px;
   }
 }
 
