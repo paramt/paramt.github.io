@@ -65,6 +65,10 @@ html, body, .container{
   margin-bottom: 75vh;
 }
 
+.min-padding{
+  height: 50px;
+}
+
 .projects{
   display: flex;
   flex-direction: row;
