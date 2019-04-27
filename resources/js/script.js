@@ -70,15 +70,6 @@ function shiftProjectExtra(){
 }
 
 function checkToMobilify(){
-  if(window.innerHeight < 850){
-    document.getElementById("projects").style.padding = "100px 0 100px 0";
-  }
-
-  if(window.innerWidth <= 1000){
-    document.getElementById("projects").style.padding = "100px 0 100px 0";
-    document.getElementsByClassName("filler")[0].style.height = "0px";
-  }
-
   if(document.getElementById("main-pic").offsetWidth > window.innerWidth){
     document.getElementById("main-pic").style.width = "100vw";
   }
