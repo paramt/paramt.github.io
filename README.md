@@ -8,17 +8,17 @@ These are my 3 most recent projects. You can find a complete list of projects [h
 
 | Feb 2019:  MemeAdviser |
 | :--- |
-| A reddit bot that analyzes the market at [r/MemeEconomy](https://www.reddit.com/r/MemeEconomy) and provides insightful information. |
+| A reddit bot that analyzes the market at [r/MemeEconomy](https://www.reddit.com/r/MemeEconomy) and provides insightful information |
 | [Website](https://www.1pt.co) &#124; [Github](https://github.com/paramt/1pt) &#124; Python |
 
 | Dec 2018: 1-Point |
 | :--- |
-| A dynamic URL shortener capable of pointing users to different destinations based on various factors. |
+| A dynamic URL shortener capable of pointing users to different destinations based on various factors |
 | [Website](https://www.1pt.co) &#124; [Github](https://github.com/paramt/1pt) &#124; PHP |
 
 | Sep 2018: Mathü |
 | :--- |
-| An AI concept that grows and adapts to individual students' needs. |
+| An AI concept that grows and adapts to individual students' needs |
 | [Website](https://www.mathu.ca) &#124; [Github](https://github.com/paramt/mathu) &#124; JavaScript |
 
 ## Achievements
@@ -32,7 +32,7 @@ These are my 3 most recent projects. You can find a complete list of projects [h
 
 | Jan 2017: App of the Month |
 | :--- |
-| Recieved MIT's Most Creative App of the Month award for [SpellBind](https://play.google.com/store/apps/details?id=appinventor.ai_700164.SpellBind_all). |
+| Recieved MIT's Most Creative App of the Month award for [SpellBind](https://play.google.com/store/apps/details?id=appinventor.ai_700164.SpellBind_all) |
 
 ## Professional Links
 [Email](mailto:contact@param.me) |
