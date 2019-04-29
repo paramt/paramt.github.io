@@ -21,6 +21,19 @@ These are my 3 most recent projects. You can find a complete list of projects [h
 | An AI concept that grows and adapts to individual students' needs. |
 | [Website](https://www.mathu.ca) &#124; [Github](https://github.com/paramt/mathu) &#124; JavaScript |
 
+## Achievements
+| Sep 2018:  Imagine Hackathon |
+| :--- |
+| Pitched [Mathu](https://mathu.ca): the winning entry at the 24-hour Imagine Hackthon in Brampton |
+
+| May 2017: Gauss Math Contest |
+| :--- |
+| Ranked first place from Allan A. Martin for writing the Grade 7 Gauss Math Contest |
+
+| Jan 2017: App of the Month |
+| :--- |
+| Recieved MIT's Most Creative App of the Month award for [SpellBind](https://play.google.com/store/apps/details?id=appinventor.ai_700164.SpellBind_all). |
+
 ## Professional Links
 [Email](mailto:contact@param.me) |
 [Resume](https://www.param.me/resume) |
