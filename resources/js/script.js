@@ -73,32 +73,4 @@ function checkToMobilify(){
   if(document.getElementById("main-pic").offsetWidth > window.innerWidth){
     document.getElementById("main-pic").style.width = "100vw";
   }
-
-}
-
-document.getElementById("link1").onmouseout = function(){
-  document.getElementById('arrow1').className = 'fas fa-angle-right animated fadeOutLeft';
-}
-
-document.getElementById("link1").onmouseover = function(){
-  document.getElementById('arrow1').style.opacity = '1';
-  document.getElementById('arrow1').className = 'fas fa-angle-right animated fadeInLeft';
-}
-
-document.getElementById("link2").onmouseout = function(){
-  document.getElementById('arrow2').className = 'fas fa-angle-right animated fadeOutLeft';
-}
-
-document.getElementById("link2").onmouseover = function(){
-  document.getElementById('arrow2').style.opacity = '1';
-  document.getElementById('arrow2').className = 'fas fa-angle-right animated fadeInLeft';
-}
-
-document.getElementById("link3").onmouseout = function(){
-  document.getElementById('arrow3').className = 'fas fa-angle-right animated fadeOutLeft';
-}
-
-document.getElementById("link3").onmouseover = function(){
-  document.getElementById('arrow3').style.opacity = '1';
-  document.getElementById('arrow3').className = 'fas fa-angle-right animated fadeInLeft';
 }

@@ -141,6 +141,19 @@ button:hover{
   background-color: #333333;
 }
 
+#more{
+  width: 100%;
+  background-color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px 0;
+  font-family: 'Open Sans';
+  font-size: 1.3em;
+  text-decoration: none;
+}
+
 #more a{
   color: white;
   transition: color 0.35s;
@@ -339,10 +352,6 @@ button:hover{
 
   .icons{
     width: 70%;
-  }
-
-  .fa-angle-right{
-    display: none !important;
   }
 }
 
