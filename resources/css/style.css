@@ -66,7 +66,7 @@ html, body, .container{
 }
 
 .min-padding{
-  height: 50px;
+  height: 100px;
 }
 
 .projects{
@@ -116,9 +116,34 @@ html, body, .container{
   width: 100%;
 }
 
-.achievement{
-  border-radius: 10px;
+.achievement-wrapper{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
+
+.achievement{
+  border-radius: 0 0 10px 10px;
+  margin-top: 0;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.achievement-img{
+  margin: 0;
+  padding: 0;
+  width: 20vw;
+  border-radius: 10px 10px 0 0;
+  box-sizing: border-box;
+  display: block;
+  filter: grayscale(0.6);
+  transition: filter 0.2s;
+}
+
+a img:hover{
+  filter: grayscale(0.2);
+}
+
 
 button{
   background-color: #1e1e1e;
@@ -254,6 +279,15 @@ button:hover{
   .project{
     width: 22vw;
   }
+
+  .achievement{
+    width: 25vw;
+  }
+
+  .achievement-img{
+    width: 25vw;
+  }
+
   .icons{
     width: 35%;
   }
@@ -269,9 +303,19 @@ button:hover{
   .icons{
     width: 45%;
   }
+
   .project{
     width: 25vw;
     margin: 10px;
+  }
+
+  .achievement{
+    margin-top: 0;
+    width: 30vw;
+  }
+
+  .achievement-img{
+    width: 30vw;
   }
 
   button{
@@ -304,7 +348,11 @@ button:hover{
   }
 
   .achievement{
-    margin-bottom: 15px;
+    margin-bottom: 50px;
+  }
+
+  .achievement-img{
+    width: 50vw;
   }
 
   .projects{
@@ -320,6 +368,16 @@ button:hover{
   .project{
     width: 60vw;
     padding: 30px;
+  }
+
+  .achievement{
+    padding: 20px 15px;
+    margin-top: 0;
+    width: 75vw;
+  }
+
+  .achievement-img{
+    width: 75vw;
   }
 }
 
@@ -387,10 +445,6 @@ button:hover{
   .project{
     padding: 15px 10px;
     width: 75vw;
-  }
-
-  .achievement{
-    padding: 20px 15px;
   }
 }
 
