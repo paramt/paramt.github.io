@@ -96,14 +96,14 @@ html, body, .container{
 .project-more{
   width:100%;
   padding: 2vh 0 2vh 0;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0 0 10px 10px;
   background-color: #1e1e1e;
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   bottom: -15%;
-  margin: 0px;
+  margin: 0;
   transition: background-color 0.2s;
 }
 
@@ -246,7 +246,7 @@ button:hover{
 #arrow{
   position: absolute;
   bottom: 5vh;
-  left: 0px;
+  left: 0;
   width: 100%;
   font-size: 3em;
   opacity: 0;
