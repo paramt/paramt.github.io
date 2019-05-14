@@ -26,15 +26,17 @@ window.onload = function(){
   }, 900)
 }
 
-function highlight(element){
-  for(var i = 0; i < document.getElementsByClassName("icon").length; i++){
-    document.getElementsByClassName("icon")[i].style = "color: #b7b7b7"
+function highlight(parentElement){
+  elements = parentElement.childNodes;
+  for(element in elements){
+    elements[element].style = "color: #b7b7b7";
   }
 }
 
-function unHighlight(element){
-  for(var i = 0; i < document.getElementsByClassName("icon").length; i++){
-    document.getElementsByClassName("icon")[i].style = "color: white"
+function unHighlight(parentElement){
+  elements = parentElement.childNodes;
+  for(element in elements){
+    elements[element].style = "color: white";
   }
 }
 
