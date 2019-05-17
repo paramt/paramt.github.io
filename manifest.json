@@ -1,0 +1,19 @@
+{
+  "short_name": "Param",
+  "name": "Param Thakkar",
+  "icons": [
+    {
+      "src": "/resources/favicon/favicon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/resources/favicon/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "background_color": "#e25e5d",
+  "display": "standalone",
+  "theme_color": "#932524"
+}
