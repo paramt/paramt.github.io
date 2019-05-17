@@ -223,26 +223,6 @@ button:hover{
   visibility: hidden;
 }
 
-.icons{
-  display: flex;
-  justify-content: space-around;
-  width: 25%;
-  visibility: hidden;
-}
-
-.icons a{
-  color: white;
-  font-size: 3.5em;
-}
-
-.icons a:hover{
-  color: white !important;
-}
-
-.icon{
-  transition: color 0.5s;
-}
-
 #arrow{
   position: absolute;
   bottom: 5vh;
@@ -270,9 +250,6 @@ button:hover{
   p{
     font-size: 1.4em;
   }
-  .icons{
-    width: 30%;
-  }
 }
 
 @media only screen and (max-width: 1600px) {
@@ -287,23 +264,9 @@ button:hover{
   .achievement-img{
     width: 25vw;
   }
-
-  .icons{
-    width: 35%;
-  }
-}
-
-@media only screen and (max-width: 1400px) {
-  .icons{
-    width: 40%;
-  }
 }
 
 @media only screen and (max-width: 1200px) {
-  .icons{
-    width: 45%;
-  }
-
   .project{
     width: 25vw;
     margin: 10px;
@@ -329,10 +292,6 @@ button:hover{
 }
 
 @media only screen and (max-width: 1000px) {
-  .icons{
-    width: 50%;
-  }
-
   .content{
     padding: 100px 0;
   }
@@ -361,10 +320,6 @@ button:hover{
 }
 
 @media only screen and (max-width: 800px){
-  .icons{
-    width: 60%;
-  }
-
   .project{
     width: 60vw;
     padding: 30px;
@@ -397,19 +352,11 @@ button:hover{
   p{
     font-size: 1.3em;
   }
-
-  .icons a{
-    font-size: 3em;
-  }
 }
 
 @media only screen and (max-width: 600px){
   h1{
     font-size: 4em;
-  }
-
-  .icons{
-    width: 70%;
   }
 }
 
@@ -432,14 +379,6 @@ button:hover{
 
   p{
     font-size: 1.2em;
-  }
-
-  .icons{
-    width: 75%;
-  }
-
-  .icons a{
-    font-size: 2.5em;
   }
 
   .project{

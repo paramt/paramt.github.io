@@ -19,25 +19,6 @@ window.onload = function(){
     document.getElementById("main-text").style.visibility = "visible";
     document.getElementById("main-text").className = "main-text animated fadeIn";
   }, 700)
-
-  window.setTimeout(function(){
-    document.getElementById("icons").style.visibility = "visible";
-    document.getElementById("icons").className = "icons animated fadeIn";
-  }, 900)
-}
-
-function highlight(parentElement){
-  elements = parentElement.childNodes;
-  for(element in elements){
-    elements[element].style = "color: #b7b7b7";
-  }
-}
-
-function unHighlight(parentElement){
-  elements = parentElement.childNodes;
-  for(element in elements){
-    elements[element].style = "color: white";
-  }
 }
 
 window.addEventListener("scroll", function(){
