@@ -1,37 +1,39 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <title>Param Thakkar</title>
-    <meta property="og:title" content="Param Thakkar"/>
-    <meta property="og:description" content="Websites were always meant to be clicked on."/>
-    <meta property="og:image" content="resources/img/profile-pic.png"/>
-    <meta name="description" content="I'm an enthusiastic student who likes to tinker with computers, and this site is sorta like a showcase of my projects and achievements.">
+    <meta property="og:title" content="{{site.title}}"/>
+    <meta property="og:description" content="{{site.description}}"/>
+    <meta property="og:image" content="{{site.baseurl}}/assets/img/profile-pic.png"/>
+    <meta name="description" content="{{site.description}}">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="stylesheet" href="resources/css/animate.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/animate.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Open+Sans:300">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <script defer type="text/javascript" src="resources/js/script.js"></script>
+    <script defer type="text/javascript" src="{{site.baseurl}}/assets/js/script.js"></script>
 
     <meta name="google-site-verification" content="F5d76HbKwxqSA5Uk1SvxOe-lGGJ4SKKocfZR1rCG-ic"/>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="resources/favicon/apple-touch-icon.png?v=bOMbqXqrgO">
-    <link rel="icon" type="image/png" sizes="32x32" href="resources/favicon/favicon-32x32.png?v=bOMbqXqrgO">
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/favicon/favicon-16x16.png?v=bOMbqXqrgO">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{site.baseurl}}/assets/favicon/apple-touch-icon.png?v=bOMbqXqrgO">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{site.baseurl}}/assets/favicon/favicon-32x32.png?v=bOMbqXqrgO">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{site.baseurl}}/assets/favicon/favicon-16x16.png?v=bOMbqXqrgO">
     <link rel="manifest" href="manifest.json">
-    <link rel="mask-icon" href="resources/favicon/safari-pinned-tab.svg?v=bOMbqXqrgO" color="#5bbad5">
-    <link rel="shortcut icon" href="resources/favicon/favicon.ico?v=bOMbqXqrgO">
+    <link rel="mask-icon" href="{{site.baseurl}}/assets/favicon/safari-pinned-tab.svg?v=bOMbqXqrgO" color="#5bbad5">
+    <link rel="shortcut icon" href="{{site.baseurl}}/assets/favicon/favicon.ico?v=bOMbqXqrgO">
     <meta name="msapplication-TileColor" content="#e68b8b">
-    <meta name="msapplication-config" content="resources/favicon/browserconfig.xml?v=bOMbqXqrgO">
+    <meta name="msapplication-config" content="{{site.baseurl}}/assets/favicon/browserconfig.xml?v=bOMbqXqrgO">
     <meta name="theme-color" content="#932524">
   </head>
 
   <body onresize="shiftProjectExtra(); checkToMobilify();">
 
-    <img src="resources/img/profile-pic.png" id="main-pic">
+    <img src="{{site.baseurl}}/assets/img/profile-pic.png" id="main-pic">
     <div id="overlay"></div><div id="transition-overlay"></div>
 
     <div class="container">
@@ -94,7 +96,7 @@
         <div class="projects">
 
           <div class="achievement-wrapper">
-            <a target="_blank" rel="noopener" href="https://mathu.ca/"><img class="achievement-img" src="resources/img/hackathon.png"></a>
+            <a target="_blank" rel="noopener" href="https://mathu.ca/"><img class="achievement-img" src="{{site.baseurl}}/assets/img/hackathon.png"></a>
             <div class="project achievement">
               <h2>Imagine Hackathon</h2>
               <h3>September 2018</h3>
@@ -103,7 +105,7 @@
           </div>
 
           <div class="achievement-wrapper">
-            <a target="_blank" rel="noopener" href="resources/img/certificates/gauss.png"><img class="achievement-img" src="resources/img/certificates/gauss-thumbnail.png"></a>
+            <a target="_blank" rel="noopener" href="{{site.baseurl}}/assets/img/certificates/gauss.png"><img class="achievement-img" src="{{site.baseurl}}/assets/img/certificates/gauss-thumbnail.png"></a>
             <div class="project achievement">
               <h2>Gauss Math Contest</h2>
               <h3>May 2017</h3>
@@ -112,7 +114,7 @@
           </div>
 
           <div class="achievement-wrapper">
-            <a target="_blank" rel="noopener" href="https://1pt.co/tk7y"><img class="achievement-img" src="resources/img/app-of-the-month.png"></a>
+            <a target="_blank" rel="noopener" href="https://1pt.co/tk7y"><img class="achievement-img" src="{{site.baseurl}}/assets/img/app-of-the-month.png"></a>
             <div class="project achievement">
               <h2>App of the Month</h2>
               <h3>January 2017</h3>
@@ -128,7 +130,7 @@
     </div>
 
     <div id="more">
-      <p><img style="height: 1em" align="center" src="resources/img/fiverr-icon.png"> <a target="_blank" href="https://www.fiverr.com/paramthakkar" rel="noopener">Hire me on Fiverr</a></p>
+      <p><img style="height: 1em" align="center" src="{{site.baseurl}}/assets/img/fiverr-icon.png"> <a target="_blank" href="https://www.fiverr.com/paramthakkar" rel="noopener">Hire me on Fiverr</a></p>
       <p><i class="fas fa-arrow-alt-circle-down"></i> <a target="_blank" href="resume/ParamThakkarResume.pdf">Download Resume</a></p>
       <p><i class="fas fa-envelope"></i> <a target="_blank" href="mailto:contact@param.me">contact@param.me</a></p>
       <p><i class="fas fa-check-circle"></i> <a href="https://status.param.me">Status Monitoring</a></p>
