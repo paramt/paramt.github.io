@@ -5,7 +5,7 @@ var closest;
 
 for(var i = 0; i<directories.length; i++){
   var distance = getEditDistance(query.toLowerCase(), directories[i])
-  
+
   if(distance < Math.min(...distances) && distance < Math.floor(directories[i].length/2)){
     closest = directories[i];
     distances.push(distance);

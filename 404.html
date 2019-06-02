@@ -6,14 +6,12 @@ permalink: /404.html
   <head>
     <title>Page not found</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="/resources/js/levenshtein.js" type="text/javascript" defer></script>
-    <script src="/resources/js/404.js" type="text/javascript" defer></script>
-    <link rel="stylesheet" href="/resources/css/style.css">
-    <link rel="icon" type="image/png" sizes="16x16" href="/resources/favicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/resources/favicon/favicon-32x32.png">
+    {% include favicon.html %}
+    <script src="{{site.baseurl}}/assets/js/levenshtein.js" type="text/javascript" defer></script>
+    <script src="{{site.baseurl}}/assets/js/404.js" type="text/javascript" defer></script>
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/style.css">
   </head>
-  
+
   <body>
     <div id="transition-overlay" style="opacity:0;"></div>
 
