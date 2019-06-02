@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <title>Param Thakkar</title>
+    <title>{{site.title}}</title>
 
     {% include meta.html %}
     {% include favicon.html %}
@@ -37,7 +37,7 @@
       <div>
         <h1>Projects</h1>
         <div class="projects">
-            {% for project in site.data.projects %}
+            {% for project in site.data.projects limit:3 %}
               <div class="project">
                   <h2>{{project.title}}</h2>
                   <h3>{{project.date}} | <a href="{{project.github}}" rel="noopener" target="_blank">GitHub</a></h3>
@@ -62,34 +62,16 @@
 
       <div>
         <div class="projects">
-
-          <div class="achievement-wrapper">
-            <a target="_blank" rel="noopener" href="https://mathu.ca/"><img class="achievement-img" src="{{site.baseurl}}/assets/img/hackathon.png"></a>
-            <div class="project achievement">
-              <h2>Imagine Hackathon</h2>
-              <h3>September 2018</h3>
-              <p>Pitched <a target="_blank" href="https://mathu.ca">Mathu</a>: the winning entry at the 24-hour <i>Imagine Hackthon</i> in Brampton</p>
+          {% for achievement in site.data.achievements limit:3 %}
+            <div class="achievement-wrapper">
+              <a rel="noopener" href="{{achievement.link}}"><img class="achievement-img" src="{{site.baseurl}}/assets/img/{{achievement.image}}"></a>
+              <div class="project achievement">
+                <h2>{{achievement.title}}</h2>
+                <h3>{{achievement.date}}</h3>
+                <p>{{achievement.description || markdownify}}</p>
+              </div>
             </div>
-          </div>
-
-          <div class="achievement-wrapper">
-            <a target="_blank" rel="noopener" href="{{site.baseurl}}/assets/img/certificates/gauss.png"><img class="achievement-img" src="{{site.baseurl}}/assets/img/certificates/gauss-thumbnail.png"></a>
-            <div class="project achievement">
-              <h2>Gauss Math Contest</h2>
-              <h3>May 2017</h3>
-              <p>Ranked first place from Allan A. Martin for writing the Grade 7 Gauss Math Contest</p>
-            </div>
-          </div>
-
-          <div class="achievement-wrapper">
-            <a target="_blank" rel="noopener" href="https://1pt.co/tk7y"><img class="achievement-img" src="{{site.baseurl}}/assets/img/app-of-the-month.png"></a>
-            <div class="project achievement">
-              <h2>App of the Month</h2>
-              <h3>January 2017</h3>
-              <p>Recieved MIT's Most Creative App of the Month award for <a href="https://play.google.com/store/apps/details?id=appinventor.ai_700164.SpellBind_all" rel="noopener">SpellBind</a></p>
-            </div>
-          </div>
-
+          {% endfor %}
         </div>
         <div class="filler"></div>
       </div>
