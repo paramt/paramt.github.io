@@ -8,6 +8,7 @@ projects_file = "_data/projects.csv"
 achievements_file = "_data/achievements.csv"
 projects = []
 achievements = []
+exit_status = 0
 
 print("Collecting all URLs from {projects_file}")
 
