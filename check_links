@@ -1,12 +1,17 @@
 #!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 
 import csv
 import requests
 
+projects_file = "_data/projects.csv"
+achievements_file = "_data/projects.csv"
 projects = []
 achievements = []
 
-with open("_data/projects.csv") as f:
+print("Collecting all URLs from {projects_file}")
+
+with open(projects_file) as f:
     lines = f
     lines = f.readlines()
 
@@ -15,7 +20,9 @@ with open("_data/projects.csv") as f:
 
     projects.pop(0)
 
-with open("_data/achievements.csv") as f:
+print("Collecting all URLs from {achievements_file}")
+
+with open(achievements_file) as f:
     lines = f
     lines = f.readlines()
 
@@ -26,12 +33,18 @@ with open("_data/achievements.csv") as f:
 
 links = projects + achievements
 
+print("Checking all URLs")
+
 for url in links:
-    print(url)
     try:
         request = requests.get(url)
         if request.status_code == 200:
-            print("Web site exists")
+            print(f"✓ {url}")
     except:
-        print("Web site does not exist")
-        exit(1)
+        print(f"✕ {url}")
+
+        # Continue through all URLs but fail test at the end
+        exit_status = 1
+        continue
+
+exit(exit_status)
