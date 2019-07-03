@@ -10,7 +10,7 @@ projects = []
 achievements = []
 exit_status = 0
 
-print("Collecting all URLs from {projects_file}")
+print(f"Collecting all URLs from {projects_file}")
 
 with open(projects_file) as f:
     lines = f
@@ -21,7 +21,7 @@ with open(projects_file) as f:
 
     projects.pop(0)
 
-print("Collecting all URLs from {achievements_file}")
+print(f"Collecting all URLs from {achievements_file}")
 
 with open(achievements_file) as f:
     lines = f
