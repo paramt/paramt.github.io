@@ -3,16 +3,28 @@
 import csv
 import requests
 
-links = []
+projects = []
+achievements = []
 
 with open("_data/projects.csv") as f:
     lines = f
     lines = f.readlines()
 
     for l in  csv.reader(lines, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL, skipinitialspace=True):
-        links.append(l[4])
+        projects.append(l[4])
 
-    links.pop(0)
+    projects.pop(0)
+
+with open("_data/achievements.csv") as f:
+    lines = f
+    lines = f.readlines()
+
+    for l in  csv.reader(lines, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL, skipinitialspace=True):
+        achievements.append(l[4])
+
+    achievements.pop(0)
+
+links = projects + achievements
 
 for url in links:
     print(url)
