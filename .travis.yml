@@ -7,4 +7,4 @@ install:
   - pip install requests
 
 script:
-  - ./check_links
+  - python check_links
