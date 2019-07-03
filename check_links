@@ -5,7 +5,7 @@ import csv
 import requests
 
 projects_file = "_data/projects.csv"
-achievements_file = "_data/projects.csv"
+achievements_file = "_data/achievements.csv"
 projects = []
 achievements = []
 
