@@ -13,7 +13,6 @@ exit_status = 0
 print(f"Collecting all URLs from {projects_file}")
 
 with open(projects_file) as f:
-    lines = f
     lines = f.readlines()
 
     for l in  csv.reader(lines, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL, skipinitialspace=True):
@@ -24,7 +23,6 @@ with open(projects_file) as f:
 print(f"Collecting all URLs from {achievements_file}")
 
 with open(achievements_file) as f:
-    lines = f
     lines = f.readlines()
 
     for l in  csv.reader(lines, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL, skipinitialspace=True):
