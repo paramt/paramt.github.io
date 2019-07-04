@@ -3,8 +3,6 @@ container:
 
 task:
   name: Check URLs
-  pip_cache:
-    folder: ~/.cache/pip
-    fingerprint_script: echo $PYTHON_VERSION
-    populate_script: pip install requests
+  fingerprint_script: echo $PYTHON_VERSION
+  populate_script: pip install -r tests/requirements.txt
   test_script: python tests/check_links
