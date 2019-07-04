@@ -14,7 +14,7 @@ projects = []
 achievements = []
 exit_status = 0
 
-print(f"Collecting all URLs from {projects_file}")
+print(f"Collecting URLs from {projects_file}")
 
 with open(projects_file) as f:
     lines = f.readlines()
@@ -26,7 +26,7 @@ with open(projects_file) as f:
 
 links += projects
 
-print(f"Collecting all URLs from {achievements_file}")
+print(f"Collecting URLs from {achievements_file}")
 
 with open(achievements_file) as f:
     lines = f.readlines()
@@ -38,7 +38,7 @@ with open(achievements_file) as f:
 
 links += achievements
 
-print(f"Collecting all URLs from {markdown_file}")
+print(f"Collecting URLs from {markdown_file}")
 
 with open(markdown_file) as f:
     text = f.read()
@@ -47,6 +47,10 @@ extractor = URLExtract()
 markdown = extractor.find_urls(text)
 
 links += markdown
+
+# Remove mailto links
+print(f"Cleaning up list of URLs")
+links = [url for url in links if "mailto://" not in url]
 
 print("Checking all URLs")
 
