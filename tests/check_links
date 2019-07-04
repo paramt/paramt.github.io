@@ -38,9 +38,11 @@ for url in links:
     try:
         request = requests.get(url)
         if request.status_code == 200:
-            print(f"✓ {url}")
+            print(f"✓ 200 {url}")
+        else:
+            print(f"✕ {request.status_code} {url}")
     except:
-        print(f"✕ {url}")
+        print(f"✕ ERR {url}")
 
         # Continue through all URLs but fail test at the end
         exit_status = 1
