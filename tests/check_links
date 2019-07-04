@@ -2,10 +2,14 @@
 # -*- coding: UTF-8 -*-
 
 import csv
+from urlextract import URLExtract
 import requests
 
 projects_file = "_data/projects.csv"
 achievements_file = "_data/achievements.csv"
+markdown_file = "README.md"
+
+links = []
 projects = []
 achievements = []
 exit_status = 0
@@ -20,6 +24,8 @@ with open(projects_file) as f:
 
     projects.pop(0)
 
+links += projects
+
 print(f"Collecting all URLs from {achievements_file}")
 
 with open(achievements_file) as f:
@@ -30,7 +36,17 @@ with open(achievements_file) as f:
 
     achievements.pop(0)
 
-links = projects + achievements
+links += achievements
+
+print(f"Collecting all URLs from {markdown_file}")
+
+with open(markdown_file) as f:
+    text = f.read()
+
+extractor = URLExtract()
+markdown = extractor.find_urls(text)
+
+links += markdown
 
 print("Checking all URLs")
 
