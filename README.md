@@ -1,5 +1,5 @@
 # <img src="assets/img/circle.png" width=42 align=center> Param Thakkar
-Hi there! I'm a grade 9 student with a passion for exploring technology, and this is a condensed version of my website. The full version can be found at [www.param.me](https://www.param.me/).
+Hi there! I'm a grade 9 student with a passion for exploring technology, and this is a condensed version of my website. The full version can be found at https://www.param.me.
 
 
 
