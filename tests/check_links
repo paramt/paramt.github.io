@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
+# These URLs are blacklisted because they don't send back proper responses to automated scripts
+blacklisted = ["https://www.reddit.com/r/MemeEconomy", "https://www.linkedin.com/in/paramt/"]
+
 import csv
 from urlextract import URLExtract
 import requests
@@ -48,9 +51,15 @@ markdown = extractor.find_urls(text)
 
 links += markdown
 
-# Remove mailto links
 print(f"Cleaning up list of URLs")
+
+# Remove mailto links
 links = [url for url in links if "mailto://" not in url]
+
+# Remove blacklisted links
+for item in blacklisted:
+    if item in links:
+        links.remove(item)
 
 print("Checking all URLs")
 
