@@ -39,8 +39,12 @@ for url in links:
         request = requests.get(url)
         if request.status_code == 200:
             print(f"✓ 200 {url}")
-        else:
+        elif request.status_code >= 400:
             print(f"✕ {request.status_code} {url}")
+            exit_status = 1
+        else:
+            print(f"⚪ {request.status_code} {url}")
+
     except:
         print(f"✕ ERR {url}")
 
