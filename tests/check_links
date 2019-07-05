@@ -57,9 +57,9 @@ print("Cleaning up list of URLs")
 links = [url for url in links if "mailto://" not in url]
 
 # Remove blacklisted links
-for item in blacklisted:
-    if item in links:
-        links.remove(item)
+for link in links:
+    if link in blacklisted:
+        links.remove(link)
 
 print("Checking all URLs")
 
