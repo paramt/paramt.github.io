@@ -51,7 +51,7 @@ markdown = extractor.find_urls(text)
 
 links += markdown
 
-print(f"Cleaning up list of URLs")
+print("Cleaning up list of URLs")
 
 # Remove mailto links
 links = [url for url in links if "mailto://" not in url]
