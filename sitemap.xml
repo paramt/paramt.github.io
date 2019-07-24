@@ -31,6 +31,12 @@
   </url>
   
   <url>
+    <loc>https://www.param.me/mathu/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  
+  <url>
     <loc>https://www.param.me/trackarma/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.40</priority>
