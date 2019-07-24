@@ -22,10 +22,6 @@ These are my 3 most recent projects. You can find a complete list of projects [h
 | A dynamic URL shortener capable of pointing users to different destinations based on various factors |
 | [Website](https://www.1pt.co) &#124; [Github](https://github.com/paramt/1pt) &#124; PHP |
 
-| Sep 2018: Mathü |
-| :--- |
-| An AI concept that grows and adapts to individual students' needs |
-| [Website](https://www.mathu.ca) &#124; [Github](https://github.com/paramt/mathu) &#124; JavaScript |
 
 ## Achievements
 | Sep 2018:  Imagine Hackathon |
