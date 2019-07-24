@@ -12,12 +12,12 @@ These are my 3 most recent projects. You can find a complete list of projects [h
 | [Website](https://www.param.me/videocloud) &#124; [Github](https://github.com/paramt/videocloud) &#124; Python |
 
 
-| Feb 2019:  MemeAdviser |
+| February 2019:  MemeAdviser |
 | :--- |
 | A reddit bot that analyzes the market at [r/MemeEconomy](https://www.reddit.com/r/MemeEconomy) and provides insightful information |
 | [Website](https://www.1pt.co) &#124; [Github](https://github.com/paramt/1pt) &#124; Python |
 
-| Dec 2018: 1-Point |
+| December 2018: 1-Point |
 | :--- |
 | A dynamic URL shortener capable of pointing users to different destinations based on various factors |
 | [Website](https://www.1pt.co) &#124; [Github](https://github.com/paramt/1pt) &#124; PHP |
