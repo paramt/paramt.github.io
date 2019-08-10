@@ -1,8 +1,27 @@
-container:
-  image: python:slim
-
 task:
+  container:
+    image: python:slim
   name: Check URLs
   fingerprint_script: echo $PYTHON_VERSION
   populate_script: pip install -r tests/requirements.txt
   test_script: python tests/check_links
+
+build_site_test_task:
+  auto_cancellation: true
+  env:
+    JEKYLL_ENV: production
+    NOKOGIRI_USE_SYSTEM_LIBRARIES: false
+  bootstrap_script: gem install bundler
+  bundler_cache:
+    folder: /usr/local/bundle
+    fingerprint_script: |
+      ruby -v
+      cat Gemfile
+      cat Gemfile.lock
+    populate_script: bundler
+  build_and_test_script: bundler exec rake --trace --verbose
+  cleanup_before_upload_script: rm -rf _site/static
+  site_build_artifacts:
+    path: _site/**/**
+  container:
+    image: ruby:latest
