@@ -1,5 +1,6 @@
 ---
 ---
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -12,7 +13,7 @@
     <link rel="stylesheet" href="{{site.baseurl}}/assets/css/animate.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Open+Sans:300">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <script defer type="text/javascript" src="{{site.baseurl}}/assets/js/script.js"></script>
+    <script defer type="text/javascript" src="{{ site.baseurl }}/assets/js/script.js"></script>
   </head>
 
   <body onresize="shiftProjectExtra(); checkToMobilify();">
@@ -23,11 +24,12 @@
     <div class="container">
       <h1 id="main-text" class="main-text">Param Thakkar</h1>
       <span id="icons" class="icons" onmouseover="highlight(this)" onmouseout="unHighlight(this)">
-        <a title="GitHub" rel="noopener" class="icon" target="_blank" href="https://github.com/{{site.links.github}}"><i class="fab fa-github"></i></a>
+        <a title="GitHub" rel="noopener" class="icon" target="_blank" href="https://github.com/{{ site.links.github }}"><i class="fab fa-github"></i></a>
         <a title="Email" class="icon" target="_blank" href="mailto:{{site.links.email}}"><i class="fas fa-envelope"></i></a>
-        <a title="LinkedIn" rel="noopener" class="icon" target="_blank" href="https://www.linkedin.com/in/{{site.links.linkedin}}"><i class="fab fa-linkedin"></i></a>
-        <a title="Twitter" rel="noopener" class="icon" target="_blank" href="https://twitter.com/{{site.links.twitter}}"><i class="fab fa-twitter"></i></a>
-        <a title="Instagram" rel="noopener" class="icon" target="_blank" href="https://www.instagram.com/{{site.links.instagram}}"><i class="fab fa-instagram"></i></a>
+        <a title="LinkedIn" rel="noopener" class="icon" target="_blank" href="https://www.linkedin.com/in/{{ site.links.linkedin }}"><i class="fab fa-linkedin"></i></a>
+        <a title="Twitter" rel="noopener" class="icon" target="_blank" href="https://twitter.com/{{ site.links.twitter }}"><i class="fab fa-twitter"></i></a>
+        <a title="Instagram" rel="noopener" class="icon" target="_blank" href="https://www.instagram.com/{{ site.links.instagram }}"><i class="fab fa-instagram"></i></a>
+        <a title="Patreon" rel="noopener" class="icon" target="_blank" href="https://www.patreon.com/{{ site.links.patreon }}"><i class="fab fa-patreon"></i></a>
       </span>
     </div>
 
@@ -38,13 +40,13 @@
         <h1>Projects</h1>
         <div class="projects">
             {% for project in site.data.projects limit:3 %}
-              <div class="project">
-                  <h2>{{project.title}}</h2>
-                  <h3>{{project.date}} | <a href="{{project.github}}" rel="noopener" target="_blank">GitHub</a></h3>
-                  <p>{{project.description || markdownify}}</p>
-                  <a class="project-more" id="pm{{forloop.index}}" href="{{project.link}}">
-                    <p>View project <i class="fas fa-angle-right"></i></p>
-                  </a>
+                <div class="project">
+                    <h2>{{ project.title }}</h2>
+                    <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="_blank">GitHub</a></h3>
+                    <p>{{ project.description || markdownify }}</p>
+                    <a class="project-more" id="pm{{ forloop.index }}" href="{{ project.link }}">
+                        <p>View project <i class="fas fa-angle-right"></i></p>
+                    </a>
                 </div>
             {% endfor %}
         </div>
@@ -64,11 +66,11 @@
         <div class="projects">
           {% for achievement in site.data.achievements limit:3 %}
             <div class="achievement-wrapper">
-              <a rel="noopener" href="{{achievement.link}}"><img class="achievement-img" src="{{site.baseurl}}/assets/img/{{achievement.image}}"></a>
+              <a rel="noopener" href="{{achievement.link}}"><img class="achievement-img" src="{{ site.baseurl }}/assets/img/{{ achievement.image }}"></a>
               <div class="project achievement">
-                <h2>{{achievement.title}}</h2>
-                <h3>{{achievement.date}}</h3>
-                <p>{{achievement.description || markdownify}}</p>
+                <h2>{{ achievement.title }}</h2>
+                <h3>{{ achievement.date }}</h3>
+                <p>{{ achievement.description || markdownify }}</p>
               </div>
             </div>
           {% endfor %}
