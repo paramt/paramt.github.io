@@ -39,16 +39,16 @@
       <div>
         <h1>Projects</h1>
         <div class="projects">
-            {% for project in site.data.projects limit:3 %}
-                <div class="project">
-                    <h2>{{ project.title }}</h2>
-                    <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="_blank">GitHub</a></h3>
-                    <p>{{ project.description || markdownify }}</p>
-                    <a class="project-more" id="pm{{ forloop.index }}" href="{{ project.link }}">
-                        <p>View project <i class="fas fa-angle-right"></i></p>
-                    </a>
-                </div>
-            {% endfor %}
+          {% for project in site.data.projects limit:3 %}
+            <div class="project">
+              <h2>{{ project.title }}</h2>
+              <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="_blank">GitHub</a></h3>
+              <p>{{ project.description || markdownify }}</p>
+              <a class="project-more" id="pm{{ forloop.index }}" href="{{ project.link }}">
+                <p>View project <i class="fas fa-angle-right"></i></p>
+              </a>
+            </div>
+          {% endfor %}
         </div>
 
         <div class="filler"></div>
