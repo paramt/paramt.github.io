@@ -26,7 +26,7 @@ These are my 3 most recent projects. You can find a complete list of projects [h
 ## Achievements
 | Sep 2018:  Imagine Hackathon |
 | :--- |
-| Pitched [Mathu](https://mathu.ca): the winning entry at the 24-hour Imagine Hackthon in Brampton |
+| Pitched [Mathu](https://mathu.cf): the winning entry at the 24-hour Imagine Hackthon in Brampton |
 
 | May 2017: Gauss Math Contest |
 | :--- |
