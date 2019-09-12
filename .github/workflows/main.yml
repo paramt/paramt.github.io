@@ -1,0 +1,15 @@
+name: Check URLs
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a multi-line script
+      run: |
+        pip install -r tests/requirements.txt,
+        python tests/check_links
