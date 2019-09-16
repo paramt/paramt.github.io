@@ -11,5 +11,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: Run a multi-line script
       run: |
-        pip install -r tests/requirements.txt,
-        python tests/check_links
+        pip install -r ./tests/requirements.txt,
+        python ./tests/check_links
