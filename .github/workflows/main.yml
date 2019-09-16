@@ -12,5 +12,6 @@ jobs:
     - name: Run a multi-line script
       run: |
         pwd,
+        ls,
         pip install -r /tests/requirements.txt,
         python /tests/check_links
