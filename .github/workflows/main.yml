@@ -1,15 +1,9 @@
-name: Check URLs
+workflow "on push" {
+  on = "push"
+  resolves = ["Check URLs"]
+}
 
-on: [push]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v1
-    - name: Run a multi-line script
-      run: |
-        pip install -r /tests/requirements.txt,
-        python /tests/check_links
+action "Check URLs" {
+  uses = "cclauss/GitHub-Action-for-pylint@master"
+  args = "pip install -r tests/requirements.txt ; pylint **/*.py"
+}
