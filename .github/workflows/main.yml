@@ -1,9 +1,22 @@
-workflow "on push" {
-  on = "push"
-  resolves = ["Check URLs"]
-}
+name: Check URLs
+on: 
+  push:
+    branches:
+    - master
+  schedule:
+  - cron: '0 0 * * *'
 
-action "Check URLs" {
-  uses = "cclauss/GitHub-Action-for-pylint@master"
-  args = "pip install -r tests/requirements.txt ; pylint **/*.py"
-}
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+      with:
+        python-version: '>=3.6'
+    - name: Install dependencies
+      run: pip install -r tests/requirements.txt
+      
+    - name: Check URLs
+      run: python tests/check_links
+       
