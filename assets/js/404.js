@@ -1,22 +1,24 @@
 var query = document.location.href.split("param.me/")[1]
 
-var directories = ["1pt",
-                   "assignments",
-                   "code-editor",
-                   "discord-emoji",
-                   "email-status",
-                   "kevlar",
-                   "mathu",
-                   "mathu-prototype",
-                   "meme",
-                   "MemeAdviser",
-                   "old",
-                   "projects",
-                   "resume",
-                   "sanskrit-quotes-calendar",
-                   "sumopit",
-                   "trackarma",
-                   "videocloud"]
+var directories = [
+                    "1pt",
+                    "assignments",
+                    "code-editor",
+                    "discord-emoji",
+                    "email-status",
+                    "kevlar",
+                    "mathu",
+                    "mathu-prototype",
+                    "meme",
+                    "MemeAdviser",
+                    "old",
+                    "projects",
+                    "resume",
+                    "sanskrit-quotes-calendar",
+                    "sumopit",
+                    "trackarma",
+                    "videocloud"
+                  ]
 
 var distances = []
 var closest;
