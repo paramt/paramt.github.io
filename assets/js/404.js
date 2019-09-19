@@ -1,6 +1,7 @@
 var query = document.location.href.split("param.me/")[1]
 
 var directories = ["1pt",
+                   "assignments",
                    "code-editor",
                    "discord-emoji",
                    "email-status",
