@@ -413,6 +413,10 @@ form input::placeholder, form textarea::placeholder{
     font-size: 2em;
   }
 
+  h3{
+    font-size: 1.2em;
+  }
+
   #more h2{
     font-size: 1.8em;
   }
