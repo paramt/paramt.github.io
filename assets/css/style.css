@@ -145,7 +145,7 @@ a img:hover{
 }
 
 
-button{
+button, form input, form textarea{
   background-color: #1e1e1e;
   width: 98%;
   width: -moz-calc(100% - 30px);
@@ -254,6 +254,25 @@ button:hover{
   transition: opacity 0.5s
 }
 
+form, form *{
+  color: white;
+  font-size: 1.3em;
+}
+
+form button{
+  color: white;
+}
+
+form input, form textarea{
+  width: 800px;
+  padding: 15px;
+}
+
+form input::placeholder, form textarea::placeholder{
+  color: white;
+  opacity: 0.6;
+}
+
 @media only screen and (max-width: 1800px) {
   h1{
     font-size: 4.3em;
@@ -312,6 +331,11 @@ button:hover{
 }
 
 @media only screen and (max-width: 1000px) {
+  form input, form textarea{
+    width: 80vw;
+    padding: 15px;
+  }
+
   .content{
     padding: 100px 0;
   }
