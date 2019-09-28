@@ -162,6 +162,26 @@ button, form input, form textarea{
   resize: none;
 }
 
+textarea::-webkit-scrollbar {
+  border-radius: 0 10px 10px 0;
+  background-color: #1e1e1e;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #333333;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  border-radius: 10px;
+  background-color: #4d4d4d;
+}
+
+textarea::-webkit-scrollbar-track {
+  border-radius: 0 10px 10px 0;
+  background-color: #1e1e1e;
+}
+
 button:hover{
   cursor: pointer;
   background-color: #333333;
