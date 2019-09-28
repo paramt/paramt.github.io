@@ -159,6 +159,7 @@ button, form input, form textarea{
   border-radius: 10px;
   transition: background-color 0.2s;
   font-size: inherit;
+  resize: none;
 }
 
 button:hover{
