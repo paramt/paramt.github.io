@@ -1,6 +1,6 @@
 # <img src="assets/img/circle.png" width=42 align=center> Param Thakkar
 
-![Broken link status](https://github.com/paramt/paramt.github.io/workflows/Check%20URLs/badge.svg)
+[![Link status](https://github.com/paramt/paramt.github.io/workflows/Check%20URLs/badge.svg)](https://github.com/paramt/paramt.github.io/actions)
 
 Hi there! I'm a grade 10 student with a passion for exploring technology, and this is a condensed version of my website. The full version can be found at https://www.param.me.
 
