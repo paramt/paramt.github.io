@@ -24,12 +24,12 @@
     <div class="container">
       <h1 id="main-text" class="main-text">Param Thakkar</h1>
       <span id="icons" class="icons" onmouseover="highlight(this)" onmouseout="unHighlight(this)">
-        <a title="GitHub" rel="noopener" class="icon" target="_blank" href="https://github.com/{{ site.links.github }}"><i class="fab fa-github"></i></a>
-        <a title="Email" class="icon" target="_blank" href="mailto:{{site.links.email}}"><i class="fas fa-envelope"></i></a>
-        <a title="LinkedIn" rel="noopener" class="icon" target="_blank" href="https://www.linkedin.com/in/{{ site.links.linkedin }}"><i class="fab fa-linkedin"></i></a>
-        <a title="Twitter" rel="noopener" class="icon" target="_blank" href="https://twitter.com/{{ site.links.twitter }}"><i class="fab fa-twitter"></i></a>
-        <a title="Instagram" rel="noopener" class="icon" target="_blank" href="https://www.instagram.com/{{ site.links.instagram }}"><i class="fab fa-instagram"></i></a>
-        <a title="Patreon" rel="noopener" class="icon" target="_blank" href="https://www.patreon.com/{{ site.links.patreon }}"><i class="fab fa-patreon"></i></a>
+        <a title="GitHub" rel="noopener" class="icon" target="param_links" href="https://github.com/{{ site.links.github }}"><i class="fab fa-github"></i></a>
+        <a title="Email" class="icon" target="param_links" href="mailto:{{site.links.email}}"><i class="fas fa-envelope"></i></a>
+        <a title="LinkedIn" rel="noopener" class="icon" target="param_links" href="https://www.linkedin.com/in/{{ site.links.linkedin }}"><i class="fab fa-linkedin"></i></a>
+        <a title="Twitter" rel="noopener" class="icon" target="param_links" href="https://twitter.com/{{ site.links.twitter }}"><i class="fab fa-twitter"></i></a>
+        <a title="Instagram" rel="noopener" class="icon" target="param_links" href="https://www.instagram.com/{{ site.links.instagram }}"><i class="fab fa-instagram"></i></a>
+        <a title="Patreon" rel="noopener" class="icon" target="param_links" href="https://www.patreon.com/{{ site.links.patreon }}"><i class="fab fa-patreon"></i></a>
       </span>
     </div>
 
@@ -42,7 +42,7 @@
           {% for project in site.data.projects limit:3 %}
             <div class="project">
               <h2>{{ project.title }}</h2>
-              <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="_blank">GitHub</a></h3>
+              <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="param_links">GitHub</a></h3>
               <p>{{ project.description || markdownify }}</p>
               <a class="project-more" id="pm{{ forloop.index }}" href="{{ project.link }}">
                 <p>View project <i class="fas fa-angle-right"></i></p>
