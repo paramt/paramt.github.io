@@ -42,7 +42,7 @@
           {% for project in site.data.projects limit:3 %}
             <div class="project">
               <h2>{{ project.title }}</h2>
-              <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="param_links">GitHub</a></h3>
+              <h3>{{ project.date }} | <a href="{{ project.github }}" target="param_links" rel="noopener" target="param_links">GitHub</a></h3>
               <p>{{ project.description || markdownify }}</p>
               <a class="project-more" id="pm{{ forloop.index }}" href="{{ project.link }}">
                 <p>View project <i class="fas fa-angle-right"></i></p>
@@ -66,7 +66,7 @@
         <div class="projects">
           {% for achievement in site.data.achievements limit:3 %}
             <div class="achievement-wrapper">
-              <a rel="noopener" href="{{achievement.link}}"><img class="achievement-img" src="{{ site.baseurl }}/assets/img/{{ achievement.image }}"></a>
+              <a rel="noopener" href="{{achievement.link}}" target="param_links"><img class="achievement-img" src="{{ site.baseurl }}/assets/img/{{ achievement.image }}"></a>
               <div class="project achievement">
                 <h2>{{ achievement.title }}</h2>
                 <h3>{{ achievement.date }}</h3>
