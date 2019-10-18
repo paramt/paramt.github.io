@@ -42,7 +42,7 @@
           {% for project in site.data.projects limit:3 %}
             <div class="project">
               <h2>{{ project.title }}</h2>
-              <h3>{{ project.date }} | <a href="{{ project.github }}" target="param_links" rel="noopener" target="param_links">GitHub</a></h3>
+              <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="param_links">GitHub</a></h3>
               <p>{{ project.description || markdownify }}</p>
               <a class="project-more" id="pm{{ forloop.index }}" href="{{ project.link }}" target="param_links">
                 <p>View project <i class="fas fa-angle-right"></i></p>
