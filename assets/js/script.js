@@ -60,6 +60,10 @@ window.addEventListener("scroll", function(){
     document.body.style.backgroundColor = "#5e825f";
   }
 
+  if (scrollTop > document.body.offsetHeight*2.5 + document.getElementById("achievements").offsetHeight + document.getElementById("projects").offsetHeight){
+    document.body.style.backgroundColor = "#f55142";
+  }
+
 }, false);
 
 function shiftProjectExtra(){
