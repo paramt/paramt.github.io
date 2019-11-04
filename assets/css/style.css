@@ -291,7 +291,7 @@ form input, form textarea{
 
 form input::placeholder, form textarea::placeholder{
   color: white;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 @media only screen and (max-width: 1800px) {
