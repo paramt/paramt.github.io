@@ -84,7 +84,7 @@ html, body {
 }
 
 .project {
-  margin: 10px 15px 0 15px;
+  margin: 10px 15px 0;
   width: 20vw;
   background-color: #191919;
   border-radius: 10px 10px 0 0;
@@ -98,7 +98,7 @@ html, body {
 
 .project-more {
   width: 100%;
-  padding: 2vh 0 2vh 0;
+  padding: 2vh 0;
   border-radius: 0 0 10px 10px;
   background-color: #1e1e1e;
   display: flex;
@@ -154,7 +154,7 @@ button {
   width: -webkit-calc(100% - 30px);
   width: -o-calc(100% - 30px);
   width: calc(100% - 30px);
-  margin: 3vh 15px 0 15px;
+  margin: 3vh 15px 0;
   padding: 2vh 0 2vh 0;
   outline: none;
   border: none;
@@ -162,25 +162,6 @@ button {
   transition: background-color 0.2s;
   font-size: inherit;
   resize: none;
-}
-
-form {
-  input, textarea {
-    background-color: #1e1e1e;
-    width: 98%;
-    width: -moz-calc(100% - 30px);
-    width: -webkit-calc(100% - 30px);
-    width: -o-calc(100% - 30px);
-    width: calc(100% - 30px);
-    margin: 3vh 15px 0 15px;
-    padding: 2vh 0 2vh 0;
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    transition: background-color 0.2s;
-    font-size: inherit;
-    resize: none;
-  }
 }
 
 textarea {
@@ -314,6 +295,14 @@ form {
   input, textarea {
     width: 800px;
     padding: 15px;
+    background-color: #1e1e1e;
+    margin: 3vh 15px 0;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    transition: background-color 0.2s;
+    font-size: inherit;
+    resize: none;
   }
 
   input::placeholder, textarea::placeholder {
@@ -367,7 +356,7 @@ form {
     width: -webkit-calc(100% - 20px);
     width: -o-calc(100% - 20px);
     width: calc(100% - 20px);
-    margin: 2vh 10px 0 10px;
+    margin: 2vh 10px 0;
   }
 }
 
