@@ -19,6 +19,7 @@
       (async () => {
         const response = await fetch('https://api.github.com/repos/paramt/paramt.github.io/contents/certificates');
         const data = await response.json();
+        var htmlString = "";
 
         for (let file of data) {
           if(file.name !== "index.html"){
