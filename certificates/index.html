@@ -13,7 +13,7 @@
         <h1>Certificates</h1>
     </div>
 
-    <div id="certificates">
+    <div class="center" id="certificates">
 
     </div>
 
@@ -24,7 +24,7 @@
         let htmlString = '<ul>';
         for (let file of data) {
           if(file.name !== "index.html"){
-            htmlString += `<li><a href="/${file.path}"><img src=${file.download_url}></img></a></li>`;
+            htmlString += `<a href="/${file.path}"><img src=${file.download_url}></img></a>`;
           }
         }
         htmlString += '</ul>';

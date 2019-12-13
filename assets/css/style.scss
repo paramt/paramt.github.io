@@ -143,15 +143,18 @@ html, body {
   transition: filter 0.2s;
 }
 
-#certificates img {
-  width: 500px;
-  border-radius: 10px;
-  filter: brightness(0.85);
-  transition: filter 0.2s;
-}
+#certificates {
+  img {
+    margin: 25px;
+    height: 400px;
+    border-radius: 10px;
+    filter: brightness(0.85);
+    transition: filter 0.2s;
 
-#certificates img:hover {
-  filter: brightness(0.9);
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
 }
 
 a img:hover {
