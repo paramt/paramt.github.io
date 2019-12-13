@@ -13,7 +13,7 @@
         <h1>Certificates</h1>
     </div>
 
-    <div class="center" id="certificates">
+    <div class="" id="certificates">
 
     </div>
 
@@ -21,14 +21,13 @@
       (async () => {
         const response = await fetch('https://api.github.com/repos/paramt/paramt.github.io/contents/certificates');
         const data = await response.json();
-        let htmlString = '<ul>';
+
         for (let file of data) {
           if(file.name !== "index.html"){
             htmlString += `<a href="/${file.path}"><img src=${file.download_url}></img></a>`;
           }
         }
-        htmlString += '</ul>';
-        document.getElementById('certificates').innerHTML += htmlString;
+        document.getElementById("certificates").innerHTML += htmlString;
       })()
     </script>
   <body>
