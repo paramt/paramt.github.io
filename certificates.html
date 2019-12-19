@@ -22,10 +22,9 @@
         var htmlString = "";
 
         for (let file of data) {
-          if(file.name !== "index.html"){
-            htmlString += `<a href="/${file.path}"><img src=${file.download_url}></img></a>`;
-          }
+          htmlString += `<a href="/${file.path}"><img src=${file.download_url}></img></a>`;
         }
+
         document.getElementById("certificates").innerHTML += htmlString;
       })()
     </script>
