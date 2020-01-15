@@ -1,0 +1,36 @@
+[submodule "videocloud"]
+	path = videocloud
+	url = https://github.com/paramt/videocloud.git
+[submodule "MemeAdviser"]
+	path = MemeAdviser
+	url = https://github.com/paramt/MemeAdviser.git
+[submodule "timeline"]
+	path = timeline
+	url = https://github.com/paramt/timeline.git
+[submodule "lighthouse-hacks"]
+	path = lighthouse-hacks
+	url = https://github.com/paramt/lighthouse-hacks.git
+[submodule "trackarma"]
+	path = trackarma
+	url = https://github.com/paramt/trackarma.git
+[submodule "jeopardy"]
+	path = jeopardy
+	url = https://github.com/paramt/jeopardy.git
+[submodule "projects"]
+	path = projects
+	url = https://github.com/paramt/projects.git
+[submodule "old"]
+	path = old
+	url = https://github.com/paramt/old.git
+[submodule "assignments"]
+	path = assignments
+	url = https://github.com/paramt/assignments.git
+[submodule "email-status"]
+	path = email-status
+	url = https://github.com/paramt/email-status.git
+[submodule "kevlar"]
+	path = kevlar
+	url = https://github.com/paramt/kevlar.git
+[submodule "discord-emoji"]
+	path = discord-emoji
+	url = https://github.com/paramt/discord-emoji.git
