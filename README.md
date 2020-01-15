@@ -1,5 +1,6 @@
 # <img src="assets/img/circle.png" width=42 align=center> Param Thakkar
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0510be6c-6148-418b-a39d-85b8140c8983/deploy-status)](https://app.netlify.com/sites/elated-mayer-169e25/deploys)
 [![Link status](https://github.com/paramt/paramt.github.io/workflows/Check%20URLs/badge.svg)](https://github.com/paramt/paramt.github.io/actions)
 
 Hi there! I'm a grade 10 student with a passion for exploring technology, and this is a condensed version of my website. The full version can be found at https://www.param.me.
