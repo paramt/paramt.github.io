@@ -4,9 +4,8 @@ require "colorize"
 abort("Please use `bundle exec rake`!") unless ENV["BUNDLE_BIN_PATH"]
 
 repos = [
-    "projects", "timeline", "videocloud",
-    "MemeAdviser", "assignments",
-    "lighthouse-hacks", "jeopardy"
+    "projects", "timeline", "videocloud", "MemeAdviser", 
+    "assignments", "kevlar", "email-status", "discord-emoji",1
 ]
 
 task default: %w[build]
