@@ -5,7 +5,7 @@ abort("Please use `bundle exec rake`!") unless ENV["BUNDLE_BIN_PATH"]
 
 repos = [
     "projects", "timeline", "videocloud", "MemeAdviser", 
-    "assignments", "kevlar", "email-status", "discord-emoji",1
+    "assignments", "kevlar", "email-status", "discord-emoji"
 ]
 
 task default: %w[build]
