@@ -95,7 +95,7 @@ html, body {
   position: relative;
 }
 
-.project-more {
+.card-more {
   width: 100%;
   padding: 2vh 0;
   border-radius: 0 0 10px 10px;
@@ -339,7 +339,7 @@ form {
 }
 
 @media only screen and (max-width: 1600px) {
-  .project {
+  .card {
     width: 22vw;
   }
 
@@ -349,7 +349,7 @@ form {
 }
 
 @media only screen and (max-width: 1200px) {
-  .project {
+  .card {
     width: 25vw;
     margin: 10px;
   }
@@ -389,7 +389,7 @@ form {
     display: none;
   }
 
-  .project {
+  .card {
     width: 50vw;
     margin-bottom: 100px;
     padding: 20px;
@@ -403,13 +403,13 @@ form {
     width: 50vw;
   }
 
-  .projects {
+  .cards {
     flex-direction: column;
   }
 }
 
 @media only screen and (max-width: 800px) {
-  .project {
+  .card {
     width: 60vw;
     padding: 30px;
   }
@@ -474,7 +474,7 @@ form {
     }
   }
 
-  .project {
+  .card {
     padding: 15px 10px;
     width: 75vw;
   }
