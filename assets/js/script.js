@@ -47,23 +47,6 @@ window.addEventListener("scroll", function(){
   } else {
     document.getElementById("arrow").classList = "animated bounce";
   }
-
-  if(scrollTop < document.body.offsetHeight){
-    document.body.style.backgroundColor = "#932524";
-  }
-
-  if(scrollTop > document.body.offsetHeight){
-    document.body.style.backgroundColor = "#9da4b8";
-  }
-
-  if(scrollTop > document.body.offsetHeight*1.75 + document.getElementById("projects").offsetHeight){
-    document.body.style.backgroundColor = "#5e825f";
-  }
-
-  if (scrollTop > document.body.offsetHeight*2.5 + document.getElementById("achievements").offsetHeight + document.getElementById("projects").offsetHeight){
-    document.body.style.backgroundColor = "#f55142";
-  }
-
 }, false);
 
 function shiftProjectExtra(){
