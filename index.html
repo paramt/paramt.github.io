@@ -38,9 +38,9 @@
 
       <div>
         <h1>Projects</h1>
-        <div class="projects">
+        <div class="cards">
           {% for project in site.data.projects limit:3 %}
-            <div class="project">
+            <div class="card">
               <h2>{{ project.title }}</h2>
               <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="param_links">GitHub</a></h3>
               <p>{{ project.description || markdownify }}</p>
@@ -63,11 +63,11 @@
       <h1>Achievements</h1>
 
       <div>
-        <div class="projects">
+        <div class="cards">
           {% for achievement in site.data.achievements limit:3 %}
             <div class="achievement-wrapper">
               <a rel="noopener" href="{{achievement.link}}" target="param_links"><img class="achievement-img" src="{{ site.baseurl }}/assets/img/{{ achievement.image }}"></a>
-              <div class="project achievement">
+              <div class="card achievement">
                 <h2>{{ achievement.title }}</h2>
                 <h3>{{ achievement.date }}</h3>
                 <p>{{ achievement.description || markdownify }}</p>
