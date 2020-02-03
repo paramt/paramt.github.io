@@ -19,12 +19,6 @@
   </url>
 
   <url>
-    <loc>https://www.param.me/videocloud/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.60</priority>
-  </url>
-
-  <url>
     <loc>https://www.param.me/MemeAdviser/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
