@@ -9,16 +9,16 @@
     {% include meta.html %}
     {% include favicon.html %}
 
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/style.css">
-    <link rel="stylesheet" href="{{site.baseurl}}/assets/css/animate.css">
+    <link rel="stylesheet" href="{{site.url}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{site.url}}/assets/css/animate.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Open+Sans:300">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <script defer type="text/javascript" src="{{ site.baseurl }}/assets/js/script.js"></script>
+    <script defer type="text/javascript" src="{{ site.url }}/assets/js/script.js"></script>
   </head>
 
   <body onresize="shiftProjectExtra(); checkToMobilify();">
 
-    <img src="{{site.baseurl}}/assets/img/profile-pic.png" id="main-pic">
+    <img src="{{site.url}}/assets/img/profile-pic.png" id="main-pic">
     <div id="overlay"></div><div id="transition-overlay"></div>
 
     <div class="container">
@@ -66,7 +66,7 @@
         <div class="cards">
           {% for achievement in site.data.achievements limit:3 %}
             <div class="achievement-wrapper">
-              <a rel="noopener" href="{{achievement.link}}" target="param_links"><img class="achievement-img" src="{{ site.baseurl }}/assets/img/{{ achievement.image }}"></a>
+              <a rel="noopener" href="{{achievement.link}}" target="param_links"><img class="achievement-img" src="{{ site.url }}/assets/img/{{ achievement.image }}"></a>
               <div class="card achievement">
                 <h2>{{ achievement.title }}</h2>
                 <h3>{{ achievement.date }}</h3>
