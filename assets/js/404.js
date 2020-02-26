@@ -16,6 +16,7 @@ var directories = [
                     "resume",
                     "sanskrit-quotes-calendar",
                     "sumopit",
+                    "timeline",
                     "trackarma",
                     "videocloud"
                   ]
