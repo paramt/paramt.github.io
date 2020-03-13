@@ -7,7 +7,7 @@ Hi there! I'm a grade 10 student with a passion for exploring technology, and th
 
 
 ## Projects
-These are my 3 most recent projects. You can find a complete list of projects [here](https://github.com/paramt/projects).
+These are just some of my highlighted projects. You can find a complete list of projects [here](https://github.com/paramt/projects).
 
 | June 2019:  Videocloud |
 | :--- |
