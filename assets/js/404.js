@@ -6,6 +6,7 @@ var directories = [
                     "code-editor",
                     "discord-emoji",
                     "email-status",
+                    "IMoCA",
                     "kevlar",
                     "mathu",
                     "mathu-prototype",
