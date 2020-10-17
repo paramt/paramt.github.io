@@ -2,7 +2,7 @@
 
 ![Link status](https://github.com/paramt/paramt.github.io/workflows/Check%20URLs/badge.svg)
 
-Hi there! I'm a grade 10 student with a passion for exploring technology, and this is a condensed version of my website. The full version can be found at https://www.param.me.
+Hi there! I'm a grade 11 student with a passion for exploring technology, and this is a condensed version of my website. The full version can be found at https://www.param.me.
 
 
 
