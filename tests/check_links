@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 # These URLs are blacklisted because they don't send back proper responses to automated scripts
-blacklisted = ["https://www.reddit.com/r/MemeEconomy", "https://www.linkedin.com/in/paramt/", "https://github.com/paramt/paramt.github.io/actions"]
+blacklisted = ["https://www.reddit.com/r/MemeEconomy", "https://www.linkedin.com/in/paramt/", "https://github.com/paramt/paramt.github.io/actions", "https://www.instagram.com/xparam/"]
 
 import csv
 from urlextract import URLExtract
