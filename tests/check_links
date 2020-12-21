@@ -6,7 +6,7 @@ blacklisted = ["https://www.reddit.com/r/MemeEconomy",
                "https://www.linkedin.com/in/paramt/", 
                "https://github.com/paramt/paramt.github.io/actions", 
                "https://www.instagram.com/xparam/", 
-               "https://twitter.com/paramoham,
+               "https://twitter.com/paramoham",
               ]
 
 import csv
