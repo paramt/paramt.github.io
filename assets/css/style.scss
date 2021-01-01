@@ -264,7 +264,7 @@ button:hover {
 .icons {
   display: flex;
   justify-content: space-around;
-  width: 500px;
+  width: 550px;
   visibility: hidden;
 
   a {
@@ -331,6 +331,10 @@ form {
 @media only screen and (max-width: 1800px) {
   h1 {
     font-size: 4.3em;
+  }
+
+  .icons {
+    width: 500px;
   }
 
   h2 {
@@ -449,7 +453,7 @@ form {
   }
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 482px) {
   h1 {
     font-size: 2.8em;
   }
@@ -471,7 +475,7 @@ form {
   }
 
   .icons {
-    width: 300px;
+    width: 350px;
 
     a {
       font-size: 2.5em;
