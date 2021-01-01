@@ -70,4 +70,10 @@ function copyDiscord(discordTag) {
   temp.select();
   document.execCommand("copy");
   document.body.removeChild(temp);
+
+  Swal.fire({
+		title: "Copied",
+		text: "Param#9999 copied to clipboard",
+		icon: "success",
+	})
 }
