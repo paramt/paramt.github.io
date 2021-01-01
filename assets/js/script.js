@@ -62,3 +62,12 @@ function checkToMobilify(){
     document.getElementById("main-pic").style.width = "100vw";
   }
 }
+
+function copyDiscord(discordTag) {
+  const temp = document.createElement("textarea");
+  temp.value = discordTag;
+  document.body.appendChild(temp);
+  temp.select();
+  document.execCommand("copy");
+  document.body.removeChild(temp);
+}
