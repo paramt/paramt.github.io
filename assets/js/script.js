@@ -73,7 +73,7 @@ function copyDiscord(discordTag) {
 
   Swal.fire({
 		title: "Copied",
-		text: "Param#9999 copied to clipboard",
+		text: `${discordTag} copied to clipboard`,
 		icon: "success",
 	})
 }
