@@ -6,104 +6,30 @@
   <head>
     <title>{{site.title}}</title>
 
-    {% include meta.html %}
-    {% include favicon.html %}
+    {% include meta.html %} {% include favicon.html %}
 
-    <link rel="stylesheet" href="{{site.url}}/assets/css/style.css">
-    <link rel="stylesheet" href="{{site.url}}/assets/css/animate.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Open+Sans:300">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <script defer type="text/javascript" src="{{ site.url }}/assets/js/script.js"></script>
+    <link rel="stylesheet" href="{{site.url}}/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Poppins|Open+Sans:300"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <script
+      defer
+      type="text/javascript"
+      src="{{ site.url }}/scripts/script.js"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </head>
 
-  <body onresize="shiftProjectExtra(); checkToMobilify();">
-
-    <img src="{{site.url}}/assets/img/profile-pic.png" id="main-pic">
-    <div id="overlay"></div><div id="transition-overlay"></div>
-
-    <div class="container">
-      <h1 id="main-text" class="main-text">Param Thakkar</h1>
-      <span id="icons" class="icons" onmouseover="highlight(this)" onmouseout="unHighlight(this)">
-        <a title="GitHub" rel="noopener" class="icon" target="param_links" href="https://github.com/{{ site.links.github }}"><i class="fab fa-github"></i></a>
-        <a title="Email" class="icon" target="param_links" href="mailto:{{site.links.email}}"><i class="fas fa-envelope"></i></a>
-        <a title="LinkedIn" rel="noopener" class="icon" target="param_links" href="https://www.linkedin.com/in/{{ site.links.linkedin }}"><i class="fab fa-linkedin"></i></a>
-        <a title="Twitter" rel="noopener" class="icon" target="param_links" href="https://twitter.com/{{ site.links.twitter }}"><i class="fab fa-twitter"></i></a>
-        <a title="Instagram" rel="noopener" class="icon" target="param_links" href="https://www.instagram.com/{{ site.links.instagram }}"><i class="fab fa-instagram"></i></a>
-        <a id="copy" title="Discord" class="icon discord" onclick="copyDiscord('{{site.links.discord}}')"><i class="fab fa-discord"></i></a>
-      </span>
-    </div>
-
-    <div class="content" id="projects">
-      <div class="min-padding"></div>
-
-      <div>
-        <h1>Projects</h1>
-        <div class="cards">
-          {% for project in site.data.projects limit:3 %}
-            <div class="card">
-              <h2>{{ project.title }}</h2>
-              <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="param_links">GitHub</a></h3>
-              <p>{{ project.description || markdownify }}</p>
-              <a class="card-more" id="pm{{ forloop.index }}" href="{{ project.link }}" target="param_links">
-                <p>View project <i class="fas fa-angle-right"></i></p>
-              </a>
-            </div>
-          {% endfor %}
-        </div>
-
-        <div class="filler"></div>
-        <button onclick="window.location = 'https://www.param.me/projects'"><p>View All <i class="fas fa-angle-right"></i></p></button>
-      </div>
-
-      <div class="min-padding"></div>
-    </div>
-
-    <div class="content" id="achievements">
-      <div class="min-padding"></div>
-      <h1>Achievements</h1>
-
-      <div>
-        <div class="cards">
-          {% for achievement in site.data.achievements limit:3 %}
-            <div class="achievement-wrapper">
-              <a rel="noopener" href="{{achievement.link}}" target="param_links"><img class="achievement-img" src="{{ site.url }}/assets/img/{{ achievement.image }}"></a>
-              <div class="card achievement">
-                <h2>{{ achievement.title }}</h2>
-                <h3>{{ achievement.date }}</h3>
-                <p>{{ achievement.description || markdownify }}</p>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-
-        <div class="filler"></div>
-        <button onclick="window.location = 'https://www.param.me/timeline'"><p>View All <i class="fas fa-angle-right"></i></p></button>
-      </div>
-
-      <div class="min-padding"></div>
-    </div>
-
-    <div id="contact" class="content">
-      <div class="min-padding"></div>
-
-      <h1>Contact</h1>
-
-      <form action="https://formspree.io/pht0104@gmail.com" method="POST">
-        <input name="Name" placeholder="Name"> <br>
-        <input name="Email" type="email" placeholder="Email"> <br>
-        <textarea name="Message" type="textarea" style="height: 250px;" placeholder="Message" required></textarea> <br>
-        <button type="submit">Submit</button>
-      </form>
-
-      <div class="min-padding"></div>
-    </div>
-
-    <div id="more">
-      {% include footer.html %}
-    </div>
-
-    <span id="arrow"><i class="fas fa-angle-down"></i></span>
-
-  </body>
+  <body></body>
 </html>
