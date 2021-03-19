@@ -255,8 +255,9 @@ PLATFORMS
 DEPENDENCIES
   colorize
   github-pages
+  jekyll
   rake
   tzinfo-data
 
 BUNDLED WITH
-   2.1.4
+   2.2.15
