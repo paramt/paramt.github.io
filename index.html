@@ -6,30 +6,30 @@
   <head>
     <title>{{site.title}}</title>
 
-    {% include meta.html %} {% include favicon.html %}
+    {% include meta.html %} {% include favicon.html %} {% include styles.html %}
+  </head>
 
-    <link rel="stylesheet" href="{{site.url}}/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Poppins|Open+Sans:300"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-      crossorigin="anonymous"
-    />
+  <body>
+    <div class="title-card">
+      <img
+        class="animate__animated animate__jackInTheBox"
+        src="assets/profile-picture.jpg"
+      />
+
+      <h1 class="animate__animated animate__bounceIn delay-500">
+        Param Thakkar
+      </h1>
+
+      <p class="subtitle animate__animated animate__bounceIn delay-750">
+        I'm a Grade 11 Student
+      </p>
+    </div>
+
     <script
       defer
       type="text/javascript"
       src="{{ site.url }}/scripts/script.js"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-  </head>
-
-  <body></body>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  </body>
 </html>
