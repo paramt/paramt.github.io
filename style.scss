@@ -11,17 +11,8 @@
   -webkit-animation-delay: 0.5s;
 }
 
-$red: #f54242;
-$red2: #f55656;
-$red3: #ff7575;
-$blue: #4287f5;
-$blue2: #c7d0ff;
-$blue3: #2a58bd;
-$orange: #f57b42;
-$green: #32a852;
-$green2: #275233;
-$black: #242424;
-$white: #ebebeb;
+$black: #274252;
+$background: #cadce8;
 
 html {
   margin: 0;
@@ -34,8 +25,8 @@ body {
 }
 
 .title-card {
-  background-color: $blue3;
-  color: $white;
+  background-color: $background;
+  color: $black;
   width: 100vw;
   height: 100vh;
   display: flex;
