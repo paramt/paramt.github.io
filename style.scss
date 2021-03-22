@@ -13,6 +13,7 @@
 
 $black: #274252;
 $background: #cadce8;
+$white: #ededed;
 
 html {
   margin: 0;
@@ -22,17 +23,28 @@ html {
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
-.title-card {
+.main {
   background-color: $background;
   color: $black;
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .title {
+    font-family: "Montserrat", sans-serif;
+    font-size: 60px;
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: 30px;
+    margin-top: 10px;
+  }
 
   img {
     width: 300px;
@@ -40,14 +52,21 @@ body {
   }
 }
 
-h1 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 60px;
-  margin-bottom: 0;
+.card {
+  width: 100%;
+  height: 100vh;
+
+  h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 40px;
+    margin-bottom: 0;
+  }
 }
 
-.subtitle {
-  font-family: "Montserrat", sans-serif;
-  font-size: 30px;
-  margin-top: 10px;
+.aboutme {
+  background-color: #274252;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
