@@ -26,6 +26,7 @@ body {
   width: 100%;
   background-color: $background;
   color: $black;
+  font-family: "Montserrat", sans-serif;
 }
 
 .main {
@@ -33,15 +34,14 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 85vh;
 
   .title {
-    font-family: "Montserrat", sans-serif;
     font-size: 60px;
     margin-bottom: 0;
   }
 
   .subtitle {
-    font-family: "Montserrat", sans-serif;
     font-size: 30px;
     margin-top: 10px;
   }
@@ -53,32 +53,90 @@ body {
 }
 
 .card {
-  width: 100%;
-  height: 100vh;
-
   h2 {
-    font-family: "Montserrat", sans-serif;
     font-size: 50px;
     margin-top: 100px;
     margin-bottom: 0;
   }
 }
 
+.icons {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
 .icon {
   background-color: $black;
+  padding: 30px;
   color: white;
-  font-size: 50px;
-  border-radius: 15%;
-  width: 100px;
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 40px;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+}
+
+#tabs {
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#tabs li {
+  float: left;
+  margin: 0 0.5em 0 0;
+  height: 200px;
+}
+
+#tabs a {
   position: relative;
+  background: $black;
+  padding: 0.7em 3.5em;
+  float: left;
+  text-decoration: none;
+  color: $white;
+  border-radius: 5px 0 0 0;
+}
+
+#tabs a:hover,
+#tabs a:hover::after,
+#tabs a:focus,
+#tabs a:focus::after {
+  filter: opacity(0.8);
+}
+
+#tabs a:focus {
+  outline: 0;
+}
+
+#tabs a::after {
+  content: "";
+  position: absolute;
   z-index: 1;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: -75px;
+  top: 0;
+  right: -0.5em;
+  bottom: 0;
+  width: 1em;
+  background: $black;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  transform: skew(10deg);
+  border-radius: 0 5px 0 0;
+}
+
+#tabs #current a,
+#tabs #current a::after {
+  background: #fff;
+  z-index: 3;
+}
+
+#content {
+  background: #fff;
+  padding: 2em;
+  height: 220px;
+  position: relative;
+  z-index: 2;
+  border-radius: 0 5px 5px 5px;
+  box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, 0.5);
 }
 
 .aboutme {
@@ -90,8 +148,6 @@ body {
 }
 
 .projects {
-  -webkit-clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 100%);
-  clip-path: polygon(0 0, 100% 4%, 100% 100%, 0 100%);
   background-color: $black;
   color: $white;
   display: flex;
