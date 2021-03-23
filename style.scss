@@ -60,7 +60,7 @@ body {
   color: $white;
   transition: transform 0.2s;
   position: fixed;
-  top: calc(85vh + 60px);
+  top: calc(85vh + 65px);
 
   h2 {
     font-size: 50px;
@@ -69,14 +69,14 @@ body {
   }
 }
 
-.icons {
+.folder {
   display: flex;
   width: 100%;
   justify-content: center;
 }
 
-.icon {
-  padding: 15px 30px;
+.tab {
+  padding: 15px 30px 20px;
   color: white;
   font-size: 25px;
   clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
@@ -85,18 +85,22 @@ body {
 
   &#teal {
     background-color: $teal;
-  }
-
-  &#red {
-    background-color: $red;
-  }
-
-  &#green {
-    background-color: $green;
+    z-index: 4;
   }
 
   &#purple {
     background-color: $purple;
+    z-index: 3;
+  }
+
+  &#red {
+    background-color: $red;
+    z-index: 2;
+  }
+
+  &#green {
+    background-color: $green;
+    z-index: 1;
   }
 }
 
@@ -107,16 +111,19 @@ body {
 
 #projects {
   background-color: $purple;
+  z-index: 3;
 }
 
 #item3 {
   background-color: $red;
+  z-index: 2;
 }
 
 #achievements {
   background-color: $green;
+  z-index: 1;
 }
 
-.active {
-  z-index: 2;
+.card.active {
+  z-index: 10;
 }
