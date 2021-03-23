@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <div class="card main">
+    <div class="main">
       <img
         class="animate__animated animate__jackInTheBox"
         src="assets/profile-picture.jpg"
@@ -26,22 +26,59 @@
     </div>
 
     <div class="icons">
-      <div class="icon"><i class="fas fa-address-card"></i> About</div>
-      <div class="icon purple"><i class="fas fa-briefcase"></i> Projects</div>
-      <div class="icon red"><i class="fas fa-address-card"></i> About</div>
-      <div class="icon green"><i class="fas fa-trophy"></i> Achievements</div>
+      <div
+        class="icon"
+        id="teal"
+        onmouseenter="moveUp(this, '#about');"
+        onmouseleave="moveDown(this, '#about');"
+      >
+        <i class="fas fa-address-card"></i> About
+      </div>
+
+      <div
+        class="icon"
+        id="purple"
+        onmouseenter="moveUp(this, '#projects');"
+        onmouseleave="moveDown(this, '#projects');"
+      >
+        <i class="fas fa-briefcase"></i> Projects
+      </div>
+
+      <div
+        class="icon"
+        id="red"
+        onmouseenter="moveUp(this, '#item3');"
+        onmouseleave="moveDown(this, '#item3');"
+      >
+        <i class="fas fa-address-card"></i> Item 3
+      </div>
+
+      <div
+        class="icon"
+        id="green"
+        onmouseenter="moveUp(this, '#achievements');"
+        onmouseleave="moveDown(this, '#achievements');"
+      >
+        <i class="fas fa-trophy"></i> Achievements
+      </div>
     </div>
 
-    <div class="card projects">
-      <h2>Projects</h2>
-    </div>
-
-    <div class="card aboutme">
+    <div class="card active" id="about">
       <h2>About Me</h2>
       <p>I'm a grade 11 student.</p>
     </div>
 
-    <div class="card experience"></div>
+    <div class="card" id="projects">
+      <h2>Projects</h2>
+    </div>
+
+    <div class="card" id="item3">
+      <h2>Item 3</h2>
+    </div>
+
+    <div class="card projects" id="achievements">
+      <h2>Achievements</h2>
+    </div>
 
     <script defer type="text/javascript" src="scripts/script.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
