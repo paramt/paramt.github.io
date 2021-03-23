@@ -68,75 +68,29 @@ body {
 
 .icon {
   background-color: $black;
-  padding: 30px;
+  padding: 30px 50px;
   color: white;
   font-size: 40px;
   clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
-}
 
-#tabs {
-  overflow: hidden;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+  &.red {
+    background-color: #822f34;
+  }
 
-#tabs li {
-  float: left;
-  margin: 0 0.5em 0 0;
-  height: 200px;
-}
+  &.green {
+    background-color: #3b822f;
+  }
 
-#tabs a {
-  position: relative;
-  background: $black;
-  padding: 0.7em 3.5em;
-  float: left;
-  text-decoration: none;
-  color: $white;
-  border-radius: 5px 0 0 0;
-}
+  &.purple {
+    background-color: #3a2f82;
+  }
 
-#tabs a:hover,
-#tabs a:hover::after,
-#tabs a:focus,
-#tabs a:focus::after {
-  filter: opacity(0.8);
-}
+  &:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+  }
 
-#tabs a:focus {
-  outline: 0;
-}
-
-#tabs a::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: -0.5em;
-  bottom: 0;
-  width: 1em;
-  background: $black;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
-  transform: skew(10deg);
-  border-radius: 0 5px 0 0;
-}
-
-#tabs #current a,
-#tabs #current a::after {
-  background: #fff;
-  z-index: 3;
-}
-
-#content {
-  background: #fff;
-  padding: 2em;
-  height: 220px;
-  position: relative;
-  z-index: 2;
-  border-radius: 0 5px 5px 5px;
-  box-shadow: 0 -2px 3px -2px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s;
 }
 
 .aboutme {
