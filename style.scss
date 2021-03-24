@@ -1,37 +1,6 @@
 ---
 ---
 
-.slideUp {
-  animation-name: slideUp;
-  -webkit-animation-name: slideUp;
-  animation-delay: 1.5s;
-  -webkit-animation-delay: 1.5s;
-  animation-duration: 0.5s;
-  -webkit-animation-duration: 0.5s;
-  animation-fill-mode: backwards;
-  -webkit-animation-fill-mode: backwards;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translate3d(0, 200px, 0);
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.delay-750 {
-  animation-delay: 0.75s;
-  -webkit-animation-delay: 0.75s;
-}
-
-.delay-500 {
-  animation-delay: 0.5s;
-  -webkit-animation-delay: 0.5s;
-}
-
 $teal: #274252;
 $background: #cadce8;
 $white: #ededed;
@@ -77,20 +46,6 @@ body {
   }
 }
 
-.card {
-  width: 100vw;
-  color: $white;
-  transition: transform 0.2s;
-  position: fixed;
-  top: calc(85vh + 65px);
-
-  h2 {
-    font-size: 50px;
-    margin-top: 100px;
-    margin-bottom: 0;
-  }
-}
-
 .folder {
   display: flex;
   width: 100%;
@@ -126,6 +81,20 @@ body {
   }
 }
 
+.card {
+  width: 100vw;
+  color: $white;
+  transition: transform 0.2s;
+  position: fixed;
+  top: calc(85vh + 65px);
+
+  h2 {
+    font-size: 50px;
+    margin-top: 100px;
+    margin-bottom: 0;
+  }
+}
+
 #about {
   background-color: $teal;
   color: $white;
@@ -148,4 +117,35 @@ body {
 
 .card.active {
   z-index: 10;
+}
+
+.slideUp {
+  animation-name: slideUp;
+  -webkit-animation-name: slideUp;
+  animation-delay: 1.5s;
+  -webkit-animation-delay: 1.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-duration: 0.5s;
+  animation-fill-mode: backwards;
+  -webkit-animation-fill-mode: backwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate3d(0, 200px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.delay-750 {
+  animation-delay: 0.75s;
+  -webkit-animation-delay: 0.75s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+  -webkit-animation-delay: 0.5s;
 }
