@@ -64,22 +64,22 @@ body {
     cursor: pointer;
   }
 
-  &#teal {
+  &#tab1 {
     background-color: $teal;
     z-index: 4;
   }
 
-  &#purple {
+  &#tab2 {
     background-color: $purple;
     z-index: 3;
   }
 
-  &#red {
+  &#tab3 {
     background-color: $red;
     z-index: 2;
   }
 
-  &#green {
+  &#tab4 {
     background-color: $green;
     z-index: 1;
   }
@@ -103,23 +103,22 @@ body {
   }
 }
 
-#about {
+#card1 {
   background-color: $teal;
-  color: $white;
   z-index: 4;
 }
 
-#projects {
+#card2 {
   background-color: $purple;
   z-index: 3;
 }
 
-#item3 {
+#card3 {
   background-color: $red;
   z-index: 2;
 }
 
-#achievements {
+#card4 {
   background-color: $green;
   z-index: 1;
 }
