@@ -9,3 +9,7 @@ function moveDown(element, id) {
   element.style.transform = "translateY(0px)";
   element.style.cursor = "default";
 }
+
+window.setTimeout(() => {
+  document.body.style.overflow = "inital";
+}, 2000);

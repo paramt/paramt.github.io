@@ -1,6 +1,27 @@
 ---
 ---
 
+.slideUp {
+  animation-name: slideUp;
+  -webkit-animation-name: slideUp;
+  animation-delay: 1.5s;
+  -webkit-animation-delay: 1.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-duration: 0.5s;
+  animation-fill-mode: backwards;
+  -webkit-animation-fill-mode: backwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate3d(0, 200px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 .delay-750 {
   animation-delay: 0.75s;
   -webkit-animation-delay: 0.75s;
@@ -30,6 +51,7 @@ body {
   background-color: $background;
   color: $teal;
   font-family: "Montserrat", sans-serif;
+  overflow: hidden;
 }
 
 .main {
