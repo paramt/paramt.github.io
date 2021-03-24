@@ -11,5 +11,5 @@ function moveDown(element, id) {
 }
 
 window.setTimeout(() => {
-  document.body.style.overflow = "inital";
+  document.body.style.overflow = "visible";
 }, 2000);

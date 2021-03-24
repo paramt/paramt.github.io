@@ -82,10 +82,10 @@ body {
 }
 
 .card {
-  width: 100vw;
+  width: 100%;
   color: $white;
   transition: transform 0.2s;
-  position: fixed;
+  position: absolute;
   top: calc(85vh + 65px);
 
   h2 {
