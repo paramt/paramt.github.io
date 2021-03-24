@@ -60,6 +60,10 @@ body {
   transition: transform 0.2s;
   z-index: 1;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &#teal {
     background-color: $teal;
     z-index: 4;
@@ -102,6 +106,7 @@ body {
 #about {
   background-color: $teal;
   color: $white;
+  z-index: 4;
 }
 
 #projects {
@@ -119,7 +124,7 @@ body {
   z-index: 1;
 }
 
-.card.active {
+.active {
   z-index: 10 !important;
 }
 
