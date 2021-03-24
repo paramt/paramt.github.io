@@ -12,6 +12,15 @@ function moveDown(element, id) {
   element.style.cursor = "default";
 }
 
+function switchTab(id) {
+  document.querySelector("#about").classList.remove("active");
+  document.querySelector("#projects").classList.remove("active");
+  document.querySelector("#item3").classList.remove("active");
+  document.querySelector("#achievements").classList.remove("active");
+
+  document.querySelector(id).classList.add("active");
+}
+
 window.setTimeout(() => {
   document.body.style.overflow = "visible";
 }, 2000);
