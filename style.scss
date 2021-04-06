@@ -86,19 +86,17 @@ body {
 }
 
 .card {
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 50px 20px;
   width: 100%;
-  height: 1000px;
   color: $white;
   transition: transform 0.2s;
   position: absolute;
   top: calc(85vh + 70px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   h2 {
     font-size: 50px;
-    margin-top: 100px;
     margin-bottom: 0;
   }
 }
@@ -121,6 +119,14 @@ body {
 #card4 {
   background-color: $green;
   z-index: 1;
+}
+
+.card:not(.active) {
+  height: 100px;
+}
+
+.card.active {
+  min-height: 1000px;
 }
 
 .active {
@@ -156,4 +162,76 @@ body {
 .delay-500 {
   animation-delay: 0.5s;
   -webkit-animation-delay: 0.5s;
+}
+
+.aboutme {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+
+  .left {
+  }
+
+  .links a {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: blue;
+    }
+  }
+}
+
+.project {
+  display: inline-block;
+  height: 300px;
+  margin: 10px;
+  position: relative;
+  width: 300px;
+  color: black;
+  font-size: 0; //Remove space between img and .content
+
+  img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    height: 150px;
+  }
+
+  .content {
+    background-color: #1f1d29;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .buttons {
+    a {
+      display: inline-block;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      padding: 10px 0;
+      width: 50%;
+      background-color: #0b0f1a;
+      color: white;
+      transition: background-color 0.2s;
+    }
+
+    a:hover {
+      background-color: #222a40;
+    }
+  }
+
+  a:nth-child(1) {
+    border-radius: 0 0 0 5px;
+  }
+
+  a:nth-child(2) {
+    border-radius: 0 0 5px 0;
+  }
 }

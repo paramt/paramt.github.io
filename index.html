@@ -21,7 +21,7 @@
       </h1>
 
       <p class="subtitle animate__animated animate__bounceIn delay-750">
-        I'm a Grade 11 Student
+        This is my online portfolio
       </p>
     </div>
 
@@ -53,7 +53,7 @@
         onmouseleave="moveDown(this, '#card3');"
         onclick="switchTab(this, '#card3');"
       >
-        <i class="fas fa-address-card"></i> Item 3
+        <i class="fas fa-briefcase"></i> Experience
       </div>
 
       <div
@@ -68,13 +68,67 @@
     </div>
 
     <div
-      class="card slideUp active"
+      class="card slideUp active aboutme"
       id="card1"
       onmouseenter="moveUp(this, '#tab1');"
       onmouseleave="moveDown(this, '#tab1');"
     >
-      <h2>About Me</h2>
-      <p>I'm a grade 11 student.</p>
+      <div class="left">
+        <h2>About Me</h2>
+        <p>
+          I'm a grade 11 student. I like designing websites and coding apps,
+          bots, games, and everything in between.
+        </p>
+        <p>contact@param.me</p>
+        <div class="links">
+          <a
+            title="GitHub"
+            rel="noopener"
+            class="icon"
+            target="param_links"
+            href="https://github.com/{{ site.links.github }}"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a
+            title="Email"
+            class="icon"
+            target="param_links"
+            href="mailto:{{site.links.email}}"
+            ><i class="fas fa-envelope"></i
+          ></a>
+          <a
+            title="LinkedIn"
+            rel="noopener"
+            class="icon"
+            target="param_links"
+            href="https://www.linkedin.com/in/{{ site.links.linkedin }}"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a
+            title="Twitter"
+            rel="noopener"
+            class="icon"
+            target="param_links"
+            href="https://twitter.com/{{ site.links.twitter }}"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a
+            title="Instagram"
+            rel="noopener"
+            class="icon"
+            target="param_links"
+            href="https://www.instagram.com/{{ site.links.instagram }}"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a
+            id="copy"
+            title="Discord"
+            class="icon discord"
+            onclick="copyDiscord('{{site.links.discord}}')"
+            ><i class="fab fa-discord"></i
+          ></a>
+        </div>
+      </div>
     </div>
 
     <div
@@ -84,6 +138,26 @@
       onmouseleave="moveDown(this, '#tab2');"
     >
       <h2>Projects</h2>
+
+      {% for project in site.data.projects %}
+
+      <div class="project">
+        <img
+          src="{{ project.img }}"
+          onerror="this.src='assets/img/preview.png'"
+        />
+        <div class="content">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+        </div>
+
+        <div class="buttons">
+          <a href="{{ project.link }}"> View </a>
+          <a href="{{ project.github }}"> GitHub </a>
+        </div>
+      </div>
+
+      {% endfor %}
     </div>
 
     <div
@@ -92,7 +166,7 @@
       onmouseenter="moveUp(this, '#tab3');"
       onmouseleave="moveDown(this, '#tab3');"
     >
-      <h2>Item 3</h2>
+      <h2>Experience</h2>
     </div>
 
     <div
