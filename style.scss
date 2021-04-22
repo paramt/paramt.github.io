@@ -189,7 +189,6 @@ body {
 
 .project {
   display: inline-block;
-  height: 300px;
   margin: 10px;
   position: relative;
   width: 300px;
@@ -205,6 +204,7 @@ body {
   .content {
     background-color: #1f1d29;
     color: white;
+    height: 150px;
     padding: 10px 20px;
     font-size: 16px;
   }
