@@ -21,7 +21,11 @@ function switchTab(element, id) {
 
   document.querySelector(id).classList.add("active");
   element.classList.add("active");
-  window.location.href = "#tabs";
+
+  window.scroll({
+    top: window.innerHeight - 200,
+    behavior: "smooth",
+  });
 }
 
 window.setTimeout(() => {
