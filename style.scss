@@ -4,10 +4,8 @@
 $primary: #ededed;
 $background: #141414;
 $white: #ededed;
-$color1: #932020;
-$color2: #822f34;
-$color3: #db3030;
-$color4: #7a0000;
+
+$colors: #dd2626 #0f9e16 #0f7eda #5822b6;
 
 html {
   margin: 0;
@@ -67,22 +65,22 @@ body {
   }
 
   &#tab1 {
-    background-color: $color1;
+    background-color: nth($colors, 1);
     z-index: 4;
   }
 
   &#tab2 {
-    background-color: $color2;
+    background-color: nth($colors, 2);
     z-index: 3;
   }
 
   &#tab3 {
-    background-color: $color3;
+    background-color: nth($colors, 3);
     z-index: 2;
   }
 
   &#tab4 {
-    background-color: $color4;
+    background-color: nth($colors, 4);
     z-index: 1;
   }
 }
@@ -104,22 +102,22 @@ body {
 }
 
 #card1 {
-  background-color: $color1;
+  background-color: nth($colors, 1);
   z-index: 4;
 }
 
 #card2 {
-  background-color: $color2;
+  background-color: nth($colors, 2);
   z-index: 3;
 }
 
 #card3 {
-  background-color: $color3;
+  background-color: nth($colors, 3);
   z-index: 2;
 }
 
 #card4 {
-  background-color: $color4;
+  background-color: nth($colors, 4);
   z-index: 1;
 }
 
