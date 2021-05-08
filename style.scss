@@ -12,6 +12,7 @@ $color4: #7a0000;
 html {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -52,6 +53,11 @@ body {
   display: flex;
   width: 100%;
   justify-content: center;
+}
+
+#tabs {
+  position: relative;
+  bottom: 100px;
 }
 
 .tab {

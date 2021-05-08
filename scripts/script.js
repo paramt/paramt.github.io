@@ -21,6 +21,7 @@ function switchTab(element, id) {
 
   document.querySelector(id).classList.add("active");
   element.classList.add("active");
+  window.location.href = "#tabs";
 }
 
 window.setTimeout(() => {
