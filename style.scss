@@ -169,9 +169,6 @@ body {
   grid-template-columns: 1fr 1fr;
   text-align: center;
 
-  .left {
-  }
-
   .links a {
     padding: 10px;
     background-color: black;
@@ -179,10 +176,11 @@ body {
     font-size: 25px;
     border-radius: 5px;
     text-align: center;
-    transition: background-color 0.2s;
+    transition: background-color 0.1s;
 
     &:hover {
-      background-color: blue;
+      background-color: #242424;
+      cursor: pointer;
     }
   }
 }
