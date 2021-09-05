@@ -66,12 +66,14 @@
       onmouseenter="moveUp(this, '#tab1');"
       onmouseleave="moveDown(this, '#tab1');"
     >
-      <div class="left">
-        <h2>About Me</h2>
+      <div>
+        <h2>Hi there 👋</h2>
+        <p>Here's a bit about me:</p>
         <p>
-          I'm a grade 11 student. I like designing websites and coding apps, bots, games, and everything in between.
+          I'm a grade 12 student from Mississauga, Canada. I like to design and code websites, apps, bots, games, and
+          everything in between! This website is kinda like my personal showcase, so feel free to check out my stuff out
+          or find me here:
         </p>
-        <p>contact@param.me</p>
         <div class="links">
           <a title="GitHub" rel="noopener" class="icon" href="https://github.com/{{ site.links.github }}"
             ><i class="fab fa-github"></i
@@ -89,6 +91,21 @@
           <a id="copy" title="Discord" class="icon discord" onclick="copyDiscord('{{site.links.discord}}')"
             ><i class="fab fa-discord"></i
           ></a>
+        </div>
+
+        <br />
+
+        <p>My interests include:</p>
+        <ul>
+          <li>YouTube/Twitch</li>
+          <li>Investing</li>
+          <li>Gaming</li>
+        </ul>
+
+        <div class="status">
+          <p>🎵 Current favourite song: <a href="{{ site.status.song-link }}">{{ site.status.song }}</a></p>
+          <p>🎮 Current game playing: {{ site.status.game }}</p>
+          <p>💼 Currently working on: {{ site.status.working-on }}</p>
         </div>
       </div>
     </div>
