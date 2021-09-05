@@ -1,12 +1,10 @@
-title,description,link,github,img
-1pt URL Shortener,An easy-to-use URL shortener,https://1pt.co/,https://github.com/1pt-co/1pt,https://raw.githubusercontent.com/1pt-co/1pt/master/resources/assets/og-image.png
-Meme Adviser,A Reddit bot that analyzes the stock market at r/MemeEconomy,https://www.param.me/MemeAdviser/,https://github.com/paramt/MemeAdviser
-Webpage Builder,An online IDE for web dev,https://code.param.me/,https://github.com/paramt/code-editor
-Q4T,A Telegram bot that allows channel admins to post scheduled quizzes using a list of questions from Google Sheets,https://github.com/paramt/q4t,https://github.com/paramt/q4t
-Discord Emoji,A convenient tool to convert text into emoji markup that Discord understands,https://www.param.me/discord-emoji,https://github.com/paramt/discord-emoji
-URL Checker,A GitHub action that tests markdown files for broken links,https://github.com/marketplace/actions/url-checker,https://github.com/paramt/url-checker
-Video Cloud,A CLI that generates word clouds from YouTube videos,https://www.param.me/videocloud,https://github.com/paramt/videocloud
-Mathu,The first place pitch at the Imagine Hackathon: A concept for an AI that adapts and grows to individual students' needs,https://mathu.cf,https://github.com/paramt/mathu
-Deathmatch,A Minecraft plugin that creates a minigame for players to gather resources and battle it out,https://github.com/paramt/deathmatch/releases,https://github.com/paramt/deathmatch
-Trackarma,A python script that tracks and graphs a Reddit user's karma over time,https://www.param.me/trackarma,https://github.com/paramt/trackarma
-Email Status,"A site that validates whether a given email address exists, as well as if it's disposable or not",https://www.param.me/email-status
+title,description,link,github,color
+1pt URL Shortener,An easy-to-use URL shortener,https://1pt.co/,https://github.com/1pt-co/1pt,#2e2f4a
+Meme Adviser,A Reddit bot that analyzes the stock market at r/MemeEconomy,https://www.param.me/MemeAdviser/,https://github.com/paramt/MemeAdviser,#055d9c
+Videocloud,A command-line-interface that generates word clouds from YouTube videos,https://www.param.me/videocloud/,https://github.com/paramt/projects,#9c0f05
+Webpage Builder,An online IDE for web dev,https://code.param.me/,https://github.com/paramt/code-editor,#1f1d29
+Q4T,A Telegram bot that allows channel admins to post scheduled quizzes using a list of questions from Google Sheets,https://github.com/paramt/q4t,https://github.com/paramt/q4t,#9c6505
+Discord Emoji,A convenient tool to convert text into emoji markup that Discord understands,https://www.param.me/discord-emoji,https://github.com/paramt/discord-emoji,#6c059c
+URL Checker,A GitHub action that tests markdown files for broken links,https://github.com/marketplace/actions/url-checker,https://github.com/paramt/url-checker,#9c0549
+Trackarma,A python script that tracks and graphs a Reddit user's karma over time,https://www.param.me/trackarma,https://github.com/paramt/trackarma,#036e59
+Email Status,"A site that validates whether a given email address exists, as well as if it's disposable or not",https://www.param.me/email-status,https://github.com/paramt/email-status,#15036e

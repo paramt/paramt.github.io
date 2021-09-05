@@ -110,24 +110,30 @@
       </div>
     </div>
 
-    <div class="card slideUp" id="card2" onmouseenter="moveUp(this, '#tab2');" onmouseleave="moveDown(this, '#tab2');">
+    <div
+      class="card slideUp projects"
+      id="card2"
+      onmouseenter="moveUp(this, '#tab2');"
+      onmouseleave="moveDown(this, '#tab2');"
+    >
       <h2>Projects</h2>
+      <p>
+        These are some of the side projects I've worked on in my free time.
+        <a href="https://github.com/paramt">Check out my GitHub</a> for the full list!
+      </p>
 
       {% for project in site.data.projects %}
-
       <div class="project">
-        <img src="{{ project.img }}" onerror="this.src='assets/img/preview.png'" />
-        <div class="content">
+        <div class="content" style="background-color: {{ project.color }}">
           <h3>{{ project.title }}</h3>
           <p>{{ project.description }}</p>
         </div>
 
         <div class="buttons">
-          <a href="{{ project.link }}"> View </a>
-          <a href="{{ project.github }}"> GitHub </a>
+          <a href="{{ project.link }}" style="background-color: {{ project.color }}"> Visit </a>
+          <a href="{{ project.github }}" style="background-color: {{ project.color }}"> GitHub </a>
         </div>
       </div>
-
       {% endfor %}
     </div>
 
