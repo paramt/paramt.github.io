@@ -31,3 +31,18 @@ function switchTab(element, id) {
 window.setTimeout(() => {
   document.body.style.overflow = "visible";
 }, 2000);
+
+function copyDiscord(discordTag) {
+  const temp = document.createElement("textarea");
+  temp.value = discordTag;
+  document.body.appendChild(temp);
+  temp.select();
+  document.execCommand("copy");
+  document.body.removeChild(temp);
+
+  Swal.fire({
+    title: "Copied",
+    text: `${discordTag} copied to clipboard`,
+    icon: "success",
+  });
+}
