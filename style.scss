@@ -43,6 +43,7 @@ a:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   height: 85vh;
 
   .title {
@@ -98,6 +99,10 @@ a:hover {
     background-color: nth($colors, 4);
     z-index: 1;
   }
+}
+
+.more-stuff:after {
+  content: " stuff";
 }
 
 .card {
@@ -415,5 +420,43 @@ a:hover {
 @media screen and (max-width: 900px) {
   .tab {
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .tab {
+    padding: 10px 20px 20px;
+    color: white;
+    font-size: 15px;
+  }
+
+  .card {
+    top: calc(85vh + 49px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main {
+    img {
+      width: 250px;
+    }
+
+    .title {
+      font-size: 45px;
+    }
+
+    .subtitle {
+      font-size: 22px;
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .fas {
+    display: none;
+  }
+
+  .more-stuff:after {
+    content: none;
   }
 }
