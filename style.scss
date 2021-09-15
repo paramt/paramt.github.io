@@ -113,7 +113,7 @@ a:hover {
   color: $white;
   transition: transform 0.2s;
   position: absolute;
-  top: calc(85vh + 70px);
+  top: calc(85vh + 70px - 1px);
 
   h2 {
     font-size: 50px;
@@ -369,6 +369,10 @@ a:hover {
 }
 
 @media screen and (max-width: 900px) {
+  .timeline {
+    margin: 50px auto;
+  }
+
   /* Place the timelime to the left */
   .timeline::after {
     left: 31px;
@@ -425,13 +429,33 @@ a:hover {
 
 @media screen and (max-width: 800px) {
   .tab {
+    padding: 15px 25px 25px;
+    color: white;
+    font-size: 20px;
+  }
+
+  .card {
+    top: calc(85vh + 64px - 1px);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .tab {
     padding: 10px 20px 20px;
     color: white;
     font-size: 15px;
   }
 
   .card {
-    top: calc(85vh + 49px);
+    top: calc(85vh + 49px - 1px);
+
+    h2 {
+      font-size: 45px;
+    }
+  }
+
+  .timelineCard h3 {
+    font-size: 35px;
   }
 }
 
@@ -448,6 +472,18 @@ a:hover {
     .subtitle {
       font-size: 22px;
     }
+  }
+
+  .card h2 {
+    font-size: 35px;
+  }
+
+  .timelineCard h3 {
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 18px;
   }
 }
 
