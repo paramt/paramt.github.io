@@ -9,22 +9,20 @@ Hi there! I'm a grade 12 student with a passion for exploring technology, and th
 ## Projects
 These are just some of my highlighted projects. You can find a complete list of projects [here](https://github.com/paramt/projects).
 
+| December 2021: 1-Point |
+| :--- |
+| A simple-to-use URL shortener with protection against malicious redirects |
+| [Website](https://www.1pt.co) &#124; [Github](https://github.com/paramt/1pt) &#124; PHP |
+
 | June 2019:  Videocloud |
 | :--- |
 | A CLI that lets users generate word clouds from YouTube video captions |
 | [Website](https://www.param.me/videocloud) &#124; [Github](https://github.com/paramt/videocloud) &#124; Python |
 
-
 | February 2019:  MemeAdviser |
 | :--- |
 | A reddit bot that analyzes the market at [r/MemeEconomy](https://www.reddit.com/r/MemeEconomy) and provides insightful information |
 | [Website](https://www.1pt.co) &#124; [Github](https://github.com/paramt/1pt) &#124; Python |
-
-| December 2018: 1-Point |
-| :--- |
-| A dynamic URL shortener capable of pointing users to different destinations based on various factors |
-| [Website](https://www.1pt.co) &#124; [Github](https://github.com/paramt/1pt) &#124; PHP |
-
 
 ## Achievements
 | Sep 2018:  Imagine Hackathon |
