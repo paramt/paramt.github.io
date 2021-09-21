@@ -4,8 +4,6 @@
 
 Hi there! I'm a grade 12 student with a passion for exploring technology, and this is a condensed version of my website. The full version can be found at https://www.param.me.
 
-
-
 ## Projects
 These are just some of my highlighted projects. You can find a complete list of projects [here](https://github.com/paramt/projects).
 
@@ -37,12 +35,8 @@ These are just some of my highlighted projects. You can find a complete list of 
 | :--- |
 | Recieved MIT's Most Creative App of the Month award for [SpellBind](https://play.google.com/store/apps/details?id=appinventor.ai_700164.SpellBind_all) |
 
-## Professional Links
-[Email](mailto:contact@param.me) |
-[Resume](https://www.param.me/resume) |
-[Fiverr](https://www.fiverr.com/paramthakkar)
-
-## Social Links
+## Links
+[<img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" width=38 align=center>](https://www.param.me/resume) &nbsp;
 [<img src="https://image.flaticon.com/icons/svg/181/181535.svg" width=40 align=center>](mailto://contact@param.me) &nbsp;
 [<img src="https://image.flaticon.com/icons/svg/145/145807.svg" width=40 align=center>](https://www.linkedin.com/in/paramt/) &nbsp;
 [<img src="https://image.flaticon.com/icons/svg/145/145812.svg" width=40 align=center>](https://twitter.com/paramoham) &nbsp;
