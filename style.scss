@@ -185,7 +185,7 @@ a:hover {
 }
 
 .aboutme {
-  .links a {
+  .icon {
     padding: 10px;
     background-color: black;
     color: white;
@@ -194,10 +194,27 @@ a:hover {
     text-align: center;
     transition: background-color 0.1s;
 
+    transition: width 0.5s;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    text-decoration: none;
+
     &:hover {
       background-color: #242424;
       cursor: pointer;
     }
+  }
+
+  .icon:hover {
+    width: 200px;
+  }
+
+  .icon:hover::after {
+    content: " Discord";
+    overflow: hidden;
+
   }
 
   .status {
