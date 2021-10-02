@@ -212,7 +212,7 @@ a:hover {
   }
 
   .icon:hover::after {
-    content: " Discord";
+    content: var(--text);
     overflow: hidden;
 
   }
