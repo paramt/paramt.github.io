@@ -1,4 +1,4 @@
-var query = document.location.href.split("param.me/")[1]
+var query = document.location.href.split("param.netlify.app/")[1];
 
 var directories = [
                     "1pt",
