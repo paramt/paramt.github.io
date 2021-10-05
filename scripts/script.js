@@ -1,6 +1,6 @@
 history.scrollRestoration = "manual";
 
-var query = document.location.href.split("http://localhost:4000/")[1];
+var query = document.location.href.split("param.netlify.app/")[1];
 
 if(query == "projects" || query == "#projects") {
   switchTab(document.getElementById("tab1"), "#card2");
