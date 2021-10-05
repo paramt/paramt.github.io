@@ -1,5 +1,13 @@
 history.scrollRestoration = "manual";
 
+var query = document.location.href.split("http://localhost:4000/")[1];
+
+if(query == "projects" || query == "#projects") {
+  switchTab(document.getElementById("tab1"), "#card2");
+} else if(query == "timeline" || query == "#timeline") {
+  switchTab(document.getElementById("tab1"), "#card3");
+}
+
 function moveUp(element, id) {
   document.querySelector(id).style.transform = "translateY(-15px)";
   element.style.transform = "translateY(-15px)";
