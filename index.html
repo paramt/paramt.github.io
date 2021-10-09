@@ -157,6 +157,12 @@
     <div class="card slideUp" id="card4" onmouseenter="moveUp(this, '#tab4');" onmouseleave="moveDown(this, '#tab4');">
       <h2>More</h2>
       <p>I'm planning to add more stuff here. In the meantime <a href="resume">here's my resume</a>.</p>
+      <h3>Cool links</h3>
+      <p>A running list of cool links</p>
+
+      {% for link in site.data.cool_links.cool_projects %}
+        <a href="{{ link.link }}">{{ link.title }}</a>
+      {% endfor %}
     </div>
 
     <script defer type="text/javascript" src="scripts/script.js"></script>
