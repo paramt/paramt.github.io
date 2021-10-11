@@ -214,7 +214,6 @@ a:hover {
   .icon:hover::after {
     content: var(--text);
     overflow: hidden;
-
   }
 
   .status {
@@ -276,6 +275,17 @@ a:hover {
     a:hover {
       filter: brightness(0.9);
     }
+  }
+}
+
+.more {
+  h3 {
+    font-size: 30px;
+  }
+
+  .links {
+    font-size: 25px;
+    margin-right: 10px;
   }
 }
 
