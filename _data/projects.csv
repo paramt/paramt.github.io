@@ -1,4 +1,10 @@
-title,date,github,description,link
-Deathmatch,August 2020,https://github.com/paramt/deathmatch,A Minecraft plugin that creates a minigame for players to gather resources and battle it out,https://github.com/paramt/deathmatch/releases
-Meme Adviser,February 2019,https://github.com/paramt/MemeAdviser,A reddit bot that analyzes the market at [r/MemeEconomy](https://www.reddit.com/r/MemeEconomy) and provides insightful information on investments,https://www.param.me/MemeAdviser/
-1 Point,December 2018,https://github.com/1pt-co/1pt,A simple-to-use URL shortener,https://1pt.co
+title,description,link,github,color
+1pt URL Shortener,A simple-to-use URL shortener with protection against malicious redirects,https://1pt.co/,https://github.com/1pt-co/1pt,#2e2f4a
+Meme Adviser,A Reddit bot that analyzes the stock market at r/MemeEconomy,https://www.param.me/MemeAdviser/,https://github.com/paramt/MemeAdviser,#055d9c
+Videocloud,A command-line-interface that generates word clouds from YouTube videos,https://www.param.me/videocloud/,https://github.com/paramt/projects,#9c0f05
+Webpage Builder,An online IDE for web dev,https://code.param.me/,https://github.com/paramt/code-editor,#1f1d29
+Q4T,A Telegram bot that allows channel admins to post scheduled quizzes using a list of questions from Google Sheets,https://github.com/paramt/q4t,https://github.com/paramt/q4t,#9c6505
+Discord Emoji,A convenient tool to convert text into emoji markup that Discord understands,https://www.param.me/discord-emoji,https://github.com/paramt/discord-emoji,#6c059c
+URL Checker,A GitHub action that tests markdown files for broken links,https://github.com/marketplace/actions/url-checker,https://github.com/paramt/url-checker,#9c0549
+Trackarma,A python script that tracks and graphs a Reddit user's karma over time,https://www.param.me/trackarma,https://github.com/paramt/trackarma,#036e59
+Email Status,"A site that validates whether a given email address exists, as well as if it's disposable or not",https://www.param.me/email-status,https://github.com/paramt/email-status,#15036e

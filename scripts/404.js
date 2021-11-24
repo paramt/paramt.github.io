@@ -1,4 +1,8 @@
-var query = document.location.href.split("param.me/")[1]
+var query = document.location.href.split("param.netlify.app/")[1];
+
+if(query == "timeline" || query == "projects") {
+window.location.href = "https://param.netlify.app/#" + query;
+}
 
 var directories = [
                     "1pt",

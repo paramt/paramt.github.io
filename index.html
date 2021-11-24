@@ -6,104 +6,166 @@
   <head>
     <title>{{site.title}}</title>
 
-    {% include meta.html %}
-    {% include favicon.html %}
-
-    <link rel="stylesheet" href="{{site.url}}/assets/css/style.css">
-    <link rel="stylesheet" href="{{site.url}}/assets/css/animate.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins|Open+Sans:300">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <script defer type="text/javascript" src="{{ site.url }}/assets/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% include meta.html %} {% include favicon.html %} {% include styles.html %}
   </head>
 
-  <body onresize="shiftProjectExtra(); checkToMobilify();">
+  <body>
+    <div class="main">
+      <img class="animate__animated animate__jackInTheBox" src="assets/profile-picture.png" />
 
-    <img src="{{site.url}}/assets/img/profile-pic.png" id="main-pic">
-    <div id="overlay"></div><div id="transition-overlay"></div>
+      <h1 class="title animate__animated animate__bounceIn delay-500">Param Thakkar</h1>
 
-    <div class="container">
-      <h1 id="main-text" class="main-text">Param Thakkar</h1>
-      <span id="icons" class="icons" onmouseover="highlight(this)" onmouseout="unHighlight(this)">
-        <a title="GitHub" rel="noopener" class="icon" target="param_links" href="https://github.com/{{ site.links.github }}"><i class="fab fa-github"></i></a>
-        <a title="Email" class="icon" target="param_links" href="mailto:{{site.links.email}}"><i class="fas fa-envelope"></i></a>
-        <a title="LinkedIn" rel="noopener" class="icon" target="param_links" href="https://www.linkedin.com/in/{{ site.links.linkedin }}"><i class="fab fa-linkedin"></i></a>
-        <a title="Twitter" rel="noopener" class="icon" target="param_links" href="https://twitter.com/{{ site.links.twitter }}"><i class="fab fa-twitter"></i></a>
-        <a title="Instagram" rel="noopener" class="icon" target="param_links" href="https://www.instagram.com/{{ site.links.instagram }}"><i class="fab fa-instagram"></i></a>
-        <a id="copy" title="Discord" class="icon discord" onclick="copyDiscord('{{site.links.discord}}')"><i class="fab fa-discord"></i></a>
-      </span>
+      <p class="subtitle animate__animated animate__bounceIn delay-750">This is my personal website</p>
     </div>
 
-    <div class="content" id="projects">
-      <div class="min-padding"></div>
-
-      <div>
-        <h1>Projects</h1>
-        <div class="cards">
-          {% for project in site.data.projects limit:3 %}
-            <div class="card">
-              <h2>{{ project.title }}</h2>
-              <h3>{{ project.date }} | <a href="{{ project.github }}" rel="noopener" target="param_links">GitHub</a></h3>
-              <p>{{ project.description || markdownify }}</p>
-              <a class="card-more" id="pm{{ forloop.index }}" href="{{ project.link }}" target="param_links">
-                <p>View project <i class="fas fa-angle-right"></i></p>
-              </a>
-            </div>
-          {% endfor %}
-        </div>
-
-        <div class="filler"></div>
-        <button onclick="window.location = 'https://www.param.me/projects'"><p>View All <i class="fas fa-angle-right"></i></p></button>
+    <div class="folder slideUp">
+      <div
+        class="tab"
+        id="tab1"
+        onmouseenter="moveUp(this, '#card1');"
+        onmouseleave="moveDown(this, '#card1');"
+        onclick="switchTab(this, '#card1');"
+      >
+        <i class="fas fa-address-card"></i> About
       </div>
 
-      <div class="min-padding"></div>
-    </div>
-
-    <div class="content" id="achievements">
-      <div class="min-padding"></div>
-      <h1>Achievements</h1>
-
-      <div>
-        <div class="cards">
-          {% for achievement in site.data.achievements limit:3 %}
-            <div class="achievement-wrapper">
-              <a rel="noopener" href="{{achievement.link}}" target="param_links"><img class="achievement-img" src="{{ site.url }}/assets/img/{{ achievement.image }}"></a>
-              <div class="card achievement">
-                <h2>{{ achievement.title }}</h2>
-                <h3>{{ achievement.date }}</h3>
-                <p>{{ achievement.description || markdownify }}</p>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-
-        <div class="filler"></div>
-        <button onclick="window.location = 'https://www.param.me/timeline'"><p>View All <i class="fas fa-angle-right"></i></p></button>
+      <div
+        class="tab"
+        id="tab2"
+        onmouseenter="moveUp(this, '#card2');"
+        onmouseleave="moveDown(this, '#card2');"
+        onclick="switchTab(this, '#card2');"
+      >
+        <i class="fas fa-briefcase"></i> Projects
       </div>
 
-      <div class="min-padding"></div>
+      <div
+        class="tab"
+        id="tab3"
+        onmouseenter="moveUp(this, '#card3');"
+        onmouseleave="moveDown(this, '#card3');"
+        onclick="switchTab(this, '#card3');"
+      >
+        <i class="fas fa-history"></i> Timeline
+      </div>
+
+      <div
+        class="tab"
+        id="tab4"
+        onmouseenter="moveUp(this, '#card4');"
+        onmouseleave="moveDown(this, '#card4');"
+        onclick="switchTab(this, '#card4');"
+      >
+        <i class="fas fa-ellipsis-v"></i> <span class="more-stuff">More</span>
+      </div>
     </div>
 
-    <div id="contact" class="content">
-      <div class="min-padding"></div>
+    <div
+      class="card slideUp active aboutme"
+      id="card1"
+      onmouseenter="moveUp(this, '#tab1');"
+      onmouseleave="moveDown(this, '#tab1');"
+    >
+      <div>
+        <h2>Hi there 👋</h2>
+        <p>Here's a bit about me:</p>
+        <p>
+          I'm a grade 12 student from Mississauga, Canada. I like to design and code websites, apps, bots, games, and
+          everything in between! This website is kinda like my personal showcase, so feel free to check out my stuff out
+          or find me here:
+        </p>
+        <div class="links">
+          <a title="GitHub" rel="noopener" class="icon" style="--text: ' GitHub'"href="https://github.com/{{ site.links.github }}"
+            ><i class="fab fa-github"></i
+          ></a>
+          <a title="Email" class="icon" style="--text: ' Email'"href="mailto:{{site.links.email}}"><i class="fas fa-envelope"></i></a>
+          <a title="LinkedIn" rel="noopener" class="icon" style="--text: ' LinkedIn'"href="https://www.linkedin.com/in/{{ site.links.linkedin }}"
+            ><i class="fab fa-linkedin"></i
+          ></a>
+          <a title="Twitter" rel="noopener" class="icon" style="--text: ' Twitter'"href="https://twitter.com/{{ site.links.twitter }}"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a title="Instagram" rel="noopener" class="icon" style="--text: ' Instagram'"href="https://www.instagram.com/{{ site.links.instagram }}"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a id="copy" title="Discord" class="icon discord" style="--text: ' Discord'" onclick="copyDiscord('{{site.links.discord}}')"
+            ><i class="fab fa-discord"></i
+          ></a>
+        </div>
 
-      <h1>Contact</h1>
+        <br />
 
-      <form action="https://formspree.io/pht0104@gmail.com" method="POST">
-        <input name="Name" placeholder="Name"> <br>
-        <input name="Email" type="email" placeholder="Email"> <br>
-        <textarea name="Message" type="textarea" style="height: 250px;" placeholder="Message" required></textarea> <br>
-        <button type="submit">Submit</button>
-      </form>
+        <p>My interests include:</p>
+        <ul>
+          <li>Watching YouTube/Twitch</li>
+          <li>Investing</li>
+          <li>Gaming</li>
+        </ul>
 
-      <div class="min-padding"></div>
+        <div class="status">
+          <p>🎵 Current favourite song: <a href="{{ site.status.song-link }}">{{ site.status.song }}</a></p>
+          <p>🎮 Current game playing: {{ site.status.game }}</p>
+          <p>💼 Currently working on: {{ site.status.working-on }}</p>
+        </div>
+      </div>
     </div>
 
-    <div id="more">
-      {% include footer.html %}
+    <div
+      class="card slideUp projects"
+      id="card2"
+      onmouseenter="moveUp(this, '#tab2');"
+      onmouseleave="moveDown(this, '#tab2');"
+    >
+      <h2>Projects</h2>
+      <p>
+        These are some of the side projects I've worked on in my free time.
+        <a href="https://github.com/paramt">Check out my GitHub</a> for the full list!
+      </p>
+
+      {% for project in site.data.projects %}
+      <div class="project">
+        <div class="content" style="background-color: {{ project.color }}">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+        </div>
+
+        <div class="buttons">
+          <a href="{{ project.link }}" style="background-color: {{ project.color }}"> Visit </a>
+          <a href="{{ project.github }}" style="background-color: {{ project.color }}"> GitHub </a>
+        </div>
+      </div>
+      {% endfor %}
     </div>
 
-    <span id="arrow"><i class="fas fa-angle-down"></i></span>
+    <div class="card slideUp timelineCard" id="card3" onmouseenter="moveUp(this, '#tab3');" onmouseleave="moveDown(this, '#tab3');">
+      <h2>Timeline</h2>
+      <p>A microblog of cool things I've done</p>
 
+      <div class="timeline">
+      {% for event in site.data.timeline %}
+        <div class="tcontainer {% cycle "left", "right" %}">
+          <div class="tcontent">
+            <h3>{{ event.title }}</h3>
+            <p class="light">{{ event.date }}</p>
+            <p>{{ event.desc || markdownify}}</p>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="card slideUp more" id="card4" onmouseenter="moveUp(this, '#tab4');" onmouseleave="moveDown(this, '#tab4');">
+      <h2>More</h2>
+      <p>I'm planning to add more stuff here. In the meantime <a href="resume">here's my resume</a>.</p>
+      <h3>Cool links</h3>
+      <p>A running list of cool links</p>
+
+      {% for link in site.data.cool_links.cool_projects %}
+        <a href="{{ link.link }}" class="links">{{ link.title }}</a>
+      {% endfor %}
+    </div>
+
+    <script defer type="text/javascript" src="scripts/script.js"></script>
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </body>
 </html>

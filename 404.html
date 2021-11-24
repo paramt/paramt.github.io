@@ -1,25 +1,44 @@
 ---
 permalink: /404.html
 ---
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>Page not found</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% include favicon.html %}
-    <script src="{{site.url}}/assets/js/levenshtein.js" type="text/javascript" defer></script>
-    <script src="{{site.url}}/assets/js/404.js" type="text/javascript" defer></script>
-    <link rel="stylesheet" href="{{site.url}}/assets/css/style.css">
+    <script src="{{site.url}}/scripts/levenshtein.js" type="text/javascript" defer></script>
+    <script src="{{site.url}}/scripts/404.js" type="text/javascript" defer></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #141414;
+        color: white;
+        font-family: "Montserrat";
+      }
+
+      h1 {
+        font-size: 50px;
+      }
+    </style>
   </head>
 
   <body>
-    <div id="transition-overlay" style="opacity:0;"></div>
+    <div id="transition-overlay" style="opacity: 0"></div>
 
-    <div id="error" class="container" style="visibility: hidden;">
-      <h1 style="font-size:11em">404</h1>
+    <div>
+      <h1>404</h1>
       <h2>Page not found</h2>
       <div>
-        <button onclick="redirectToHome();" style="padding:20px"><p>Go Back to Home</p></button>
+        <button onclick="redirectToHome();">
+          <p>Go Back to Home</p>
+        </button>
       </div>
     </div>
   </body>

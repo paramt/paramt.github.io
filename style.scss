@@ -1,0 +1,526 @@
+---
+---
+
+$primary: #ededed;
+$background: #141414;
+$white: #ededed;
+
+$colors: #a00c0c #0b8611 #0f73c5 #4f1da7;
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: $background;
+  color: $primary;
+  font-family: "Montserrat", sans-serif;
+  overflow: hidden;
+  background-color: #161616;
+}
+
+p,
+ul {
+  font-size: 22px;
+  line-height: 1.8;
+}
+
+a {
+  color: #52a3ff;
+  transition: 0.1s;
+}
+
+a:hover {
+  color: white;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 85vh;
+
+  .title {
+    font-size: 60px;
+    margin-bottom: 0;
+  }
+
+  .subtitle {
+    font-size: 30px;
+    margin-top: 10px;
+  }
+
+  img {
+    width: 300px;
+    border-radius: 50%;
+  }
+}
+
+.folder {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.tab {
+  padding: 15px 30px 25px;
+  color: white;
+  font-size: 25px;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+  transition: transform 0.2s;
+  z-index: 1;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &#tab1 {
+    background-color: nth($colors, 1);
+    z-index: 4;
+  }
+
+  &#tab2 {
+    background-color: nth($colors, 2);
+    z-index: 3;
+  }
+
+  &#tab3 {
+    background-color: nth($colors, 3);
+    z-index: 2;
+  }
+
+  &#tab4 {
+    background-color: nth($colors, 4);
+    z-index: 1;
+  }
+}
+
+.more-stuff:after {
+  content: " stuff";
+}
+
+.card {
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 100px 200px;
+  width: 100%;
+  color: $white;
+  transition: transform 0.2s;
+  position: absolute;
+  top: calc(85vh + 70px - 1px);
+
+  h2 {
+    font-size: 50px;
+    margin-bottom: 0;
+  }
+}
+
+#card1 {
+  background-color: nth($colors, 1);
+  z-index: 4;
+}
+
+#card2 {
+  background-color: nth($colors, 2);
+  z-index: 3;
+}
+
+#card3 {
+  background-color: nth($colors, 3);
+  z-index: 2;
+}
+
+#card4 {
+  background-color: nth($colors, 4);
+  z-index: 1;
+}
+
+.card:not(.active) {
+  height: 100px;
+}
+
+.card.active {
+  min-height: 1000px;
+}
+
+.active {
+  z-index: 10 !important;
+}
+
+.slideUp {
+  animation-name: slideUp;
+  -webkit-animation-name: slideUp;
+  animation-delay: 1.5s;
+  -webkit-animation-delay: 1.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-duration: 0.5s;
+  animation-fill-mode: backwards;
+  -webkit-animation-fill-mode: backwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate3d(0, 200px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.delay-750 {
+  animation-delay: 0.75s;
+  -webkit-animation-delay: 0.75s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+  -webkit-animation-delay: 0.5s;
+}
+
+.aboutme {
+  .icon {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-size: 25px;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.1s;
+
+    transition: width 0.5s;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #242424;
+      cursor: pointer;
+    }
+  }
+
+  .icon:hover {
+    width: 200px;
+  }
+
+  .icon:hover::after {
+    content: var(--text);
+    overflow: hidden;
+  }
+
+  .status {
+    background-color: #2b2b2b;
+    padding: 20px;
+    border-radius: 10px;
+  }
+}
+
+.projects {
+  a {
+    color: white;
+  }
+}
+
+.project-wrapper {
+}
+
+.project {
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+  width: 400px;
+  color: black;
+  font-size: 0; //Remove space between buttons
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background-color: #1f1d29;
+    color: white;
+    height: 250px;
+    padding: 10px 20px;
+
+    h3 {
+      font-size: 25px;
+      margin: 0;
+    }
+  }
+
+  .buttons {
+    a {
+      display: inline-block;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      padding: 10px 0;
+      width: 50%;
+      background-color: #0b0f1a;
+      color: white;
+      transition: filter 0.1s;
+      filter: brightness(0.8);
+    }
+
+    a:hover {
+      filter: brightness(0.9);
+    }
+  }
+}
+
+.more {
+  h3 {
+    font-size: 30px;
+  }
+
+  .links {
+    font-size: 25px;
+    margin-right: 10px;
+  }
+}
+
+.timelineCard {
+  h3 {
+    font-size: 45px;
+    margin: 10px 0;
+  }
+}
+
+// Timeline (from W3schools)
+* {
+  box-sizing: border-box;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 150px auto;
+  text-align: left;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  background-color: #191919;
+  top: 25px;
+  bottom: -1000px;
+  left: 50%;
+  margin-left: -3px;
+}
+
+/* Container around content */
+.tcontainer {
+  padding: 10px 40px;
+  position: relative;
+  background-color: inherit;
+  width: 50%;
+}
+
+/* The circles on the timeline */
+.tcontainer::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  right: -17px;
+  background-color: white;
+  border: 4px solid #1e1e1e;
+  top: 23px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Place the container to the left */
+.left {
+  left: 0;
+}
+
+/* Place the container to the right */
+.right {
+  left: 50%;
+}
+
+/* Add arrows to the left container (pointing right) */
+.left::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 30px;
+  width: 0;
+  z-index: 1;
+  right: 30px;
+  border: medium solid #191919;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent #191919;
+}
+
+/* Add arrows to the right container (pointing left) */
+.right::before {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 30px;
+  width: 0;
+  z-index: 1;
+  left: 30px;
+  border: medium solid #191919;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent #191919 transparent transparent;
+}
+
+/* Fix the circle for containers on the right side */
+.right::after {
+  left: -16px;
+}
+
+/* The actual content */
+.tcontent {
+  padding: 20px 30px;
+  background-color: #191919;
+  position: relative;
+  border-radius: 15px;
+  margin-bottom: 60px;
+}
+
+@media screen and (max-width: 900px) {
+  .timeline {
+    margin: 50px auto;
+  }
+
+  /* Place the timelime to the left */
+  .timeline::after {
+    left: 31px;
+  }
+
+  /* Full-width containers */
+  .tcontainer {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  /* Make sure that all arrows are pointing leftwards */
+  .tcontainer::before {
+    left: 60px;
+    border: medium solid #191919;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #191919 transparent transparent;
+  }
+
+  /* Make sure all circles are at the same spot */
+  .left::after,
+  .right::after {
+    left: 15px;
+  }
+
+  /* Make all right containers behave like the left ones */
+  .right {
+    left: 0%;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .card {
+    padding: 100px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .card {
+    padding: 100px 50px;
+  }
+
+  .project {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .tab {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .tab {
+    padding: 15px 25px 25px;
+    color: white;
+    font-size: 20px;
+  }
+
+  .card {
+    top: calc(85vh + 64px - 1px);
+    padding: 50px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .tab {
+    padding: 10px 20px 20px;
+    color: white;
+    font-size: 15px;
+  }
+
+  .card {
+    top: calc(85vh + 49px - 1px);
+
+    h2 {
+      font-size: 45px;
+    }
+  }
+
+  .timelineCard h3 {
+    font-size: 35px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .main {
+    img {
+      width: 250px;
+    }
+
+    .title {
+      font-size: 45px;
+    }
+
+    .subtitle {
+      font-size: 22px;
+    }
+  }
+
+  .card h2 {
+    font-size: 35px;
+  }
+
+  .timelineCard h3 {
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .fas {
+    display: none;
+  }
+
+  .more-stuff:after {
+    content: none;
+  }
+}
