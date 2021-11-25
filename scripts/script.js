@@ -1,10 +1,10 @@
 history.scrollRestoration = "manual";
 
-var query = document.location.href.split("param.netlify.app/")[1];
+var query = document.location.href.split("param.me/")[1];
 
-if(query == "projects" || query == "#projects") {
+if (query == "#projects") {
   switchTab(document.getElementById("tab1"), "#card2");
-} else if(query == "timeline" || query == "#timeline") {
+} else if (query == "#timeline") {
   switchTab(document.getElementById("tab1"), "#card3");
 }
 
