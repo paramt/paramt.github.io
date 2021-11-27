@@ -16,29 +16,19 @@ permalink: /404.html
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Open+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      body {
-        background-color: #141414;
-        color: white;
-        font-family: "Montserrat";
-      }
-
-      h1 {
-        font-size: 50px;
-      }
-    </style>
+    <link href="404.css" rel="stylesheet" />
   </head>
 
   <body>
     <div id="transition-overlay" style="opacity: 0"></div>
 
     <div>
-      <h1>404</h1>
-      <h2>Page not found</h2>
-      <div>
-        <button onclick="redirectToHome();">
-          <p>Go Back to Home</p>
-        </button>
+      <h1>Whoops!</h1>
+      <h2>That page doesn't exist</h2>
+      <div id="error">
+        <a href="/">
+          <p>Go Back Home</p>
+        </a>
       </div>
     </div>
   </body>
