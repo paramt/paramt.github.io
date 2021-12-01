@@ -1,0 +1,26 @@
+---
+---
+
+h1 {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  font-size: 60px;
+  text-align: center;
+  margin: 50px;
+}
+
+#certificates {
+  text-align: center;
+
+  img {
+    margin: 25px;
+    width: 500px;
+    border-radius: 10px;
+    filter: brightness(0.85);
+    transition: filter 0.2s;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}
