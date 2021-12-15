@@ -207,13 +207,15 @@ a:hover {
     }
   }
 
-  .icon:hover {
-    width: 200px;
-  }
+  @media screen and (min-width: 480px) {
+    .icon:hover {
+      width: 200px;
+    }
 
-  .icon:hover::after {
-    content: var(--text);
-    overflow: hidden;
+    .icon:hover::after {
+      content: var(--text);
+      overflow: hidden;
+    }
   }
 
   .status {
