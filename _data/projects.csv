@@ -2,6 +2,7 @@ title,description,link,github,color
 1pt URL Shortener,A simple-to-use URL shortener with protection against malicious redirects,https://1pt.co/,https://github.com/1pt-co/1pt,#2e2f4a
 Meme Adviser,A Reddit bot that analyzes the stock market at r/MemeEconomy,https://www.param.me/MemeAdviser/,https://github.com/paramt/MemeAdviser,#055d9c
 Videocloud,A command-line-interface that generates word clouds from YouTube videos,https://www.param.me/videocloud/,https://github.com/paramt/projects,#9c0f05
+Auto Covid Screening,A bookmarklet that automates your daily Ontario covid screening,https://www.param.me/automate-covid-screening/,https://github.com/paramt/automate-covid-screening,#c40021
 Webpage Builder,An online IDE for web dev,https://code.param.me/,https://github.com/paramt/code-editor,#1f1d29
 Q4T,A Telegram bot that allows channel admins to post scheduled quizzes using a list of questions from Google Sheets,https://github.com/paramt/q4t,https://github.com/paramt/q4t,#9c6505
 Discord Emoji,A convenient tool to convert text into emoji markup that Discord understands,https://www.param.me/discord-emoji,https://github.com/paramt/discord-emoji,#6c059c
