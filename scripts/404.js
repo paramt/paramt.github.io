@@ -7,6 +7,7 @@ if (query == "timeline" || query == "projects") {
 var directories = [
   "1pt",
   "assignments",
+  "automate-covid-screening",
   "code-editor",
   "discord-emoji",
   "email-status",
