@@ -84,6 +84,9 @@
           <a title="LinkedIn" rel="noopener" class="icon" style="--text: ' LinkedIn'"href="https://www.linkedin.com/in/{{ site.links.linkedin }}">
             <i class="fab fa-linkedin"></i>
           </a>
+          <a title="Reddit" rel="noopener" class="icon" style="--text: ' Reddit'"href="https://reddit.com/{{ site.links.reddit }}">
+            <i class="fab fa-reddit"></i>
+          </a>
           <a title="Instagram" rel="noopener" class="icon" style="--text: ' Instagram'"href="https://www.instagram.com/{{ site.links.instagram }}">
             <i class="fab fa-instagram"></i>
           </a>
@@ -94,7 +97,7 @@
 
         <br />
 
-        <p>My interests include:</p>
+        <p>My hobbies include:</p>
         <ul>
           <li>Watching YouTube/Twitch</li>
           <li>Investing</li>
@@ -158,7 +161,7 @@
       <p>I'm planning to add more stuff here. In the meantime <a href="resume">here's my resume</a>.</p>
       <p><a href="/certificates">Certificates</a> | <a href="/assignments">School projects</a></p>
       <h3>Cool links</h3>
-      <p>A running list of cool links</p>
+      <p>A running list of websites or projects that I think are cool</p>
 
       {% for link in site.data.cool_links.cool_projects %}
         <a href="{{ link.link }}" class="links">{{ link.title }}</a>
