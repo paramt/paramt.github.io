@@ -164,7 +164,7 @@
       <p>A running list of websites or projects that I think are cool</p>
 
       {% for link in site.data.cool_links.cool_projects %}
-        <a href="{{ link.link }}" class="links">{{ link.title }}</a>
+        <a href="{{ link.link }}" target="_blank" class="links">{{ link.title }}</a>
       {% endfor %}
     </div>
 
