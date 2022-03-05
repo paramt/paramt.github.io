@@ -104,11 +104,11 @@
           <li>Gaming</li>
         </ul>
 
-        <p class="status-header">Current status <i>Last updated: <span id="last-updated">Loading...</span></i></p>
+        <p class="status-header">Live status <i>Last updated: <span id="last-updated">Loading...</span></i></p>
         <div class="status">
+          <p>💼 Currently working on: {{ site.status.working-on }}</p>
           <p>🎵 Current favourite song: <a href="{{ site.status.song-link }}">{{ site.status.song }}</a></p>
           <p>🎮 Current game playing: {{ site.status.game }}</p>
-          <p>💼 Currently working on: {{ site.status.working-on }}</p>
         </div>
       </div>
     </div>
