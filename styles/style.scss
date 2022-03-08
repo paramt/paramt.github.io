@@ -269,6 +269,7 @@ a:hover {
     color: white;
     height: 250px;
     padding: 10px 20px;
+    border-radius: 10px 10px 0 0;
 
     h3 {
       font-size: 25px;
@@ -279,21 +280,29 @@ a:hover {
   .buttons {
     a {
       display: inline-block;
-      font-size: 16px;
+      font-size: 20px;
       text-align: center;
       text-decoration: none;
-      padding: 10px 0;
+      padding: 15px 0;
       width: 50%;
       background-color: #0b0f1a;
       color: white;
       transition: filter 0.1s;
       filter: brightness(0.8);
+
+      &:first-child {
+        border-radius: 0 0 0 10px;
+      }
+
+      &:nth-child(2) {
+        border-radius: 0 0 10px 0;
+      }
     }
 
     a:hover {
       filter: brightness(0.9);
     }
-  }
+    }
 }
 
 .more {
