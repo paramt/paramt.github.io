@@ -464,6 +464,16 @@ a:hover {
   }
 }
 
+@media screen and (max-width: 1660px) {
+  .projects {
+    padding: 100px;
+  }
+
+  .project {
+    width: 45%;
+  }
+}
+
 @media screen and (max-width: 1250px) {
   .card {
     padding: 100px;
