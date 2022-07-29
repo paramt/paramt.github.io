@@ -139,6 +139,7 @@
 
       <div class="timeline">
       {% for event in site.data.timeline %}
+       {% if event.big == "true" %}
         <div class="tcontainer {% cycle "left", "right" %}">
           <div class="tcontent">
             <h3>{{ event.title }}</h3>
@@ -146,6 +147,7 @@
             <p>{{ event.desc || markdownify}}</p>
           </div>
         </div>
+        {% endif %}
       {% endfor %}
       </div>
     </div>

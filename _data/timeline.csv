@@ -1,31 +1,31 @@
-title,date,desc
-SWE Intern @ Pulley,July 2022,"Started my software engineer internship at [Pulley](https://pulley.com), a Series A Y-Combinator startup based in San Francisco"
-Sword of Distinction,June 2022,Recieved the RCAF Sword of Distinction from my squadron for being an outstanding cadet
-W.C. Martin Memorial Scholarship,June 2022,Receieved the W.C. Martin Memorial award for having the top 3 grade 12 average at my school
-Schulich Leader Scholarship,May 2022,"Offered the Schulich Leader Scholarship (valued at $80,000) from the University of Toronto"
-CCC Distinction,February 2022,The Canadian Computing Competition is a competitive programming contest for high school students. I recieved a Certificate of Distinction for being in the 25% of scorers
-CSMC Distinction,November 2021,Received a Certificate of Distinction for being among the top 25% of scorers on the Canadian Senior Math Contest
-Radio Operator's License,December 2021,Receieved my Restricted Radio Operator's Certificate through the cadets program
-Coder Cookies,August 2021,Became a Code Coach at [Coder Cookies](https://codercookies.com/)
-Skydiving,August 2021,[I went skydiving](https://www.instagram.com/p/CTHqUuvMUoF9PGuVPHiP48FDi5VwEE77PUIhcM0/)!
-Shad,July 2021,Completed the [Shad program](https://www.shad.ca/) virtually at the York University campus
-Janusz Zurakowski Award,June 2021,Received the Janusz Zurakowski award for excellence in glider aviation studies,
-Lighthouse Hacks,April 2021,Organized [Lighthouse Hacks](https://lighthousehacks.ca/) - a virtual hackathon with over 200 participants from 10 countries
-Cybersecurity Challenge Winner,November 2020,Won the US Air Force Cybersecurity Challenge at HackRPI
-Coding Club,October 2020,Started an online coding club at my school
-Canada Learning Code Ambassador,September 2020,Became a Teen Ambassador for [Canada Learning Code](https://www.canadalearningcode.ca/)
-AP Computer Science Exam,July 2020,Recieved the highest possible score of 5 on the AP Computer Science A Exam
-Most Proficient Junior NCO,July 2020,Received [an honorable mention](https://www.instagram.com/p/CCrhvqqMUNz) for the Most Proficient Junior NCO award at 845 Avro Arrow Squadron
-CANHack Mentor,July 2020,Mentored at Brampton Library's virtual hackathon
-Skills Ontario,June 2020,Represented Peel District School Board at the Virtual Skills Ontario coding competition
-Hack the Valley,February 2020,Built a demo for [OpenED](https://www.param.me/open-ed) – a platform for students to voice their opinions – at University of Toronto's hackathon
-Google Code-in,February 2020,Contributed to the open-source community by completing documentation, research, and design tasks for organizations
-Hacktoberfest,October 2019,Contributed to the open-source community by fixing issues and adding features to various GitHub repositories
-Hack the North,September 2019,Attended [Canada's largest hackathon](https://hackthenorth.com/) held at the University of Waterloo
-Greatest Distinction,September 2019,Received Greatest Distinction in the Level 3 Instructor Preparation Program in my cadet squadron
-100 Days of Running,May 2019,Completed the [100 Days of Running challenge](https://hdor.com/100-days-of-running/) and received a platinum medal
-3rd Place at Startup Weekend,November 2018,Presented StoAR at the 54-hour TechStars Startup Weekend. The demo was pitched to a panel of judges, including an investor from Dragon's Den, and received third place
-First Place Pitch at Hackathon,September 2018,Came first for pitching [Mathu](https://mathu.cf) at the 24-hour Imagine Hackathon in Brampton
-Basic Aviation,August 2018,Successfully completed a 3-week summer training course at CFB Trenton as a cadet in the Aviation Wing
-First Place in Gauss,May 2017,Ranked first place from my school *Allan A. Martin*, for writing the Gauss Math Contest
-App of the Month,January 2017,Received the [Most Creative App of the Month](https://web.archive.org/web/20170204071134/http://appinventor.mit.edu/explore/app-month-gallery.html) from MIT App Inventor for my app [Spellbind](https://go.param.me/spellbind)
+title,date,desc,big
+SWE Intern @ Pulley,July 2022,"Started my software engineer internship at [Pulley](https://pulley.com), a Series A Y-Combinator startup based in San Francisco",true
+Sword of Distinction,June 2022,Recieved the RCAF Sword of Distinction from my squadron for being an outstanding cadet,false
+W.C. Martin Memorial Scholarship,June 2022,Receieved the W.C. Martin Memorial award for having the top 3 grade 12 average at my school,false
+Schulich Leader Scholarship,May 2022,"Offered the Schulich Leader Scholarship (valued at $80,000) from the University of Toronto",true
+CCC Distinction,February 2022,The Canadian Computing Competition is a competitive programming contest for high school students. I recieved a Certificate of Distinction for being in the 25% of scorers,false
+CSMC Distinction,November 2021,Received a Certificate of Distinction for being among the top 25% of scorers on the Canadian Senior Math Contest,false
+Radio Operator's License,December 2021,Receieved my Restricted Radio Operator's Certificate through the cadets program,false
+Coder Cookies,August 2021,Became a Code Coach at [Coder Cookies](https://codercookies.com/),true
+Skydiving,August 2021,[I went skydiving](https://www.instagram.com/p/CTHqUuvMUoF9PGuVPHiP48FDi5VwEE77PUIhcM0/)!,true
+Shad,July 2021,Completed the [Shad program](https://www.shad.ca/) virtually at the York University campus,true
+Janusz Zurakowski Award,June 2021,Received the Janusz Zurakowski award for excellence in glider aviation studies,false
+Lighthouse Hacks,April 2021,Organized [Lighthouse Hacks](https://lighthousehacks.ca/) - a virtual hackathon with over 200 participants from 10 countries,true
+Cybersecurity Challenge Winner,November 2020,Won the US Air Force Cybersecurity Challenge at HackRPI,false
+Coding Club,October 2020,Started an online coding club at my school,true
+Canada Learning Code Ambassador,September 2020,Became a Teen Ambassador for [Canada Learning Code](https://www.canadalearningcode.ca/),true
+AP Computer Science Exam,July 2020,Recieved the highest possible score of 5 on the AP Computer Science A Exam,true
+Most Proficient Junior NCO,July 2020,Received [an honorable mention](https://www.instagram.com/p/CCrhvqqMUNz) for the Most Proficient Junior NCO award at 845 Avro Arrow Squadron,false
+CANHack Mentor,July 2020,Mentored at Brampton Library's virtual hackathon,true
+Skills Ontario,June 2020,Represented Peel District School Board at the Virtual Skills Ontario coding competition,true
+Hack the Valley,February 2020,Built a demo for [OpenED](https://www.param.me/open-ed) – a platform for students to voice their opinions – at University of Toronto's hackathon,false
+Google Code-in,February 2020,Contributed to the open-source community by completing documentation, research, and design tasks for organizations,false
+Hacktoberfest,October 2019,Contributed to the open-source community by fixing issues and adding features to various GitHub repositories,false
+Hack the North,September 2019,Attended [Canada's largest hackathon](https://hackthenorth.com/) held at the University of Waterloo,true
+Greatest Distinction,September 2019,Received Greatest Distinction in the Level 3 Instructor Preparation Program in my cadet squadron,false
+100 Days of Running,May 2019,Completed the [100 Days of Running challenge](https://hdor.com/100-days-of-running/) and received a platinum medal,true
+3rd Place at Startup Weekend,November 2018,Presented StoAR at the 54-hour TechStars Startup Weekend. The demo was pitched to a panel of judges, including an investor from Dragon's Den, and received third place,true
+First Place Pitch at Hackathon,September 2018,Came first for pitching [Mathu](https://mathu.cf) at the 24-hour Imagine Hackathon in Brampton,true
+Basic Aviation,August 2018,Successfully completed a 3-week summer training course at CFB Trenton as a cadet in the Aviation Wing,true
+First Place in Gauss,May 2017,Ranked first place from my school *Allan A. Martin*, for writing the Gauss Math Contest,true
+App of the Month,January 2017,Received the [Most Creative App of the Month](https://web.archive.org/web/20170204071134/http://appinventor.mit.edu/explore/app-month-gallery.html) from MIT App Inventor for my app [Spellbind](https://go.param.me/spellbind),true
