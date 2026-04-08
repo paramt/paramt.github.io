@@ -34,6 +34,7 @@ import boston from './images/boston.jpg';
 
 import nyc2023a from './images/nyc 2023.jpg';
 import nyc2023b from './images/nyc 2023 2.jpg';
+import nyc2023c from './images/nyc 2023 3.jpg';
 
 import amanHambleton from './images/aman hambleton.jpg';
 import ericHansen from './images/eric hansen.jpg';
@@ -68,6 +69,7 @@ import thumbTrinidad1 from './images/trinidad 1.thumb.webp';
 import thumbBoston from './images/boston.thumb.webp';
 import thumbNyc2023a from './images/nyc 2023.thumb.webp';
 import thumbNyc2023b from './images/nyc 2023 2.thumb.webp';
+import thumbNyc2023c from './images/nyc 2023 3.thumb.webp';
 import thumbAmanHambleton from './images/aman hambleton.thumb.webp';
 import thumbEricHansen from './images/eric hansen.thumb.webp';
 import thumbTechcrunchDisrupt from './images/techcrunch disrupt.thumb.webp';
@@ -117,7 +119,7 @@ export const timeline = [
   {
     year: "2023",
     events: [
-      { month: "Dec", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, images: [img(nyc2023a, thumbNyc2023a), img(nyc2023b, thumbNyc2023b)] },
+      { month: "Dec", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, images: [img(nyc2023a, thumbNyc2023a), img(nyc2023b, thumbNyc2023b), img(nyc2023c, thumbNyc2023c)] },
       { month: "Dec", title: "Watched the Champions Chess Tour 2023", description: null, link: null, lat: 43.6532, lng: -79.383, images: [img(amanHambleton, thumbAmanHambleton), img(ericHansen, thumbEricHansen)] },
       { month: "Sep", title: "Attended TechCrunch Disrupt in SF", description: null, link: null, lat: 37.7749, lng: -122.4194, images: [img(techcrunchDisrupt, thumbTechcrunchDisrupt)] },
       { month: "Sep", title: "HackMIT", description: null, link: null, lat: 42.3601, lng: -71.0942, images: [img(bostonHackmit, thumbBostonHackmit)] },
