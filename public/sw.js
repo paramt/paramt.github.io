@@ -24,7 +24,7 @@ self.addEventListener('fetch', (e) => {
         cache.match(e.request).then(cached => {
           if (cached) return cached;
           return fetch(e.request).then(res => {
-            if (res.ok) cache.put(e.request, res.clone());
+            if (res.status === 200) cache.put(e.request, res.clone());
             return res;
           });
         })
