@@ -94,29 +94,30 @@ import india2 from './images/india 2.jpg';
 import thumbIndia1 from './images/india 1.thumb.webp';
 import thumbIndia2 from './images/india 2.thumb.webp';
 
-const img = (src, thumb) => ({ src, thumb });
+const img = (src, thumb) => ({ type: 'image', src, thumb });
+const note = (text, color = 'yellow') => ({ type: 'note', text, color });
 
 export const timeline = [
   {
     year: "2026",
     events: [
-      { month: "Mar", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, images: [img(nyc2026a, thumbNyc2026a), img(nyc2026b, thumbNyc2026b)] },
-      { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, link: null, lat: 28.5729, lng: -80.6490, images: [img(ksc1, thumbKsc1), img(orlando, thumbOrlando)] },
+      { month: "Mar", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, attachments: [img(nyc2026a, thumbNyc2026a), img(nyc2026b, thumbNyc2026b)] },
+      { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, link: null, lat: 28.5729, lng: -80.6490, attachments: [img(ksc1, thumbKsc1), img(orlando, thumbOrlando)] },
       { month: "Jan", title: "Learned Piano Man on the harmonica", description: null, link: null, lat: null, lng: null },
     ],
   },
   {
     year: "2025",
     events: [
-      { month: "Dec", title: "Road trip through the Florida Keys", description: null, link: null, lat: 24.5551, lng: -81.7800, images: [img(miamiKeys, thumbMiamiKeys), img(miami2Keys, thumbMiami2Keys)] },
+      { month: "Dec", title: "Road trip through the Florida Keys", description: null, link: null, lat: 24.5551, lng: -81.7800, attachments: [img(miamiKeys, thumbMiamiKeys), img(miami2Keys, thumbMiami2Keys)] },
       { month: "Sep", title: "Joined Quora as a MLE intern", description: null, link: null, lat: null, lng: null },
-      { month: "Sep", title: "Cottage trip in Quebec", description: null, link: null, lat: 46.4171, lng: -75.4782, images: [img(quebecCottage, thumbQuebecCottage)] },
-      { month: "Aug", title: "Visited Singapore", description: null, link: null, lat: 1.3521, lng: 103.8198, images: [img(singapore1, thumbSingapore1), img(singapore2, thumbSingapore2)] },
-      { month: "Aug", title: "Visited India", description: null, link: null, lat: 22.2587, lng: 71.1924, images: [img(india1, thumbIndia1), img(india2, thumbIndia2)] },
-      { month: "Jul", title: "Ran the SF 10k", description: null, link: null, lat: 37.7749, lng: -122.4194, images: [img(sfRace, thumbSfRace), img(sfRace2, thumbSfRace2)] },
-      { month: "Jun", title: "Went camping in Yosemite", description: null, link: null, lat: 37.8651, lng: -119.5383, images: [img(yosemite1, thumbYosemite1), img(yosemite3, thumbYosemite3), img(yosemite4, thumbYosemite4), img(yosemite5, thumbYosemite5)] },
-      { month: "Jun", title: "Went surfing for the first time", description: null, link: null, lat: 36.9741, lng: -122.0308, images: [img(surfing, thumbSurfing)] },
-      { month: "May", title: "Joined Glean as a SWE intern", description: null, link: "https://www.glean.com/blog/intern-life-at-glean#deep-research", lat: 37.4419, lng: -122.1430, images: [img(glean1, thumbGlean1), img(gleanTwinPeaks, thumbGleanTwinPeaks)] },
+      { month: "Sep", title: "Cottage trip in Quebec", description: null, link: null, lat: 46.4171, lng: -75.4782, attachments: [img(quebecCottage, thumbQuebecCottage)] },
+      { month: "Aug", title: "Visited Singapore", description: null, link: null, lat: 1.3521, lng: 103.8198, attachments: [img(singapore1, thumbSingapore1), img(singapore2, thumbSingapore2)] },
+      { month: "Aug", title: "Visited India", description: null, link: null, lat: 22.2587, lng: 71.1924, attachments: [img(india1, thumbIndia1), img(india2, thumbIndia2)] },
+      { month: "Jul", title: "Ran the SF 10k", description: null, link: null, lat: 37.7749, lng: -122.4194, attachments: [img(sfRace, thumbSfRace), img(sfRace2, thumbSfRace2)] },
+      { month: "Jun", title: "Went camping in Yosemite", description: null, link: null, lat: 37.8651, lng: -119.5383, attachments: [img(yosemite1, thumbYosemite1), img(yosemite3, thumbYosemite3), img(yosemite4, thumbYosemite4), img(yosemite5, thumbYosemite5)] },
+      { month: "Jun", title: "Went surfing for the first time", description: null, link: null, lat: 36.9741, lng: -122.0308, attachments: [img(surfing, thumbSurfing)] },
+      { month: "May", title: "Joined Glean as a SWE intern", description: null, link: "https://www.glean.com/blog/intern-life-at-glean#deep-research", lat: 37.4419, lng: -122.1430, attachments: [img(glean1, thumbGlean1), img(gleanTwinPeaks, thumbGleanTwinPeaks)] },
       { month: "May", title: "Watched Attack on Titan Orchestral performance", description: null, link: null, lat: 43.6532, lng: -79.3832 },
     ],
   },
@@ -125,22 +126,22 @@ export const timeline = [
     events: [
       { month: "Nov", title: "Visited San Francisco", description: null, link: null, lat: 37.7749, lng: -122.4194 },
       { month: "Oct", title: "Saw the AOT musical in New York", description: null, link: null, lat: 40.7128, lng: -74.0060 },
-      { month: "Sep", title: "Joined Expertise.ai as a SWE intern", description: null, link: null, lat: 43.6629, lng: -79.3957, images: [img(expertiseAi1, thumbExpertiseAi1), img(expertiseAi2, thumbExpertiseAi2)] },
-      { month: "Aug", title: "Visited Vancouver & Seattle", description: null, link: null, lat: 49.2827, lng: -123.1207, images: [img(seattle1, thumbSeattle1), img(seattle2, thumbSeattle2)] },
+      { month: "Sep", title: "Joined Expertise.ai as a SWE intern", description: null, link: null, lat: 43.6629, lng: -79.3957, attachments: [img(expertiseAi1, thumbExpertiseAi1), img(expertiseAi2, thumbExpertiseAi2)] },
+      { month: "Aug", title: "Visited Vancouver & Seattle", description: null, link: null, lat: 49.2827, lng: -123.1207, attachments: [img(seattle1, thumbSeattle1), img(seattle2, thumbSeattle2)] },
       // { month: "Jun", title: "Hindu Students Council shibhir in Pennsylvania", description: null, link: null, lat: 40.9699, lng: -77.7278 },
       { month: "May", title: "Went canoeing in Long Point", description: null, link: null, lat: 42.5500, lng: -80.4500 },
-      { month: "May", title: "Visited Trinidad", description: null, link: null, lat: 10.6918, lng: -61.2225, images: [img(trinidad1, thumbTrinidad1)] },
-      { month: "Mar", title: "Road trip to Boston", description: null, link: null, lat: 42.3601, lng: -71.0589, images: [img(boston, thumbBoston)] },
+      { month: "May", title: "Visited Trinidad", description: null, link: null, lat: 10.6918, lng: -61.2225, attachments: [img(trinidad1, thumbTrinidad1)] },
+      { month: "Mar", title: "Road trip to Boston", description: null, link: null, lat: 42.3601, lng: -71.0589, attachments: [img(boston, thumbBoston)] },
       { month: "Jan", title: "Joined Dropbase as a SWE intern", description: null, link: null, lat: null, lng: null },
     ],
   },
   {
     year: "2023",
     events: [
-      { month: "Dec", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, images: [img(nyc2023c, thumbNyc2023c), img(nyc2023b, thumbNyc2023b), img(nyc2023a, thumbNyc2023a)] },
-      { month: "Dec", title: "Watched the Champions Chess Tour 2023", description: null, link: null, lat: 43.6532, lng: -79.383, images: [img(amanHambleton, thumbAmanHambleton), img(ericHansen, thumbEricHansen)] },
-      { month: "Sep", title: "Attended TechCrunch Disrupt in SF", description: null, link: null, lat: 37.7749, lng: -122.4194, images: [img(techcrunchDisrupt, thumbTechcrunchDisrupt)] },
-      { month: "Sep", title: "Attended HackMIT", description: null, link: null, lat: 42.3601, lng: -71.0942, images: [img(bostonHackmit, thumbBostonHackmit)] },
+      { month: "Dec", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, attachments: [img(nyc2023c, thumbNyc2023c), img(nyc2023b, thumbNyc2023b), img(nyc2023a, thumbNyc2023a)] },
+      { month: "Dec", title: "Watched the Champions Chess Tour 2023", description: null, link: null, lat: 43.6532, lng: -79.383, attachments: [img(amanHambleton, thumbAmanHambleton), img(ericHansen, thumbEricHansen)] },
+      { month: "Sep", title: "Attended TechCrunch Disrupt in SF", description: null, link: null, lat: 37.7749, lng: -122.4194, attachments: [img(techcrunchDisrupt, thumbTechcrunchDisrupt)] },
+      { month: "Sep", title: "Attended HackMIT", description: null, link: null, lat: 42.3601, lng: -71.0942, attachments: [img(bostonHackmit, thumbBostonHackmit)] },
       // { month: "Jul", title: "Visited Grand Bend", description: null, link: null },
       { month: "Jun", title: "Judged JAMHacks 7", description: null, link: null, lat: 43.4723, lng: -80.5449 },
       // { month: "May", title: "Attended protest", description: null, link: null, lat: null, lng: null },
@@ -153,14 +154,14 @@ export const timeline = [
     year: "2022",
     events: [
       { month: "Dec", title: "Judged hack::peel", description: null, link: null, lat: 43.5890, lng: -79.6441 },
-      { month: "Sept", title: "Started CS @ Waterloo", description: null, link: null, lat: 43.47114661760789, lng: -80.54535675263575, images: [img(waterloo, thumbWaterloo)] },
+      { month: "Sept", title: "Started CS @ Waterloo", description: null, link: null, lat: 43.47114661760789, lng: -80.54535675263575, attachments: [img(waterloo, thumbWaterloo)] },
       { month: "May", title: "Offered the Schulich Leader Scholarship from UofT", description: null, link: null, lat: 43.6629, lng: -79.3957 },
     ],
   },
   {
     year: "2021",
     events: [
-      { month: "Aug", title: "Went skydiving", description: null, link: null, lat: 44.3002, lng: -79.5431, images: [img(skydiving1, thumbSkydiving1), img(skydiving2, thumbSkydiving2), img(skydiving3, thumbSkydiving3)] },
+      { month: "Aug", title: "Went skydiving", description: null, link: null, lat: 44.3002, lng: -79.5431, attachments: [img(skydiving1, thumbSkydiving1), img(skydiving2, thumbSkydiving2), img(skydiving3, thumbSkydiving3)] },
       { month: "Jul", title: "Shad", description: null, link: null, lat: 43.7735, lng: -79.5019 },
       { month: "Apr", title: "Organized Lighthouse Hacks", description: null, link: null, lat: null, lng: null },
     ],
