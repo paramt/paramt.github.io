@@ -132,7 +132,7 @@ export const timeline = [
   {
     year: "2023",
     events: [
-      { month: "Dec", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, images: [img(nyc2023a, thumbNyc2023a), img(nyc2023b, thumbNyc2023b), img(nyc2023c, thumbNyc2023c)] },
+      { month: "Dec", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, images: [img(nyc2023c, thumbNyc2023c), img(nyc2023b, thumbNyc2023b), img(nyc2023a, thumbNyc2023a)] },
       { month: "Dec", title: "Watched the Champions Chess Tour 2023", description: null, link: null, lat: 43.6532, lng: -79.383, images: [img(amanHambleton, thumbAmanHambleton), img(ericHansen, thumbEricHansen)] },
       { month: "Sep", title: "Attended TechCrunch Disrupt in SF", description: null, link: null, lat: 37.7749, lng: -122.4194, images: [img(techcrunchDisrupt, thumbTechcrunchDisrupt)] },
       { month: "Sep", title: "Attended HackMIT", description: null, link: null, lat: 42.3601, lng: -71.0942, images: [img(bostonHackmit, thumbBostonHackmit)] },
