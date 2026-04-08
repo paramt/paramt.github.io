@@ -347,8 +347,6 @@ main {
 }
 
 .project-links a {
-  font-size: 12px;
-  font-family: var(--mono);
   color: var(--fg-faint);
   text-decoration: none;
   display: inline-flex;

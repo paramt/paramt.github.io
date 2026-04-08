@@ -1,5 +1,5 @@
 import { projects } from "../data/projects";
-import { GitHubIcon } from "./Icons";
+import { GitHubIcon, ExternalLinkIcon } from "./Icons";
 
 export default function Projects() {
   return (
@@ -12,7 +12,7 @@ export default function Projects() {
               <h3 className="project-name">{project.name}</h3>
               <div className="project-links">
                 {project.link && (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">↗</a>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label="External link"><ExternalLinkIcon size={14} /></a>
                 )}
                 {project.github && (
                   <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
