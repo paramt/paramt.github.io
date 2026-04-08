@@ -32,6 +32,9 @@ import trinidad1 from './images/trinidad 1.jpg';
 
 import boston from './images/boston.jpg';
 
+import nyc2026a from './images/nyc 2026 1.jpg';
+import nyc2026b from './images/nyc 2026 2.jpg';
+
 import nyc2023a from './images/nyc 2023.jpg';
 import nyc2023b from './images/nyc 2023 2.jpg';
 import nyc2023c from './images/nyc 2023 3.jpg';
@@ -67,6 +70,9 @@ import thumbSeattle1 from './images/seattle.thumb.webp';
 import thumbSeattle2 from './images/seattle 2.thumb.webp';
 import thumbTrinidad1 from './images/trinidad 1.thumb.webp';
 import thumbBoston from './images/boston.thumb.webp';
+import thumbNyc2026a from './images/nyc 2026 1.thumb.webp';
+import thumbNyc2026b from './images/nyc 2026 2.thumb.webp';
+
 import thumbNyc2023a from './images/nyc 2023.thumb.webp';
 import thumbNyc2023b from './images/nyc 2023 2.thumb.webp';
 import thumbNyc2023c from './images/nyc 2023 3.thumb.webp';
@@ -82,7 +88,7 @@ export const timeline = [
   {
     year: "2026",
     events: [
-      { month: "Mar", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060 },
+      { month: "Mar", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, images: [img(nyc2026a, thumbNyc2026a), img(nyc2026b, thumbNyc2026b)] },
       { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, link: null, lat: 28.5729, lng: -80.6490, images: [img(ksc1, thumbKsc1), img(orlando, thumbOrlando)] },
       { month: "Jan", title: "Learned Piano Man on the harmonica", description: null, link: null, lat: null, lng: null },
     ],
