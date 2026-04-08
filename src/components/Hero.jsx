@@ -1,9 +1,13 @@
 import heroPolaroids from '../data/heroPolaroids';
 import Polaroid from './Polaroid';
 
-const featured = heroPolaroids[Math.floor(Math.random() * heroPolaroids.length)];
+const STORAGE_KEY = 'heroPolaroidIndex';
+const currentStep = parseInt(localStorage.getItem(STORAGE_KEY) ?? '0', 10);
+const featured = heroPolaroids[currentStep % heroPolaroids.length];
+localStorage.setItem(STORAGE_KEY, (currentStep + 1) % heroPolaroids.length);
 
 export default function Hero() {
+
   return (
     <section className="hero" id="top">
       <div className="hero-inner">
