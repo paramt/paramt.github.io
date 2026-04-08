@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { timeline } from "../data/timeline";
 import WorldMap from "./WorldMap";
 import Polaroid from "./Polaroid";
@@ -6,10 +6,36 @@ import Tack from "./Tack";
 
 export default function Timeline() {
   const [hoveredEvent, setHoveredEvent] = useState(null);
+  const sectionRef = useRef(null);
 
   const flat = timeline.flatMap((group) =>
     group.events.map((event) => ({ ...event, year: group.year }))
   );
+
+  useEffect(() => {
+    // Polaroids are hidden below 860px — skip preloading on those devices
+    if (window.innerWidth < 860) return;
+
+    const images = flat.flatMap(e => e.images ?? []);
+    if (images.length === 0) return;
+
+    let preloaded = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !preloaded) {
+          preloaded = true;
+          observer.disconnect();
+          const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 200));
+          idle(() => images.forEach(src => { new Image().src = src; }));
+        }
+      },
+      { rootMargin: '800px' }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const allCoords = flat
     .filter((e) => e.lat != null && e.lng != null)
@@ -19,7 +45,7 @@ export default function Timeline() {
   const hoveredImages = hoveredEvent?.images ?? [];
 
   return (
-    <section className="section timeline-section" id="timeline">
+    <section className="section timeline-section" id="timeline" ref={sectionRef}>
       <div className="timeline-layout">
         <div className="timeline-col">
           <h2 className="section-title">Timeline</h2>
