@@ -394,6 +394,12 @@ main {
   align-self: flex-start;
 }
 
+@media (max-width: 859px) {
+  .timeline-hover-hint {
+    display: none;
+  }
+}
+
 @media (min-width: 860px) {
   .timeline-layout {
     max-width: calc(var(--max-width) + 300px + 56px);
@@ -609,9 +615,6 @@ a.timeline-title:hover {
     display: none;
   }
 
-  .timeline-hover-hint {
-    display: none;
-  }
 
   .hero {
     padding: 48px 0 48px;
