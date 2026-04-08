@@ -349,7 +349,7 @@ main {
   width: 300px;
   flex-shrink: 0;
   position: sticky;
-  top: calc(50vh - 160px);
+  top: calc(50vh - 240px);
   align-self: flex-start;
 }
 
@@ -373,7 +373,7 @@ main {
 }
 
 .timeline-polaroids .polaroid {
-  width: 100px;
+  width: 140px;
   position: relative;
 }
 
