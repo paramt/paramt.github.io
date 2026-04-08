@@ -12,7 +12,7 @@ function fetchGeo() {
   return geoPromise;
 }
 
-// ── US state data (us-atlas, Albers USA projected) ────────────────────────────
+// ── US state data (us-atlas, geographic WGS84) ───────────────────────────────
 let statesCache = null;
 let statesPromise = null;
 function fetchStates() {
@@ -22,26 +22,6 @@ function fetchStates() {
     .then((r) => r.json())
     .then((t) => { statesCache = t; return t; });
   return statesPromise;
-}
-
-// ── Albers USA inverse projection ─────────────────────────────────────────────
-// us-atlas stores coordinates in d3's albersUsa projected space:
-//   scale=1300, translate=[487.5, 305], y-axis flipped.
-// We invert to get geographic lon/lat for our Mercator renderer.
-const _φ1 = 29.5 * Math.PI / 180, _φ2 = 45.5 * Math.PI / 180;
-const _φ0 = 38   * Math.PI / 180, _λ0 = -96 * Math.PI / 180;
-const _n  = (Math.sin(_φ1) + Math.sin(_φ2)) / 2;
-const _C  = Math.cos(_φ1) ** 2 + 2 * _n * Math.sin(_φ1);
-const _ρ0 = Math.sqrt(_C - 2 * _n * Math.sin(_φ0)) / _n;
-
-function albersInv(pixX, pixY) {
-  const x = (pixX - 487.5) / 1300;
-  const y = (305 - pixY)   / 1300;  // y is flipped in d3
-  const ρ = Math.sqrt(x * x + (_ρ0 - y) * (_ρ0 - y));
-  const θ = Math.atan2(x, _ρ0 - y);
-  const φ = Math.asin(Math.max(-1, Math.min(1, (_C - ρ * ρ * _n * _n) / (2 * _n))));
-  const λ = θ / _n + _λ0;
-  return [λ * 180 / Math.PI, φ * 180 / Math.PI]; // [lng, lat]
 }
 
 // ── Projection ────────────────────────────────────────────────────────────────
@@ -141,18 +121,12 @@ function drawCountries(ctx, topo, w, h, isDark, bounds) {
 function drawStates(ctx, topo, w, h, isDark, bounds, opacity) {
   if (opacity <= 0 || !topo) return;
 
-  // Convert Albers projected pixel → geographic → canvas pixel
-  const arcs = buildArcs(topo, (pixX, pixY) => {
-    const [lng, lat] = albersInv(pixX, pixY);
-    return [projX(lng, bounds) * w, projY(lat, bounds) * h];
-  });
+  const arcs = buildArcs(topo, (lng, lat) => [projX(lng, bounds) * w, projY(lat, bounds) * h]);
 
   ctx.strokeStyle = isDark ? `rgba(26,26,26,${opacity})` : `rgba(239,239,239,${opacity})`;
   ctx.lineWidth = 0.6;
 
   eachGeom(topo.objects.states, (geom) => {
-    // Skip Alaska (2) and Hawaii (15) — their inset coords inverse-project incorrectly
-    if (geom.id === 2 || geom.id === 15) return;
     const arcSets = geom.type === "Polygon" ? [geom.arcs] : geom.type === "MultiPolygon" ? geom.arcs : [];
     arcSets.forEach((rings) => {
       rings.forEach((ring) => {
