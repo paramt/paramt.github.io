@@ -82,6 +82,13 @@ import thumbTechcrunchDisrupt from './images/techcrunch disrupt.thumb.webp';
 import thumbBostonHackmit from './images/boston hackmit.thumb.webp';
 import thumbWaterloo from './images/waterloo.thumb.webp';
 
+import skydiving1 from './images/skydiving 1.jpg';
+import skydiving2 from './images/skydiving 2.jpg';
+import skydiving3 from './images/skydiving 3.jpg';
+import thumbSkydiving1 from './images/skydiving 1.thumb.webp';
+import thumbSkydiving2 from './images/skydiving 2.thumb.webp';
+import thumbSkydiving3 from './images/skydiving 3.thumb.webp';
+
 const img = (src, thumb) => ({ src, thumb });
 
 export const timeline = [
@@ -128,7 +135,7 @@ export const timeline = [
       { month: "Dec", title: "Visited New York", description: null, link: null, lat: 40.7128, lng: -74.0060, images: [img(nyc2023a, thumbNyc2023a), img(nyc2023b, thumbNyc2023b), img(nyc2023c, thumbNyc2023c)] },
       { month: "Dec", title: "Watched the Champions Chess Tour 2023", description: null, link: null, lat: 43.6532, lng: -79.383, images: [img(amanHambleton, thumbAmanHambleton), img(ericHansen, thumbEricHansen)] },
       { month: "Sep", title: "Attended TechCrunch Disrupt in SF", description: null, link: null, lat: 37.7749, lng: -122.4194, images: [img(techcrunchDisrupt, thumbTechcrunchDisrupt)] },
-      { month: "Sep", title: "HackMIT", description: null, link: null, lat: 42.3601, lng: -71.0942, images: [img(bostonHackmit, thumbBostonHackmit)] },
+      { month: "Sep", title: "Attended HackMIT", description: null, link: null, lat: 42.3601, lng: -71.0942, images: [img(bostonHackmit, thumbBostonHackmit)] },
       // { month: "Jul", title: "Visited Grand Bend", description: null, link: null },
       { month: "Jun", title: "Judged JAMHacks 7", description: null, link: null, lat: 43.4723, lng: -80.5449 },
       // { month: "May", title: "Attended protest", description: null, link: null, lat: null, lng: null },
@@ -148,7 +155,7 @@ export const timeline = [
   {
     year: "2021",
     events: [
-      { month: "Aug", title: "Went skydiving", description: null, link: null, lat: 44.3002, lng: -79.5431 },
+      { month: "Aug", title: "Went skydiving", description: null, link: null, lat: 44.3002, lng: -79.5431, images: [img(skydiving1, thumbSkydiving1), img(skydiving2, thumbSkydiving2), img(skydiving3, thumbSkydiving3)] },
       { month: "Jul", title: "Shad", description: null, link: null, lat: 43.7735, lng: -79.5019 },
       { month: "Apr", title: "Organized Lighthouse Hacks", description: null, link: null, lat: null, lng: null },
     ],
