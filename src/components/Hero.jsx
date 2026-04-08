@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import heroPolaroids from '../data/heroPolaroids';
 import Polaroid from './Polaroid';
 
@@ -7,7 +7,7 @@ const STORAGE_KEY = 'heroPolaroidIndex';
 export default function Hero() {
   const [featured, setFeatured] = useState(heroPolaroids[0]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const step = parseInt(localStorage.getItem(STORAGE_KEY) ?? '0', 10);
     localStorage.setItem(STORAGE_KEY, (step + 1) % heroPolaroids.length);
     setFeatured(heroPolaroids[step % heroPolaroids.length]);
