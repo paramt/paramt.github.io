@@ -608,6 +608,12 @@ a.timeline-title:hover {
   align-items: center;
 }
 
+@media (min-width: 860px) {
+  .footer {
+    max-width: calc(var(--max-width) + 380px + 56px);
+  }
+}
+
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .nav-links a:not(:last-child) {

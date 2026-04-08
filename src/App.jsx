@@ -9,7 +9,7 @@ export default function App() {
   const [lastUpdated, setLastUpdated] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.github.com/repos/paramt/paramt.github.io/commits?per_page=1")
+    fetch("https://api.github.com/repos/paramt/paramt.github.io/commits?per_page=1&sha=2026")
       .then((r) => r.json())
       .then((data) => {
         const date = new Date(data[0].commit.committer.date);
