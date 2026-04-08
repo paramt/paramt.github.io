@@ -265,6 +265,93 @@ main {
   line-height: 1.5;
 }
 
+/* ── Timeline Layout ── */
+.timeline-section {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.timeline-layout {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  gap: 56px;
+  align-items: flex-start;
+}
+
+.timeline-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.timeline-map-col {
+  display: none;
+  width: 300px;
+  flex-shrink: 0;
+  position: sticky;
+  top: calc(50vh - 100px);
+  align-self: flex-start;
+}
+
+@media (min-width: 860px) {
+  .timeline-layout {
+    max-width: calc(var(--max-width) + 300px + 56px);
+  }
+
+  .timeline-map-col {
+    display: block;
+  }
+}
+
+/* ── World Map ── */
+.world-map {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  aspect-ratio: 400 / 260;
+}
+
+.world-map-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.map-marker-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #eb4034;
+}
+
+.map-marker-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #eb4034;
+  opacity: 0.5;
+  animation: map-pulse 1.6s ease-out infinite;
+}
+
+@keyframes map-pulse {
+  0%   { width: 10px; height: 10px; opacity: 0; }
+  15%  { opacity: 0.5; }
+  100% { width: 28px; height: 28px; opacity: 0; }
+}
+
 /* ── Timeline ── */
 .timeline {
   display: flex;
@@ -319,6 +406,12 @@ main {
   background: var(--border);
   border: 1.5px solid var(--bg);
   outline: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.timeline-event:has(.timeline-dot-locatable):hover .timeline-dot-locatable {
+  background: #eb4034;
+  outline-color: #eb4034;
 }
 
 .timeline-body {

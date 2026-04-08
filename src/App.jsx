@@ -11,8 +11,8 @@ export default function App() {
       <main>
         <Hero />
         <Projects />
-        <Timeline />
       </main>
+      <Timeline />
       <footer className="footer">
         <span>param thakkar · {new Date().getFullYear()}</span>
       </footer>

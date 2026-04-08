@@ -4,12 +4,12 @@ export default function Hero() {
       <div className="hero-content">
         <h1>Param Thakkar</h1>
         <p className="hero-sub">
-          I study CS @ Waterloo, interning at Databricks. In the past, I've worked on:
+          I study CS @ Waterloo, and in the summer I'll be interning at Databricks. In the past, I've worked on:
         </p>
         <ul className="hero-experience">
           <li>ML-driven ads targeting @ Quora</li>
           <li>
-            <a href="https://www.glean.com/blog/intern-life-at-glean" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.glean.com/blog/intern-life-at-glean#deep-research" target="_blank" rel="noopener noreferrer">
               Deep research evals
             </a>
             {" "}@ Glean

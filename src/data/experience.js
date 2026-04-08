@@ -21,7 +21,7 @@ export const experience = [
     period: "May 2025 – Aug 2025",
     location: "Palo Alto, CA",
     description: ["Worked on ", "deep research evals", "."],
-    descriptionLink: "https://www.glean.com/blog/intern-life-at-glean",
+    descriptionLink: "https://www.glean.com/blog/intern-life-at-glean#deep-research",
     link: null,
   },
 ];
