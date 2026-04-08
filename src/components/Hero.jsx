@@ -2,9 +2,15 @@ import heroPolaroids from '../data/heroPolaroids';
 import Polaroid from './Polaroid';
 
 const STORAGE_KEY = 'heroPolaroidIndex';
-const currentStep = parseInt(localStorage.getItem(STORAGE_KEY) ?? '0', 10);
-const featured = heroPolaroids[currentStep % heroPolaroids.length];
-localStorage.setItem(STORAGE_KEY, (currentStep + 1) % heroPolaroids.length);
+
+function getFeatured() {
+  if (typeof window === 'undefined') return heroPolaroids[0];
+  const step = parseInt(localStorage.getItem(STORAGE_KEY) ?? '0', 10);
+  localStorage.setItem(STORAGE_KEY, (step + 1) % heroPolaroids.length);
+  return heroPolaroids[step % heroPolaroids.length];
+}
+
+const featured = getFeatured();
 
 export default function Hero() {
 
@@ -31,7 +37,7 @@ export default function Hero() {
           <a href="mailto:p28thakk@uwaterloo.ca">Email</a>
         </div>
       </div>
-      <Polaroid src={featured.image} alt="Param Thakkar" video={featured.video} rotate={2} location={featured.location} date={featured.date} />
+      <Polaroid src={featured.image} alt="Param Thakkar" video={featured.video} rotate={2} location={featured.location} date={featured.date} priority />
       </div>
       <a href="#projects" className="hero-scroll" aria-label="Scroll down">↓</a>
     </section>
