@@ -5,7 +5,7 @@ import Polaroid from './Polaroid';
 const STORAGE_KEY = 'heroPolaroidIndex';
 
 export default function Hero() {
-  const [featured, setFeatured] = useState(heroPolaroids[0]);
+  const [featured, setFeatured] = useState(null);
 
   useLayoutEffect(() => {
     const step = parseInt(localStorage.getItem(STORAGE_KEY) ?? '0', 10);
@@ -36,7 +36,7 @@ export default function Hero() {
           <a href="mailto:p28thakk@uwaterloo.ca">Email</a>
         </div>
       </div>
-      <Polaroid src={featured.image} thumb={featured.thumb} alt="Param Thakkar" video={featured.video} rotate={2} location={featured.location} date={featured.date} priority />
+      {featured && <Polaroid src={featured.image} thumb={featured.thumb} alt="Param Thakkar" video={featured.video} rotate={2} location={featured.location} date={featured.date} priority />}
       </div>
       <a href="#projects" className="hero-scroll" aria-label="Scroll down">↓</a>
     </section>
