@@ -1,6 +1,7 @@
-import heroPhoto from '../data/images/hero/3/3.webp';
-import heroVideo from '../data/images/hero/3/3.mp4';
+import heroPolaroids from '../data/heroPolaroids';
 import Polaroid from './Polaroid';
+
+const featured = heroPolaroids[Math.floor(Math.random() * heroPolaroids.length)];
 
 export default function Hero() {
   return (
@@ -26,7 +27,7 @@ export default function Hero() {
           <a href="mailto:p28thakk@uwaterloo.ca">Email</a>
         </div>
       </div>
-      <Polaroid src={heroPhoto} alt="Param Thakkar" video={heroVideo} rotate={2} />
+      <Polaroid src={featured.image} alt="Param Thakkar" video={featured.video} rotate={2} location={featured.location} date={featured.date} />
       </div>
       <a href="#projects" className="hero-scroll" aria-label="Scroll down">↓</a>
     </section>

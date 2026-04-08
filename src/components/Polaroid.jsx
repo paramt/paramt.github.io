@@ -1,7 +1,7 @@
 import { useRef, useMemo } from 'react';
 import Tack from './Tack';
 
-export default function Polaroid({ src, alt = "", video, rotate, color = false }) {
+export default function Polaroid({ src, alt = "", video, rotate, color = false, location, date }) {
   const videoRef = useRef(null);
 
   const deg = useMemo(() => {
@@ -23,7 +23,8 @@ export default function Polaroid({ src, alt = "", video, rotate, color = false }
     }
   }
 
-  const classes = ['polaroid', video && 'polaroid-live', color && 'polaroid-color']
+  const hasMeta = !!(location || date);
+  const classes = ['polaroid', video && 'polaroid-live', color && 'polaroid-color', hasMeta && 'polaroid-has-meta']
     .filter(Boolean).join(' ');
 
   return (
@@ -47,6 +48,12 @@ export default function Polaroid({ src, alt = "", video, rotate, color = false }
           />
         )}
       </div>
+      {(location || date) && (
+        <div className="polaroid-meta">
+          {location && <span className="polaroid-location">{location}</span>}
+          {date && <span className="polaroid-date">{date}</span>}
+        </div>
+      )}
     </div>
   );
 }

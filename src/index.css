@@ -173,6 +173,31 @@ main {
   opacity: 1;
 }
 
+.polaroid-has-meta {
+  padding-bottom: 10px;
+}
+
+.polaroid-meta {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: 6px;
+  font-family: 'Caveat', cursive;
+  line-height: 1.2;
+}
+
+.polaroid-location {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #888;
+}
+
+.polaroid-date {
+  font-size: 0.85rem;
+  color: #888;
+}
+
 .polaroid-live:hover img {
   filter: grayscale(0%);
 }
