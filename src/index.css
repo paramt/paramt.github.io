@@ -387,10 +387,10 @@ main {
 
 .timeline-map-col {
   display: none;
-  width: 300px;
+  width: 380px;
   flex-shrink: 0;
   position: sticky;
-  top: calc(50vh - 240px);
+  top: calc(var(--nav-height) + 24px);
   align-self: flex-start;
 }
 
@@ -402,7 +402,7 @@ main {
 
 @media (min-width: 860px) {
   .timeline-layout {
-    max-width: calc(var(--max-width) + 300px + 56px);
+    max-width: calc(var(--max-width) + 380px + 56px);
   }
 
   .timeline-map-col {
@@ -420,7 +420,6 @@ main {
 }
 
 .timeline-polaroids .polaroid {
-  width: 140px;
   position: relative;
 }
 
