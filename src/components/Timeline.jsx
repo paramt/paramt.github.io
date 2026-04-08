@@ -2,6 +2,7 @@ import { useState } from "react";
 import { timeline } from "../data/timeline";
 import WorldMap from "./WorldMap";
 import Polaroid from "./Polaroid";
+import Tack from "./Tack";
 
 export default function Timeline() {
   const [hoveredEvent, setHoveredEvent] = useState(null);
@@ -66,7 +67,14 @@ export default function Timeline() {
         </div>
 
         <div className="timeline-map-col" aria-hidden="true">
-          <WorldMap coords={hoveredCoords} allCoords={allCoords} />
+          <div className="map-frame">
+            <svg className="map-string" aria-hidden="true">
+              <line x1="50%" y1="9" x2="28%" y2="38" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round"/>
+              <line x1="50%" y1="9" x2="72%" y2="38" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+            <Tack size={8} style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)' }} />
+            <WorldMap coords={hoveredCoords} allCoords={allCoords} />
+          </div>
           {hoveredImages.length > 0 && (
             <div className="timeline-polaroids">
               {hoveredImages.map((src, i) => (

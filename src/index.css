@@ -18,7 +18,7 @@
   --nav-height: 56px;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) and (max-width: 0px) /* disabled */ {
   :root {
     --bg: #0e0e0e;
     --fg: #f0f0f0;
@@ -367,6 +367,7 @@ main {
 .timeline-polaroids {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 16px;
   margin-top: 20px;
 }
@@ -376,18 +377,24 @@ main {
   position: relative;
 }
 
-.timeline-polaroids .polaroid::before {
-  content: '';
+
+/* ── Map Frame (tack + string + tilt) ── */
+.map-frame {
+  position: relative;
+  padding-top: 34px;
+  transform: rotate(2.5deg);
+  transform-origin: top center;
+}
+
+.map-string {
   position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 10px;
-  background: #cc2200;
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.35);
-  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  display: block;
+  pointer-events: none;
+  overflow: visible;
 }
 
 /* ── World Map ── */
@@ -550,6 +557,9 @@ a.timeline-title:hover {
   padding: 32px 24px;
   font-size: 13px;
   color: var(--fg-faint);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* ── Responsive ── */

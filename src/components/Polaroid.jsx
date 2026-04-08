@@ -1,4 +1,5 @@
 import { useRef, useMemo } from 'react';
+import Tack from './Tack';
 
 export default function Polaroid({ src, alt = "", video, rotate, color = false }) {
   const videoRef = useRef(null);
@@ -32,6 +33,7 @@ export default function Polaroid({ src, alt = "", video, rotate, color = false }
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      <Tack size={5} style={{ position: 'absolute', top: -5, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }} />
       <div className="polaroid-media">
         <img src={src} alt={alt} />
         {video && (

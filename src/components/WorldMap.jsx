@@ -208,8 +208,8 @@ export default function WorldMap({ coords, allCoords = [] }) {
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-color-scheme: dark)");
-    isDarkRef.current = mq.matches;
-    const onChange = (e) => { isDarkRef.current = e.matches; renderFrame(curBounds.current); };
+    isDarkRef.current = false; // dark mode disabled
+    const onChange = (e) => { isDarkRef.current = false; renderFrame(curBounds.current); };
     mq.addEventListener("change", onChange);
 
     fetchGeo().then((topo) => { topoRef.current = topo; renderFrame(curBounds.current); });
