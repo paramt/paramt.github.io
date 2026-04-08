@@ -3,7 +3,7 @@ import Tack from './Tack';
 
 const FILTER_DURATION = 400; // ms — must match transition in CSS
 
-export default function Polaroid({ src, thumb, alt = "", video, rotate, color = false, location, date, priority = false, tack = true }) {
+export default function Polaroid({ src, thumb, alt = "", video, rotate, color = false, static: isStatic = false, location, date, priority = false, tack = true }) {
   const videoRef = useRef(null);
   const imgRef = useRef(null);
   const playTimerRef = useRef(null);
@@ -47,7 +47,7 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
   }
 
   const hasMeta = !!(location || date);
-  const classes = ['polaroid', video && 'polaroid-live', color && 'polaroid-color', hasMeta && 'polaroid-has-meta']
+  const classes = ['polaroid', video && 'polaroid-live', color && 'polaroid-color', isStatic && 'polaroid-static', hasMeta && 'polaroid-has-meta']
     .filter(Boolean).join(' ');
 
   return (

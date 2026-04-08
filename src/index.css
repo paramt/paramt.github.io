@@ -170,6 +170,10 @@ main {
   filter: grayscale(0%) sepia(0%);
 }
 
+.polaroid-static:hover {
+  transform: rotate(var(--polaroid-rotate, 2deg));
+}
+
 .polaroid-color img,
 .polaroid-color .polaroid-thumb {
   filter: grayscale(0%);
@@ -424,6 +428,42 @@ main {
   flex-grow: 1;
 }
 
+
+/* ── Sticky Note ── */
+.sticky-note {
+  position: relative;
+  flex-grow: 1;
+  background: var(--note-bg, #fef08a);
+  padding: 22px 14px 14px;
+  box-shadow: 2px 4px 12px var(--note-shadow, rgba(202, 178, 36, 0.25));
+  transform: rotate(var(--note-rotate, -2deg));
+  transition: transform 0.25s ease;
+}
+
+.sticky-note-pin {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+}
+
+.sticky-note-text {
+  font-family: 'Caveat Variable', 'Caveat', cursive;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: #2a2a2a;
+}
+
+.sticky-note-link {
+  color: #1a5fa8;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sticky-note-link:hover {
+  color: #0d3d6e;
+}
 
 /* ── Map Frame (tack + string + tilt) ── */
 .map-frame {

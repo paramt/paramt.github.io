@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { timeline } from "../data/timeline";
 import WorldMap from "./WorldMap";
 import Polaroid from "./Polaroid";
+import StickyNote from "./StickyNote";
 import Tack from "./Tack";
 
 export default function Timeline() {
@@ -20,7 +21,7 @@ export default function Timeline() {
     // Polaroids are hidden below 860px — skip preloading on those devices
     if (window.innerWidth < 860) return;
 
-    const images = flat.flatMap(e => (e.images ?? []).map(img => img.src ?? img));
+    const images = flat.flatMap(e => (e.attachments ?? []).filter(a => a.type === 'image').map(a => a.src));
     if (images.length === 0) return;
 
     let preloaded = false;
@@ -53,7 +54,7 @@ export default function Timeline() {
 
   const activeEvent = hoveredEvent ?? selectedEvent;
   const activeCoords = activeEvent?.lat != null ? { lat: activeEvent.lat, lng: activeEvent.lng } : null;
-  const activeImages = activeEvent?.images ?? [];
+  const activeAttachments = activeEvent?.attachments ?? [];
   const noZoom = hoveredEvent
     ? hoverSourceRef.current === 'map'
     : selectedEvent
@@ -126,11 +127,15 @@ export default function Timeline() {
               onMarkerClick={(event) => { selectedSourceRef.current = 'map'; setSelectedEvent(prev => prev === event ? null : event); }}
             />
           </div>
-          {activeImages.length > 0 && (
+          {activeAttachments.length > 0 && (
             <div className="timeline-polaroids">
-              {activeImages.map((img, i) => (
-                <Polaroid key={i} src={img.src ?? img} thumb={img.thumb} color />
-              ))}
+              {activeAttachments.map((attachment, i) =>
+                attachment.type === 'note' ? (
+                  <StickyNote key={i} text={attachment.text} color={attachment.color} />
+                ) : (
+                  <Polaroid key={i} src={attachment.src} thumb={attachment.thumb} color static />
+                )
+              )}
             </div>
           )}
         </div>
