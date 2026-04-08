@@ -105,7 +105,6 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-bottom: 1px solid var(--border);
   position: relative;
   padding: 64px 0;
 }
@@ -219,7 +218,7 @@ main {
 .hero-scroll {
   position: absolute;
   bottom: 28px;
-  left: 0;
+  left: 50%;
   font-size: 18px;
   color: var(--fg-faint);
   text-decoration: none;
@@ -231,8 +230,8 @@ main {
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(5px); }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(5px); }
 }
 
 .hero h1 {
@@ -609,6 +608,10 @@ a.timeline-title:hover {
 /* ── Responsive ── */
 @media (max-width: 600px) {
   .nav-links a:not(:last-child) {
+    display: none;
+  }
+
+  .timeline-hover-hint {
     display: none;
   }
 
