@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { timeline } from "../data/timeline";
 import WorldMap from "./WorldMap";
 import Polaroid from "./Polaroid";
@@ -6,11 +6,15 @@ import Tack from "./Tack";
 
 export default function Timeline() {
   const [hoveredEvent, setHoveredEvent] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   const sectionRef = useRef(null);
+  const entryRefs = useRef(new Map());
+  const hoverSourceRef = useRef(null);    // 'timeline' | 'map' | null
+  const selectedSourceRef = useRef(null); // 'timeline' | 'map' | null
 
-  const flat = timeline.flatMap((group) =>
+  const flat = useMemo(() => timeline.flatMap((group) =>
     group.events.map((event) => ({ ...event, year: group.year }))
-  );
+  ), []);
 
   useEffect(() => {
     // Polaroids are hidden below 860px — skip preloading on those devices
@@ -37,12 +41,24 @@ export default function Timeline() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (selectedEvent && selectedSourceRef.current === 'map') {
+      entryRefs.current.get(selectedEvent)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [selectedEvent]);
+
   const allCoords = flat
     .filter((e) => e.lat != null && e.lng != null)
-    .map((e) => ({ lat: e.lat, lng: e.lng }));
+    .map((e) => ({ lat: e.lat, lng: e.lng, event: e }));
 
-  const hoveredCoords = hoveredEvent?.lat != null ? { lat: hoveredEvent.lat, lng: hoveredEvent.lng } : null;
-  const hoveredImages = hoveredEvent?.images ?? [];
+  const activeEvent = hoveredEvent ?? selectedEvent;
+  const activeCoords = activeEvent?.lat != null ? { lat: activeEvent.lat, lng: activeEvent.lng } : null;
+  const activeImages = activeEvent?.images ?? [];
+  const noZoom = hoveredEvent
+    ? hoverSourceRef.current === 'map'
+    : selectedEvent
+      ? selectedSourceRef.current === 'map'
+      : false;
 
   return (
     <section className="section timeline-section" id="timeline" ref={sectionRef}>
@@ -58,9 +74,11 @@ export default function Timeline() {
               return (
                 <div key={i}>
                   <div
-                    className="timeline-event"
-                    onMouseEnter={() => setHoveredEvent(event)}
-                    onMouseLeave={() => setHoveredEvent(null)}
+                    ref={(el) => { el ? entryRefs.current.set(event, el) : entryRefs.current.delete(event); }}
+                    className={`timeline-event${activeEvent === event ? " timeline-event--active" : ""}${selectedEvent === event ? " timeline-event--selected" : ""}`}
+                    onMouseEnter={() => { hoverSourceRef.current = 'timeline'; setHoveredEvent(event); }}
+                    onMouseLeave={() => { hoverSourceRef.current = null; setHoveredEvent(null); }}
+                    onClick={() => { selectedSourceRef.current = 'timeline'; setSelectedEvent(prev => prev === event ? null : event); }}
                   >
                     <span className="timeline-month">{event.month}</span>
                     <div className="timeline-line-content">
@@ -92,18 +110,25 @@ export default function Timeline() {
           </div>
         </div>
 
-        <div className="timeline-map-col" aria-hidden="true">
+        <div className="timeline-map-col" aria-hidden="true" onMouseLeave={() => { hoverSourceRef.current = null; setHoveredEvent(null); }}>
           <div className="map-frame">
             <svg className="map-string" aria-hidden="true">
               <line x1="50%" y1="9" x2="28%" y2="38" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round"/>
               <line x1="50%" y1="9" x2="72%" y2="38" stroke="#1a1a1a" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
             <Tack size={8} style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)' }} />
-            <WorldMap coords={hoveredCoords} allCoords={allCoords} />
+            <WorldMap
+              coords={activeCoords}
+              allCoords={allCoords}
+              noZoom={noZoom}
+              onMarkerHover={(event) => { hoverSourceRef.current = 'map'; setHoveredEvent(event); }}
+              onMarkerLeave={() => { hoverSourceRef.current = null; setHoveredEvent(null); }}
+              onMarkerClick={(event) => { selectedSourceRef.current = 'map'; setSelectedEvent(prev => prev === event ? null : event); }}
+            />
           </div>
-          {hoveredImages.length > 0 && (
+          {activeImages.length > 0 && (
             <div className="timeline-polaroids">
-              {hoveredImages.map((img, i) => (
+              {activeImages.map((img, i) => (
                 <Polaroid key={i} src={img.src ?? img} thumb={img.thumb} color />
               ))}
             </div>

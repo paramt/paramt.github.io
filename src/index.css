@@ -474,11 +474,23 @@ main {
   background: #eb4034;
 }
 
+.map-marker-static {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 .map-marker-static .map-marker-dot {
   width: 5px;
   height: 5px;
   background: #eb4034;
   opacity: 0.8;
+  transition: width 0.15s, height 0.15s, opacity 0.15s;
+}
+
+.map-marker-static:hover .map-marker-dot {
+  width: 8px;
+  height: 8px;
+  opacity: 1;
 }
 
 .map-marker-pulse {
@@ -527,6 +539,9 @@ main {
   grid-template-columns: 32px 1fr;
   gap: 0 12px;
   align-items: stretch;
+  width: fit-content;
+  scroll-margin-top: calc(var(--nav-height) + 16px);
+  scroll-margin-bottom: 16px;
 }
 
 .timeline-month {
@@ -536,6 +551,23 @@ main {
   text-align: right;
   padding-top: 12px;
   flex-shrink: 0;
+  position: relative;
+  isolation: isolate;
+}
+
+.timeline-month::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: -8px;
+  right: -12px;
+  background: #eb4034;
+  clip-path: polygon(8px 0%, 100% 0%, 100% 100%, 8px 100%, 0% 50%);
+  z-index: -1;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.2s ease;
 }
 
 .timeline-line-content {
@@ -554,12 +586,26 @@ main {
   background: var(--border);
   border: 1.5px solid var(--bg);
   outline: 1px solid var(--border);
-  transition: background 0.15s;
+  transition: background 0.15s, outline-color 0.15s;
 }
 
-.timeline-event:has(.timeline-dot-locatable):hover .timeline-dot-locatable {
+.timeline-event--active .timeline-dot,
+.timeline-event--selected .timeline-dot {
   background: #eb4034;
   outline-color: #eb4034;
+}
+
+.timeline-event {
+  cursor: pointer;
+}
+
+.timeline-event--selected .timeline-month {
+  color: #fff;
+  padding-right: 4px;
+}
+
+.timeline-event--selected .timeline-month::before {
+  transform: scaleX(1);
 }
 
 .timeline-body {

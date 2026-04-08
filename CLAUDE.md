@@ -1,3 +1,46 @@
+# Timeline Interaction Model
+
+The timeline has two parallel interaction sources — the entry list on the left and the world map on the right — and two interaction levels: hover (transient) and select (persistent). These combine into five states:
+
+| State | Trigger | Map zoom | Polaroids | Dot | Month ribbon |
+|---|---|---|---|---|---|
+| Default | — | World | hidden | grey | hidden |
+| Hover entry | mouse over entry text | zooms to location | shown | red | hidden |
+| Hover map point | mouse over marker | stays at World | shown | red | hidden |
+| Select entry | click entry | zooms to location | shown | red | slides in |
+| Select map point | click marker | stays at World | shown | red | slides in |
+
+**Key rules:**
+- Hover always overrides select for display (preview other entries while one is selected).
+- Clicking the active selection again deselects it; clicking a different entry/point switches selection.
+- Selecting a map point scrolls its timeline entry into view (only if out of view, with navbar + breathing-room offset via `scroll-margin`).
+- Entries without coordinates still have full hover/select states; polaroids show if images exist, map stays at World.
+
+**State management (`Timeline.jsx`):**
+- `hoveredEvent` / `selectedEvent` — React state, set by mouse/click handlers.
+- `hoverSourceRef` / `selectedSourceRef` — refs tracking whether the active event came from `'timeline'` or `'map'`; determines `noZoom`.
+- `activeEvent = hoveredEvent ?? selectedEvent` — drives map coords, polaroids, and dot/ribbon highlight.
+- `noZoom` — true when the active source is `'map'`; WorldMap animates to `WORLD` instead of zooming to the location.
+- `flat` is `useMemo`-ized so event object references are stable for `===` identity checks.
+- `entryRefs` — a `Map<event, DOMElement>` used to scroll selected entries into view.
+
+**Hover hitbox:**
+- `onMouseEnter`/`onMouseLeave` are on `.timeline-event`, which has `width: fit-content` so the hitbox only covers the text, not the full column width.
+- The dot highlight uses `.timeline-event--active` and `.timeline-event--selected` CSS classes (not `:hover`) so it's driven purely by JS state.
+
+**Selected style (month ribbon):**
+- `.timeline-month::before` — always present but `scaleX(0)` by default; transitions to `scaleX(1)` when `.timeline-event--selected` is applied.
+- Shape: `clip-path` polygon (pointed left tip, flat right edge at the vertical timeline line), positioned from `left: -8px` to `right: -12px` relative to the month cell.
+- `transform-origin: right center` so it slides in/out from the timeline line.
+
+**WorldMap (`WorldMap.jsx`):**
+- Static markers (`allCoords`) carry the full event object (`{ lat, lng, event }`) so callbacks can pass it back.
+- `noZoom` prop: when true, `animateTo(WORLD)`; when false, `animateTo(targetBoundsFor(coords))`.
+- Static markers stay visible during map-source interactions (`!coords || noZoom`); hidden during timeline-source interactions.
+- Markers have `pointer-events: auto` (overrides the parent `pointer-events: none`) with `onMouseEnter`, `onMouseLeave`, and `onClick` callbacks.
+
+---
+
 # Thumbnail Compression
 
 When adding a new image to the site (hero or timeline), generate a compressed WebP thumbnail alongside it. Run from `src/data/images/`:

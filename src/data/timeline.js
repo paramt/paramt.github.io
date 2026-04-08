@@ -89,6 +89,11 @@ import thumbSkydiving1 from './images/skydiving 1.thumb.webp';
 import thumbSkydiving2 from './images/skydiving 2.thumb.webp';
 import thumbSkydiving3 from './images/skydiving 3.thumb.webp';
 
+import india1 from './images/india 1.jpg';
+import india2 from './images/india 2.jpg';
+import thumbIndia1 from './images/india 1.thumb.webp';
+import thumbIndia2 from './images/india 2.thumb.webp';
+
 const img = (src, thumb) => ({ src, thumb });
 
 export const timeline = [
@@ -107,7 +112,7 @@ export const timeline = [
       { month: "Sep", title: "Joined Quora as a MLE intern", description: null, link: null, lat: null, lng: null },
       { month: "Sep", title: "Cottage trip in Quebec", description: null, link: null, lat: 46.4171, lng: -75.4782, images: [img(quebecCottage, thumbQuebecCottage)] },
       { month: "Aug", title: "Visited Singapore", description: null, link: null, lat: 1.3521, lng: 103.8198, images: [img(singapore1, thumbSingapore1), img(singapore2, thumbSingapore2)] },
-      { month: "Aug", title: "Visited India", description: null, link: null, lat: 22.2587, lng: 71.1924 },
+      { month: "Aug", title: "Visited India", description: null, link: null, lat: 22.2587, lng: 71.1924, images: [img(india1, thumbIndia1), img(india2, thumbIndia2)] },
       { month: "Jul", title: "Ran the SF 10k", description: null, link: null, lat: 37.7749, lng: -122.4194, images: [img(sfRace, thumbSfRace), img(sfRace2, thumbSfRace2)] },
       { month: "Jun", title: "Went camping in Yosemite", description: null, link: null, lat: 37.8651, lng: -119.5383, images: [img(yosemite1, thumbYosemite1), img(yosemite3, thumbYosemite3), img(yosemite4, thumbYosemite4), img(yosemite5, thumbYosemite5)] },
       { month: "Jun", title: "Went surfing for the first time", description: null, link: null, lat: 36.9741, lng: -122.0308, images: [img(surfing, thumbSurfing)] },

@@ -138,7 +138,7 @@ function drawStates(ctx, topo, w, h, isDark, bounds, opacity) {
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
-export default function WorldMap({ coords, allCoords = [] }) {
+export default function WorldMap({ coords, allCoords = [], noZoom = false, onMarkerHover, onMarkerLeave, onMarkerClick }) {
   const canvasRef        = useRef(null);
   const markerRef        = useRef(null);
   const staticMarkersRef = useRef(null);
@@ -151,8 +151,10 @@ export default function WorldMap({ coords, allCoords = [] }) {
   const rafRef           = useRef(null);
   const coordsRef        = useRef(coords);
   const allCoordsRef     = useRef(allCoords);
+  const noZoomRef        = useRef(noZoom);
   coordsRef.current    = coords;
   allCoordsRef.current = allCoords;
+  noZoomRef.current    = noZoom;
 
   function renderFrame(b) {
     const canvas = canvasRef.current;
@@ -181,7 +183,7 @@ export default function WorldMap({ coords, allCoords = [] }) {
     }
 
     const staticContainer = staticMarkersRef.current;
-    if (staticContainer && !coordsRef.current) {
+    if (staticContainer && (!coordsRef.current || noZoomRef.current)) {
       const children = staticContainer.children;
       const pts = allCoordsRef.current;
       for (let i = 0; i < children.length && i < pts.length; i++) {
@@ -226,8 +228,8 @@ export default function WorldMap({ coords, allCoords = [] }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    animateTo(targetBoundsFor(coords));
-  }, [coords]); // eslint-disable-line react-hooks/exhaustive-deps
+    animateTo(noZoom ? WORLD : targetBoundsFor(coords));
+  }, [coords, noZoom]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const initMx = coords ? `${projX(coords.lng, curBounds.current) * 100}%` : null;
   const initMy = coords ? `${projY(coords.lat, curBounds.current) * 100}%` : null;
@@ -235,12 +237,13 @@ export default function WorldMap({ coords, allCoords = [] }) {
   return (
     <div className="world-map">
       <canvas ref={canvasRef} className="world-map-canvas" />
-      {coords ? (
+      {coords && (
         <div ref={markerRef} className="map-marker" style={{ left: initMx, top: initMy }} aria-hidden="true">
           <div className="map-marker-pulse" />
           <div className="map-marker-dot" />
         </div>
-      ) : (
+      )}
+      {(!coords || noZoom) && (
         <div ref={staticMarkersRef} aria-hidden="true">
           {allCoords.map((c, i) => (
             <div
@@ -250,6 +253,9 @@ export default function WorldMap({ coords, allCoords = [] }) {
                 left: `${projX(c.lng, curBounds.current) * 100}%`,
                 top:  `${projY(c.lat, curBounds.current) * 100}%`,
               }}
+              onMouseEnter={() => onMarkerHover?.(c.event)}
+              onMouseLeave={() => onMarkerLeave?.()}
+              onClick={() => onMarkerClick?.(c.event)}
             >
               <div className="map-marker-dot" />
             </div>
