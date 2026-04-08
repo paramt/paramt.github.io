@@ -16,7 +16,7 @@ export default function Timeline() {
     // Polaroids are hidden below 860px — skip preloading on those devices
     if (window.innerWidth < 860) return;
 
-    const images = flat.flatMap(e => e.images ?? []);
+    const images = flat.flatMap(e => (e.images ?? []).map(img => img.src ?? img));
     if (images.length === 0) return;
 
     let preloaded = false;
@@ -103,8 +103,8 @@ export default function Timeline() {
           </div>
           {hoveredImages.length > 0 && (
             <div className="timeline-polaroids">
-              {hoveredImages.map((src, i) => (
-                <Polaroid key={i} src={src} color />
+              {hoveredImages.map((img, i) => (
+                <Polaroid key={i} src={img.src ?? img} thumb={img.thumb} color />
               ))}
             </div>
           )}

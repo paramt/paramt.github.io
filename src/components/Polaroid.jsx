@@ -1,13 +1,21 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import Tack from './Tack';
 
-export default function Polaroid({ src, alt = "", video, rotate, color = false, location, date, priority = false }) {
+export default function Polaroid({ src, thumb, alt = "", video, rotate, color = false, location, date, priority = false }) {
   const videoRef = useRef(null);
+  const imgRef = useRef(null);
+  const [loaded, setLoaded] = useState(!thumb);
 
   const deg = useMemo(() => {
     if (rotate !== undefined) return rotate;
     return (Math.random() - 0.5) * 10;
   }, [rotate]);
+
+  useEffect(() => {
+    if (thumb && imgRef.current?.complete) {
+      setLoaded(true);
+    }
+  }, [thumb]);
 
   function handleMouseEnter() {
     if (videoRef.current) {
@@ -36,7 +44,17 @@ export default function Polaroid({ src, alt = "", video, rotate, color = false, 
     >
       <Tack size={5} style={{ position: 'absolute', top: -5, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }} />
       <div className="polaroid-media">
-        <img src={src} alt={alt} fetchPriority={priority ? "high" : "auto"} />
+        {thumb && !loaded && (
+          <img src={thumb} aria-hidden="true" className="polaroid-thumb" />
+        )}
+        <img
+          ref={imgRef}
+          src={src}
+          alt={alt}
+          fetchPriority={priority ? "high" : "auto"}
+          className={thumb && !loaded ? 'polaroid-img-loading' : undefined}
+          onLoad={() => setLoaded(true)}
+        />
         {video && (
           <video
             ref={videoRef}
