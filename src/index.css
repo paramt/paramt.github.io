@@ -110,11 +110,71 @@ main {
   padding: 64px 0;
 }
 
+.hero-inner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
 .hero-content {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.polaroid {
+  flex-shrink: 0;
+  width: 180px;
+  background: #f0ede8;
+  padding: 10px 10px 32px;
+  box-shadow: 2px 4px 16px rgba(0,0,0,0.12);
+  transform: rotate(var(--polaroid-rotate, 2deg));
+  transition: transform 0.25s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(calc(var(--polaroid-rotate, 2deg) * 0.5)) scale(1.08);
+}
+
+.polaroid-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.polaroid img,
+.polaroid-video {
+  width: 100%;
+  display: block;
+}
+
+.polaroid img {
+  filter: grayscale(100%);
+  transition: filter 0.4s ease;
+}
+
+.polaroid:hover img,
+.polaroid-color img {
+  filter: grayscale(0%);
+}
+
+.polaroid-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.polaroid-live:hover .polaroid-video {
+  opacity: 1;
+}
+
+.polaroid-live:hover img {
+  filter: grayscale(0%);
 }
 
 .hero-scroll {
@@ -289,7 +349,7 @@ main {
   width: 300px;
   flex-shrink: 0;
   position: sticky;
-  top: calc(50vh - 100px);
+  top: calc(50vh - 160px);
   align-self: flex-start;
 }
 
@@ -301,6 +361,33 @@ main {
   .timeline-map-col {
     display: block;
   }
+}
+
+/* ── Timeline Polaroids ── */
+.timeline-polaroids {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.timeline-polaroids .polaroid {
+  width: 100px;
+  position: relative;
+}
+
+.timeline-polaroids .polaroid::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background: #cc2200;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+  z-index: 1;
 }
 
 /* ── World Map ── */
@@ -479,9 +566,11 @@ a.timeline-title:hover {
     font-size: 26px;
   }
 
+  .polaroid {
+    display: none;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
   }
-
-
 }

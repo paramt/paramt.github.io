@@ -1,6 +1,11 @@
+import heroPhoto from '../data/images/hero/3/3.webp';
+import heroVideo from '../data/images/hero/3/3.mp4';
+import Polaroid from './Polaroid';
+
 export default function Hero() {
   return (
     <section className="hero" id="top">
+      <div className="hero-inner">
       <div className="hero-content">
         <h1>Param Thakkar</h1>
         <p className="hero-sub">
@@ -20,6 +25,8 @@ export default function Hero() {
           <a href="https://linkedin.com/in/paramt" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="mailto:p28thakk@uwaterloo.ca">Email</a>
         </div>
+      </div>
+      <Polaroid src={heroPhoto} alt="Param Thakkar" video={heroVideo} rotate={2} />
       </div>
       <a href="#projects" className="hero-scroll" aria-label="Scroll down">↓</a>
     </section>

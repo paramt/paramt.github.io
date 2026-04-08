@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { timeline } from "../data/timeline";
 import WorldMap from "./WorldMap";
+import Polaroid from "./Polaroid";
 
 export default function Timeline() {
-  const [hoveredCoords, setHoveredCoords] = useState(null);
+  const [hoveredEvent, setHoveredEvent] = useState(null);
 
   const flat = timeline.flatMap((group) =>
     group.events.map((event) => ({ ...event, year: group.year }))
@@ -12,6 +13,9 @@ export default function Timeline() {
   const allCoords = flat
     .filter((e) => e.lat != null && e.lng != null)
     .map((e) => ({ lat: e.lat, lng: e.lng }));
+
+  const hoveredCoords = hoveredEvent?.lat != null ? { lat: hoveredEvent.lat, lng: hoveredEvent.lng } : null;
+  const hoveredImages = hoveredEvent?.images ?? [];
 
   return (
     <section className="section timeline-section" id="timeline">
@@ -28,8 +32,8 @@ export default function Timeline() {
                 <div key={i}>
                   <div
                     className="timeline-event"
-                    onMouseEnter={() => hasCoords && setHoveredCoords({ lat: event.lat, lng: event.lng })}
-                    onMouseLeave={() => setHoveredCoords(null)}
+                    onMouseEnter={() => setHoveredEvent(event)}
+                    onMouseLeave={() => setHoveredEvent(null)}
                   >
                     <span className="timeline-month">{event.month}</span>
                     <div className="timeline-line-content">
@@ -63,6 +67,13 @@ export default function Timeline() {
 
         <div className="timeline-map-col" aria-hidden="true">
           <WorldMap coords={hoveredCoords} allCoords={allCoords} />
+          {hoveredImages.length > 0 && (
+            <div className="timeline-polaroids">
+              {hoveredImages.map((src, i) => (
+                <Polaroid key={i} src={src} color />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
