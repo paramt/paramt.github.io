@@ -1,10 +1,14 @@
 import { useRef, useMemo, useState, useEffect } from 'react';
 import Tack from './Tack';
 
-export default function Polaroid({ src, thumb, alt = "", video, rotate, color = false, location, date, priority = false }) {
+const FILTER_DURATION = 400; // ms — must match transition in CSS
+
+export default function Polaroid({ src, thumb, alt = "", video, rotate, color = false, location, date, priority = false, tack = true }) {
   const videoRef = useRef(null);
   const imgRef = useRef(null);
+  const playTimerRef = useRef(null);
   const [loaded, setLoaded] = useState(!thumb);
+  const [playing, setPlaying] = useState(false);
 
   const deg = useMemo(() => {
     if (rotate !== undefined) return rotate;
@@ -17,14 +21,25 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
     }
   }, [thumb]);
 
+  useEffect(() => {
+    return () => clearTimeout(playTimerRef.current);
+  }, []);
+
   function handleMouseEnter() {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
-    }
+    if (!video) return;
+    if (videoRef.current) videoRef.current.load();
+    playTimerRef.current = setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
+        setPlaying(true);
+      }
+    }, FILTER_DURATION);
   }
 
   function handleMouseLeave() {
+    clearTimeout(playTimerRef.current);
+    setPlaying(false);
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
@@ -42,7 +57,7 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Tack size={5} style={{ position: 'absolute', top: -5, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }} />
+      {tack && <Tack size={5} style={{ position: 'absolute', top: -5, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }} />}
       <div className="polaroid-media">
         {thumb && !loaded && (
           <img src={thumb} aria-hidden="true" className="polaroid-thumb" />
@@ -62,7 +77,7 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
             muted
             playsInline
             loop
-            className="polaroid-video"
+            className={`polaroid-video${playing ? ' polaroid-video-playing' : ''}`}
           />
         )}
       </div>
