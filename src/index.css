@@ -432,7 +432,9 @@ main {
 /* ── Sticky Note ── */
 .sticky-note {
   position: relative;
-  flex-grow: 1;
+  width: 160px;
+  min-height: 160px;
+  flex-shrink: 0;
   background: var(--note-bg, #fef08a);
   padding: 22px 14px 14px;
   box-shadow: 2px 4px 12px var(--note-shadow, rgba(202, 178, 36, 0.25));
@@ -449,10 +451,10 @@ main {
 }
 
 .sticky-note-text {
-  font-family: 'Caveat Variable', 'Caveat', cursive;
-  font-size: 1.05rem;
+  font-family: 'Coming Soon', cursive;
+  font-size: 0.9rem;
   line-height: 1.55;
-  color: #2a2a2a;
+  color: #555;
 }
 
 .sticky-note-link {
@@ -664,15 +666,6 @@ main {
   font-size: 14px;
   color: var(--fg);
   line-height: 1.4;
-}
-
-a.timeline-title {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-a.timeline-title:hover {
-  color: var(--fg-muted);
 }
 
 

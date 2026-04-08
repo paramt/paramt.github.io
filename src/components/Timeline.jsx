@@ -86,13 +86,7 @@ export default function Timeline() {
                       <div className={`timeline-dot${hasCoords ? " timeline-dot-locatable" : ""}`} />
                       <div className="timeline-body">
                         <div className="timeline-header">
-                          {event.link ? (
-                            <a href={event.link} target="_blank" rel="noopener noreferrer" className="timeline-title">
-                              {event.title}
-                            </a>
-                          ) : (
-                            <span className="timeline-title">{event.title}</span>
-                          )}
+                          <span className="timeline-title">{event.title}</span>
                         </div>
                         {event.description && (
                           <p className="timeline-desc">{event.description}</p>
