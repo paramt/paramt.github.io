@@ -183,7 +183,7 @@ main {
   justify-content: space-between;
   align-items: baseline;
   padding-top: 6px;
-  font-family: 'Caveat', cursive;
+  font-family: 'Caveat Variable', 'Caveat', cursive;
   line-height: 1.2;
 }
 
