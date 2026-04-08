@@ -9,6 +9,10 @@ export default function Timeline() {
     group.events.map((event) => ({ ...event, year: group.year }))
   );
 
+  const allCoords = flat
+    .filter((e) => e.lat != null && e.lng != null)
+    .map((e) => ({ lat: e.lat, lng: e.lng }));
+
   return (
     <section className="section timeline-section" id="timeline">
       <div className="timeline-layout">
@@ -58,7 +62,7 @@ export default function Timeline() {
         </div>
 
         <div className="timeline-map-col" aria-hidden="true">
-          <WorldMap coords={hoveredCoords} />
+          <WorldMap coords={hoveredCoords} allCoords={allCoords} />
         </div>
       </div>
     </section>

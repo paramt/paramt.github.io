@@ -333,6 +333,13 @@ main {
   background: #eb4034;
 }
 
+.map-marker-static .map-marker-dot {
+  width: 5px;
+  height: 5px;
+  background: #eb4034;
+  opacity: 0.8;
+}
+
 .map-marker-pulse {
   position: absolute;
   top: 50%;

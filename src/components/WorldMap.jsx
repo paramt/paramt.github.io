@@ -138,18 +138,21 @@ function drawStates(ctx, topo, w, h, isDark, bounds, opacity) {
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
-export default function WorldMap({ coords }) {
-  const canvasRef  = useRef(null);
-  const markerRef  = useRef(null);
-  const topoRef    = useRef(null);
-  const statesRef  = useRef(null);
-  const isDarkRef  = useRef(false);
-  const curBounds  = useRef(WORLD);
-  const animFrom   = useRef(WORLD);
-  const animTo     = useRef(WORLD);
-  const rafRef     = useRef(null);
-  const coordsRef  = useRef(coords);
-  coordsRef.current = coords;
+export default function WorldMap({ coords, allCoords = [] }) {
+  const canvasRef        = useRef(null);
+  const markerRef        = useRef(null);
+  const staticMarkersRef = useRef(null);
+  const topoRef          = useRef(null);
+  const statesRef        = useRef(null);
+  const isDarkRef        = useRef(false);
+  const curBounds        = useRef(WORLD);
+  const animFrom         = useRef(WORLD);
+  const animTo           = useRef(WORLD);
+  const rafRef           = useRef(null);
+  const coordsRef        = useRef(coords);
+  const allCoordsRef     = useRef(allCoords);
+  coordsRef.current    = coords;
+  allCoordsRef.current = allCoords;
 
   function renderFrame(b) {
     const canvas = canvasRef.current;
@@ -175,6 +178,16 @@ export default function WorldMap({ coords }) {
     if (marker && c) {
       marker.style.left = `${projX(c.lng, b) * 100}%`;
       marker.style.top  = `${projY(c.lat, b) * 100}%`;
+    }
+
+    const staticContainer = staticMarkersRef.current;
+    if (staticContainer && !coordsRef.current) {
+      const children = staticContainer.children;
+      const pts = allCoordsRef.current;
+      for (let i = 0; i < children.length && i < pts.length; i++) {
+        children[i].style.left = `${projX(pts[i].lng, b) * 100}%`;
+        children[i].style.top  = `${projY(pts[i].lat, b) * 100}%`;
+      }
     }
   }
 
@@ -222,10 +235,25 @@ export default function WorldMap({ coords }) {
   return (
     <div className="world-map">
       <canvas ref={canvasRef} className="world-map-canvas" />
-      {coords && (
+      {coords ? (
         <div ref={markerRef} className="map-marker" style={{ left: initMx, top: initMy }} aria-hidden="true">
           <div className="map-marker-pulse" />
           <div className="map-marker-dot" />
+        </div>
+      ) : (
+        <div ref={staticMarkersRef} aria-hidden="true">
+          {allCoords.map((c, i) => (
+            <div
+              key={i}
+              className="map-marker map-marker-static"
+              style={{
+                left: `${projX(c.lng, curBounds.current) * 100}%`,
+                top:  `${projY(c.lat, curBounds.current) * 100}%`,
+              }}
+            >
+              <div className="map-marker-dot" />
+            </div>
+          ))}
         </div>
       )}
     </div>
