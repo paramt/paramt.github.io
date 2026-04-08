@@ -11,6 +11,7 @@
     "deploy": "npm run build && gh-pages -d dist -b gh-pages"
   },
   "dependencies": {
+    "@fontsource-variable/caveat": "^5.2.8",
     "gh-pages": "^6.3.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"

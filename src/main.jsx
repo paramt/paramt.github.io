@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { hydrateRoot, createRoot } from 'react-dom/client';
+import '@fontsource-variable/caveat';
 import './index.css';
 import App from './App.jsx';
 
@@ -10,4 +11,8 @@ if (container.innerHTML) {
   hydrateRoot(container, app);
 } else {
   createRoot(container).render(app);
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js'));
 }
