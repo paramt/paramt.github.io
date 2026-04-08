@@ -421,6 +421,7 @@ main {
 
 .timeline-polaroids .polaroid {
   position: relative;
+  flex-grow: 1;
 }
 
 
