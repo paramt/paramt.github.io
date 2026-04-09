@@ -83,6 +83,8 @@ Every `<Polaroid>` with a `thumb` prop goes through four phases:
 - `imgReady` — 400ms after `loaded`, set via `setTimeout(FILTER_DURATION)` (fires removal of thumb)
 - `thumbLoaded` — thumb has finished downloading (fades placeholder out)
 
+**Placeholder aspect ratio:** `.polaroid-media` always has an inline `aspect-ratio` style. If `w`/`h` props are provided it uses those; otherwise it falls back to `3/2` until `thumbLoaded` is true (at which point the thumb is in flow and sets the container height naturally, so the constraint is released). This prevents the placeholder from looking squashed when a single polaroid stretches to full container width.
+
 **Cached-image shortcut:** on mount, a `useEffect` checks `imgRef.current?.complete`. If true (image was preloaded into memory cache), both `loaded` and `imgReady` are set immediately — no thumb phase, full image shown directly.
 
 **`key` prop on timeline polaroids:** `<Polaroid key={attachment.src} ...>` — using `src` as the key ensures React fully unmounts and remounts when switching timeline entries, resetting all loading state. Using `key={i}` (index) would reuse the component and bleed `loaded=true` from the previous entry.
@@ -125,3 +127,4 @@ Naming: `{original-name}.thumb.webp` in the same directory.
 Wire up:
 - Hero: import in `src/data/heroPolaroids.js`, add `thumb` field to entry
 - Timeline: import in `src/data/timeline.js`, wrap with `img(src, thumb)` helper
+- Both: add `w` and `h` (pixel dimensions of the full image) to the entry so `<Polaroid>` can set the correct `aspect-ratio` on its media container instead of falling back to `3/2`

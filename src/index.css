@@ -153,7 +153,6 @@ main {
 .polaroid-media {
   position: relative;
   overflow: hidden;
-  min-height: 100px;
 }
 
 .polaroid img,

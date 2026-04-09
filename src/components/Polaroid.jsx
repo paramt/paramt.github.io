@@ -3,7 +3,7 @@ import Tack from './Tack';
 
 const FILTER_DURATION = 400; // ms — must match transition in CSS
 
-export default function Polaroid({ src, thumb, alt = "", video, rotate, color = false, static: isStatic = false, location, date, priority = false, tack = true, onClick }) {
+export default function Polaroid({ src, thumb, alt = "", video, rotate, color = false, static: isStatic = false, location, date, priority = false, tack = true, onClick, w, h }) {
   const videoRef = useRef(null);
   const imgRef = useRef(null);
   const thumbImgRef = useRef(null);
@@ -87,7 +87,7 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
       onClick={onClick}
     >
       {tack && <Tack size={5} style={{ position: 'absolute', top: -5, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }} />}
-      <div className="polaroid-media">
+      <div className="polaroid-media" style={{ aspectRatio: w && h ? `${w}/${h}` : (!thumbLoaded ? '3/2' : undefined) }}>
         {!loaded && (
           <div className={`polaroid-placeholder${thumb && thumbLoaded ? ' polaroid-placeholder-fade' : ''}`} aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

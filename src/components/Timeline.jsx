@@ -138,7 +138,7 @@ export default function Timeline() {
                 attachment.type === 'note' ? (
                   <StickyNote key={i} text={attachment.text} color={attachment.color} />
                 ) : (
-                  <Polaroid key={attachment.src} src={attachment.src} thumb={attachment.thumb} color static />
+                  <Polaroid key={attachment.src} src={attachment.src} thumb={attachment.thumb} w={attachment.w} h={attachment.h} color static />
                 )
               )}
             </div>
