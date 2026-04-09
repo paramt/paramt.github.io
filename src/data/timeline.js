@@ -94,6 +94,14 @@ import india2 from './images/india 2.jpg';
 import thumbIndia1 from './images/india 1.thumb.webp';
 import thumbIndia2 from './images/india 2.thumb.webp';
 
+import sfDatacurve1 from './images/sf (datacurve).jpg';
+import sfDatacurve2 from './images/sf (datacurve) 2.jpg';
+import thumbSfDatacurve1 from './images/sf (datacurve).thumb.webp';
+import thumbSfDatacurve2 from './images/sf (datacurve) 2.thumb.webp';
+
+import sfDatacurve3 from './images/sf/IMG_0941.jpg';
+import thumbSfDatacurve3 from './images/sf/IMG_0941.thumb.webp';
+
 const img = (src, thumb) => ({ type: 'image', src, thumb });
 const note = (text, color = 'yellow') => ({ type: 'note', text, color });
 
@@ -103,7 +111,7 @@ export const timeline = [
     events: [
       { month: "Mar", title: "Visited New York", description: null, lat: 40.7128, lng: -74.0060, attachments: [img(nyc2026a, thumbNyc2026a), img(nyc2026b, thumbNyc2026b)] },
       { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, lat: 28.5729, lng: -80.6490, attachments: [img(ksc1, thumbKsc1), img(orlando, thumbOrlando)] },
-      { month: "Jan", title: "Learned Piano Man on the harmonica", description: null, lat: null, lng: null },
+      // { month: "Jan", title: "Learned Piano Man on the harmonica", description: null, lat: null, lng: null },
     ],
   },
   {
@@ -113,7 +121,7 @@ export const timeline = [
       { month: "Sep", title: "Joined Quora", description: null, lat: null, lng: null, attachments: [note("Joined the Ads Targeting team as a Machine Learning Engineering Intern", "pink")] },
       { month: "Sep", title: "Cottage trip in Quebec", description: null, lat: 46.4171, lng: -75.4782, attachments: [img(quebecCottage, thumbQuebecCottage)] },
       { month: "Aug", title: "Visited Singapore", description: null, lat: 1.3521, lng: 103.8198, attachments: [img(singapore1, thumbSingapore1), img(singapore2, thumbSingapore2)] },
-      { month: "Aug", title: "Visited India", description: null, lat: 22.2587, lng: 71.1924, attachments: [img(india1, thumbIndia1), img(india2, thumbIndia2)] },
+      { month: "Aug", title: "India trip", description: null, lat: 22.2587, lng: 71.1924, attachments: [img(india1, thumbIndia1), img(india2, thumbIndia2)] },
       { month: "Jul", title: "Ran the SF 10k", description: null, lat: 37.7749, lng: -122.4194, attachments: [img(sfRace, thumbSfRace), img(sfRace2, thumbSfRace2)] },
       { month: "Jun", title: "Went camping in Yosemite", description: null, lat: 37.8651, lng: -119.5383, attachments: [img(yosemite1, thumbYosemite1), img(yosemite3, thumbYosemite3), img(yosemite4, thumbYosemite4), img(yosemite5, thumbYosemite5)] },
       { month: "Jun", title: "Went surfing for the first time", description: null, lat: 36.9741, lng: -122.0308, attachments: [img(surfing, thumbSurfing)] },
@@ -124,7 +132,7 @@ export const timeline = [
   {
     year: "2024",
     events: [
-      { month: "Nov", title: "Visited San Francisco", description: null, lat: 37.7749, lng: -122.4194 },
+      { month: "Nov", title: "SF visit", description: null, lat: 37.7749, lng: -122.4194, attachments: [img(sfDatacurve1, thumbSfDatacurve1), img(sfDatacurve2, thumbSfDatacurve2), img(sfDatacurve3, thumbSfDatacurve3)] },
       { month: "Oct", title: "Saw the AOT musical in New York", description: null, lat: 40.7128, lng: -74.0060 },
       { month: "Sep", title: "Joined Expertise.ai as a SWE intern", description: null, lat: 43.6629, lng: -79.3957, attachments: [img(expertiseAi1, thumbExpertiseAi1), img(expertiseAi2, thumbExpertiseAi2)] },
       { month: "Aug", title: "Visited Vancouver & Seattle", description: null, lat: 49.2827, lng: -123.1207, attachments: [img(seattle1, thumbSeattle1), img(seattle2, thumbSeattle2)] },
