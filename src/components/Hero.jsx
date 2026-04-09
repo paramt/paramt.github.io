@@ -1,15 +1,20 @@
-import { useState } from 'react';
+import { useState, useLayoutEffect, useRef } from 'react';
 import heroPolaroids from '../data/heroPolaroids';
 import Polaroid from './Polaroid';
 
 const STORAGE_KEY = 'heroPolaroidIndex';
 
-const _step = parseInt(localStorage.getItem(STORAGE_KEY) ?? '0', 10);
-localStorage.setItem(STORAGE_KEY, (_step + 1) % heroPolaroids.length);
-const INITIAL_INDEX = _step % heroPolaroids.length;
-
 export default function Hero() {
-  const [index, setIndex] = useState(INITIAL_INDEX);
+  const [index, setIndex] = useState(null);
+  const initializedRef = useRef(false);
+
+  useLayoutEffect(() => {
+    if (initializedRef.current) return;
+    initializedRef.current = true;
+    const step = parseInt(localStorage.getItem(STORAGE_KEY) ?? '0', 10);
+    localStorage.setItem(STORAGE_KEY, (step + 1) % heroPolaroids.length);
+    setIndex(step % heroPolaroids.length);
+  }, []);
 
   function handleClick() {
     setIndex(prev => {
@@ -19,7 +24,7 @@ export default function Hero() {
     });
   }
 
-  const featured = heroPolaroids[index];
+  const featured = index !== null ? heroPolaroids[index] : null;
 
   return (
     <section className="hero" id="top">
@@ -44,7 +49,7 @@ export default function Hero() {
           <a href="mailto:p28thakk@uwaterloo.ca">Email</a>
         </div>
       </div>
-      {<Polaroid key={index} src={featured.image} thumb={featured.thumb} alt="Param Thakkar" video={featured.video} rotate={2} location={featured.location} date={featured.date} priority tack={false} onClick={handleClick} />}
+      {featured && <Polaroid key={index} src={featured.image} thumb={featured.thumb} alt="Param Thakkar" video={featured.video} rotate={2} location={featured.location} date={featured.date} priority tack={false} onClick={handleClick} />}
       </div>
       <a href="#projects" className="hero-scroll" aria-label="Scroll down">↓</a>
     </section>
