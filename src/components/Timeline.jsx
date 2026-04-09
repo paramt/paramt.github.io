@@ -5,6 +5,8 @@ import Polaroid from "./Polaroid";
 import StickyNote from "./StickyNote";
 import Tack from "./Tack";
 
+const _preloaded = []; // keep thumb refs alive so GC doesn't evict from memory cache
+
 export default function Timeline() {
   const [hoveredEvent, setHoveredEvent] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -21,7 +23,9 @@ export default function Timeline() {
     // Polaroids are hidden below 860px — skip preloading on those devices
     if (window.innerWidth < 860) return;
 
-    const images = flat.flatMap(e => (e.attachments ?? []).filter(a => a.type === 'image').flatMap(a => [a.src, a.thumb].filter(Boolean)));
+    // Only preload thumbs — they're tiny (~50KB each) and safe to keep in memory.
+    // Full images load from disk cache after first hover, which is fast enough.
+    const images = flat.flatMap(e => (e.attachments ?? []).filter(a => a.type === 'image').map(a => a.thumb).filter(Boolean));
     if (images.length === 0) return;
 
     let preloaded = false;
@@ -32,7 +36,7 @@ export default function Timeline() {
           preloaded = true;
           observer.disconnect();
           const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 200));
-          idle(() => images.forEach(src => { new Image().src = src; }));
+          idle(() => images.forEach(src => { const img = new Image(); img.src = src; _preloaded.push(img); }));
         }
       },
       { rootMargin: '800px' }

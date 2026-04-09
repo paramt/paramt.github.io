@@ -3,6 +3,7 @@ import heroPolaroids from '../data/heroPolaroids';
 import Polaroid from './Polaroid';
 
 const STORAGE_KEY = 'heroPolaroidIndex';
+const _preloaded = []; // keep refs alive so browser doesn't evict from memory cache
 
 export default function Hero() {
   const [index, setIndex] = useState(null);
@@ -17,7 +18,9 @@ export default function Hero() {
 
     const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 500));
     idle(() => {
-      heroPolaroids.forEach(p => { new Image().src = p.image; if (p.thumb) new Image().src = p.thumb; });
+      heroPolaroids.forEach(p => { if (p.thumb) { const t = new Image(); t.src = p.thumb; _preloaded.push(t); } });
+      heroPolaroids.forEach(p => { const img = new Image(); img.src = p.image; _preloaded.push(img); });
+      heroPolaroids.forEach(p => { if (p.video) { const v = document.createElement('video'); v.src = p.video; v.preload = 'auto'; _preloaded.push(v); } });
     });
   }, []);
 

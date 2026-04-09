@@ -187,12 +187,16 @@ main {
   pointer-events: none;
 }
 
-.polaroid-img-loading {
+.polaroid-img-loading,
+.polaroid-img-fading {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.polaroid-img-loading {
   opacity: 0;
 }
 

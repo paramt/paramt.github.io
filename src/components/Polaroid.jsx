@@ -8,7 +8,9 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
   const imgRef = useRef(null);
   const thumbImgRef = useRef(null);
   const playTimerRef = useRef(null);
+  const imgReadyTimerRef = useRef(null);
   const [loaded, setLoaded] = useState(!thumb);
+  const [imgReady, setImgReady] = useState(!thumb);
   const [thumbLoaded, setThumbLoaded] = useState(false);
   const [playing, setPlaying] = useState(false);
 
@@ -20,6 +22,7 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
   useEffect(() => {
     if (thumb && imgRef.current?.complete) {
       setLoaded(true);
+      setImgReady(true);
     }
   }, [thumb]);
 
@@ -30,8 +33,20 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
   }, [thumb]);
 
   useEffect(() => {
-    return () => clearTimeout(playTimerRef.current);
+    return () => {
+      clearTimeout(playTimerRef.current);
+      clearTimeout(imgReadyTimerRef.current);
+    };
   }, []);
+
+  function handleImgLoad() {
+    setLoaded(true);
+    if (thumb) {
+      imgReadyTimerRef.current = setTimeout(() => setImgReady(true), FILTER_DURATION);
+    } else {
+      setImgReady(true);
+    }
+  }
 
   function handleMouseEnter() {
     if (!video) return;
@@ -58,6 +73,11 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
   const classes = ['polaroid', video && 'polaroid-live', color && 'polaroid-color', isStatic && 'polaroid-static', hasMeta && 'polaroid-has-meta']
     .filter(Boolean).join(' ');
 
+  let imgClass;
+  if (!loaded) imgClass = 'polaroid-img-loading';
+  else if (!imgReady) imgClass = 'polaroid-img-fading';
+  else imgClass = undefined;
+
   return (
     <div
       className={classes}
@@ -77,7 +97,7 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
             </svg>
           </div>
         )}
-        {thumb && !loaded && (
+        {thumb && !imgReady && (
           <img ref={thumbImgRef} src={thumb} aria-hidden="true" className="polaroid-thumb" fetchPriority={priority ? "high" : "auto"} onLoad={() => setThumbLoaded(true)} />
         )}
         <img
@@ -85,8 +105,8 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
           src={src}
           alt={alt}
           fetchPriority={priority ? "high" : "auto"}
-          className={thumb && !loaded ? 'polaroid-img-loading' : undefined}
-          onLoad={() => setLoaded(true)}
+          className={imgClass}
+          onLoad={handleImgLoad}
         />
         {video && (
           <video

@@ -63,6 +63,49 @@ The hero polaroid cycles through images in `heroPolaroids.js` — both on page l
 
 ---
 
+# Image Loading, Preloading, and Caching
+
+## Polaroid loading states (`Polaroid.jsx`)
+
+Every `<Polaroid>` with a `thumb` prop goes through four phases:
+
+| Phase | Placeholder | Thumb | Full image |
+|---|---|---|---|
+| Fetching | `position:absolute`, visible (sets min perceived height) | in flow, naturally invisible until loaded | `polaroid-img-loading` — absolute, `opacity:0` |
+| Thumb loaded | fades to `opacity:0` (CSS transition, stays in DOM) | visible, in flow (sets container height) | `polaroid-img-loading` — absolute, `opacity:0` |
+| Full image loaded | removed from DOM | still in flow | `polaroid-img-fading` — absolute, `opacity:0→1` over 400ms |
+| Transition done (~400ms) | — | removed from DOM | no class — in flow, final size |
+
+**Why the thumb stays in DOM during the full-image fade:** removing the thumb at the same time the full image starts fading in would reveal the white polaroid background for 400ms. Keeping it in flow means the full image (absolute, on top) fades in over the thumb — no flash.
+
+**State variables:**
+- `loaded` — full image has finished downloading (fires `polaroid-img-fading`)
+- `imgReady` — 400ms after `loaded`, set via `setTimeout(FILTER_DURATION)` (fires removal of thumb)
+- `thumbLoaded` — thumb has finished downloading (fades placeholder out)
+
+**Cached-image shortcut:** on mount, a `useEffect` checks `imgRef.current?.complete`. If true (image was preloaded into memory cache), both `loaded` and `imgReady` are set immediately — no thumb phase, full image shown directly.
+
+**`key` prop on timeline polaroids:** `<Polaroid key={attachment.src} ...>` — using `src` as the key ensures React fully unmounts and remounts when switching timeline entries, resetting all loading state. Using `key={i}` (index) would reuse the component and bleed `loaded=true` from the previous entry.
+
+## Preloading strategy
+
+**Hero (`Hero.jsx`):**  
+All hero assets are preloaded in a single `requestIdleCallback` after the page loads, in three passes to respect browser download priority:
+1. Thumbs (tiny, ~10–30KB each)
+2. Full images
+3. Videos
+
+Image objects are stored in a module-level `_preloaded` array. This is intentional — without live references, the GC can collect the `Image` objects and evict them from the browser's memory cache, causing re-fetches on every click cycle. 6 hero images are small enough that pinning them in memory is fine.
+
+**Timeline (`Timeline.jsx`):**  
+Only thumbs are preloaded (not full images, not videos). Full images load on first hover, then hit disk cache on repeat hovers — fast enough.
+
+Preload triggers when the timeline section scrolls within 800px of the viewport (`IntersectionObserver` with `rootMargin: '800px'`), also deferred to idle time. Refs are kept alive in a module-level `_preloaded` array for the same GC reason as above. Thumbs are small enough (~50KB each) that the memory footprint is acceptable.
+
+**Why not preload full timeline images:** the full image set is ~100MB+. Pinning that in memory would cause memory pressure, jank, or tab kills on mobile. Disk cache is sufficient for repeat hovers.
+
+---
+
 # Thumbnail Compression
 
 When adding a new image to the site (hero or timeline), generate a compressed WebP thumbnail alongside it. Run from `src/data/images/`:
