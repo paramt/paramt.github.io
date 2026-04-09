@@ -69,11 +69,16 @@ export default function Timeline() {
           <p className="section-subtitle">A microblog of things I've done.<span className="timeline-hover-hint"> Hover over an event to see more details!</span></p>
           <div className="timeline">
             {flat.map((event, i) => {
-              const nextEvent = flat[i + 1];
-              const showYearAfter = !nextEvent || event.year !== nextEvent.year;
+              const prevEvent = flat[i - 1];
+              const showYearBefore = !prevEvent || event.year !== prevEvent.year;
               const hasCoords = event.lat != null && event.lng != null;
               return (
                 <div key={i}>
+                  {showYearBefore && (
+                    <div className="timeline-year-marker">
+                      <span className="timeline-year">{event.year}</span>
+                    </div>
+                  )}
                   <div
                     ref={(el) => { el ? entryRefs.current.set(event, el) : entryRefs.current.delete(event); }}
                     className={`timeline-event${activeEvent === event ? " timeline-event--active" : ""}${selectedEvent === event ? " timeline-event--selected" : ""}`}
@@ -94,11 +99,6 @@ export default function Timeline() {
                       </div>
                     </div>
                   </div>
-                  {showYearAfter && (
-                    <div className="timeline-year-marker">
-                      <span className="timeline-year">{event.year}</span>
-                    </div>
-                  )}
                 </div>
               );
             })}
