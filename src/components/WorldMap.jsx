@@ -153,7 +153,7 @@ function drawStates(ctx, topo, w, h, isDark, bounds, opacity) {
 }
 
 // ── Route polyline renderer ───────────────────────────────────────────────────
-function drawRoute(ctx, pts, w, h, b) {
+function drawRoute(ctx, pts, w, h, b, alpha = 0.55) {
   if (!pts || pts.length < 2) return;
   const px = pts.map(c => projX(c.lng, b) * w);
   const py = pts.map(c => projY(c.lat, b) * h);
@@ -173,14 +173,14 @@ function drawRoute(ctx, pts, w, h, b) {
   }
   ctx.strokeStyle = '#eb4034';
   ctx.lineWidth = 1.5;
-  ctx.globalAlpha = 0.55;
+  ctx.globalAlpha = alpha;
   ctx.stroke();
   ctx.restore();
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
 // coords: { lat, lng } | Array<{ lat, lng }> | null
-export default function WorldMap({ coords, allCoords = [], noZoom = false, onMarkerHover, onMarkerLeave, onMarkerClick }) {
+export default function WorldMap({ coords, allCoords = [], allRoutes = [], noZoom = false, onMarkerHover, onMarkerLeave, onMarkerClick }) {
   // Normalise coords to an array (or null) for uniform handling
   const coordsPts = coords ? (Array.isArray(coords) ? coords : [coords]) : null;
 
@@ -196,9 +196,11 @@ export default function WorldMap({ coords, allCoords = [], noZoom = false, onMar
   const rafRef             = useRef(null);
   const coordsPtsRef       = useRef(coordsPts);
   const allCoordsRef       = useRef(allCoords);
+  const allRoutesRef       = useRef(allRoutes);
   const noZoomRef          = useRef(noZoom);
   coordsPtsRef.current   = coordsPts;
   allCoordsRef.current   = allCoords;
+  allRoutesRef.current   = allRoutes;
   noZoomRef.current      = noZoom;
 
   function renderFrame(b) {
@@ -219,8 +221,13 @@ export default function WorldMap({ coords, allCoords = [], noZoom = false, onMar
         const stateOpacity = Math.min(1, Math.max(0, (zoom - 5) / 5));
         drawStates(ctx, statesRef.current, w, h, isDarkRef.current, b, stateOpacity);
 
-        const pts = coordsPtsRef.current;
-        if (pts && pts.length > 1) drawRoute(ctx, pts, w, h, b);
+        const activePts = coordsPtsRef.current;
+        // Background routes (always visible, dimmed)
+        allRoutesRef.current.forEach((route) => {
+          if (route !== activePts) drawRoute(ctx, route, w, h, b, 0.25);
+        });
+        // Active route on top at full opacity
+        if (activePts && activePts.length > 1) drawRoute(ctx, activePts, w, h, b, 0.55);
       }
     }
 
