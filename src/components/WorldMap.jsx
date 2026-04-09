@@ -174,7 +174,6 @@ function drawRoute(ctx, pts, w, h, b) {
   ctx.strokeStyle = '#eb4034';
   ctx.lineWidth = 1.5;
   ctx.globalAlpha = 0.55;
-  ctx.setLineDash([5, 4]);
   ctx.stroke();
   ctx.restore();
 }
