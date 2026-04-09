@@ -155,13 +155,22 @@ function drawStates(ctx, topo, w, h, isDark, bounds, opacity) {
 // ── Route polyline renderer ───────────────────────────────────────────────────
 function drawRoute(ctx, pts, w, h, b) {
   if (!pts || pts.length < 2) return;
+  const px = pts.map(c => projX(c.lng, b) * w);
+  const py = pts.map(c => projY(c.lat, b) * h);
   ctx.save();
   ctx.beginPath();
-  pts.forEach((c, i) => {
-    const x = projX(c.lng, b) * w;
-    const y = projY(c.lat, b) * h;
-    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-  });
+  ctx.moveTo(px[0], py[0]);
+  if (pts.length === 2) {
+    ctx.lineTo(px[1], py[1]);
+  } else {
+    // Smooth corners: quadratic bezier with each waypoint as control point,
+    // passing through the midpoints between consecutive waypoints.
+    ctx.lineTo((px[0] + px[1]) / 2, (py[0] + py[1]) / 2);
+    for (let i = 1; i < pts.length - 1; i++) {
+      ctx.quadraticCurveTo(px[i], py[i], (px[i] + px[i + 1]) / 2, (py[i] + py[i + 1]) / 2);
+    }
+    ctx.lineTo(px[pts.length - 1], py[pts.length - 1]);
+  }
   ctx.strokeStyle = '#eb4034';
   ctx.lineWidth = 1.5;
   ctx.globalAlpha = 0.55;
@@ -219,10 +228,11 @@ export default function WorldMap({ coords, allCoords = [], noZoom = false, onMar
     const activeContainer = activeMarkersRef.current;
     const pts = coordsPtsRef.current;
     if (activeContainer && pts) {
+      const endpts = pts.length > 1 ? [pts[0], pts[pts.length - 1]] : pts;
       const children = activeContainer.children;
-      for (let i = 0; i < children.length && i < pts.length; i++) {
-        children[i].style.left = `${projX(pts[i].lng, b) * 100}%`;
-        children[i].style.top  = `${projY(pts[i].lat, b) * 100}%`;
+      for (let i = 0; i < children.length && i < endpts.length; i++) {
+        children[i].style.left = `${projX(endpts[i].lng, b) * 100}%`;
+        children[i].style.top  = `${projY(endpts[i].lat, b) * 100}%`;
       }
     }
 
@@ -280,23 +290,19 @@ export default function WorldMap({ coords, allCoords = [], noZoom = false, onMar
       <canvas ref={canvasRef} className="world-map-canvas" />
       {coordsPts && (
         <div ref={activeMarkersRef} aria-hidden="true">
-          {coordsPts.map((c, i) => {
-            const isRoute = coordsPts.length > 1;
-            const isIntermediate = isRoute && i > 0 && i < coordsPts.length - 1;
-            return (
-              <div
-                key={i}
-                className={`map-marker${isIntermediate ? " map-marker--intermediate" : ""}`}
-                style={{
-                  left: `${projX(c.lng, curBounds.current) * 100}%`,
-                  top:  `${projY(c.lat, curBounds.current) * 100}%`,
-                }}
-              >
-                {!isRoute && <div className="map-marker-pulse" />}
-                <div className="map-marker-dot" />
-              </div>
-            );
-          })}
+          {(coordsPts.length > 1 ? [coordsPts[0], coordsPts[coordsPts.length - 1]] : coordsPts).map((c, i) => (
+            <div
+              key={i}
+              className="map-marker"
+              style={{
+                left: `${projX(c.lng, curBounds.current) * 100}%`,
+                top:  `${projY(c.lat, curBounds.current) * 100}%`,
+              }}
+            >
+              {coordsPts.length === 1 && <div className="map-marker-pulse" />}
+              <div className="map-marker-dot" />
+            </div>
+          ))}
         </div>
       )}
       {(!coordsPts || noZoom) && (
