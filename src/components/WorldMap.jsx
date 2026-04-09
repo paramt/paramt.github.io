@@ -222,10 +222,12 @@ export default function WorldMap({ coords, allCoords = [], allRoutes = [], noZoo
         drawStates(ctx, statesRef.current, w, h, isDarkRef.current, b, stateOpacity);
 
         const activePts = coordsPtsRef.current;
-        // Background routes (always visible, dimmed)
-        allRoutesRef.current.forEach((route) => {
-          if (route !== activePts) drawRoute(ctx, route, w, h, b, 0.25);
-        });
+        // Background routes: same visibility rule as static markers
+        if (!activePts || noZoomRef.current) {
+          allRoutesRef.current.forEach((route) => {
+            if (route !== activePts) drawRoute(ctx, route, w, h, b, 0.25);
+          });
+        }
         // Active route on top at full opacity
         if (activePts && activePts.length > 1) drawRoute(ctx, activePts, w, h, b, 0.55);
       }
