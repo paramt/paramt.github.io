@@ -548,6 +548,11 @@ main {
   opacity: 1;
 }
 
+.map-marker--intermediate .map-marker-dot {
+  width: 6px;
+  height: 6px;
+}
+
 .map-marker-pulse {
   position: absolute;
   top: 50%;
