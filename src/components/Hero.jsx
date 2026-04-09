@@ -14,6 +14,11 @@ export default function Hero() {
     const step = parseInt(localStorage.getItem(STORAGE_KEY) ?? '0', 10);
     localStorage.setItem(STORAGE_KEY, (step + 1) % heroPolaroids.length);
     setIndex(step % heroPolaroids.length);
+
+    const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 500));
+    idle(() => {
+      heroPolaroids.forEach(p => { new Image().src = p.image; });
+    });
   }, []);
 
   function handleClick() {
