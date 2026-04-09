@@ -1,0 +1,204 @@
+- title: TC Disrupt
+  date: September 2023
+  desc: "Attended [TechCrunch Disrupt 2023](https://techcrunch.com/events/tc-disrupt-2023/)"
+  big: true
+  coords:
+    - [37.7749, -122.4194]
+
+- title: HackMIT
+  date: September 2023
+  desc: "Attended HackMIT"
+  big: true
+  coords:
+    - [42.3601, -71.0942]
+
+- title: Parasailing
+  date: July 2023
+  desc: "Went parasailing!"
+  big: true
+
+- title: Collision
+  date: June 2023
+  desc: "Attended the Collision startup conference"
+  big: true
+  coords:
+    - [43.6339, -79.4151]
+
+- title: "Judge @ JAMHacks"
+  date: June 2023
+  desc: "Judged at [JAMHacks 7](https://www.jamhacks.ca/)"
+  big: true
+
+- title: "SWE Intern @ zipBoard"
+  date: May 2023
+  desc: "[Started my software engineer internship at zipBoard](https://zipboard.co/blog/uncategorized/software-dev-intern-param-thakkar/)"
+  big: true
+  coords:
+    - [43.6532, -79.3832]
+
+- title: "Judge @ hack::peel"
+  date: December 2022
+  desc: "Was a hackathon judge for [hack::peel](https://hackpeel22.devpost.com/)"
+  big: true
+
+- title: "SWE Intern @ Pulley"
+  date: July 2022
+  desc: "Started my software engineer internship at [Pulley](https://pulley.com), a Series A Y-Combinator startup based in San Francisco"
+  big: true
+  coords:
+    - [37.7749, -122.4194]
+
+- title: Sword of Distinction
+  date: June 2022
+  desc: "Recieved the RCAF Sword of Distinction from my squadron for being an outstanding cadet"
+  big: false
+
+- title: W.C. Martin Memorial Scholarship
+  date: June 2022
+  desc: "Receieved the W.C. Martin Memorial award for having the top 3 grade 12 average at my school"
+  big: false
+
+- title: Schulich Leader Scholarship
+  date: May 2022
+  desc: "Offered the Schulich Leader Scholarship (valued at $100,000) from the University of Toronto"
+  big: true
+  coords:
+    - [43.6629, -79.3957]
+
+- title: CCC Distinction
+  date: February 2022
+  desc: "The Canadian Computing Competition is a competitive programming contest for high school students. I recieved a Certificate of Distinction for being in the 25% of scorers"
+  big: false
+
+- title: CSMC Distinction
+  date: November 2021
+  desc: "Received a Certificate of Distinction for being among the top 25% of scorers on the Canadian Senior Math Contest"
+  big: false
+
+- title: "Radio Operator's License"
+  date: December 2021
+  desc: "Receieved my Restricted Radio Operator's Certificate through the cadets program"
+  big: false
+
+- title: Coder Cookies
+  date: August 2021
+  desc: "Became a Code Coach at [Coder Cookies](https://codercookies.com/)"
+  big: true
+
+- title: Skydiving
+  date: August 2021
+  desc: "[I went skydiving](https://www.instagram.com/p/CTHqUuvMUoF9PGuVPHiP48FDi5VwEE77PUIhcM0/)!"
+  big: true
+
+- title: Shad
+  date: July 2021
+  desc: "Completed the [Shad program](https://www.shad.ca/) virtually at the York University campus"
+  big: true
+  coords:
+    - [43.7735, -79.5019]
+
+- title: Janusz Zurakowski Award
+  date: June 2021
+  desc: "Received the Janusz Zurakowski award for excellence in glider aviation studies"
+  big: false
+
+- title: Lighthouse Hacks
+  date: April 2021
+  desc: "Organized [Lighthouse Hacks](https://lighthousehacks.ca/) - a virtual hackathon with over 200 participants from 10 countries"
+  big: true
+
+- title: Cybersecurity Challenge Winner
+  date: November 2020
+  desc: "Won the US Air Force Cybersecurity Challenge at HackRPI"
+  big: false
+
+- title: Coding Club
+  date: October 2020
+  desc: "Started an online coding club at my school"
+  big: true
+
+- title: Canada Learning Code Ambassador
+  date: September 2020
+  desc: "Became a Teen Ambassador for [Canada Learning Code](https://www.canadalearningcode.ca/)"
+  big: true
+
+- title: AP Computer Science Exam
+  date: July 2020
+  desc: "Recieved the highest possible score of 5 on the AP Computer Science A Exam"
+  big: true
+
+- title: Most Proficient Junior NCO
+  date: July 2020
+  desc: "Received [an honorable mention](https://www.instagram.com/p/CCrhvqqMUNz) for the Most Proficient Junior NCO award at 845 Avro Arrow Squadron"
+  big: false
+
+- title: CANHack Mentor
+  date: July 2020
+  desc: "Mentored at Brampton Library's virtual hackathon"
+  big: true
+
+- title: Skills Ontario
+  date: June 2020
+  desc: "Represented Peel District School Board at the Virtual Skills Ontario coding competition"
+  big: true
+
+- title: Hack the Valley
+  date: February 2020
+  desc: "Built a demo for [OpenED](https://www.param.me/open-ed) – a platform for students to voice their opinions – at University of Toronto's hackathon"
+  big: false
+
+- title: Google Code-in
+  date: February 2020
+  desc: "Contributed to the open-source community by completing documentation, research, and design tasks for organizations"
+  big: false
+
+- title: Hacktoberfest
+  date: October 2019
+  desc: "Contributed to the open-source community by fixing issues and adding features to various GitHub repositories"
+  big: false
+
+- title: Hack the North
+  date: September 2019
+  desc: "Attended [Canada's largest hackathon](https://hackthenorth.com/) held at the University of Waterloo"
+  big: true
+  coords:
+    - [43.4723, -80.5449]
+
+- title: Greatest Distinction
+  date: September 2019
+  desc: "Received Greatest Distinction in the Level 3 Instructor Preparation Program in my cadet squadron"
+  big: false
+
+- title: 100 Days of Running
+  date: May 2019
+  desc: "Completed the [100 Days of Running challenge](https://hdor.com/100-days-of-running/) and received a platinum medal"
+  big: true
+
+- title: 3rd Place at Startup Weekend
+  date: November 2018
+  desc: "Presented StoAR at the 54-hour TechStars Startup Weekend. The demo was pitched to a panel of judges, including an investor from Dragon's Den, and received third place"
+  big: true
+
+- title: First Place Pitch at Hackathon
+  date: September 2018
+  desc: "Came first for pitching [Mathu](https://mathu.cf) at the 24-hour Imagine Hackathon in Brampton"
+  big: true
+  coords:
+    - [43.6831, -79.7667]
+
+- title: Basic Aviation
+  date: August 2018
+  desc: "Successfully completed a 3-week summer training course at CFB Trenton as a cadet in the Aviation Wing"
+  big: true
+  coords:
+    - [44.1121, -77.5279]
+
+- title: First Place in Gauss
+  date: May 2017
+  desc: "Ranked first place from my school *Allan A. Martin*, for writing the Gauss Math Contest"
+  big: true
+
+- title: App of the Month
+  date: January 2017
+  desc: "Received the [Most Creative App of the Month](https://web.archive.org/web/20170204071134/http://appinventor.mit.edu/explore/app-month-gallery.html) from MIT App Inventor for my app [Spellbind](https://go.param.me/spellbind)"
+  big: true

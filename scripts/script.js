@@ -30,9 +30,57 @@ function switchTab(element, id) {
   document.querySelector(id).classList.add("active");
   element.classList.add("active");
 
+  if (id === "#card3") {
+    initTimelineMaps();
+  }
+
   window.scroll({
     top: window.innerHeight - 200,
     behavior: "smooth",
+  });
+}
+
+var timelineMapsInitialized = false;
+
+function initTimelineMaps() {
+  if (timelineMapsInitialized || typeof L === "undefined") return;
+  timelineMapsInitialized = true;
+
+  document.querySelectorAll(".tcontent[data-coords]").forEach(function (el) {
+    var coords = JSON.parse(el.getAttribute("data-coords"));
+    var mapEl = el.querySelector(".event-map");
+    if (!mapEl || !coords.length) return;
+
+    var map = L.map(mapEl, {
+      zoomControl: false,
+      dragging: false,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      keyboard: false,
+    });
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    if (coords.length === 1) {
+      map.setView(coords[0], 12);
+      L.marker(coords[0]).addTo(map);
+    } else {
+      var line = L.polyline(coords, { color: "#4a9eff", weight: 3 }).addTo(map);
+      coords.forEach(function (c) {
+        L.circleMarker(c, {
+          radius: 6,
+          color: "#4a9eff",
+          fillColor: "#fff",
+          fillOpacity: 1,
+          weight: 2,
+        }).addTo(map);
+      });
+      map.fitBounds(line.getBounds(), { padding: [15, 15] });
+    }
+
+    setTimeout(function () { map.invalidateSize(); }, 200);
   });
 }
 

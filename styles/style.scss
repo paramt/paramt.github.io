@@ -427,6 +427,22 @@ a:hover {
   margin-bottom: 60px;
 }
 
+.event-map {
+  height: 180px;
+  border-radius: 10px;
+  margin-top: 15px;
+  overflow: hidden;
+
+  .leaflet-attribution-flag {
+    display: none;
+  }
+
+  .leaflet-control-attribution {
+    font-size: 9px;
+    opacity: 0.7;
+  }
+}
+
 @media screen and (max-width: 900px) {
   .timeline {
     margin: 50px auto;

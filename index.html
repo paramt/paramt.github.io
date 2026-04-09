@@ -136,12 +136,13 @@
 
       <div class="timeline">
       {% for event in site.data.timeline %}
-       {% if event.big == "true" %}
+       {% if event.big %}
         <div class="tcontainer {% cycle "left", "right" %}">
-          <div class="tcontent">
+          <div class="tcontent" {% if event.coords %}data-coords="{{ event.coords | jsonify }}"{% endif %}>
             <h3>{{ event.title }}</h3>
             <p class="light">{{ event.date }}</p>
-            <p>{{ event.desc || markdownify}}</p>
+            <p>{{ event.desc | markdownify }}</p>
+            {% if event.coords %}<div class="event-map"></div>{% endif %}
           </div>
         </div>
         {% endif %}
