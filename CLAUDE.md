@@ -25,7 +25,9 @@ The timeline has two parallel interaction sources — the entry list on the left
 - `entryRefs` — a `Map<event, DOMElement>` used to scroll selected entries into view.
 
 **Hover hitbox:**
-- `onMouseEnter`/`onMouseLeave` are on `.timeline-event`, which has `width: fit-content` so the hitbox only covers the text, not the full column width.
+- `onMouseEnter`/`onMouseLeave` are on `.timeline-event`.
+- When nothing is selected, `.timeline-event` spans the full column width — easy to discover hover by accident while scrolling.
+- When an entry is selected, the `.timeline` container gets class `timeline--has-selection`, which applies `width: fit-content` to all entries via CSS. This shrinks each hitbox to text-only, preventing accidental hover from disturbing the selected state.
 - The dot highlight uses `.timeline-event--active` and `.timeline-event--selected` CSS classes (not `:hover`) so it's driven purely by JS state.
 
 **Selected style (month ribbon):**

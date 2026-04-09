@@ -594,7 +594,6 @@ main {
   grid-template-columns: 32px 1fr;
   gap: 0 12px;
   align-items: stretch;
-  width: fit-content;
   scroll-margin-top: calc(var(--nav-height) + 16px);
   scroll-margin-bottom: 16px;
 }
@@ -652,6 +651,10 @@ main {
 
 .timeline-event {
   cursor: pointer;
+}
+
+.timeline--has-selection .timeline-event {
+  width: fit-content;
 }
 
 .timeline-event--selected .timeline-month {
