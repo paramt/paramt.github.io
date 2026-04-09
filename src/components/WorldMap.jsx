@@ -280,19 +280,23 @@ export default function WorldMap({ coords, allCoords = [], noZoom = false, onMar
       <canvas ref={canvasRef} className="world-map-canvas" />
       {coordsPts && (
         <div ref={activeMarkersRef} aria-hidden="true">
-          {coordsPts.map((c, i) => (
-            <div
-              key={i}
-              className="map-marker"
-              style={{
-                left: `${projX(c.lng, curBounds.current) * 100}%`,
-                top:  `${projY(c.lat, curBounds.current) * 100}%`,
-              }}
-            >
-              <div className="map-marker-pulse" />
-              <div className="map-marker-dot" />
-            </div>
-          ))}
+          {coordsPts.map((c, i) => {
+            const isRoute = coordsPts.length > 1;
+            const isIntermediate = isRoute && i > 0 && i < coordsPts.length - 1;
+            return (
+              <div
+                key={i}
+                className={`map-marker${isIntermediate ? " map-marker--intermediate" : ""}`}
+                style={{
+                  left: `${projX(c.lng, curBounds.current) * 100}%`,
+                  top:  `${projY(c.lat, curBounds.current) * 100}%`,
+                }}
+              >
+                {!isRoute && <div className="map-marker-pulse" />}
+                <div className="map-marker-dot" />
+              </div>
+            );
+          })}
         </div>
       )}
       {(!coordsPts || noZoom) && (
