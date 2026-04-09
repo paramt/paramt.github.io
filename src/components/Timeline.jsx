@@ -66,7 +66,7 @@ export default function Timeline() {
       <div className="timeline-layout">
         <div className="timeline-col">
           <h2 className="section-title">Timeline</h2>
-          <p className="section-subtitle">A microblog of things I've done.<span className="timeline-hover-hint"> Hover over an event to see more details!</span></p>
+          <p className="section-subtitle">A microblog of things I've done.<span className="timeline-hover-hint"> Click an event to see more details!</span></p>
           <div className="timeline">
             {flat.map((event, i) => {
               const prevEvent = flat[i - 1];

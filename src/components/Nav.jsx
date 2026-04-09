@@ -8,17 +8,19 @@ export default function Nav() {
 
   return (
     <nav className="nav">
-      <a href="#top" className="nav-name">param.me</a>
-      <div className="nav-links">
-        {links.map(({ href, label }) => (
-          <a key={href} href={href}>{label}</a>
-        ))}
-        <a href="https://linkedin.com/in/paramt" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <LinkedInIcon />
-        </a>
-        <a href="https://github.com/paramt" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <GitHubIcon />
-        </a>
+      <div className="nav-inner">
+        <a href="#top" className="nav-name">param.me</a>
+        <div className="nav-links">
+          {links.map(({ href, label }) => (
+            <a key={href} href={href}>{label}</a>
+          ))}
+          <a href="https://linkedin.com/in/paramt" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <LinkedInIcon />
+          </a>
+          <a href="https://github.com/paramt" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <GitHubIcon />
+          </a>
+        </div>
       </div>
     </nav>
   );

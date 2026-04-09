@@ -57,13 +57,26 @@ a:hover {
   position: sticky;
   top: 0;
   height: var(--nav-height);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  z-index: 100;
+}
+
+@media (min-width: 860px) {
+  .nav-inner {
+    max-width: calc(var(--max-width) + 380px + 56px);
+  }
 }
 
 .nav-name {
