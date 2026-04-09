@@ -112,15 +112,16 @@ export const timeline = [
   {
     year: "2026",
     events: [
+      // { month: "Apr", title: "Route 66 road trip", description: null, coords: [{ lat: 43.6532, lng: -79.3832 }, { lat: 41.8781, lng: -87.6298 }, { lat: 39.7817, lng: -89.6501 }, { lat: 38.6270, lng: -90.1994 }, { lat: 37.0842, lng: -94.5133 }, { lat: 36.1539, lng: -95.9928 }, { lat: 35.4676, lng: -97.5164 }, { lat: 35.2220, lng: -101.8313 }, { lat: 35.0844, lng: -106.6504 }, { lat: 35.1983, lng: -111.6513 }, { lat: 34.8958, lng: -117.0173 }, { lat: 34.0522, lng: -118.2437 }, { lat: 34.0195, lng: -118.8065 }, { lat: 34.4208, lng: -119.6982 }, { lat: 35.2828, lng: -120.6596 }, { lat: 36.2704, lng: -121.8084 }, { lat: 36.6002, lng: -121.8947 }, { lat: 37.7749, lng: -122.4194 }] },
       { month: "Mar", title: "New York visit", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(nyc2026a, thumbNyc2026a, 1762, 1322), img(nyc2026b, thumbNyc2026b, 1386, 1848)] },
-      { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, coords: { lat: 28.5729, lng: -80.6490 }, attachments: [img(ksc1, thumbKsc1, 4096, 3072), img(orlando, thumbOrlando, 1600, 1200)] },
+      { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, coords: { lat: 28.5729, lng: -80.6490 }, attachments: [img(ksc1, thumbKsc1, 3072, 4096), img(orlando, thumbOrlando, 1600, 1200)] },
       // { month: "Jan", title: "Learned Piano Man on the harmonica", description: null, coords: null },
     ],
   },
   {
     year: "2025",
     events: [
-      { month: "Dec", title: "Road trip through the Florida Keys", description: null, coords: [{ lat: 25.7617, lng: -80.1918 }, { lat: 25.0865, lng: -80.4473 }, { lat: 24.9246, lng: -80.6476 }, { lat: 24.7064, lng: -81.0936 }, { lat: 24.5551, lng: -81.7800 }], attachments: [img(miamiKeys, thumbMiamiKeys, 5712, 4284), img(miami2Keys, thumbMiami2Keys, 5712, 4284)] },
+      { month: "Dec", title: "Road trip through the Florida Keys", description: null, coords: [{ lat: 25.7617, lng: -80.1918 }, { lat: 25.0865, lng: -80.4473 }, { lat: 24.9246, lng: -80.6476 }, { lat: 24.7064, lng: -81.0936 }, { lat: 24.5551, lng: -81.7800 }], attachments: [img(miamiKeys, thumbMiamiKeys, 5712, 4284), img(miami2Keys, thumbMiami2Keys, 4284, 5712)] },
       { month: "Sep", title: "Joined Quora", description: null, coords: null, attachments: [note("Joined the Ads Targeting team as a Machine Learning Engineering Intern", "pink")] },
       { month: "Sep", title: "Cottage trip in Quebec", description: null, coords: { lat: 46.4171, lng: -75.4782 }, attachments: [img(quebecCottage, thumbQuebecCottage, 5712, 4284)] },
       { month: "Aug", title: "Visited Singapore", description: null, coords: { lat: 1.3521, lng: 103.8198 }, attachments: [img(singapore1, thumbSingapore1, 4032, 3024), img(singapore2, thumbSingapore2, 5712, 4284)] },
@@ -128,7 +129,7 @@ export const timeline = [
       { month: "Jul", title: "Ran the SF 10k", description: null, coords: { lat: 37.7749, lng: -122.4194 }, attachments: [img(sfRace, thumbSfRace, 5712, 4284), img(sfRace2, thumbSfRace2, 478, 720)] },
       { month: "Jun", title: "Went camping in Yosemite", description: null, coords: { lat: 37.8651, lng: -119.5383 }, attachments: [img(yosemite1, thumbYosemite1, 4032, 3024), img(yosemite3, thumbYosemite3, 4032, 3024), img(yosemite4, thumbYosemite4, 5712, 4284), img(yosemite5, thumbYosemite5, 4032, 3024)] },
       { month: "Jun", title: "Went surfing for the first time", description: null, coords: { lat: 36.9741, lng: -122.0308 }, attachments: [img(surfing, thumbSurfing, 5712, 4284)] },
-      { month: "May", title: "Joined Glean", description: null, coords: { lat: 37.4419, lng: -122.1430 }, attachments: [img(glean1, thumbGlean1, 5712, 4284),  note("Built an [automated evals suite for Deep Research ↗](https://www.glean.com/blog/intern-life-at-glean#deep-research)", "yellow"), img(gleanTwinPeaks, thumbGleanTwinPeaks, 4032, 3024)], },
+      { month: "May", title: "Joined Glean", description: null, coords: { lat: 37.4419, lng: -122.1430 }, attachments: [img(glean1, thumbGlean1, 4284, 5712),  note("Built an [automated evals suite for Deep Research ↗](https://www.glean.com/blog/intern-life-at-glean#deep-research)", "yellow"), img(gleanTwinPeaks, thumbGleanTwinPeaks, 4032, 3024)], },
       // { month: "May", title: "Watched Attack on Titan Orchestral performance", description: null, coords: { lat: 43.6532, lng: -79.3832 } },
     ],
   },
@@ -136,7 +137,7 @@ export const timeline = [
     year: "2024",
     events: [
       { month: "Nov", title: "SF visit", description: null, coords: { lat: 37.7749, lng: -122.4194 }, attachments: [img(sfDatacurve1, thumbSfDatacurve1, 4032, 3024), img(sfDatacurve2, thumbSfDatacurve2, 4032, 3024), img(sfDatacurve3, thumbSfDatacurve3, 5712, 4284)] },
-      { month: "Oct", title: "Saw the Attack on Titan musical in New York", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(aotMusical, thumbAotMusical, 3072, 4096)] },
+      { month: "Oct", title: "Saw the Attack on Titan musical in New York", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(aotMusical, thumbAotMusical, 3072, 3585)] },
       { month: "Sep", title: "Joined Expertise.ai", description: null, coords: { lat: 43.6629, lng: -79.3957 }, attachments: [img(expertiseAi1, thumbExpertiseAi1, 3024, 4032), img(expertiseAi2, thumbExpertiseAi2, 3024, 4032)] },
       { month: "Aug", title: "Visited Vancouver & Seattle", description: null, coords: [{ lat: 49.2827, lng: -123.1207 }, { lat: 49.0027, lng: -122.7554 }, { lat: 48.7519, lng: -122.4787 }, { lat: 48.4229, lng: -122.3349 }, { lat: 47.9790, lng: -122.2021 }, { lat: 47.6062, lng: -122.3321 }], attachments: [img(seattle1, thumbSeattle1, 3024, 4032), img(seattle2, thumbSeattle2, 3024, 4032)] },
       // { month: "Jun", title: "Hindu Students Council shibhir in Pennsylvania", description: null, coords: { lat: 40.9699, lng: -77.7278 } },
