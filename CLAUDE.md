@@ -1,3 +1,5 @@
+> **Keep this file current.** Whenever you change an existing approach or build something non-obvious, update or add the relevant section here before finishing the task. Stale docs cause repeat mistakes.
+
 # Timeline Interaction Model
 
 The timeline has two parallel interaction sources — the entry list on the left and the world map on the right — and two interaction levels: hover (transient) and select (persistent). These combine into five states:
@@ -71,7 +73,7 @@ Every `<Polaroid>` with a `thumb` prop goes through four phases:
 
 | Phase | Placeholder | Thumb | Full image |
 |---|---|---|---|
-| Fetching | `position:absolute`, visible (sets min perceived height) | in flow, naturally invisible until loaded | `polaroid-img-loading` — absolute, `opacity:0` |
+| Fetching | `position:absolute`, visible (overlays spacer) | `position:absolute` until loaded (out of flow, hidden behind placeholder) | `polaroid-img-loading` — absolute, `opacity:0` |
 | Thumb loaded | fades to `opacity:0` (CSS transition, stays in DOM) | visible, in flow (sets container height) | `polaroid-img-loading` — absolute, `opacity:0` |
 | Full image loaded | removed from DOM | still in flow | `polaroid-img-fading` — absolute, `opacity:0→1` over 400ms |
 | Transition done (~400ms) | — | removed from DOM | no class — in flow, final size |
@@ -83,7 +85,7 @@ Every `<Polaroid>` with a `thumb` prop goes through four phases:
 - `imgReady` — 400ms after `loaded`, set via `setTimeout(FILTER_DURATION)` (fires removal of thumb)
 - `thumbLoaded` — thumb has finished downloading (fades placeholder out)
 
-**Placeholder aspect ratio:** `.polaroid-media` always has an inline `aspect-ratio` style. If `w`/`h` props are provided it uses those; otherwise it falls back to `3/2` until `thumbLoaded` is true (at which point the thumb is in flow and sets the container height naturally, so the constraint is released). This prevents the placeholder from looking squashed when a single polaroid stretches to full container width.
+**Placeholder aspect ratio:** A hidden spacer `<div>` is rendered in flow inside `.polaroid-media` while `thumb && !thumbLoaded && !imgReady`. It has `aspect-ratio: w/h` (or `3/2` fallback) and is the sole in-flow element giving the container its height before the thumb loads. It is removed once the thumb loads (thumb takes over) or if the main image was already cached (`imgReady` true on mount, main img immediately in flow). The placeholder and thumb are both `position:absolute` during this phase so they don't stack with the spacer.
 
 **Cached-image shortcut:** on mount, a `useEffect` checks `imgRef.current?.complete`. If true (image was preloaded into memory cache), both `loaded` and `imgReady` are set immediately — no thumb phase, full image shown directly.
 
@@ -127,4 +129,6 @@ Naming: `{original-name}.thumb.webp` in the same directory.
 Wire up:
 - Hero: import in `src/data/heroPolaroids.js`, add `thumb` field to entry
 - Timeline: import in `src/data/timeline.js`, wrap with `img(src, thumb)` helper
-- Both: add `w` and `h` (pixel dimensions of the full image) to the entry so `<Polaroid>` can set the correct `aspect-ratio` on its media container instead of falling back to `3/2`
+- Both: add `w` and `h` (pixel dimensions of the full image) to the entry so `<Polaroid>` can set the correct `aspect-ratio` on its placeholder instead of falling back to `3/2`
+
+**EXIF rotation warning:** `sips -g pixelWidth -g pixelHeight` reports raw sensor dimensions, ignoring EXIF orientation. iPhone portrait photos are stored landscape in the file (e.g. `4096x3072`) with an EXIF rotate tag — they display as portrait (`3072x4096`). Always use the **display** dimensions (what you see) for `w`/`h`, not the raw `sips` output. When in doubt, open the image and read the dimensions from Preview or Finder's Get Info.
