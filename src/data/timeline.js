@@ -46,6 +46,8 @@ import techcrunchDisrupt from './images/techcrunch disrupt.jpg';
 
 import bostonHackmit from './images/boston hackmit.jpg';
 
+import aotMusical from './images/aot musical.jpg';
+
 import waterloo from './images/waterloo.jpg';
 
 import thumbKsc1 from './images/ksc 1.thumb.webp';
@@ -80,6 +82,7 @@ import thumbAmanHambleton from './images/aman hambleton.thumb.webp';
 import thumbEricHansen from './images/eric hansen.thumb.webp';
 import thumbTechcrunchDisrupt from './images/techcrunch disrupt.thumb.webp';
 import thumbBostonHackmit from './images/boston hackmit.thumb.webp';
+import thumbAotMusical from './images/aot musical.thumb.webp';
 import thumbWaterloo from './images/waterloo.thumb.webp';
 
 import skydiving1 from './images/skydiving 1.jpg';
@@ -109,7 +112,7 @@ export const timeline = [
   {
     year: "2026",
     events: [
-      { month: "Mar", title: "Visited New York", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(nyc2026a, thumbNyc2026a), img(nyc2026b, thumbNyc2026b)] },
+      { month: "Mar", title: "New York visit", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(nyc2026a, thumbNyc2026a), img(nyc2026b, thumbNyc2026b)] },
       { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, coords: { lat: 28.5729, lng: -80.6490 }, attachments: [img(ksc1, thumbKsc1), img(orlando, thumbOrlando)] },
       // { month: "Jan", title: "Learned Piano Man on the harmonica", description: null, coords: null },
     ],
@@ -126,34 +129,34 @@ export const timeline = [
       { month: "Jun", title: "Went camping in Yosemite", description: null, coords: { lat: 37.8651, lng: -119.5383 }, attachments: [img(yosemite1, thumbYosemite1), img(yosemite3, thumbYosemite3), img(yosemite4, thumbYosemite4), img(yosemite5, thumbYosemite5)] },
       { month: "Jun", title: "Went surfing for the first time", description: null, coords: { lat: 36.9741, lng: -122.0308 }, attachments: [img(surfing, thumbSurfing)] },
       { month: "May", title: "Joined Glean", description: null, coords: { lat: 37.4419, lng: -122.1430 }, attachments: [img(glean1, thumbGlean1),  note("Built an [automated evals suite for Deep Research ↗](https://www.glean.com/blog/intern-life-at-glean#deep-research)", "yellow"), img(gleanTwinPeaks, thumbGleanTwinPeaks)], },
-      { month: "May", title: "Watched Attack on Titan Orchestral performance", description: null, coords: { lat: 43.6532, lng: -79.3832 } },
+      // { month: "May", title: "Watched Attack on Titan Orchestral performance", description: null, coords: { lat: 43.6532, lng: -79.3832 } },
     ],
   },
   {
     year: "2024",
     events: [
       { month: "Nov", title: "SF visit", description: null, coords: { lat: 37.7749, lng: -122.4194 }, attachments: [img(sfDatacurve1, thumbSfDatacurve1), img(sfDatacurve2, thumbSfDatacurve2), img(sfDatacurve3, thumbSfDatacurve3)] },
-      { month: "Oct", title: "Saw the AOT musical in New York", description: null, coords: { lat: 40.7128, lng: -74.0060 } },
-      { month: "Sep", title: "Joined Expertise.ai as a SWE intern", description: null, coords: { lat: 43.6629, lng: -79.3957 }, attachments: [img(expertiseAi1, thumbExpertiseAi1), img(expertiseAi2, thumbExpertiseAi2)] },
+      { month: "Oct", title: "Saw the Attack on Titan musical in New York", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(aotMusical, thumbAotMusical)] },
+      { month: "Sep", title: "Joined Expertise.ai", description: null, coords: { lat: 43.6629, lng: -79.3957 }, attachments: [img(expertiseAi1, thumbExpertiseAi1), img(expertiseAi2, thumbExpertiseAi2)] },
       { month: "Aug", title: "Visited Vancouver & Seattle", description: null, coords: [{ lat: 49.2827, lng: -123.1207 }, { lat: 49.0027, lng: -122.7554 }, { lat: 48.7519, lng: -122.4787 }, { lat: 48.4229, lng: -122.3349 }, { lat: 47.9790, lng: -122.2021 }, { lat: 47.6062, lng: -122.3321 }], attachments: [img(seattle1, thumbSeattle1), img(seattle2, thumbSeattle2)] },
       // { month: "Jun", title: "Hindu Students Council shibhir in Pennsylvania", description: null, coords: { lat: 40.9699, lng: -77.7278 } },
       { month: "May", title: "Went canoeing in Long Point", description: null, coords: { lat: 42.5500, lng: -80.4500 } },
       { month: "May", title: "Visited Trinidad", description: null, coords: { lat: 10.6918, lng: -61.2225 }, attachments: [img(trinidad1, thumbTrinidad1)] },
       { month: "Mar", title: "Road trip to Boston", description: null, coords: [{ lat: 43.4711, lng: -80.5445 }, { lat: 43.0896, lng: -79.0849 }, { lat: 42.8864, lng: -78.8784 }, { lat: 43.1566, lng: -77.6088 }, { lat: 43.0481, lng: -76.1474 }, { lat: 42.6526, lng: -73.7562 }, { lat: 42.1015, lng: -72.5898 }, { lat: 42.3601, lng: -71.0589 }], attachments: [img(boston, thumbBoston)] },
-      { month: "Jan", title: "Joined Dropbase as a SWE intern", description: null, coords: null },
+      { month: "Jan", title: "Joined Dropbase", description: null, coords: null },
     ],
   },
   {
     year: "2023",
     events: [
       { month: "Dec", title: "Visited New York", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(nyc2023c, thumbNyc2023c), img(nyc2023b, thumbNyc2023b), img(nyc2023a, thumbNyc2023a)] },
-      { month: "Dec", title: "Watched the Champions Chess Tour 2023", description: null, coords: { lat: 43.6532, lng: -79.383 }, attachments: [img(amanHambleton, thumbAmanHambleton), img(ericHansen, thumbEricHansen)] },
-      { month: "Sep", title: "Attended TechCrunch Disrupt in SF", description: null, coords: { lat: 37.7749, lng: -122.4194 }, attachments: [img(techcrunchDisrupt, thumbTechcrunchDisrupt)] },
+      { month: "Dec", title: "Attended the Champions Chess Tour 2023", description: null, coords: { lat: 43.6532, lng: -79.383 }, attachments: [img(amanHambleton, thumbAmanHambleton), img(ericHansen, thumbEricHansen)] },
+      { month: "Sep", title: "Attended TechCrunch Disrupt", description: null, coords: { lat: 37.7749, lng: -122.4194 }, attachments: [img(techcrunchDisrupt, thumbTechcrunchDisrupt)] },
       { month: "Sep", title: "Attended HackMIT", description: null, coords: { lat: 42.3601, lng: -71.0942 }, attachments: [img(bostonHackmit, thumbBostonHackmit)] },
       // { month: "Jul", title: "Visited Grand Bend", description: null },
       { month: "Jun", title: "Judged JAMHacks 7", description: null, coords: { lat: 43.4723, lng: -80.5449 } },
       // { month: "May", title: "Attended protest", description: null, coords: null },
-      { month: "May", title: "Joined zipBoard as a SWE intern", description: null, coords: null },
+      { month: "May", title: "Joined zipBoard", description: null, coords: null },
       { month: "Apr", title: "Attended Jane Street's PuzzleCity", description: null, coords: { lat: 43.448702851066614, lng: -80.48725742894958 } },
       { month: "Jan", title: "Attended ConUHacks in Montreal", description: null, coords: { lat: 45.4941, lng: -73.5779 } },
     ],
