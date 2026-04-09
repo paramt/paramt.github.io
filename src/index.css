@@ -153,6 +153,7 @@ main {
 .polaroid-media {
   position: relative;
   overflow: hidden;
+  min-height: 100px;
 }
 
 .polaroid img,
@@ -171,13 +172,19 @@ main {
 }
 
 .polaroid-placeholder {
-  aspect-ratio: 4/3;
-  width: 100%;
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #e8e0d4;
   color: #b0a898;
+  transition: opacity 0.3s ease;
+}
+
+.polaroid-placeholder-fade {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .polaroid-img-loading {

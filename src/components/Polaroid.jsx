@@ -68,8 +68,8 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
     >
       {tack && <Tack size={5} style={{ position: 'absolute', top: -5, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }} />}
       <div className="polaroid-media">
-        {!loaded && (!thumb || !thumbLoaded) && (
-          <div className="polaroid-placeholder" aria-hidden="true">
+        {!loaded && (
+          <div className={`polaroid-placeholder${thumb && thumbLoaded ? ' polaroid-placeholder-fade' : ''}`} aria-hidden="true">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
               <circle cx="8.5" cy="8.5" r="1.5"/>
@@ -78,7 +78,7 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
           </div>
         )}
         {thumb && !loaded && (
-          <img ref={thumbImgRef} src={thumb} aria-hidden="true" className="polaroid-thumb" onLoad={() => setThumbLoaded(true)} />
+          <img ref={thumbImgRef} src={thumb} aria-hidden="true" className="polaroid-thumb" fetchPriority={priority ? "high" : "auto"} onLoad={() => setThumbLoaded(true)} />
         )}
         <img
           ref={imgRef}

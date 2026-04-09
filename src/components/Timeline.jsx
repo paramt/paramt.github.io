@@ -21,7 +21,7 @@ export default function Timeline() {
     // Polaroids are hidden below 860px — skip preloading on those devices
     if (window.innerWidth < 860) return;
 
-    const images = flat.flatMap(e => (e.attachments ?? []).filter(a => a.type === 'image').map(a => a.src));
+    const images = flat.flatMap(e => (e.attachments ?? []).filter(a => a.type === 'image').flatMap(a => [a.src, a.thumb].filter(Boolean)));
     if (images.length === 0) return;
 
     let preloaded = false;

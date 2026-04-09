@@ -17,7 +17,7 @@ export default function Hero() {
 
     const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 500));
     idle(() => {
-      heroPolaroids.forEach(p => { new Image().src = p.image; });
+      heroPolaroids.forEach(p => { new Image().src = p.image; if (p.thumb) new Image().src = p.thumb; });
     });
   }, []);
 
