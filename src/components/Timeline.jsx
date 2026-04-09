@@ -54,6 +54,10 @@ export default function Timeline() {
     return pts.map(({ lat, lng }) => ({ lat, lng, event: e }));
   });
 
+  const allRoutes = flat
+    .filter((e) => Array.isArray(e.coords) && e.coords.length > 1)
+    .map((e) => e.coords);
+
   const activeEvent = hoveredEvent ?? selectedEvent;
   const activeCoords = activeEvent?.coords ?? null;
   const activeAttachments = activeEvent?.attachments ?? [];
@@ -117,6 +121,7 @@ export default function Timeline() {
             <WorldMap
               coords={activeCoords}
               allCoords={allCoords}
+              allRoutes={allRoutes}
               noZoom={noZoom}
               onMarkerHover={(event) => { hoverSourceRef.current = 'map'; setHoveredEvent(event); }}
               onMarkerLeave={() => { hoverSourceRef.current = null; setHoveredEvent(null); }}
