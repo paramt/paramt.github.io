@@ -3,7 +3,7 @@ import Tack from './Tack';
 
 const FILTER_DURATION = 400; // ms — must match transition in CSS
 
-export default function Polaroid({ src, thumb, alt = "", video, rotate, color = false, static: isStatic = false, location, date, priority = false, tack = true }) {
+export default function Polaroid({ src, thumb, alt = "", video, rotate, color = false, static: isStatic = false, location, date, priority = false, tack = true, onClick }) {
   const videoRef = useRef(null);
   const imgRef = useRef(null);
   const playTimerRef = useRef(null);
@@ -53,9 +53,10 @@ export default function Polaroid({ src, thumb, alt = "", video, rotate, color = 
   return (
     <div
       className={classes}
-      style={{ '--polaroid-rotate': `${deg}deg` }}
+      style={{ '--polaroid-rotate': `${deg}deg`, cursor: onClick ? 'pointer' : undefined }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
     >
       {tack && <Tack size={5} style={{ position: 'absolute', top: -5, left: '50%', transform: 'translateX(-50%)', zIndex: 1 }} />}
       <div className="polaroid-media">
