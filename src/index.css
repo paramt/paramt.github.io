@@ -170,6 +170,16 @@ main {
   filter: grayscale(70%) sepia(60%);
 }
 
+.polaroid-placeholder {
+  aspect-ratio: 4/3;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8e0d4;
+  color: #b0a898;
+}
+
 .polaroid-img-loading {
   position: absolute;
   inset: 0;
