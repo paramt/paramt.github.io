@@ -24,6 +24,11 @@ The timeline has two parallel interaction sources — the entry list on the left
 - `flat` is `useMemo`-ized so event object references are stable for `===` identity checks.
 - `entryRefs` — a `Map<event, DOMElement>` used to scroll selected entries into view.
 
+**Coordinate data format (`timeline.js`):**
+- Each event has a `coords` field: `null` (no location), `{ lat, lng }` (single point), or `[{ lat, lng }, ...]` (ordered route/multi-point).
+- `allCoords` in `Timeline.jsx` is built by flatMapping all events — route events expand into one entry per waypoint, all sharing the same `event` reference.
+- `activeCoords = activeEvent?.coords ?? null` — passed directly to `WorldMap` as the `coords` prop.
+
 **Hover hitbox:**
 - `onMouseEnter`/`onMouseLeave` are on `.timeline-event`.
 - When nothing is selected, `.timeline-event` spans the full column width — easy to discover hover by accident while scrolling.
@@ -36,9 +41,14 @@ The timeline has two parallel interaction sources — the entry list on the left
 - `transform-origin: right center` so it slides in/out from the timeline line.
 
 **WorldMap (`WorldMap.jsx`):**
+- `coords` prop: `{ lat, lng } | Array<{ lat, lng }> | null` — single point or ordered route.
+- Normalised internally to `coordsPts` (array or null) for uniform handling.
 - Static markers (`allCoords`) carry the full event object (`{ lat, lng, event }`) so callbacks can pass it back.
-- `noZoom` prop: when true, `animateTo(WORLD)`; when false, `animateTo(targetBoundsFor(coords))`.
-- Static markers stay visible during map-source interactions (`!coords || noZoom`); hidden during timeline-source interactions.
+- `noZoom` prop: when true, `animateTo(WORLD)`; when false, `animateTo(targetBoundsFor(coordsPts))`.
+- `targetBoundsFor` accepts an array: single point → existing CA/NA/WORLD zone logic; multiple points → dynamic bbox with 40% padding.
+- Active markers: one pulsing dot per point in `coordsPts`; rendered in a shared container (`activeMarkersRef`) repositioned each animation frame.
+- Route polyline: when `coordsPts.length > 1`, `drawRoute` draws a dashed red line on the canvas connecting waypoints in order.
+- Static markers stay visible during map-source interactions (`!coordsPts || noZoom`); hidden during timeline-source interactions.
 - Markers have `pointer-events: auto` (overrides the parent `pointer-events: none`) with `onMouseEnter`, `onMouseLeave`, and `onClick` callbacks.
 
 ---

@@ -48,12 +48,14 @@ export default function Timeline() {
     }
   }, [selectedEvent]);
 
-  const allCoords = flat
-    .filter((e) => e.lat != null && e.lng != null)
-    .map((e) => ({ lat: e.lat, lng: e.lng, event: e }));
+  const allCoords = flat.flatMap((e) => {
+    if (!e.coords) return [];
+    const pts = Array.isArray(e.coords) ? e.coords : [e.coords];
+    return pts.map(({ lat, lng }) => ({ lat, lng, event: e }));
+  });
 
   const activeEvent = hoveredEvent ?? selectedEvent;
-  const activeCoords = activeEvent?.lat != null ? { lat: activeEvent.lat, lng: activeEvent.lng } : null;
+  const activeCoords = activeEvent?.coords ?? null;
   const activeAttachments = activeEvent?.attachments ?? [];
   const noZoom = hoveredEvent
     ? hoverSourceRef.current === 'map'
@@ -71,7 +73,7 @@ export default function Timeline() {
             {flat.map((event, i) => {
               const prevEvent = flat[i - 1];
               const showYearBefore = !prevEvent || event.year !== prevEvent.year;
-              const hasCoords = event.lat != null && event.lng != null;
+              const hasCoords = event.coords != null;
               return (
                 <div key={i}>
                   {showYearBefore && (
