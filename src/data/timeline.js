@@ -139,7 +139,7 @@ export const timeline = [
       // { month: "Jun", title: "Hindu Students Council shibhir in Pennsylvania", description: null, coords: { lat: 40.9699, lng: -77.7278 } },
       { month: "May", title: "Went canoeing in Long Point", description: null, coords: { lat: 42.5500, lng: -80.4500 } },
       { month: "May", title: "Visited Trinidad", description: null, coords: { lat: 10.6918, lng: -61.2225 }, attachments: [img(trinidad1, thumbTrinidad1)] },
-      { month: "Mar", title: "Road trip to Boston", description: null, coords: [{ lat: 43.4711, lng: -80.5445 }, { lat: 44.2312, lng: -76.4860 }, { lat: 44.3476, lng: -75.9592 }, { lat: 43.9748, lng: -75.9107 }, { lat: 43.0481, lng: -76.1474 }, { lat: 42.6526, lng: -73.7562 }, { lat: 42.1015, lng: -72.5898 }, { lat: 42.3601, lng: -71.0589 }], attachments: [img(boston, thumbBoston)] },
+      { month: "Mar", title: "Road trip to Boston", description: null, coords: [{ lat: 43.4711, lng: -80.5445 }, { lat: 43.0896, lng: -79.0849 }, { lat: 42.8864, lng: -78.8784 }, { lat: 43.1566, lng: -77.6088 }, { lat: 43.0481, lng: -76.1474 }, { lat: 42.6526, lng: -73.7562 }, { lat: 42.1015, lng: -72.5898 }, { lat: 42.3601, lng: -71.0589 }], attachments: [img(boston, thumbBoston)] },
       { month: "Jan", title: "Joined Dropbase as a SWE intern", description: null, coords: null },
     ],
   },
