@@ -32,11 +32,26 @@ const ANIM_DURATION = 500;
 
 function isCalifornia(lat, lng)   { return lat >= 32 && lat <= 42 && lng >= -125 && lng <= -114; }
 function isNorthAmerica(lat, lng) { return lat >= 22 && lat <= 73 && lng >= -170 && lng <= -50; }
-function targetBoundsFor(coords) {
-  if (!coords) return WORLD;
-  if (isCalifornia(coords.lat, coords.lng))   return CA;
-  if (isNorthAmerica(coords.lat, coords.lng)) return NA;
-  return WORLD;
+function targetBoundsFor(pts) {
+  if (!pts || pts.length === 0) return WORLD;
+  if (pts.length === 1) {
+    const { lat, lng } = pts[0];
+    if (isCalifornia(lat, lng))   return CA;
+    if (isNorthAmerica(lat, lng)) return NA;
+    return WORLD;
+  }
+  const lats = pts.map(p => p.lat);
+  const lngs = pts.map(p => p.lng);
+  const latMin = Math.min(...lats), latMax = Math.max(...lats);
+  const lngMin = Math.min(...lngs), lngMax = Math.max(...lngs);
+  const latPad = Math.max((latMax - latMin) * 0.4, 2);
+  const lngPad = Math.max((lngMax - lngMin) * 0.4, 3);
+  return {
+    latMin: Math.max(latMin - latPad, -58),
+    latMax: Math.min(latMax + latPad, 80),
+    lngMin: Math.max(lngMin - lngPad, -180),
+    lngMax: Math.min(lngMax + lngPad, 180),
+  };
 }
 
 function easeInOut(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
@@ -137,24 +152,46 @@ function drawStates(ctx, topo, w, h, isDark, bounds, opacity) {
   });
 }
 
+// ── Route polyline renderer ───────────────────────────────────────────────────
+function drawRoute(ctx, pts, w, h, b) {
+  if (!pts || pts.length < 2) return;
+  ctx.save();
+  ctx.beginPath();
+  pts.forEach((c, i) => {
+    const x = projX(c.lng, b) * w;
+    const y = projY(c.lat, b) * h;
+    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+  });
+  ctx.strokeStyle = '#eb4034';
+  ctx.lineWidth = 1.5;
+  ctx.globalAlpha = 0.55;
+  ctx.setLineDash([5, 4]);
+  ctx.stroke();
+  ctx.restore();
+}
+
 // ── Component ─────────────────────────────────────────────────────────────────
+// coords: { lat, lng } | Array<{ lat, lng }> | null
 export default function WorldMap({ coords, allCoords = [], noZoom = false, onMarkerHover, onMarkerLeave, onMarkerClick }) {
-  const canvasRef        = useRef(null);
-  const markerRef        = useRef(null);
-  const staticMarkersRef = useRef(null);
-  const topoRef          = useRef(null);
-  const statesRef        = useRef(null);
-  const isDarkRef        = useRef(false);
-  const curBounds        = useRef(WORLD);
-  const animFrom         = useRef(WORLD);
-  const animTo           = useRef(WORLD);
-  const rafRef           = useRef(null);
-  const coordsRef        = useRef(coords);
-  const allCoordsRef     = useRef(allCoords);
-  const noZoomRef        = useRef(noZoom);
-  coordsRef.current    = coords;
-  allCoordsRef.current = allCoords;
-  noZoomRef.current    = noZoom;
+  // Normalise coords to an array (or null) for uniform handling
+  const coordsPts = coords ? (Array.isArray(coords) ? coords : [coords]) : null;
+
+  const canvasRef          = useRef(null);
+  const activeMarkersRef   = useRef(null);
+  const staticMarkersRef   = useRef(null);
+  const topoRef            = useRef(null);
+  const statesRef          = useRef(null);
+  const isDarkRef          = useRef(false);
+  const curBounds          = useRef(WORLD);
+  const animFrom           = useRef(WORLD);
+  const animTo             = useRef(WORLD);
+  const rafRef             = useRef(null);
+  const coordsPtsRef       = useRef(coordsPts);
+  const allCoordsRef       = useRef(allCoords);
+  const noZoomRef          = useRef(noZoom);
+  coordsPtsRef.current   = coordsPts;
+  allCoordsRef.current   = allCoords;
+  noZoomRef.current      = noZoom;
 
   function renderFrame(b) {
     const canvas = canvasRef.current;
@@ -173,22 +210,29 @@ export default function WorldMap({ coords, allCoords = [], noZoom = false, onMar
         const zoom = 360 / (b.lngMax - b.lngMin);
         const stateOpacity = Math.min(1, Math.max(0, (zoom - 5) / 5));
         drawStates(ctx, statesRef.current, w, h, isDarkRef.current, b, stateOpacity);
+
+        const pts = coordsPtsRef.current;
+        if (pts && pts.length > 1) drawRoute(ctx, pts, w, h, b);
       }
     }
-    const marker = markerRef.current;
-    const c = coordsRef.current;
-    if (marker && c) {
-      marker.style.left = `${projX(c.lng, b) * 100}%`;
-      marker.style.top  = `${projY(c.lat, b) * 100}%`;
-    }
 
-    const staticContainer = staticMarkersRef.current;
-    if (staticContainer && (!coordsRef.current || noZoomRef.current)) {
-      const children = staticContainer.children;
-      const pts = allCoordsRef.current;
+    const activeContainer = activeMarkersRef.current;
+    const pts = coordsPtsRef.current;
+    if (activeContainer && pts) {
+      const children = activeContainer.children;
       for (let i = 0; i < children.length && i < pts.length; i++) {
         children[i].style.left = `${projX(pts[i].lng, b) * 100}%`;
         children[i].style.top  = `${projY(pts[i].lat, b) * 100}%`;
+      }
+    }
+
+    const staticContainer = staticMarkersRef.current;
+    if (staticContainer && (!coordsPtsRef.current || noZoomRef.current)) {
+      const children = staticContainer.children;
+      const allPts = allCoordsRef.current;
+      for (let i = 0; i < children.length && i < allPts.length; i++) {
+        children[i].style.left = `${projX(allPts[i].lng, b) * 100}%`;
+        children[i].style.top  = `${projY(allPts[i].lat, b) * 100}%`;
       }
     }
   }
@@ -228,22 +272,30 @@ export default function WorldMap({ coords, allCoords = [], noZoom = false, onMar
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    animateTo(noZoom ? WORLD : targetBoundsFor(coords));
+    animateTo(noZoom ? WORLD : targetBoundsFor(coordsPts));
   }, [coords, noZoom]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const initMx = coords ? `${projX(coords.lng, curBounds.current) * 100}%` : null;
-  const initMy = coords ? `${projY(coords.lat, curBounds.current) * 100}%` : null;
 
   return (
     <div className="world-map">
       <canvas ref={canvasRef} className="world-map-canvas" />
-      {coords && (
-        <div ref={markerRef} className="map-marker" style={{ left: initMx, top: initMy }} aria-hidden="true">
-          <div className="map-marker-pulse" />
-          <div className="map-marker-dot" />
+      {coordsPts && (
+        <div ref={activeMarkersRef} aria-hidden="true">
+          {coordsPts.map((c, i) => (
+            <div
+              key={i}
+              className="map-marker"
+              style={{
+                left: `${projX(c.lng, curBounds.current) * 100}%`,
+                top:  `${projY(c.lat, curBounds.current) * 100}%`,
+              }}
+            >
+              <div className="map-marker-pulse" />
+              <div className="map-marker-dot" />
+            </div>
+          ))}
         </div>
       )}
-      {(!coords || noZoom) && (
+      {(!coordsPts || noZoom) && (
         <div ref={staticMarkersRef} aria-hidden="true">
           {allCoords.map((c, i) => (
             <div
