@@ -83,7 +83,20 @@ export default function Timeline() {
               const showYearBefore = !prevEvent || event.year !== prevEvent.year;
               const hasCoords = event.coords != null;
               return (
-                <div key={i}>
+                <div
+                  key={i}
+                  className="timeline-entry-row"
+                  onClick={() => {
+                    if (selectedEvent === event) {
+                      hoverSourceRef.current = null;
+                      setHoveredEvent(null);
+                      setSelectedEvent(null);
+                    } else {
+                      selectedSourceRef.current = 'timeline';
+                      setSelectedEvent(event);
+                    }
+                  }}
+                >
                   {showYearBefore && (
                     <div className="timeline-year-marker">
                       <span className="timeline-year">{event.year}</span>
@@ -94,7 +107,6 @@ export default function Timeline() {
                     className={`timeline-event${activeEvent === event ? " timeline-event--active" : ""}${selectedEvent === event ? " timeline-event--selected" : ""}`}
                     onMouseEnter={() => { hoverSourceRef.current = 'timeline'; setHoveredEvent(event); }}
                     onMouseLeave={() => { hoverSourceRef.current = null; setHoveredEvent(null); }}
-                    onClick={() => { selectedSourceRef.current = 'timeline'; setSelectedEvent(prev => prev === event ? null : event); }}
                   >
                     <span className="timeline-month">{event.month}</span>
                     <div className="timeline-line-content">
@@ -129,7 +141,16 @@ export default function Timeline() {
               noZoom={noZoom}
               onMarkerHover={(event) => { hoverSourceRef.current = 'map'; setHoveredEvent(event); }}
               onMarkerLeave={() => { hoverSourceRef.current = null; setHoveredEvent(null); }}
-              onMarkerClick={(event) => { selectedSourceRef.current = 'map'; setSelectedEvent(prev => prev === event ? null : event); }}
+              onMarkerClick={(event) => {
+                if (selectedEvent === event) {
+                  hoverSourceRef.current = null;
+                  setHoveredEvent(null);
+                  setSelectedEvent(null);
+                } else {
+                  selectedSourceRef.current = 'map';
+                  setSelectedEvent(event);
+                }
+              }}
             />
           </div>
           {activeAttachments.length > 0 && (
