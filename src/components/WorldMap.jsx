@@ -6,7 +6,7 @@ let geoPromise = null;
 function fetchGeo() {
   if (geoCache) return Promise.resolve(geoCache);
   if (geoPromise) return geoPromise;
-  geoPromise = fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+  geoPromise = fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
     .then((r) => r.json())
     .then((t) => { geoCache = t; return t; });
   return geoPromise;

@@ -208,8 +208,9 @@ main {
 }
 
 .polaroid-color img,
-.polaroid-color .polaroid-thumb {
-  filter: grayscale(0%);
+.polaroid-color .polaroid-thumb,
+.polaroid-color:hover img {
+  filter: none;
 }
 
 .polaroid-video {
@@ -669,7 +670,7 @@ main {
   outline-color: #eb4034;
 }
 
-.timeline-event {
+.timeline-entry-row {
   cursor: pointer;
 }
 
@@ -752,4 +753,64 @@ main {
   .projects-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ── 404 ── */
+.not-found {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 40px 24px;
+}
+
+.not-found-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 700px;
+}
+
+/* Size polaroids by height so landscape frames are wider than portrait */
+.not-found-gallery .polaroid {
+  width: auto;
+}
+
+.not-found-gallery .polaroid-media {
+  height: 200px;
+}
+
+/* Let images determine width from their natural aspect ratio */
+.not-found-gallery .polaroid img,
+.not-found-gallery .polaroid .polaroid-thumb {
+  height: 100%;
+  width: auto;
+}
+
+.not-found-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.not-found-title {
+  font-size: 6rem;
+  font-weight: 700;
+  letter-spacing: -3px;
+  line-height: 1;
+  color: var(--fg);
+}
+
+.not-found-link {
+  font-size: 0.95rem;
+  color: var(--fg-muted);
+  text-decoration: none;
+}
+
+.not-found-link:hover {
+  color: var(--fg);
 }

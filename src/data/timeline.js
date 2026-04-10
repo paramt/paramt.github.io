@@ -158,7 +158,7 @@ export const timeline = [
       { month: "Jun", title: "Judged JAMHacks 7", description: null, coords: { lat: 43.4723, lng: -80.5449 } },
       // { month: "May", title: "Attended protest", description: null, coords: null },
       { month: "May", title: "Joined zipBoard", description: null, coords: null },
-      { month: "Apr", title: "Attended Jane Street's PuzzleCity", description: null, coords: { lat: 43.448702851066614, lng: -80.48725742894958 } },
+      { month: "Apr", title: "Participated in Jane Street's PuzzleCity", description: null, coords: { lat: 43.448702851066614, lng: -80.48725742894958 } },
       { month: "Jan", title: "Attended ConUHacks in Montreal", description: null, coords: { lat: 45.4941, lng: -73.5779 } },
     ],
   },
@@ -174,7 +174,7 @@ export const timeline = [
     year: "2021",
     events: [
       { month: "Aug", title: "Went skydiving", description: null, coords: { lat: 44.3002, lng: -79.5431 }, attachments: [img(skydiving1, thumbSkydiving1, 3840, 2160), img(skydiving2, thumbSkydiving2, 3840, 2160), img(skydiving3, thumbSkydiving3, 3840, 2160)] },
-      { month: "Jul", title: "Shad", description: null, coords: { lat: 43.7735, lng: -79.5019 } },
+      { month: "Jul", title: "Participated in Shad", description: null, coords: { lat: 43.7735, lng: -79.5019 } },
       { month: "Apr", title: "Organized Lighthouse Hacks", description: null, coords: null },
     ],
   },
