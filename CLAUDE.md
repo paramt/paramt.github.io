@@ -206,6 +206,14 @@ The CSS variables and WorldMap color branches still exist for future re-enabling
 
 ---
 
+# 404 Page
+
+`404.html` is a second Vite entry point (configured in `vite.config.js` via `rollupOptions.input`). It loads `src/404-entry.jsx` → `src/components/NotFound.jsx`, which displays all 6 hero polaroids in a scattered gallery with a "404 / ← go home" footer. GitHub Pages automatically serves `dist/404.html` for unmatched URLs.
+
+**CSS filter gotcha — ICC color profiles:** Applying *any* CSS `filter` (even `filter: grayscale(0%)`, which is visually a no-op) forces the browser into GPU compositing mode, which bypasses ICC color profile handling. Images with Display P3 or HDR gain maps render as sRGB, causing highlights to appear blown out. Color polaroids must use `filter: none`, not `filter: grayscale(0%)`. The same override applies on `:hover` via `.polaroid-color:hover img { filter: none }`.
+
+---
+
 # Responsive Breakpoints
 
 | Breakpoint | Effect |
