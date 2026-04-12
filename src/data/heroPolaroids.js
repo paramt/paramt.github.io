@@ -1,4 +1,4 @@
-import img1 from './images/hero/1e.jpg';
+import img1 from './images/hero/1.jpg';
 import img2 from './images/hero/2.jpg';
 import img3 from './images/hero/3/3.webp';
 import video3 from './images/hero/3/3.mp4';
