@@ -11,6 +11,8 @@ export default function NotFound() {
           <Polaroid
             key={i}
             src={p.image}
+            w={p.w}
+            h={p.h}
             video={p.video}
             rotate={ROTATIONS[i]}
             location={p.location}

@@ -113,6 +113,7 @@ The hero polaroid cycles through images in `heroPolaroids.js` — both on page l
 | Prop | Type | Effect |
 |---|---|---|
 | `src` | string | Image URL (use the `.thumb.webp` — no full-res needed) |
+| `w`, `h` | number | Image dimensions — used for the loading placeholder aspect ratio |
 | `video` | string | Video URL — plays on hover after a 400ms delay |
 | `rotate` | number | Fixed rotation in degrees; random if omitted |
 | `color` | bool | Disables grayscale/sepia filter (default: greyscale) |
@@ -151,8 +152,8 @@ ffmpeg -y -i "input.mp4" -vf "scale='if(gt(iw,ih),640,-2)':'if(gt(iw,ih),-2,640)
 Scales to max 640px on the longer dimension, strips audio (videos are muted). Expect ~90% size reduction.
 
 **3. Wire up:**
-- **Hero:** import the `.thumb.webp` in `src/data/heroPolaroids.js`, add entry with `image` (the thumb), and optional `video`, `location`, `date`.
-- **Timeline image:** import the `.thumb.webp` in `src/data/timeline.js`, use `img(src)` in the event's `attachments` array.
+- **Hero:** import the `.thumb.webp` in `src/data/heroPolaroids.js`, add entry with `image` (the thumb), `w`, `h`, and optional `video`, `location`, `date`.
+- **Timeline image:** import the `.thumb.webp` in `src/data/timeline.js`, use `img(src, w, h)` in the event's `attachments` array.
 
 ## Adding a Timeline Note
 
