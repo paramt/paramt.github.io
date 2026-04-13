@@ -32,7 +32,7 @@ The timeline has two parallel interaction sources — the entry list on the left
 ## Coordinate Data Format (`timeline.js`)
 
 - Each event has a `coords` field: `null` (no location), `{ lat, lng }` (single point), or `[{ lat, lng }, ...]` (ordered route/multi-point).
-- `allCoords` in `Timeline.jsx` is built by flatMapping all events — route events expand into one entry per waypoint, all sharing the same `event` reference.
+- `allCoords` in `Timeline.jsx` is built by flatMapping all events — route events expand into two entries (start and end only), both sharing the same `event` reference. Intermediate waypoints are not included so the static marker dots don't clutter the map.
 - `allRoutes` in `Timeline.jsx` is the list of multi-point `coords` arrays (one per route event); passed to `WorldMap` for background route rendering.
 - `activeCoords = activeEvent?.coords ?? null` — passed directly to `WorldMap` as the `coords` prop.
 
@@ -177,6 +177,42 @@ Use the `note(text, color)` helper in the event's `attachments` array in `timeli
 - `text`: plain text with optional `[label](url)` markdown links.
 - `color`: `yellow` (default), `blue`, `green`, `pink`, or `orange`.
 
+## Adding a Route Event
+
+Route events display a polyline on the map. Their `coords` field is a multi-point array rather than a single `{ lat, lng }`.
+
+**1. Add the route to `src/data/routes.js`:**
+
+```js
+"My road trip": {
+  points: 50,          // waypoints to sample from ORS (50 default, use more for long routes)
+  endpoints: [
+    { lat: ..., lng: ... },  // start
+    { lat: ..., lng: ... },  // end
+  ],
+  waypoints: null,     // populated by npm run routes
+},
+```
+
+**2. Reference it in `timeline.js`:**
+
+```js
+{ month: "Jun", title: "My road trip", coords: route("My road trip"), ... }
+```
+
+**3. Generate the full route:**
+
+```bash
+npm run routes
+```
+
+This calls OpenRouteService `driving-car` directions between the endpoints, samples `points` evenly spaced waypoints from the result, and writes them back to `routes.js`. Requires `ORS_API_KEY` in `.env`. Add `--force` to regenerate routes that already have waypoints.
+
+**How it works end-to-end:**
+- `route(title)` (exported from `routes.js`) returns `waypoints ?? endpoints` — so the route renders as a straight line between start/end until ORS data is generated.
+- `Timeline.jsx` passes `e.coords` (the full waypoints) directly to `WorldMap` — no lookup needed at render time.
+- Static map markers for route events show only start and end dots, not intermediate waypoints.
+
 ---
 
 # Preloading & Caching
@@ -210,7 +246,13 @@ The CSS variables and WorldMap color branches still exist for future re-enabling
 
 `404.html` is a second Vite entry point (configured in `vite.config.js` via `rollupOptions.input`). It loads `src/404-entry.jsx` → `src/components/NotFound.jsx`, which displays all 6 hero polaroids in a scattered gallery with a "404 / ← go home" footer. GitHub Pages automatically serves `dist/404.html` for unmatched URLs.
 
-**CSS filter gotcha — ICC color profiles:** Applying *any* CSS `filter` (even `filter: grayscale(0%)`, which is visually a no-op) forces the browser into GPU compositing mode, which bypasses ICC color profile handling. Images with Display P3 or HDR gain maps render as sRGB, causing highlights to appear blown out. Color polaroids must use `filter: none`, not `filter: grayscale(0%)`. The same override applies on `:hover` via `.polaroid-color:hover img { filter: none }`.
+**HDR gotcha — sepia filter interaction:** iPhone photos with HDR gain maps render in HDR by default when the browser supports it. Applying a `sepia` or `grayscale` filter on top of an HDR image causes severe highlight clipping — whites blow out badly because the filter is applied after tone mapping in HDR headroom. `dynamic-range-limit: standard` on `.polaroid img` and `.polaroid-thumb` clamps images to SDR first, after which filters apply cleanly.
+
+---
+
+# Timeline Polaroids — short viewport behaviour
+
+On short laptop screens, the map column is sticky. `.map-frame` uses `max-width: min(100%, calc(clamp(160px, 35svh, 247px) * 400 / 260))` to shrink proportionally on short viewports, giving more room for photos below the map. `WorldMap` has a `ResizeObserver` that redraws when the canvas resizes.
 
 ---
 

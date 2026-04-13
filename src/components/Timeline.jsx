@@ -54,7 +54,9 @@ export default function Timeline() {
 
   const allCoords = flat.flatMap((e) => {
     if (!e.coords) return [];
-    const pts = Array.isArray(e.coords) ? e.coords : [e.coords];
+    const pts = Array.isArray(e.coords)
+      ? [e.coords[0], e.coords[e.coords.length - 1]]
+      : [e.coords];
     return pts.map(({ lat, lng }) => ({ lat, lng, event: e }));
   });
 
