@@ -23,9 +23,7 @@ export default function Timeline() {
     // Polaroids are hidden below 860px — skip preloading on those devices
     if (window.innerWidth < 860) return;
 
-    // Only preload thumbs — they're tiny (~50KB each) and safe to keep in memory.
-    // Full images load from disk cache after first hover, which is fast enough.
-    const images = flat.flatMap(e => (e.attachments ?? []).filter(a => a.type === 'image').map(a => a.thumb).filter(Boolean));
+    const images = flat.flatMap(e => (e.attachments ?? []).filter(a => a.type === 'image').map(a => a.src).filter(Boolean));
     if (images.length === 0) return;
 
     let preloaded = false;
@@ -161,7 +159,7 @@ export default function Timeline() {
                 attachment.type === 'note' ? (
                   <StickyNote key={i} text={attachment.text} color={attachment.color} />
                 ) : (
-                  <Polaroid key={attachment.src} src={attachment.src} thumb={attachment.thumb} w={attachment.w} h={attachment.h} color static />
+                  <Polaroid key={attachment.src} src={attachment.src} color static />
                 )
               )}
             </div>

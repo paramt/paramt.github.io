@@ -18,7 +18,6 @@ export default function Hero() {
 
     const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 500));
     idle(() => {
-      heroPolaroids.forEach(p => { if (p.thumb) { const t = new Image(); t.src = p.thumb; _preloaded.push(t); } });
       heroPolaroids.forEach(p => { const img = new Image(); img.src = p.image; _preloaded.push(img); });
       heroPolaroids.forEach(p => { if (p.video) { const v = document.createElement('video'); v.src = p.video; v.preload = 'auto'; _preloaded.push(v); } });
     });
@@ -57,7 +56,7 @@ export default function Hero() {
           <a href="mailto:p28thakk@uwaterloo.ca">Email</a>
         </div>
       </div>
-      {featured && <Polaroid key={index} src={featured.image} thumb={featured.thumb} w={featured.w} h={featured.h} alt="Param Thakkar" video={featured.video} rotate={2} location={featured.location} date={featured.date} priority tack={false} onClick={handleClick} />}
+      {featured && <Polaroid key={index} src={featured.image} alt="Param Thakkar" video={featured.video} rotate={2} location={featured.location} date={featured.date} priority tack={false} onClick={handleClick} />}
       </div>
       <a href="#projects" className="hero-scroll" aria-label="Scroll down">↓</a>
     </section>

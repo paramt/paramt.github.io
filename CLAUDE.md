@@ -102,37 +102,17 @@ The hero polaroid cycles through images in `heroPolaroids.js` — both on page l
 
 # Polaroid Component
 
-## Loading Phases
+## Loading
 
-Every `<Polaroid>` with a `thumb` prop goes through four phases:
+`<Polaroid>` shows a placeholder icon while `src` loads, then reveals the image. State: `loaded` (boolean). On mount, checks `imgRef.current?.complete` to handle browser-cached images.
 
-| Phase | Placeholder | Thumb | Full image |
-|---|---|---|---|
-| Fetching | `position:absolute`, visible (overlays spacer) | `position:absolute` until loaded (out of flow, hidden behind placeholder) | `polaroid-img-loading` — absolute, `opacity:0` |
-| Thumb loaded | fades to `opacity:0` (CSS transition, stays in DOM) | visible, in flow (sets container height) | `polaroid-img-loading` — absolute, `opacity:0` |
-| Full image loaded | removed from DOM | still in flow | `polaroid-img-fading` — absolute, `opacity:0→1` over 400ms |
-| Transition done (~400ms) | — | removed from DOM | no class — in flow, final size |
-
-**Why the thumb stays in DOM during the full-image fade:** removing it at the same time the full image starts fading in would reveal the white polaroid background for 400ms. Keeping it in flow means the full image (absolute, on top) fades in over the thumb — no flash.
-
-**State variables:**
-- `loaded` — full image has finished downloading (fires `polaroid-img-fading`)
-- `imgReady` — 400ms after `loaded`, set via `setTimeout(FILTER_DURATION)` (fires removal of thumb)
-- `thumbLoaded` — thumb has finished downloading (fades placeholder out)
-
-**Placeholder aspect ratio:** A hidden spacer `<div>` is rendered in flow inside `.polaroid-media` while `thumb && !thumbLoaded && !imgReady`. It has `aspect-ratio: w/h` (or `3/2` fallback) and is the sole in-flow element giving the container its height before the thumb loads. It is removed once the thumb loads (thumb takes over) or if the main image was already cached (`imgReady` true on mount, main img immediately in flow). The placeholder and thumb are both `position:absolute` during this phase so they don't stack with the spacer.
-
-**Cached-image shortcut:** on mount, a `useEffect` checks `imgRef.current?.complete`. If true (image was preloaded into memory cache), both `loaded` and `imgReady` are set immediately — no thumb phase, full image shown directly.
-
-**`key` prop on timeline polaroids:** `<Polaroid key={attachment.src} ...>` — using `src` as the key ensures React fully unmounts and remounts when switching timeline entries, resetting all loading state. Using `key={i}` (index) would reuse the component and bleed `loaded=true` from the previous entry.
+**`key` prop on timeline polaroids:** `<Polaroid key={attachment.src} ...>` — using `src` as the key ensures React fully unmounts and remounts when switching timeline entries, resetting `loaded` state.
 
 ## Props Reference
 
 | Prop | Type | Effect |
 |---|---|---|
-| `src` | string | Full-res image URL |
-| `thumb` | string | Thumbnail URL — triggers progressive loading |
-| `w`, `h` | number | Full-res pixel dimensions for placeholder `aspect-ratio` |
+| `src` | string | Image URL (use the `.thumb.webp` — no full-res needed) |
 | `video` | string | Video URL — plays on hover after a 400ms delay |
 | `rotate` | number | Fixed rotation in degrees; random if omitted |
 | `color` | bool | Disables grayscale/sepia filter (default: greyscale) |
@@ -148,7 +128,7 @@ Every `<Polaroid>` with a `thumb` prop goes through four phases:
 
 ## Adding an Image
 
-**1. Generate a thumbnail.** Run from `src/data/images/`:
+**1. Compress the photo.** This produces the only copy that gets served. Run from `src/data/images/`:
 
 ```bash
 ffmpeg -y -i "input.jpg" -vf "scale='min(800,iw)':-1" "/tmp/thumb_tmp.png" 2>/dev/null && \
@@ -162,13 +142,17 @@ Target: ~5–10% of original. Verify: `echo "scale=1; $(stat -f%z input.thumb.we
 
 Naming: `{original-name}.thumb.webp` in the same directory.
 
-**2. Get the display dimensions** (`w` and `h`). Use Preview or Finder → Get Info — NOT `sips`.
+**2. Compress the video (if any).** Run from the video's directory:
 
-**EXIF rotation warning:** `sips -g pixelWidth -g pixelHeight` reports raw sensor dimensions, ignoring EXIF orientation. iPhone portrait photos are stored landscape in the file (e.g. `4096x3072`) with an EXIF rotate tag — they display as portrait (`3072x4096`). Always use the **display** dimensions (what you see on screen) for `w`/`h`.
+```bash
+ffmpeg -y -i "input.mp4" -vf "scale='if(gt(iw,ih),640,-2)':'if(gt(iw,ih),-2,640)'" -c:v libx264 -crf 28 -preset fast -an -movflags +faststart "input.mp4"
+```
+
+Scales to max 640px on the longer dimension, strips audio (videos are muted). Expect ~90% size reduction.
 
 **3. Wire up:**
-- **Hero:** import in `src/data/heroPolaroids.js`, add entry with `image`, `thumb`, `w`, `h`, and optional `video`, `location`, `date`.
-- **Timeline image:** import in `src/data/timeline.js`, use `img(src, thumb, w, h)` in the event's `attachments` array.
+- **Hero:** import the `.thumb.webp` in `src/data/heroPolaroids.js`, add entry with `image` (the thumb), and optional `video`, `location`, `date`.
+- **Timeline image:** import the `.thumb.webp` in `src/data/timeline.js`, use `img(src)` in the event's `attachments` array.
 
 ## Adding a Timeline Note
 
@@ -217,16 +201,9 @@ This calls OpenRouteService `driving-car` directions between the endpoints, samp
 
 # Preloading & Caching
 
-**Hero (`Hero.jsx`):** All hero assets are preloaded in a single `requestIdleCallback` after the page loads, in three passes to respect browser download priority:
-1. Thumbs (tiny, ~10–30KB each)
-2. Full images
-3. Videos
+**Hero (`Hero.jsx`):** Hero assets are preloaded in a `requestIdleCallback` after page load — images first, then videos.
 
-**Timeline (`Timeline.jsx`):** Only thumbs are preloaded (not full images, not videos). Full images load on first hover, then hit disk cache on repeat hovers — fast enough.
-
-Preload triggers when the timeline section scrolls within 800px of the viewport (`IntersectionObserver` with `rootMargin: '800px'`), deferred to idle time. Skipped entirely on viewports narrower than 860px (polaroids are hidden there anyway).
-
-**Why not preload full timeline images:** the full image set is ~100MB+. Pinning that in memory would cause memory pressure, jank, or tab kills on mobile. Disk cache is sufficient for repeat hovers.
+**Timeline (`Timeline.jsx`):** Images (thumbs) are preloaded when the timeline section scrolls within 800px of the viewport (`IntersectionObserver` with `rootMargin: '800px'`), deferred to idle time. Skipped entirely on viewports narrower than 860px (polaroids are hidden there anyway).
 
 **GC pin:** Image/video objects are stored in a module-level `_preloaded` array in both `Hero.jsx` and `Timeline.jsx`. Without live references the GC can collect them and evict from the browser's memory cache, causing re-fetches. Keeping refs alive prevents this.
 
