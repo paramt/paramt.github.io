@@ -179,6 +179,7 @@ main {
 }
 
 .polaroid-img-loading {
+  position: absolute;
   opacity: 0;
 }
 
