@@ -9,7 +9,7 @@ export default function Nav() {
   return (
     <nav className="nav">
       <div className="nav-inner">
-        <a href="#top" className="nav-name">param.me</a>
+        <a href="#" className="nav-name">param.me</a>
         <div className="nav-links">
           {links.map(({ href, label }) => (
             <a key={href} href={href}>{label}</a>
