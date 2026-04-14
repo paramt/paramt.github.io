@@ -17,6 +17,7 @@ self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
 
   const url = new URL(e.request.url);
+  if (!url.protocol.startsWith('http')) return; // chrome-extension:// etc. can't be cached
 
   if (ASSET_RE.test(url.pathname)) {
     e.respondWith(
