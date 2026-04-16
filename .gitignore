@@ -25,3 +25,5 @@ dist-ssr
 .gstack/
 .env
 ideas.md
+src/data/notes/.obsidian
+src/data/notes/templates
