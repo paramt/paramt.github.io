@@ -272,7 +272,7 @@ main {
 
 .hero-experience {
   list-style: none;
-  margin: 0 0 28px;
+  margin: 0 0 40px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -292,19 +292,18 @@ main {
 .hero-links {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
 .hero-links a {
-  font-size: 14px;
-  color: var(--fg-muted);
+  color: var(--fg-faint);
   text-decoration: none;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 1px;
+  display: flex;
+  transition: color 0.15s;
 }
 
 .hero-links a:hover {
   color: var(--fg);
-  border-color: var(--fg);
 }
 
 /* ── Sections ── */
