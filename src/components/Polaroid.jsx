@@ -4,6 +4,7 @@ import Tack from './Tack';
 export default function Polaroid({ src, w, h, alt = "", video, rotate, color = false, static: isStatic = false, location, date, priority = false, tack = true, onClick }) {
   const imgRef = useRef(null);
   const videoRef = useRef(null);
+  const playTimerRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
   const [playing, setPlaying] = useState(false);
 
@@ -16,14 +17,23 @@ export default function Polaroid({ src, w, h, alt = "", video, rotate, color = f
     if (imgRef.current?.complete) setLoaded(true);
   }, []);
 
+  useEffect(() => {
+    return () => clearTimeout(playTimerRef.current);
+  }, []);
+
   function handleMouseEnter() {
-    if (!videoRef.current) return;
-    videoRef.current.currentTime = 0;
-    videoRef.current.play();
-    setPlaying(true);
+    if (!video) return;
+    playTimerRef.current = setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
+        setPlaying(true);
+      }
+    }, 200);
   }
 
   function handleMouseLeave() {
+    clearTimeout(playTimerRef.current);
     setPlaying(false);
     if (videoRef.current) {
       videoRef.current.pause();
