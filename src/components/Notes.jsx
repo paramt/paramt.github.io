@@ -75,7 +75,7 @@ export default function Notes() {
           </article>
         ) : (
           <div className="notes-listing">
-            <h1 className="notes-heading">Notes</h1>
+            <a href="/" className="notes-back">← Home</a>
             <ul className="notes-list">
               {notes.map(n => (
                 <li key={n.slug} className="notes-list-item">
