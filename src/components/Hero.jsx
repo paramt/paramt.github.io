@@ -16,9 +16,9 @@ export default function Hero() {
     localStorage.setItem(STORAGE_KEY, (step + 1) % heroPolaroids.length);
     setIndex(step % heroPolaroids.length);
 
+    heroPolaroids.forEach(p => { const img = new Image(); img.src = p.image; _preloaded.push(img); });
     const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 500));
     idle(() => {
-      heroPolaroids.forEach(p => { const img = new Image(); img.src = p.image; _preloaded.push(img); });
       heroPolaroids.forEach(p => { if (p.video) { const v = document.createElement('video'); v.src = p.video; v.preload = 'auto'; _preloaded.push(v); } });
     });
   }, []);

@@ -34,8 +34,7 @@ export default function Timeline() {
         if (entry.isIntersecting && !preloaded) {
           preloaded = true;
           observer.disconnect();
-          const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 200));
-          idle(() => images.forEach(src => { const img = new Image(); img.src = src; _preloaded.push(img); }));
+          images.forEach(src => { const img = new Image(); img.src = src; _preloaded.push(img); });
         }
       },
       { rootMargin: `${TIMELINE_PRELOAD_DISTANCE_PX}px` }
