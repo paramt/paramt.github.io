@@ -6,6 +6,7 @@ import StickyNote from "./StickyNote";
 import Tack from "./Tack";
 
 const _preloaded = []; // keep thumb refs alive so GC doesn't evict from memory cache
+const TIMELINE_PRELOAD_DISTANCE_PX = 200;
 
 export default function Timeline() {
   const [hoveredEvent, setHoveredEvent] = useState(null);
@@ -37,7 +38,7 @@ export default function Timeline() {
           idle(() => images.forEach(src => { const img = new Image(); img.src = src; _preloaded.push(img); }));
         }
       },
-      { rootMargin: '800px' }
+      { rootMargin: `${TIMELINE_PRELOAD_DISTANCE_PX}px` }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);

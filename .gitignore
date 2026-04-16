@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 .gstack/
 .env
+ideas.md

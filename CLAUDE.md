@@ -204,7 +204,7 @@ This calls OpenRouteService `driving-car` directions between the endpoints, samp
 
 **Hero (`Hero.jsx`):** Hero assets are preloaded in a `requestIdleCallback` after page load — images first, then videos.
 
-**Timeline (`Timeline.jsx`):** Images (thumbs) are preloaded when the timeline section scrolls within 800px of the viewport (`IntersectionObserver` with `rootMargin: '800px'`), deferred to idle time. Skipped entirely on viewports narrower than 860px (polaroids are hidden there anyway).
+**Timeline (`Timeline.jsx`):** Images (thumbs) are preloaded when the timeline section scrolls within 200px of the viewport (`IntersectionObserver` with `rootMargin: '200px'`), deferred to idle time. Skipped entirely on viewports narrower than 860px (polaroids are hidden there anyway).
 
 **GC pin:** Image/video objects are stored in a module-level `_preloaded` array in both `Hero.jsx` and `Timeline.jsx`. Without live references the GC can collect them and evict from the browser's memory cache, causing re-fetches. Keeping refs alive prevents this.
 
