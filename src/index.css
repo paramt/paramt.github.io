@@ -16,17 +16,10 @@
   --mono: ui-monospace, "SF Mono", Menlo, monospace;
   --max-width: 720px;
   --nav-height: 56px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0e0e0e;
-    --fg: #f0f0f0;
-    --fg-muted: #aaaaaa;
-    --fg-faint: #666666;
-    --border: #2a2a2a;
-    --highlight-bg: #1a1a1a;
-  }
+  --polaroid-bg: #f0ede8;
+  --polaroid-shadow: 2px 4px 16px rgba(0,0,0,0.12);
+  --polaroid-placeholder-bg: #e8e0d4;
+  --polaroid-placeholder-color: #b0a898;
 }
 
 html[data-theme="dark"] {
@@ -36,16 +29,12 @@ html[data-theme="dark"] {
   --fg-faint: #666666;
   --border: #2a2a2a;
   --highlight-bg: #1a1a1a;
+  --polaroid-bg: #2e2b27;
+  --polaroid-shadow: 2px 4px 20px rgba(0,0,0,0.55);
+  --polaroid-placeholder-bg: #252220;
+  --polaroid-placeholder-color: #4a4440;
 }
 
-html[data-theme="light"] {
-  --bg: #ffffff;
-  --fg: #111111;
-  --fg-muted: #555555;
-  --fg-faint: #767676;
-  --border: #e8e8e8;
-  --highlight-bg: #f7f7f7;
-}
 
 html {
   scroll-behavior: smooth;
@@ -172,9 +161,9 @@ main {
 .polaroid {
   flex-shrink: 0;
   width: 180px;
-  background: #f0ede8;
+  background: var(--polaroid-bg);
   padding: 10px 10px 32px;
-  box-shadow: 2px 4px 16px rgba(0,0,0,0.12);
+  box-shadow: var(--polaroid-shadow);
   transform: rotate(var(--polaroid-rotate, 2deg));
   transition: transform 0.25s ease;
 }
@@ -206,8 +195,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e8e0d4;
-  color: #b0a898;
+  background: var(--polaroid-placeholder-bg);
+  color: var(--polaroid-placeholder-color);
   transition: opacity 0.3s ease;
 }
 
@@ -533,6 +522,7 @@ main {
   display: block;
   pointer-events: none;
   overflow: visible;
+  color: var(--fg-muted);
 }
 
 /* ── World Map ── */

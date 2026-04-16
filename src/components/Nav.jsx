@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function getEffectiveIsDark() {
-  const theme = document.documentElement.getAttribute('data-theme');
-  if (theme === 'dark') return true;
-  if (theme === 'light') return false;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return document.documentElement.getAttribute('data-theme') === 'dark';
 }
 
 export default function Nav() {
@@ -19,8 +16,13 @@ export default function Nav() {
   function toggle() {
     const next = !isDark;
     setIsDark(next);
-    document.documentElement.setAttribute('data-theme', next ? 'dark' : 'light');
-    localStorage.setItem('theme', next ? 'dark' : 'light');
+    if (next) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.removeItem('theme');
+    }
   }
 
   const links = [

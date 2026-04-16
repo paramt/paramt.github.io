@@ -212,9 +212,10 @@ This calls OpenRouteService `driving-car` directions between the endpoints, samp
 
 # Dark Mode
 
-Dark mode is enabled and responds to `prefers-color-scheme: dark`.
-- CSS: `@media (prefers-color-scheme: dark)` block in `index.css` overrides the CSS variables.
-- `WorldMap.jsx`: `isDarkRef` is initialized from `window.matchMedia` and updated via the `change` listener, triggering a re-render.
+Light mode is the default. Dark mode is **only** activated by the manual toggle (stored as `'dark'` in `localStorage`). System preference is intentionally ignored.
+- CSS: `html[data-theme="dark"]` in `index.css` overrides the CSS variables. No `@media (prefers-color-scheme: dark)` block.
+- `Nav.jsx`: toggle sets/removes the `data-theme` attribute on `<html>` and `localStorage`. On mount, reads `localStorage` to restore state.
+- `WorldMap.jsx`: `getIsDark()` checks only `data-theme === 'dark'`; a `MutationObserver` on `<html>` triggers re-renders on attribute change.
 
 ---
 

@@ -2,10 +2,7 @@ import { useEffect, useRef } from "react";
 
 function getIsDark() {
   if (typeof document === 'undefined') return false;
-  const theme = document.documentElement.getAttribute('data-theme');
-  if (theme === 'dark') return true;
-  if (theme === 'light') return false;
-  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+  return document.documentElement.getAttribute('data-theme') === 'dark';
 }
 
 // ── Country data (world-atlas, geographic lon/lat) ────────────────────────────
@@ -279,10 +276,7 @@ export default function WorldMap({ coords, allCoords = [], allRoutes = [], noZoo
   }
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-color-scheme: dark)");
     isDarkRef.current = getIsDark();
-    const onMqChange = () => { isDarkRef.current = getIsDark(); renderFrame(curBounds.current); };
-    mq.addEventListener("change", onMqChange);
 
     const mo = new MutationObserver(() => { isDarkRef.current = getIsDark(); renderFrame(curBounds.current); });
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
@@ -294,7 +288,6 @@ export default function WorldMap({ coords, allCoords = [], allRoutes = [], noZoo
     if (canvasRef.current) ro.observe(canvasRef.current);
 
     return () => {
-      mq.removeEventListener("change", onMqChange);
       mo.disconnect();
       ro.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
