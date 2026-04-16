@@ -55,6 +55,14 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
 
     <!-- Fonts loaded via @fontsource-variable/caveat in main.jsx -->
+
+    <!-- Apply saved theme before first paint to avoid flash -->
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

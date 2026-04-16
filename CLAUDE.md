@@ -212,11 +212,9 @@ This calls OpenRouteService `driving-car` directions between the endpoints, samp
 
 # Dark Mode
 
-Dark mode is **intentionally disabled**:
-- CSS: the `@media (prefers-color-scheme: dark)` block is gated with `and (max-width: 0px)` so it never applies.
-- `WorldMap.jsx`: `isDarkRef.current = false` is hardcoded; the `onChange` handler also sets it to `false`.
-
-The CSS variables and WorldMap color branches still exist for future re-enabling, but dark mode has no effect at runtime.
+Dark mode is enabled and responds to `prefers-color-scheme: dark`.
+- CSS: `@media (prefers-color-scheme: dark)` block in `index.css` overrides the CSS variables.
+- `WorldMap.jsx`: `isDarkRef` is initialized from `window.matchMedia` and updated via the `change` listener, triggering a re-render.
 
 ---
 
