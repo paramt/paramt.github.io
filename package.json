@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-server && node prerender.js",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-server && node prerender.js && node scripts/generate-notes-pages.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "npm run build && gh-pages -d dist -b gh-pages",
@@ -16,7 +16,9 @@
     "@fontsource/coming-soon": "^5.2.8",
     "gh-pages": "^6.3.0",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",
