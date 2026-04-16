@@ -28,7 +28,7 @@ export default function Nav() {
   const links = [
     { href: "/#projects", label: "Projects" },
     { href: "/#timeline", label: "Timeline" },
-    { href: "/notes", label: "Notes" },
+    // { href: "/notes", label: "Notes" },
   ];
 
   return (

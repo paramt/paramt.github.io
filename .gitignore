@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 .gstack/
 .env
+.vite
 ideas.md
 src/data/notes/.obsidian
 src/data/notes/templates

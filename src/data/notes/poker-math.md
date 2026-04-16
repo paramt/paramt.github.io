@@ -3,7 +3,7 @@ title: Minimizing Transactions After a Poker Game
 date: 2026-04-16
 description: Coordinating transactions
 ---
-When I play poker with my friends, we don't keep a designated banker who manages buyins. Instead, we figure out the transactions later. This works well for our small group, but scaling this up to 9 players makes coordinating the transactions non-obvious. Imagine you have an outcome like this: 
+When I play poker with friends, we don't keep a designated banker who manages buyins. Instead, we figure out the transactions later. This works well for our small group, but scaling this up to 9 players makes coordinating the transactions non-obvious. Imagine you have an outcome like this: 
 
 |  Player  | Net $ |
 | :------: | ----: |
@@ -38,23 +38,25 @@ Let $p_1$ be the player with the most negative balance, denoted $b_1$. Let $p_2$
 If $|b_1|<b_2$ then $p_1$ can send \$$|b1|$ to $p_2$ and $p_1$'s outstanding balance is closed. 
 Otherwise $|b_1| \ge b_2$ and $p_1$ can send \$$b_2$ to $p_2$ to close $p_2$'s outstanding balance.
 
-In both cases, we now have $k-1$ players with an outstanding balance, which by the inductive hypothesis can be closed with $n-2$ transactions. 
+In both cases, we performed 1 transaction and ended with $k-1$ players with an outstanding balance, which by the inductive hypothesis can be closed with up to $n-2$ transactions. 
 
-In total we closed all balances with $n-1$ transactions 
+In total we closed all balances with up to $n-1$ transactions 
 
-Is this optimal? Let's find a lower bound: 
-
+## Optimal?
+Could we do even better? In the case where $b_1=b_2$, we would be closing two balances at once. We can construct an example where it just takes $\frac{n}{2}$ transactions, and it's easy to show that this is the lower bound. But in general, this may not always be possible: Consider the case where all but one player ended with a net gain. All $n-1$ winning players must be paid, and so in general at least $n-1$ transactions are needed. This is indeed our lower bound, and we achieved it!
 
 ## Fairness
-In our optimal solution, we minimized the total number of transactions. But what if we want to minimize on the maximum number of transactions performed by a single person? In the optimal solution we could have 1 person performing all $n-1$ transactions. 
+In our optimal solution, we minimized the total number of transactions. But what if we want to minimize the maximum number of transactions performed by a single person? 
 
-Surprisingly, we can get away with just (up to) 1 transaction per person. Let's arrange everyone in a chain, from lowest net result to highest: $p_1, p_2, ..., p_n$. As before, let $b_i$ be the outstanding balance of player $p_i$. 
+Surprisingly, we can get away with just (up to) 1 transaction per person. The intuition here is that since each losing player can only transfer money once, they must send their entire outstanding balance in one transaction. To deal with splitting payments, let's chain together players and let payments from losing players accumulate, while winning players can "hold back" their wins.
+
+Let's arrange everyone in a chain, from lowest net result to highest: $p_1, p_2, ..., p_n$. As before, let $b_i$ be the outstanding balance of player $p_i$. 
 
 We start with player $p_1$ sending $-b_1$ to $p_2$, clearing their own balance. ($b_i$ itself is a negative value if $p_i$ ended in a loss)
 
-Then $p_2$ sends $-b_2 - b_1$ to player $p_3$: their own outstanding balance $-b_2$, *plus* what they received from $p_1$. This clears their own balance.
+Then $p_2$ sends $-b_2 - b_1$ to player $p_3$: their own outstanding balance $b_2$, *plus* what they received from $p_1$. This clears their own balance.
 
-$p_3$ sends $-b_1-b_2-b_3$ to $p_4$, and so on.
+$p_3$ sends $-b_3-b_2-b_1$ to $p_4$, and so on.
 
 In general, $p_i$ sends $-\Sigma_{j=1}^{i} b_j$ to $p_{i+1}$. 
 
@@ -70,11 +72,11 @@ $$ =b_i $$
 
 Which is exactly the outstanding balance they needed to clear!
 
-Arranging the players in increasing order of their result gives us the guarantee that the amount being sent is never negative. If it were to be negative, they would actually be *requesting* money from the next player, but that player is already sending money to someone else so our goal of 1 transaction per player would be violated. 
+(Arranging the players in increasing order of their result gives us the guarantee that the amount being sent is never negative. If it were to be negative, they would actually be *requesting* money from the next player, but that player is already sending money to someone else so our goal of 1 transaction per player would be violated.)
 
-So it all works out. And what's neat is that this automatically gives us an upper bound of $n-1$ total transactions, too. This means that this is unequivocally the most optimal and fair way to handle transactions after a poker game. 
+Thus we cleared all balances without forcing any player to perform more than a single transaction. This also gives us an upper bound of $n-1$ total transactions: only players $p_1$ to $p_{n-1}$ are sending money. Therefore this is undoubtedly the most optimal and fair way to handle transactions after a poker game!
 
-Come to think of it, it's been a while since my friends have invited me to one of their games...
+Come to think of it, it's been a while since my friends have invited me to a game...
 
 ---
 
