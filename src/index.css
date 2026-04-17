@@ -902,6 +902,14 @@ main {
   margin-bottom: 40px;
 }
 
+.note-description {
+  font-size: 15px;
+  color: var(--fg-muted);
+  margin-top: -32px;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
 /* Prose */
 .note-content p {
   margin-bottom: 1em;
@@ -972,10 +980,12 @@ main {
 }
 
 .note-content table {
-  width: 100%;
+  width: fit-content;
+  min-width: min(60%, 400px);
+  max-width: 100%;
+  margin: 0 auto 1em;
   border-collapse: collapse;
   font-size: 14px;
-  margin-bottom: 1em;
 }
 
 .note-content th,
