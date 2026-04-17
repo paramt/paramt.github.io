@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const distClient = path.resolve(__dirname, 'dist');
@@ -9,12 +10,17 @@ const distServer = path.resolve(__dirname, 'dist-server');
 const SITE_URL = 'https://www.param.me';
 const OG_IMAGE = `${SITE_URL}/og-image.png`;
 
-const STATIC_SITEMAP_ROUTES = [
-  { loc: '/', priority: '1.0', changefreq: 'monthly' },
-  { loc: '/notes', priority: '0.8', changefreq: 'weekly' },
-  { loc: '/poker', priority: '0.7', changefreq: 'monthly' },
-  { loc: '/poker-analytics', priority: '0.7', changefreq: 'monthly' },
-];
+function gitLastMod(pathspec = '') {
+  try {
+    const cmd = pathspec
+      ? `git log -1 --format=%cs -- ${pathspec}`
+      : `git log -1 --format=%cs`;
+    const out = execSync(cmd, { cwd: __dirname, encoding: 'utf-8' }).trim();
+    return out || null;
+  } catch {
+    return null;
+  }
+}
 
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ({
@@ -78,20 +84,41 @@ function buildNoteHead({ title, description, slug, date, unlisted }) {
     `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(desc)}" />`,
     `<meta name="twitter:image" content="${OG_IMAGE}" />`,
-    `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`,
+    `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>`,
   );
   return tags.join('\n    ');
 }
 
+function sitemapEntry({ loc, lastmod, changefreq, priority }) {
+  const parts = [`    <loc>${SITE_URL}${loc}</loc>`];
+  if (lastmod) parts.push(`    <lastmod>${lastmod}</lastmod>`);
+  if (changefreq) parts.push(`    <changefreq>${changefreq}</changefreq>`);
+  if (priority) parts.push(`    <priority>${priority}</priority>`);
+  return `  <url>\n${parts.join('\n')}\n  </url>`;
+}
+
 function buildSitemap(notes) {
-  const entries = STATIC_SITEMAP_ROUTES.map(
-    (r) => `  <url>\n    <loc>${SITE_URL}${r.loc}</loc>\n    <changefreq>${r.changefreq}</changefreq>\n    <priority>${r.priority}</priority>\n  </url>`
-  );
-  for (const n of notes) {
-    if (n.unlisted) continue;
-    entries.push(
-      `  <url>\n    <loc>${SITE_URL}/notes/${n.slug}</loc>\n    <lastmod>${n.date}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`
-    );
+  const listedNotes = notes.filter((n) => !n.unlisted);
+  const notesListingLastMod = listedNotes.length
+    ? listedNotes.reduce((max, n) => (n.date > max ? n.date : max), listedNotes[0].date)
+    : null;
+
+  const routes = [
+    { loc: '/', lastmod: gitLastMod(), priority: '1.0', changefreq: 'monthly' },
+    { loc: '/notes', lastmod: notesListingLastMod, priority: '0.8', changefreq: 'weekly' },
+    { loc: '/poker', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/poker-analytics', priority: '0.7', changefreq: 'monthly' },
+    { loc: '/resume', lastmod: gitLastMod('public/resume'), priority: '0.5', changefreq: 'yearly' },
+  ];
+
+  const entries = routes.map(sitemapEntry);
+  for (const n of listedNotes) {
+    entries.push(sitemapEntry({
+      loc: `/notes/${n.slug}`,
+      lastmod: n.date,
+      changefreq: 'monthly',
+      priority: '0.6',
+    }));
   }
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`;
 }
