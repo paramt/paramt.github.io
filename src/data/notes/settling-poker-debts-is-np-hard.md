@@ -1,5 +1,5 @@
 ---
-title: Settling Poker Debts is NP Hard
+title: Settling Poker Debts is NP-hard
 date: 2026-04-17
 description:
 ---
