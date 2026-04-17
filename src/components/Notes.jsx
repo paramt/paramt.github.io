@@ -24,7 +24,7 @@ const notes = Object.entries(noteModules)
   .map(([path, raw]) => {
     const slug = path.replace('../data/notes/', '').replace('.md', '');
     const { meta, content } = parseFrontmatter(raw);
-    return { slug, content, title: meta.title, date: meta.date, description: meta.description };
+    return { slug, content, title: meta.title, date: meta.date, description: meta.description, unlisted: meta.unlisted === 'true' };
   })
   .sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -77,7 +77,7 @@ export default function Notes() {
           <div className="notes-listing">
             <a href="/" className="notes-back">← Home</a>
             <ul className="notes-list">
-              {notes.map(n => (
+              {notes.filter(n => !n.unlisted).map(n => (
                 <li key={n.slug} className="notes-list-item">
                   <a href={`/notes/${n.slug}`} className="notes-item" onClick={e => navigate(e, n.slug)}>
                     <span className="notes-item-title">{n.title}</span>

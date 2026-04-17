@@ -3,7 +3,7 @@ title: Minimizing Transactions After a Poker Game
 date: 2026-04-16
 description: Coordinating transactions
 ---
-When I play poker with friends, we don't keep a designated banker who manages buyins. Instead, we figure out the transactions later. This works well for our small group, but scaling this up to 9 players makes coordinating the transactions non-obvious. Imagine you have an outcome like this: 
+When I play poker with friends, we don't keep a designated banker who manages buy-ins before the game. Instead, we figure out the transactions later. This works well for our small group, but scaling this up to 9 players makes coordinating the transactions non-obvious. Imagine you have an outcome like this: 
 
 |  Player  | Net $ |
 | :------: | ----: |
@@ -15,38 +15,55 @@ When I play poker with friends, we don't keep a designated banker who manages bu
 |  Kleene  |   −12 |
 | McCarthy |    +8 |
 | Dijkstra |   −37 |
-| Lovelace |   +87 |
-| Shannon  |    +8 |
+| Shannon  |   +87 |
 
 Who sends money to who?
 ## The Banker
-It would be smart to designate a centralized banker. Usually this is done before the game starts, so everyone buys in by sending money to the banker and receiving chips in return. Throughout the game, players may buy in multiple times. At the end, the banker sends everyone the cash equivalent of however many chips they have. This is usually how it's done, and requires $2(n-1)$ transactions for $n$ players (assuming no one rebuys). 
+It would be smart to designate a centralized banker, and we can still do this after the game. Anyone who ended with a loss sends money to the banker, and the banker sends money to all those who ended with a net gain. For a game with $n$ outstanding balances, this clears them all in $n-1$ transactions.
 
-This is suboptimal so obviously no one should do it this way.
+## A decentralized method 
+What if we don't want to designate a single banker? Players who ended in a loss should be able to pay out players who ended in a gain directly. We can do this while still maintaining our bound of $n-1$ transactions, which we show with an inductive proof:
 
-## Optimizing 
-Can we do better? Let's hold off on all transactions until the end of the game. Then, anyone who ended with a net loss can send money to those who had a net gain. In this way, we can get away with just $n-1$ transactions[^1]. We'll show this with induction: 
+Inductive hypothesis: $n$ outstanding player balances can be closed with up to $n-1$ transactions.
 
-Inductive hypothesis. For a state with $n$ outstanding balances, $n-1$ transactions are enough to close all balances. 
+Base case ($n=1$). All outstanding balances add up to 0, so with 1 player there is trivially no outstanding balance. 
 
-Base case, $n=1$. All outstanding balances add up to 0, so with 1 player there is trivially no outstanding balance. 
-
-Inductive step. Assume there are $k>1$ players left with an outstanding balance. 
+Inductive step. Assume there are $n>1$ players left with an outstanding balance. 
 
 Let $p_1$ be the player with the most negative balance, denoted $b_1$. Let $p_2$ be the player with the most positive balance, denoted $b_2$.
 
 If $|b_1|<b_2$ then $p_1$ can send \$$|b1|$ to $p_2$ and $p_1$'s outstanding balance is closed. 
-Otherwise $|b_1| \ge b_2$ and $p_1$ can send \$$b_2$ to $p_2$ to close $p_2$'s outstanding balance.
+If $|b_1| > b_2$ and $p_1$ can send \$$b_2$ to $p_2$ to close $p_2$'s outstanding balance.
+Otherwise $|b_1|=|b_2|$ and $p_1$ can close *two* balances with a single transaction by sending $b_2$ to $p_2$.
 
-In both cases, we performed 1 transaction and ended with $k-1$ players with an outstanding balance, which by the inductive hypothesis can be closed with up to $n-2$ transactions. 
+In both cases, we performed 1 transaction and ended with up to $n-1$ players with an outstanding balance, which by the inductive hypothesis can be closed with $n-2$ transactions or less. 
 
 In total we closed all balances with up to $n-1$ transactions 
 
-## Optimal?
-Could we do even better? In the case where $b_1=b_2$, we would be closing two balances at once. We can construct an example where it just takes $\frac{n}{2}$ transactions, and it's easy to show that this is the lower bound. But in general, this may not always be possible: Consider the case where all but one player ended with a net gain. All $n-1$ winning players must be paid, and so in general at least $n-1$ transactions are needed. This is indeed our lower bound, and we achieved it!
+## NP-hardness
+
+Our upper bound for both methods was $n-1$. As we saw in the inductive proof for the decentralized method, this is not a tight bound: it's possible for a player to close two outstanding balances with a single transaction. So can we find a tighter bound? 
+
+Surprisingly, we can't! At least not in [polynomial time](https://en.wikipedia.org/wiki/Time_complexity). It turns out that this problem is [NP-hard](https://en.wikipedia.org/wiki/NP-hardness). We can show this by reducing a known NP-hard problem to our problem in polynomial time. If we can do that, then we can say that a polynomial-time solution to our problem would be a polynomial-time solution to an NP-hard problem, which would prove $P=NP$.  
+
+Let's reduce the [Partition Problem](https://en.wikipedia.org/wiki/Partition_problem) to our problem: Given a multiset $S$ of positive integers, is it possible to partition $S$ into two multisets $S_1$, $S_2$, such that the sum of $S_1$ equals the sum of $S_2$. 
+
+Given a multiset $S$, we construct an instance of our poker problem as follows: 
+Let $m$ be the number of elements in $S$, and $T$ be the total sum of all elements.
+For each element $a_i \in S$ we say that there's a player with a net gain of $a_i$. 
+Then we add two players $p_1$ and $p_2$, each with a net loss of $\frac{T}{2}$.
+Thus we have $m+2$ players, with all outstanding balances summing to 0.
+
+Given this construction, we run our theoretical algorithm to determine the minimum number of transactions needed to clear all balances. If the number of transactions is $m$, we return YES to the partition problem. Otherwise we need $m+1$ transactions and return NO. 
+
+To see why this works, let's prove that $S$ can be partitioned into two sets of equal sum if and only if our construction needs exactly $m$ transactions to clear balances. 
+
+$(\implies)$  $S$ can be partitioned into two sets of equal sum, say $X$ and $Y$. $S$ had its elements summing to $T$, so both $X$ and $Y$ must have their elements sum to $\frac{T}{2}$. Let's partition the winning players in our game into the same two sets. Now $p_1$ can make $|X|$ payments, one to each player in $X$ for their full amount. This clears balances for all players in $X$, and it clears $p_1$'s balance because $X$ sums to $\frac{T}{2}$. In the same way, $p_2$ can make $|Y|$ payments and clear the remaining balances. This took $|X|+|Y|=|S|=m$ transactions. Furthermore, we know this is the lower bound because there are $m$ individual players with a net gain that each need a separate transaction.
+
+$(\impliedby)$ Our construction needs exactly $m$ transactions to clear all balances. There are $m$ players with a net gain, so each one was involved in exactly one transaction for their full amount. But both $p_1$ and $p_2$ also cleared their balance in these transactions. This means that every transaction must have been between some winning player $a_i$ and one of $\{p_1, p_2\}$. And every $a_i$ was involved in some transaction. Thus we can partition all $a_i$ by which $p_i$ they were paid from. Let $S_1$ be the set of players paid by $p_1$ and $S_2$ the set of players paid by $p_2$. The sum of elements in $S_1$ must be the same as the balance of $p_1$, which is $\frac{T}{2}$. Similarly the sum of $S_2$ is also $\frac{T}{2}$. Since all $a_i$ came from our input set $S$, we showed that $S$ can be partitioned into two sets of equal sum.
 
 ## Fairness
-In our optimal solution, we minimized the total number of transactions. But what if we want to minimize the maximum number of transactions performed by a single person? 
+Okay, so we're stuck with our $n-1$ solution. This is still the minimal number of transactions in the general case. But what if we want to minimize the maximum number of transactions performed by a single person? Even in our decentralized solution we could have a single player performing all $n-1$ transactions. 
 
 Surprisingly, we can get away with just (up to) 1 transaction per person. The intuition here is that since each losing player can only transfer money once, they must send their entire outstanding balance in one transaction. To deal with splitting payments, let's chain together players and let payments from losing players accumulate, while winning players can "hold back" their wins.
 
@@ -79,6 +96,6 @@ Thus we cleared all balances without forcing any player to perform more than a s
 Come to think of it, it's been a while since my friends have invited me to a game...
 
 ---
+#### Credits
 
-[^1]: Earlier, $n$ was the total number of players. Here, $n$ is the number of players with an outstanding balance. This is an even better result, because there could be players that ended with a net gain of 0 that previously would have still been involved in 2 transactions
-
+When asking Gemini to proof read this post, it surfaced a [blogpost with a similar premise](https://antoncao.me/blog/splitwise) -- I really liked the complexity theory analysis, which inspired me to find a similar reduction myself.
