@@ -5,30 +5,11 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import Nav from './Nav.jsx';
+import { getAllNotes, getNote } from '../data/notes-loader.js';
 
-const noteModules = import.meta.glob('../data/notes/*.md', { query: '?raw', import: 'default', eager: true });
+const notes = getAllNotes();
 
-function parseFrontmatter(raw) {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-  if (!match) return { meta: {}, content: raw };
-  const meta = {};
-  for (const line of match[1].split('\n')) {
-    const idx = line.indexOf(': ');
-    if (idx === -1) continue;
-    meta[line.slice(0, idx).trim()] = line.slice(idx + 2).trim();
-  }
-  return { meta, content: match[2] };
-}
-
-const notes = Object.entries(noteModules)
-  .map(([path, raw]) => {
-    const slug = path.replace('../data/notes/', '').replace('.md', '');
-    const { meta, content } = parseFrontmatter(raw);
-    return { slug, content, title: meta.title, date: meta.date, description: meta.description, unlisted: meta.unlisted === 'true' };
-  })
-  .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-function slugFromPath() {
+function slugFromLocation() {
   const match = window.location.pathname.match(/^\/notes\/([^/]+)\/?$/);
   return match ? match[1] : null;
 }
@@ -38,11 +19,11 @@ function formatDate(dateStr) {
   return new Date(y, m - 1, d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-export default function Notes() {
-  const [slug, setSlug] = useState(slugFromPath);
+export default function Notes({ initialSlug = null }) {
+  const [slug, setSlug] = useState(initialSlug);
 
   useEffect(() => {
-    const onPop = () => setSlug(slugFromPath());
+    const onPop = () => setSlug(slugFromLocation());
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
@@ -53,7 +34,7 @@ export default function Notes() {
     history.pushState({}, '', newSlug ? `/notes/${newSlug}` : '/notes');
   }
 
-  const note = slug ? notes.find(n => n.slug === slug) : null;
+  const note = slug ? getNote(slug) : null;
 
   return (
     <>
@@ -63,7 +44,7 @@ export default function Notes() {
           <article className="note-view">
             <a href="/notes" className="notes-back" onClick={e => navigate(e, null)}>← Notes</a>
             <h1 className="note-title">{note.title}</h1>
-            <time className="note-date">{formatDate(note.date)}</time>
+            <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>
             <div className="note-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkMath]}
@@ -81,7 +62,7 @@ export default function Notes() {
                 <li key={n.slug} className="notes-list-item">
                   <a href={`/notes/${n.slug}`} className="notes-item" onClick={e => navigate(e, n.slug)}>
                     <span className="notes-item-title">{n.title}</span>
-                    <time className="notes-item-date">{formatDate(n.date)}</time>
+                    <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>
                   </a>
                   {n.description && <p className="notes-item-desc">{n.description}</p>}
                 </li>

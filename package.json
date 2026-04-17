@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-server && node prerender.js && node scripts/generate-notes-pages.js",
+    "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-server && node prerender.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "deploy": "npm run build && gh-pages -d dist -b gh-pages",

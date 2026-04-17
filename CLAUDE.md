@@ -233,6 +233,39 @@ On short laptop screens, the map column is sticky. `.map-frame` uses `max-width:
 
 ---
 
+# Notes & SEO Prerender
+
+Notes are markdown files in `src/data/notes/` with YAML-ish frontmatter (`title`, `date`, `description`, optional `unlisted: true`). Each gets a permalink at `/notes/<slug>` with fully server-rendered HTML (content, KaTeX math, plus per-page SEO meta).
+
+## Pipeline
+
+Build order (`package.json`): `vite build` → `vite build --ssr src/entry-server.jsx --outDir dist-server` → `node prerender.js`. A single pass of `prerender.js` does **everything**: home, `/notes` listing, every `/notes/<slug>/index.html`, and `dist/sitemap.xml`. There is **no** separate `generate-notes-pages.js` — the SSR bundle is needed to render note bodies, so consolidating into prerender means `dist-server` is still available at that point (it's deleted at the end of prerender).
+
+## Shared loader (`src/data/notes-loader.js`)
+
+Both `Notes.jsx` (client + SSR) and `entry-server.jsx` import from here. Uses `import.meta.glob('./notes/*.md', { query: '?raw', import: 'default', eager: true })` which resolves identically in client and SSR Vite builds. Exports `parseFrontmatter`, `getAllNotes()`, `getNote(slug)`.
+
+## SSR-safety in `Notes.jsx`
+
+The component accepts `initialSlug` as a prop — it must **not** touch `window` at render time. Client entry (`src/notes-entry.jsx`) parses `window.location.pathname` once and passes it in; SSR passes the slug directly. The `popstate` handler reads `window.location` inside `useEffect`, which is safe because effects don't run during SSR. Both client entries (`main.jsx` and `notes-entry.jsx`) use `hydrateRoot` when server-rendered markup is present.
+
+## Meta injection
+
+`notes.html` has a `<!--ssr-head-->` sentinel right before `</head>`. `prerender.js` replaces it per page with `<title>`, description, canonical, Open Graph, Twitter card, and (for note pages) an `Article` JSON-LD block. **`notes.html` must not contain its own `<title>`** — browsers use the first `<title>` they parse, so a baseline would override the injected per-page title.
+
+## Unlisted notes
+
+Intentional design: unlisted notes behave like unlisted YouTube videos. The permalink works (the `index.html` is still generated), but:
+- `<meta name="robots" content="noindex, follow" />` is injected, so crawlers that hit the URL via backlinks won't index it.
+- The slug is excluded from `dist/sitemap.xml`.
+- It's filtered from the `/notes` listing UI (`Notes.jsx`).
+
+## Sitemap
+
+Generated at `dist/sitemap.xml` during prerender. `public/sitemap.xml` must **not** exist — Vite would copy it over the generated one. Static routes (`/`, `/notes`, `/poker`, `/poker-analytics`) are hardcoded in `STATIC_SITEMAP_ROUTES` in `prerender.js`. Notes are appended from `getAllNotes()`, skipping `unlisted`.
+
+---
+
 # Responsive Breakpoints
 
 | Breakpoint | Effect |
