@@ -253,6 +253,8 @@ The component accepts `initialSlug` as a prop — it must **not** touch `window`
 
 `notes.html` has a `<!--ssr-head-->` sentinel right before `</head>`. `prerender.js` replaces it per page with `<title>`, description, canonical, Open Graph, Twitter card, and (for note pages) an `Article` JSON-LD block. **`notes.html` must not contain its own `<title>`** — browsers use the first `<title>` they parse, so a baseline would override the injected per-page title.
 
+**GitHub Pages URL-resolution gotcha:** Vite emits `dist/notes.html` (multi-page input), and prerender writes the processed listing to `dist/notes/index.html`. GitHub Pages resolves `/notes` to `notes.html` **before** `notes/index.html`, so the raw `<!--ssr-head-->` template would be served in prod with no title. `vite preview` uses the opposite order, so this bug does not reproduce locally. Prerender deletes `dist/notes.html` at the end as cleanup.
+
 ## Unlisted notes
 
 Intentional design: unlisted notes behave like unlisted YouTube videos. The permalink works (the `index.html` is still generated), but:

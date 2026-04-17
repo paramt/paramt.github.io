@@ -173,6 +173,12 @@ async function prerender() {
   console.log('  sitemap.xml');
 
   // --- Cleanup ---
+  // dist/notes.html is the raw template Vite emitted (multi-page input); the
+  // processed listing lives at dist/notes/index.html. GitHub Pages resolves
+  // /notes to notes.html before notes/index.html, so leaving it behind serves
+  // the unprocessed <!--ssr-head--> template in prod (vite preview's resolution
+  // order is the opposite, masking the bug locally).
+  fs.rmSync(path.join(distClient, 'notes.html'), { force: true });
   fs.rmSync(distServer, { recursive: true, force: true });
 
   console.log(`Pre-render complete: home + listing + ${notes.length} note page(s).`);
