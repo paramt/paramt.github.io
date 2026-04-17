@@ -111,6 +111,12 @@ a:hover {
   color: var(--fg);
 }
 
+.nav-link-arrow {
+  margin-left: 3px;
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
 .theme-toggle {
   background: none;
   border: none;
@@ -738,7 +744,7 @@ main {
 
 /* ── Responsive ── */
 @media (max-width: 600px) {
-  .nav-links a:not(:last-child) {
+  .nav-links a:not(.nav-link-external) {
     display: none;
   }
 

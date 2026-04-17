@@ -4,7 +4,13 @@ function getEffectiveIsDark() {
   return document.documentElement.getAttribute('data-theme') === 'dark';
 }
 
-export default function Nav() {
+const HOME_LINKS = [
+  { href: "/#projects", label: "Projects" },
+  { href: "/#timeline", label: "Timeline" },
+  { href: "/notes", label: "Notes", external: true },
+];
+
+export default function Nav({ links = HOME_LINKS }) {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -25,19 +31,16 @@ export default function Nav() {
     }
   }
 
-  const links = [
-    { href: "/#projects", label: "Projects" },
-    { href: "/#timeline", label: "Timeline" },
-    // { href: "/notes", label: "Notes" },
-  ];
-
   return (
     <nav className="nav">
       <div className="nav-inner">
         <a href="/" className="nav-name">param.me</a>
         <div className="nav-links">
-          {links.map(({ href, label }) => (
-            <a key={href} href={href}>{label}</a>
+          {links.map(({ href, label, external }) => (
+            <a key={href} href={href} className={external ? "nav-link-external" : undefined}>
+              {label}
+              {external && <span className="nav-link-arrow" aria-hidden="true">↗</span>}
+            </a>
           ))}
           <button onClick={toggle} className="theme-toggle" aria-label="Toggle dark mode">
             {isDark

@@ -18,7 +18,7 @@ export default function Notes({ initialSlug = null }) {
 
   return (
     <>
-      <Nav />
+      <Nav links={[]} />
       <main className="notes-page">
         {note ? (
           <article className="note-view">
