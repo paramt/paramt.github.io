@@ -8,7 +8,7 @@ const distClient = path.resolve(__dirname, 'dist');
 const distServer = path.resolve(__dirname, 'dist-server');
 
 const SITE_URL = 'https://www.param.me';
-const OG_IMAGE = `${SITE_URL}/og-image.png`;
+const OG_IMAGE = `${SITE_URL}/og-image.webp`;
 
 function gitLastMod(pathspec = '') {
   try {
