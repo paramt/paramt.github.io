@@ -1,21 +1,21 @@
 ---
-title: Minimizing Transactions After a Poker Game
-date: 2026-04-16
-description: Coordinating transactions
+title: Settling Poker Debts is NP Hard
+date: 2026-04-17
+description:
 ---
 When I play poker with friends, we don't keep a designated banker who manages buy-ins before the game. Instead, we figure out the transactions later. This works well for our small group, but scaling this up to 9 players makes coordinating the transactions non-obvious. Imagine you have an outcome like this: 
 
 |  Player  | Net $ |
-| :------: | ----: |
-|  Turing  |   +39 |
-|  Church  |   −23 |
-|  Gödel   |    +2 |
-|  Curry   |   −75 |
-|  Hoare   |   +11 |
-|  Kleene  |   −12 |
-| McCarthy |    +8 |
-| Dijkstra |   −37 |
-| Shannon  |   +87 |
+| :------: | :---: |
+|  Turing  |  +39  |
+|  Church  |  −23  |
+|  Gödel   |  +2   |
+|  Curry   |  −75  |
+|  Hoare   |  +11  |
+|  Kleene  |  −12  |
+| McCarthy |  +8   |
+| Dijkstra |  −37  |
+| Shannon  |  +87  |
 
 Who sends money to who?
 ## The Banker
@@ -24,13 +24,13 @@ It would be smart to designate a centralized banker, which we can still do after
 ## A Decentralized Method 
 What if we don't want the burden of payouts to be put on one person? Players who ended in a loss should be able to pay out players who ended in a gain directly. We can do this while still maintaining our bound of $n-1$ transactions by using a simple greedy approach.
 
-Imagine the player with the most negative balance pays the player with the most positive balance. In doing so, at least one of those two players will have their balance perfectly zeroed out. Because every single transaction guarantees at least one player is completely settled, and the total sum of the table is zero, it will take a maximum of $n-1$ transactions to clear everyone.
+Imagine the player with the most negative balance pays the player with the most positive balance. In doing so, at least one of those two players will have their balance cleared. When there are just two outstanding balances left, a single transaction clears both balances, since they must add up to 0. Because every transaction guarantees at least one player's balance is completely settled, and the final transaction settles two balances, it takes a maximum of $n-1$ transactions to clear everyone.
 ## NP-hardness
-Our upper bound on the number of transactions for both methods was $n-1$. However, this is not always a tight bound: it's possible for a single transaction to perfectly clear two balances at once (if a loser's debt exactly matches a winner's gain). So, can we write an algorithm to find the absolute minimum bound?
+Our upper bound on the number of transactions for both methods was $n-1$. However, this is not always the tightest bound: it's possible for a single transaction to clear two balances at once (if a loser's debt exactly matches a winner's gain). So, can we write an efficient algorithm to find the actual minimum number of transactions needed?
 
-Surprisingly, we can't! At least not in [polynomial time](https://en.wikipedia.org/wiki/Time_complexity). It turns out that this problem is [NP-hard](https://en.wikipedia.org/wiki/NP-hardness). We can show this by reducing a known NP-hard problem to our problem in polynomial time. If we can do that, then we can say that a polynomial-time solution to our problem would be a polynomial-time solution to an NP-hard problem, which would prove $P=NP$.  
+Surprisingly, we can't! At least not in [polynomial time](https://en.wikipedia.org/wiki/Time_complexity), because it turns out that this problem is [NP-hard](https://en.wikipedia.org/wiki/NP-hardness). We can show this by reducing a known NP-hard problem to our problem in polynomial time. If we can do that, then we can say that a polynomial-time solution to our problem would be a polynomial-time solution to an NP-hard problem, which would prove $P=NP$.  
 
-Let's reduce the [Partition Problem](https://en.wikipedia.org/wiki/Partition_problem) to our problem: Given a multiset $S$ of positive integers, is it possible to partition $S$ into two multisets $S_1$, $S_2$, such that the sum of $S_1$ equals the sum of $S_2$. 
+Let's reduce the [Partition Problem](https://en.wikipedia.org/wiki/Partition_problem): Given a multiset $S$ of positive integers, is it possible to partition $S$ into two multisets $S_1$, $S_2$, such that the sum of $S_1$ equals the sum of $S_2$. 
 
 Given a multiset $S$, we construct an instance of our poker problem as follows: 
 Let $m$ be the number of elements in $S$, and $T$ be the total sum of all elements.
@@ -38,7 +38,7 @@ For each element $a_i \in S$ we say that there's a player with a net gain of $a_
 Then we add two players $p_1$ and $p_2$, each with a net loss of $\frac{T}{2}$.
 Thus we have $m+2$ players, with all outstanding balances summing to 0.
 
-Given this construction, we run our theoretical algorithm to determine the minimum number of transactions needed to clear all balances. If the number of transactions is $m$, we return YES to the partition problem. Otherwise we need $m+1$ transactions and return NO. 
+Given this construction, we run our theoretical algorithm to determine the minimum number of transactions needed to clear all balances. If the number of transactions is $m$, we return *YES* to the partition problem. Otherwise we need $m+1$ transactions and return *NO*. 
 
 To see why this works, let's prove that $S$ can be partitioned into two sets of equal sum if and only if our construction needs exactly $m$ transactions to clear balances. 
 
@@ -47,9 +47,9 @@ $(\implies)$  $S$ can be partitioned into two sets of equal sum, say $X$ and $Y$
 $(\impliedby)$ Our construction needs exactly $m$ transactions to clear all balances. There are $m$ players with a net gain, so each one was involved in exactly one transaction for their full amount. But both $p_1$ and $p_2$ also cleared their balance in these transactions. This means that every transaction must have been between some winning player $a_i$ and one of $\{p_1, p_2\}$. And every $a_i$ was involved in some transaction. Thus we can partition all $a_i$ by which $p_i$ they were paid from. Let $S_1$ be the set of players paid by $p_1$ and $S_2$ the set of players paid by $p_2$. The sum of elements in $S_1$ must be the same as the balance of $p_1$, which is $\frac{T}{2}$. Similarly the sum of $S_2$ is also $\frac{T}{2}$. Since all $a_i$ came from our input set $S$, we showed that $S$ can be partitioned into two sets of equal sum.
 
 ## Fairness
-Okay, so we're stuck with our $n-1$ solution. This is still the minimal number of transactions in the general case. But what if we want to minimize the maximum number of transactions performed by a single person? Even in our decentralized solution we could have a single player performing all $n-1$ transactions. 
+Okay, so we're stuck with our $n-1$ solution. This is still the minimal number of transactions in the general case (consider the example with $n-1$ losing players and 1 winning player). But what if we want to minimize the maximum number of transactions performed by a single person? Even in our decentralized solution we could have a single player performing all $n-1$ transactions. 
 
-Surprisingly, we can get away with just (up to) 1 transaction per person. The intuition here is that since each losing player can only transfer money once, they must send their entire outstanding balance in one transaction. To deal with splitting payments, let's chain together players and let payments from losing players accumulate, while winning players can "hold back" their wins.
+Surprisingly, we can get away with just (up to) 1 transaction per person. The intuition here is that since each losing player can only transfer money once, they must send their entire outstanding balance in one transaction. To deal with splitting payments, let's chain together players and let payments from losing players accumulate, while winning players can "hold back" their wins before passing on the remainder of the accumulated amount.
 
 Let's arrange everyone in a chain, from lowest net result to highest: $p_1, p_2, ..., p_n$. As before, let $b_i$ be the outstanding balance of player $p_i$. 
 
