@@ -29,8 +29,8 @@ function escapeHtml(s) {
 }
 
 function buildNotesListingHead() {
-  const title = 'Notes — Param Thakkar';
-  const description = 'Notes, ideas, and things I figured out.';
+  const title = 'Param\'s Notes';
+  const description = 'Notes, ideas, and things I figured out';
   const url = `${SITE_URL}/notes`;
   return [
     `<title>${escapeHtml(title)}</title>`,

@@ -45,6 +45,7 @@ export default function Notes({ initialSlug = null }) {
             <a href="/notes" className="notes-back" onClick={e => navigate(e, null)}>← Notes</a>
             <h1 className="note-title">{note.title}</h1>
             <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>
+            {note.description && <p className="note-description">{note.description}</p>}
             <div className="note-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkMath]}
