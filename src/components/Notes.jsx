@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -9,32 +8,13 @@ import { getAllNotes, getNote } from '../data/notes-loader.js';
 
 const notes = getAllNotes();
 
-function slugFromLocation() {
-  const match = window.location.pathname.match(/^\/notes\/([^/]+)\/?$/);
-  return match ? match[1] : null;
-}
-
 function formatDate(dateStr) {
   const [y, m, d] = dateStr.split('-').map(Number);
   return new Date(y, m - 1, d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 export default function Notes({ initialSlug = null }) {
-  const [slug, setSlug] = useState(initialSlug);
-
-  useEffect(() => {
-    const onPop = () => setSlug(slugFromLocation());
-    window.addEventListener('popstate', onPop);
-    return () => window.removeEventListener('popstate', onPop);
-  }, []);
-
-  function navigate(e, newSlug) {
-    e.preventDefault();
-    setSlug(newSlug);
-    history.pushState({}, '', newSlug ? `/notes/${newSlug}` : '/notes');
-  }
-
-  const note = slug ? getNote(slug) : null;
+  const note = initialSlug ? getNote(initialSlug) : null;
 
   return (
     <>
@@ -42,7 +22,7 @@ export default function Notes({ initialSlug = null }) {
       <main className="notes-page">
         {note ? (
           <article className="note-view">
-            <a href="/notes" className="notes-back" onClick={e => navigate(e, null)}>← Notes</a>
+            <a href="/notes" className="notes-back">← Notes</a>
             <h1 className="note-title">{note.title}</h1>
             <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>
             {note.description && <p className="note-description">{note.description}</p>}
@@ -61,7 +41,7 @@ export default function Notes({ initialSlug = null }) {
             <ul className="notes-list">
               {notes.filter(n => !n.unlisted).map(n => (
                 <li key={n.slug} className="notes-list-item">
-                  <a href={`/notes/${n.slug}`} className="notes-item" onClick={e => navigate(e, n.slug)}>
+                  <a href={`/notes/${n.slug}`} className="notes-item">
                     <span className="notes-item-title">{n.title}</span>
                     <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>
                   </a>
