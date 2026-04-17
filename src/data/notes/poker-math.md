@@ -19,30 +19,14 @@ When I play poker with friends, we don't keep a designated banker who manages bu
 
 Who sends money to who?
 ## The Banker
-It would be smart to designate a centralized banker, and we can still do this after the game. Anyone who ended with a loss sends money to the banker, and the banker sends money to all those who ended with a net gain. For a game with $n$ outstanding balances, this clears them all in $n-1$ transactions.
+It would be smart to designate a centralized banker, which we can still do after the game. Anyone who ended with a loss sends money to the banker, and the banker sends money to all those who ended with a net gain. For a game with $n$ outstanding balances, this clears them all in $n-1$ transactions.
 
-## A decentralized method 
-What if we don't want to designate a single banker? Players who ended in a loss should be able to pay out players who ended in a gain directly. We can do this while still maintaining our bound of $n-1$ transactions, which we show with an inductive proof:
+## A Decentralized Method 
+What if we don't want the burden of payouts to be put on one person? Players who ended in a loss should be able to pay out players who ended in a gain directly. We can do this while still maintaining our bound of $n-1$ transactions by using a simple greedy approach.
 
-Inductive hypothesis: $n$ outstanding player balances can be closed with up to $n-1$ transactions.
-
-Base case ($n=1$). All outstanding balances add up to 0, so with 1 player there is trivially no outstanding balance. 
-
-Inductive step. Assume there are $n>1$ players left with an outstanding balance. 
-
-Let $p_1$ be the player with the most negative balance, denoted $b_1$. Let $p_2$ be the player with the most positive balance, denoted $b_2$.
-
-If $|b_1|<b_2$ then $p_1$ can send \$$|b1|$ to $p_2$ and $p_1$'s outstanding balance is closed. 
-If $|b_1| > b_2$ and $p_1$ can send \$$b_2$ to $p_2$ to close $p_2$'s outstanding balance.
-Otherwise $|b_1|=|b_2|$ and $p_1$ can close *two* balances with a single transaction by sending $b_2$ to $p_2$.
-
-In both cases, we performed 1 transaction and ended with up to $n-1$ players with an outstanding balance, which by the inductive hypothesis can be closed with $n-2$ transactions or less. 
-
-In total we closed all balances with up to $n-1$ transactions 
-
+Imagine the player with the most negative balance pays the player with the most positive balance. In doing so, at least one of those two players will have their balance perfectly zeroed out. Because every single transaction guarantees at least one player is completely settled, and the total sum of the table is zero, it will take a maximum of $n-1$ transactions to clear everyone.
 ## NP-hardness
-
-Our upper bound for both methods was $n-1$. As we saw in the inductive proof for the decentralized method, this is not a tight bound: it's possible for a player to close two outstanding balances with a single transaction. So can we find a tighter bound? 
+Our upper bound on the number of transactions for both methods was $n-1$. However, this is not always a tight bound: it's possible for a single transaction to perfectly clear two balances at once (if a loser's debt exactly matches a winner's gain). So, can we write an algorithm to find the absolute minimum bound?
 
 Surprisingly, we can't! At least not in [polynomial time](https://en.wikipedia.org/wiki/Time_complexity). It turns out that this problem is [NP-hard](https://en.wikipedia.org/wiki/NP-hardness). We can show this by reducing a known NP-hard problem to our problem in polynomial time. If we can do that, then we can say that a polynomial-time solution to our problem would be a polynomial-time solution to an NP-hard problem, which would prove $P=NP$.  
 
@@ -98,4 +82,4 @@ Come to think of it, it's been a while since my friends have invited me to a gam
 ---
 #### Credits
 
-When asking Gemini to proof read this post, it surfaced a [blogpost with a similar premise](https://antoncao.me/blog/splitwise) -- I really liked the complexity theory analysis, which inspired me to find a similar reduction myself.
+When asking Claude to proof read this post, it surfaced a [blogpost with a similar premise](https://antoncao.me/blog/splitwise) -- I really liked the complexity theory analysis, which inspired me to find a similar reduction myself.
