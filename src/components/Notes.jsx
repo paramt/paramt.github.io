@@ -38,6 +38,7 @@ export default function Notes({ initialSlug = null }) {
         ) : (
           <div className="notes-listing">
             <a href="/" className="notes-back">← Home</a>
+            <h1 className="notes-heading">Notes</h1>
             <ul className="notes-list">
               {notes.filter(n => !n.unlisted).map(n => (
                 <li key={n.slug} className="notes-list-item">
