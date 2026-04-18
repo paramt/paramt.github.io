@@ -836,6 +836,13 @@ main {
 .notes-heading {
   font-size: 22px;
   font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.notes-description {
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1.6;
   margin-bottom: 32px;
 }
 

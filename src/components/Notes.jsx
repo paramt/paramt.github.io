@@ -10,7 +10,7 @@ const notes = getAllNotes();
 
 function formatDate(dateStr) {
   const [y, m, d] = dateStr.split('-').map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return new Date(y, m - 1, d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
 export default function Notes({ initialSlug = null }) {
@@ -39,6 +39,7 @@ export default function Notes({ initialSlug = null }) {
           <div className="notes-listing">
             <a href="/" className="notes-back">← Home</a>
             <h1 className="notes-heading">Notes</h1>
+            <p className="notes-description">This is a place for my thoughts and musings. Ideas, reflections, or just random things I want to write down. Some will be structured, others more like a stream of consciousness. Mostly written for myself</p>
             <ul className="notes-list">
               {notes.filter(n => !n.unlisted).map(n => (
                 <li key={n.slug} className="notes-list-item">
