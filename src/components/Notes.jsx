@@ -41,15 +41,19 @@ export default function Notes({ initialSlug = null }) {
             <h1 className="notes-heading">Notes</h1>
             <p className="notes-description">This is a place for my thoughts and musings. Ideas, reflections, or just random things I want to write down. Some will be structured, others more like a stream of consciousness, but mostly written for myself.</p>
             <ul className="notes-list">
-              {notes.filter(n => !n.unlisted).map(n => (
-                <li key={n.slug} className="notes-list-item">
+              {notes.filter(n => !n.unlisted).map(n => {
+              const [y, m, d] = n.date.split('-').map(Number);
+              const isNew = (Date.now() - new Date(y, m - 1, d).getTime()) < 7 * 24 * 60 * 60 * 1000;
+              return (
+                <li key={n.slug} className={`notes-list-item${isNew ? ' notes-list-item--recent' : ''}`}>
                   <a href={`/notes/${n.slug}`} className="notes-item">
                     <span className="notes-item-title">{n.title}</span>
                     <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>
                   </a>
                   {n.description && <p className="notes-item-desc">{n.description}</p>}
                 </li>
-              ))}
+              );
+            })}
             </ul>
           </div>
         )}

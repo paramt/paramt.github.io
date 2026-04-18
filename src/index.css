@@ -454,22 +454,78 @@ main {
   }
 
   .timeline-map-col {
-    display: block;
+    --timeline-rail-gap: 20px;
+    --timeline-rail-height: calc(100svh - var(--nav-height) - 48px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--timeline-rail-gap);
+    width: clamp(280px, calc(var(--timeline-rail-height) * 0.78), 380px);
+    height: var(--timeline-rail-height);
+    container-type: size;
   }
 }
 
 /* ── Timeline Polaroids ── */
 .timeline-polaroids {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  --timeline-polaroid-width: 180px;
+  --timeline-polaroid-pad-x: 10px;
+  --timeline-polaroid-pad-top: 10px;
+  --timeline-polaroid-pad-bottom: 32px;
+  --timeline-sticky-size: 160px;
+  --timeline-sticky-pad-top: 22px;
+  --timeline-sticky-pad-x: 14px;
+  --timeline-sticky-pad-bottom: 14px;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
   gap: 16px;
-  margin-top: 20px;
+  justify-items: center;
+  align-items: start;
+  align-content: start;
+  container-type: size;
+}
+
+.timeline-polaroids--count-1 {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.timeline-polaroids--count-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.timeline-polaroids--count-3,
+.timeline-polaroids--count-4 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.timeline-polaroids .polaroid,
+.timeline-polaroids .sticky-note {
+  min-width: 0;
+  min-height: 0;
+  height: auto;
 }
 
 .timeline-polaroids .polaroid {
   position: relative;
-  flex-grow: 1;
+  width: var(--timeline-polaroid-width);
+  max-width: 100%;
+  padding:
+    var(--timeline-polaroid-pad-top)
+    var(--timeline-polaroid-pad-x)
+    var(--timeline-polaroid-pad-bottom);
+}
+
+.timeline-polaroids .polaroid img,
+.timeline-polaroids .polaroid-video {
+  height: auto;
+}
+
+.timeline-polaroids .polaroid img {
+  object-fit: unset;
+}
+
+.timeline-polaroids .polaroid-video {
+  object-fit: cover;
 }
 
 
@@ -511,10 +567,56 @@ main {
   color: #0d3d6e;
 }
 
+.timeline-polaroids .sticky-note {
+  width: var(--timeline-sticky-size);
+  height: var(--timeline-sticky-size);
+  aspect-ratio: 1;
+  padding:
+    var(--timeline-sticky-pad-top)
+    var(--timeline-sticky-pad-x)
+    var(--timeline-sticky-pad-bottom);
+}
+
+.timeline-polaroids .sticky-note-text {
+  font-size: clamp(0.75rem, 1.7cqh, 0.9rem);
+}
+
+.timeline-polaroids--count-1 .polaroid {
+  --timeline-polaroid-width: min(100%, 82cqh);
+  --timeline-polaroid-pad-x: clamp(8px, 4.6cqh, 10px);
+  --timeline-polaroid-pad-top: var(--timeline-polaroid-pad-x);
+  --timeline-polaroid-pad-bottom: clamp(24px, 14.5cqh, 32px);
+}
+
+.timeline-polaroids--count-2 .polaroid {
+  --timeline-polaroid-width: min(100%, 72cqh);
+  --timeline-polaroid-pad-x: clamp(8px, 4cqh, 10px);
+  --timeline-polaroid-pad-top: var(--timeline-polaroid-pad-x);
+  --timeline-polaroid-pad-bottom: clamp(24px, 12.5cqh, 32px);
+}
+
+.timeline-polaroids--count-3 .polaroid,
+.timeline-polaroids--count-4 .polaroid {
+  --timeline-polaroid-width: min(100%, calc((100cqh - 16px) * 0.72));
+  --timeline-polaroid-pad-x: clamp(7px, 3.2cqh, 10px);
+  --timeline-polaroid-pad-top: var(--timeline-polaroid-pad-x);
+  --timeline-polaroid-pad-bottom: clamp(20px, 10cqh, 32px);
+}
+
+.timeline-polaroids--count-3 > .polaroid:last-child {
+  grid-column: 1 / -1;
+  --timeline-polaroid-width: min(100%, calc((48cqh - 16px) * 1.02));
+}
+
+
 /* ── Map Frame (tack + string + tilt) ── */
 .map-frame {
   position: relative;
-  padding-top: 34px;
+  flex: 0 0 auto;
+  width: min(100%, calc((44cqh - clamp(24px, 6cqh, 34px)) * 400 / 260));
+  max-width: 100%;
+  margin: 0 auto;
+  padding-top: clamp(24px, 6cqh, 34px);
   transform: rotate(2.5deg);
   transform-origin: top center;
 }
@@ -852,6 +954,23 @@ main {
 
 .notes-list-item + .notes-list-item {
   border-top: 1px solid var(--border);
+}
+
+.notes-list-item--recent .notes-item-title::after {
+  content: 'new';
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-left: 8px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
 }
 
 .notes-item {

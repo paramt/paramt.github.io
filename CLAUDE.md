@@ -229,7 +229,18 @@ Light mode is the default. Dark mode is **only** activated by the manual toggle 
 
 # Timeline Polaroids — short viewport behaviour
 
-On short laptop screens, the map column is sticky. `.map-frame` uses `max-width: min(100%, calc(clamp(160px, 35svh, 247px) * 400 / 260))` to shrink proportionally on short viewports, giving more room for photos below the map. `WorldMap` has a `ResizeObserver` that redraws when the canvas resizes.
+On desktop (`≥ 860px`), the entire right rail is a sticky, viewport-bounded column: `.timeline-map-col` uses `height: calc(100svh - var(--nav-height) - 48px)` and `container-type: size`, so the map and attachments respond to the height actually available under the navbar instead of overflowing past the fold.
+
+- The rail width now shrinks with available height via `width: clamp(280px, calc(var(--timeline-rail-height) * 0.78), 380px)`.
+- The right rail is a flex column, but `.map-frame` is `flex: 0 0 auto` so it sizes to its actual rendered content instead of stretching to fill a fixed fraction of the rail. `.timeline-polaroids` takes the remaining height (`flex: 1 1 auto`).
+- The attachment grid packs upward: `.timeline-polaroids` uses `align-items: start` and `align-content: start`, so cards sit at the top of their cells/rows instead of vertically centering within leftover space.
+- For 3- and 4-item layouts, the grid does **not** use fixed `1fr` row tracks. Rows size to their content, so any leftover attachment height collects at the bottom of the rail rather than being split into a large gap between rows.
+- In 3-item layouts, if the trailing attachment is an image (`.polaroid:last-child`), it spans both columns. Its width cap is based on roughly the lower half of the attachment rail (`48cqh`) rather than the full container height, so it can use the otherwise-empty half-row without overflowing when the remaining height is tight.
+- `Timeline.jsx` adds a count modifier class (`timeline-polaroids--count-1` … `--count-4`) so CSS can size 1-, 2-, and 4-item attachment layouts differently without measuring in JS.
+- Timeline polaroids no longer stretch to fill grid-row height. Instead, each count layout sets explicit size tokens on the card (`--timeline-polaroid-width`, `--timeline-polaroid-pad-x`, `--timeline-polaroid-pad-bottom`, etc.). Width is expressed as `min(100%, <height-derived cap>)`, so cards grow to fill the available row/column width when they can, but are still constrained by height on short screens.
+- Sticky notes intentionally do not participate in that responsive scaling. In the timeline rail they keep a fixed square footprint (`160px`) with fixed padding tokens (`22px 14px 14px`) so their handwritten note look stays consistent across events.
+- `.map-frame` sizes from container height too (`width: min(100%, calc((44cqh - paddingTop) * 400 / 260))`). The lower `44cqh` cap makes the map begin shrinking earlier as viewport height decreases, so the polaroids do not absorb all of the initial height pressure on short screens.
+- `WorldMap` still has a `ResizeObserver` that redraws whenever the canvas size changes.
 
 ---
 

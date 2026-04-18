@@ -154,7 +154,7 @@ export default function Timeline() {
             />
           </div>
           {activeAttachments.length > 0 && (
-            <div className="timeline-polaroids">
+            <div className={`timeline-polaroids timeline-polaroids--count-${Math.min(activeAttachments.length, 4)}`}>
               {activeAttachments.map((attachment, i) =>
                 attachment.type === 'note' ? (
                   <StickyNote key={i} text={attachment.text} color={attachment.color} />
