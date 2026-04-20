@@ -4,7 +4,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import Nav from './Nav.jsx';
-import { getAllNotes, getNote } from '../data/notes-loader.js';
+import { getAllNotes, getNote, resolveNoteAsset } from '../data/notes-loader.js';
 
 const notes = getAllNotes();
 
@@ -15,6 +15,13 @@ function formatDate(dateStr) {
 
 export default function Notes({ initialSlug = null }) {
   const note = initialSlug ? getNote(initialSlug) : null;
+  const markdownComponents = note
+    ? {
+        img({ node: _node, src, alt, ...props }) {
+          return <img {...props} src={resolveNoteAsset(src)} alt={alt ?? ''} loading="lazy" />;
+        },
+      }
+    : undefined;
 
   return (
     <>
@@ -30,6 +37,7 @@ export default function Notes({ initialSlug = null }) {
               <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkMath]}
                 rehypePlugins={[rehypeKatex]}
+                components={markdownComponents}
               >
                 {note.content}
               </ReactMarkdown>

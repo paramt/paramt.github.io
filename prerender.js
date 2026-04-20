@@ -9,6 +9,9 @@ const distServer = path.resolve(__dirname, 'dist-server');
 
 const SITE_URL = 'https://www.param.me';
 const OG_IMAGE = `${SITE_URL}/og-image.webp`;
+const NOTE_MEDIA_DIR = path.join(__dirname, 'src', 'data', 'notes');
+const NOTE_MEDIA_OUT_DIR = path.join(distClient, 'notes-media');
+const NOTE_MEDIA_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.webp', '.gif', '.avif', '.svg']);
 
 function gitLastMod(pathspec = '') {
   try {
@@ -123,8 +126,30 @@ function buildSitemap(notes) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`;
 }
 
+function copyNoteMedia() {
+  const walk = (srcDir, relDir = '') => {
+    for (const entry of fs.readdirSync(srcDir, { withFileTypes: true })) {
+      const relPath = path.join(relDir, entry.name);
+      const srcPath = path.join(srcDir, entry.name);
+      const outPath = path.join(NOTE_MEDIA_OUT_DIR, relPath);
+
+      if (entry.isDirectory()) {
+        walk(srcPath, relPath);
+        continue;
+      }
+      if (!NOTE_MEDIA_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) continue;
+      fs.mkdirSync(path.dirname(outPath), { recursive: true });
+      fs.copyFileSync(srcPath, outPath);
+    }
+  };
+
+  fs.mkdirSync(NOTE_MEDIA_OUT_DIR, { recursive: true });
+  walk(NOTE_MEDIA_DIR);
+}
+
 async function prerender() {
   const { renderHome, renderNotes, getAllNotes } = await import('./dist-server/entry-server.js');
+  copyNoteMedia();
 
   // --- Home ---
   const homeTemplate = fs.readFileSync(path.join(distClient, 'index.html'), 'utf-8');

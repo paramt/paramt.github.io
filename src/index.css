@@ -1081,6 +1081,14 @@ main {
   margin-bottom: 1em;
 }
 
+.note-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 24px auto;
+  border-radius: 8px;
+}
+
 .note-content pre code {
   background: none;
   border: none;

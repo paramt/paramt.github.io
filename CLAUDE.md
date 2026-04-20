@@ -256,6 +256,18 @@ Build order (`package.json`): `vite build` → `vite build --ssr src/entry-serve
 
 Both `Notes.jsx` (client + SSR) and `entry-server.jsx` import from here. Uses `import.meta.glob('./notes/*.md', { query: '?raw', import: 'default', eager: true })` which resolves identically in client and SSR Vite builds. Exports `parseFrontmatter`, `getAllNotes()`, `getNote(slug)`.
 
+### Note-local images
+
+Markdown note images live alongside the `.md` files in `src/data/notes/`. Local image references resolve to `/notes-media/<filename>`:
+
+- Standard Markdown images are supported: `![alt](image.png)`.
+- Obsidian embeds are also supported and normalized at load time: `![[image.png]]` and `![[image.png|alt text]]`.
+- Bare Obsidian filenames are resolved by basename across the whole `src/data/notes/` tree, so `![[1.png]]` still works after moving attachments into a nested folder like `src/data/notes/images/...`.
+- Relative paths are preserved when present, e.g. `![alt](images/post/foo.png)` or `![[images/post/foo.png]]`.
+- External URLs and root-relative `/...` image URLs are left untouched.
+- Dev server: `vite.config.js` serves `/notes-media/*` directly from `src/data/notes/`.
+- Production build: `prerender.js` copies note-local image files (`png`, `jpg`, `jpeg`, `webp`, `gif`, `avif`, `svg`) into `dist/notes-media/`.
+
 ## SSR-safety in `Notes.jsx`
 
 The component accepts `initialSlug` as a prop — it must **not** touch `window` at render time. Client entry (`src/notes-entry.jsx`) parses `window.location.pathname` once and passes it in; SSR passes the slug directly. The `popstate` handler reads `window.location` inside `useEffect`, which is safe because effects don't run during SSR. Both client entries (`main.jsx` and `notes-entry.jsx`) use `hydrateRoot` when server-rendered markup is present.
