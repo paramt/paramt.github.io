@@ -3,6 +3,7 @@ title: games and tricks
 date: 2025-09-22
 description:
 unlisted: false
+tags:
 ---
 ## magic tricks
 ### red black separator
@@ -21,7 +22,7 @@ unlisted: false
 - ask them to put it in the other deck and shuffle it (OR: swap the decks yourself)
 - find the only card that stands out 
 ### 27 
-[reference video[(https://www.youtube.com/watch?v=l7lP9y7Bb5g)
+[reference video](https://www.youtube.com/watch?v=l7lP9y7Bb5g)
 
 viewer gets to pick which number card it is!
 - ask them to choose a number
