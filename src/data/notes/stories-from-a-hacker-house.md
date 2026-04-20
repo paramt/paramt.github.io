@@ -64,7 +64,7 @@ Before joining the company, Mike's friend was goofing around on the voice AI and
 
 ## flirting with heather
 
-![[images/stories-from-a-hacker-house/1.png]]
+![[images/stories-from-a-hacker-house/1.jpg]]
 
 Bob wanted to make a clip go viral, and so together we created the new heather
 
