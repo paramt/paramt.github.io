@@ -21,13 +21,15 @@ unlisted: false
 - ask them to put it in the other deck and shuffle it (OR: swap the decks yourself)
 - find the only card that stands out 
 ### 27 
-https://www.youtube.com/watch?v=l7lP9y7Bb5g
+[reference video[(https://www.youtube.com/watch?v=l7lP9y7Bb5g)
+
 viewer gets to pick which number card it is!
 - ask them to choose a number
 - convert that number to base 3
 - starting from 1s column, then 3s column, then 9s column
 - 0 is top, 1 is middle, 2 is bottom
 
+---
 ## card games
 ### bluff 
 - multiplayer game, ideally 4+
@@ -54,7 +56,7 @@ viewer gets to pick which number card it is!
 Each player starts with a shuffled deck of cards with both jokers. To win the game, a player must either reach 6 points, or the other player must run out of cards. At the start of the game, both players put one card onto the table. From here, the action is on whichever player has the worse 5-card poker hand showing. Note that with <5 cards, you will have an incomplete poker hand and some hand ranks cannot be made (such as straight, flush, full house). When it is a player's turn, that player may either draw to try and improve their showing hand, or fold and give their opponent a point. If the showing hands are tied, both players must draw.
 ### 3 way best hand
 - todo
-
+---
 ## poker variants
 
 ### pineapple
