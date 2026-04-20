@@ -48,17 +48,17 @@ Reflecting on my time here during my last in-person week, remembered some good b
 
 ## hosting the server off my macbook air
 
-friday afternoon: I switch expertise.ai's DNS servers from cloudflare to vercel, because we want to set up custom subdomains dynamically with SSL which vercel can do for us
+friday afternoon: I switch \[companys new domain\]'s DNS servers from cloudflare to vercel, because we want to set up custom subdomains dynamically with SSL which vercel can do for us
 
-before I do that, I make sure to ask Bob if it's ok that expertise.ai will be down for a couple hours. He says it's fine because it's just an empty landing page that isn't published anywhere. So I go ahead and make the switch
+before I do that, I make sure to ask Bob if it's ok that \[companys new domain\] will be down for a couple hours. He says it's fine because it's just an empty landing page that isn't published anywhere. So I go ahead and make the switch
 
-Friday ~5:30pm: Sarah reports that chatbot is down all servers are down we realize that the backend is hosted on api.expertise.ai
+Friday ~5:30pm: Sarah reports that chatbot is down all servers are down we realize that the backend is hosted on `api.[companys new domain]`
 
 I make the switch back to cloudflare DNS, but it may take up to 48 hours to take effect. I ask if there's a direct aws hosting link we can switch to, but that doesn't seem to be the case (something with a load balancer?)
 
 so I suggest hosting the backend through ngrok, and we do that for the prod servers for about an hour until we find a better solution. the better solution was just the DNS servers being switched back to cloudflare
 
-## exposing Mike
+## exposing mike
 
 Before joining the company, Mike's friend was goofing around on the voice AI and talking shit while namedropping Mike. Mike said to stop because they can probably see the logs. After he joined, I asked him around what date it was and we found the full transcript as well as audio of that conversation. He was right, we were recording everything
 
