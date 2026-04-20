@@ -1,8 +1,8 @@
 ---
-title: Stories From a Hacker House
+title: stories from a hacker house
 date: 2024-12-22
 description:
-unlisted: true
+unlisted: false
 tags:
 ---
 some tidbits from working as a swe intern at ▓▓▓▓▓▓▓▓
