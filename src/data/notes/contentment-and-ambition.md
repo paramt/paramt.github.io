@@ -3,6 +3,8 @@ title: contentment and ambition
 date: 2023-07-02
 description:
 unlisted: false
+tags:
+  - reflection
 ---
 Contentment and ambition[^1] are hard to balance. In order to be ultra-ambitious, you need to keep moving the finish line and never be content with where you are currently. An ultra-ambitious person would call the content person complacent. Whereas to be content, you need the complete opposite mindset. 
 

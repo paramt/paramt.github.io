@@ -63,10 +63,20 @@ export function parseFrontmatter(raw) {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
   if (!match) return { meta: {}, content: raw };
   const meta = {};
+  let currentArrayKey = null;
   for (const line of match[1].split('\n')) {
-    const idx = line.indexOf(': ');
-    if (idx === -1) continue;
-    meta[line.slice(0, idx).trim()] = line.slice(idx + 2).trim();
+    if (currentArrayKey !== null && line.startsWith('  - ')) {
+      if (!Array.isArray(meta[currentArrayKey])) meta[currentArrayKey] = [];
+      meta[currentArrayKey].push(line.slice(4).trim());
+      continue;
+    }
+    currentArrayKey = null;
+    const colonIdx = line.indexOf(':');
+    if (colonIdx === -1) continue;
+    const key = line.slice(0, colonIdx).trim();
+    const value = line.slice(colonIdx + 1).trim();
+    meta[key] = value;
+    if (value === '') currentArrayKey = key;
   }
   return { meta, content: match[2] };
 }
@@ -82,6 +92,7 @@ const notes = Object.entries(noteModules)
       date: meta.date,
       description: meta.description,
       unlisted: meta.unlisted === 'true',
+      tags: Array.isArray(meta.tags) ? meta.tags : [],
     };
   })
   .sort((a, b) => new Date(b.date) - new Date(a.date));

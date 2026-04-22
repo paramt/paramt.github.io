@@ -3,6 +3,8 @@ title: creator vs consumer
 date: 2023-07-23
 description:
 unlisted: false
+tags:
+  - reflection
 ---
 every kid nowadays has a dream of becoming a youtuber. some follow through with it and actually start one. very few continue and persevere. I only made it as far as starting a channel and uploading a couple videos when I was in middle school
 

@@ -53,9 +53,15 @@ export default function Notes({ initialSlug = null }) {
               const [y, m, d] = n.date.split('-').map(Number);
               const isNew = (Date.now() - new Date(y, m - 1, d).getTime()) < 7 * 24 * 60 * 60 * 1000;
               return (
-                <li key={n.slug} className={`notes-list-item${isNew ? ' notes-list-item--recent' : ''}`}>
+                <li key={n.slug} className="notes-list-item">
                   <a href={`/notes/${n.slug}`} className="notes-item">
-                    <span className="notes-item-title">{n.title}</span>
+                    <span className="notes-item-title">
+                      {n.title}
+                      {isNew && <span className="notes-tag notes-tag--new">new</span>}
+                      {n.tags.map(tag => (
+                        <span key={tag} className={`notes-tag notes-tag--${tag}`}>{tag}</span>
+                      ))}
+                    </span>
                     <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>
                   </a>
                   {n.description && <p className="notes-item-desc">{n.description}</p>}

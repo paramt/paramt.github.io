@@ -956,22 +956,39 @@ main {
   border-top: 1px solid var(--border);
 }
 
-.notes-list-item--recent .notes-item-title::after {
-  content: 'new';
+.notes-tag {
   display: inline-block;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--fg-faint);
-  border: 1px solid var(--border);
   border-radius: 3px;
   padding: 1px 5px;
-  margin-left: 8px;
+  margin-left: 6px;
   vertical-align: middle;
   position: relative;
   top: -1px;
+  color: var(--fg-faint);
+  border: 1px solid var(--border);
 }
+
+.notes-tag--reflection  { color: #7c3aed; background: #f5f3ff; border-color: #ddd6fe; }
+.notes-tag--cs          { color: #1d4ed8; background: #eff6ff; border-color: #bfdbfe; }
+.notes-tag--math        { color: #047857; background: #ecfdf5; border-color: #a7f3d0; }
+.notes-tag--poker       { color: #b91c1c; background: #fef2f2; border-color: #fecaca; }
+.notes-tag--rust        { color: #c2410c; background: #fff7ed; border-color: #fed7aa; }
+.notes-tag--advice      { color: #92400e; background: #fffbeb; border-color: #fde68a; }
+.notes-tag--predictions { color: #0f766e; background: #f0fdfa; border-color: #99f6e4; }
+.notes-tag--reference   { color: #475569; background: #f8fafc; border-color: #cbd5e1; }
+
+html[data-theme="dark"] .notes-tag--reflection  { color: #c4b5fd; background: rgba(124,58,237,0.15); border-color: rgba(196,181,253,0.3); }
+html[data-theme="dark"] .notes-tag--cs          { color: #93c5fd; background: rgba(29,78,216,0.15);  border-color: rgba(147,197,253,0.3); }
+html[data-theme="dark"] .notes-tag--math        { color: #6ee7b7; background: rgba(4,120,87,0.15);   border-color: rgba(110,231,183,0.3); }
+html[data-theme="dark"] .notes-tag--poker       { color: #fca5a5; background: rgba(185,28,28,0.15);  border-color: rgba(252,165,165,0.3); }
+html[data-theme="dark"] .notes-tag--rust        { color: #fdba74; background: rgba(194,65,12,0.15);  border-color: rgba(253,186,116,0.3); }
+html[data-theme="dark"] .notes-tag--advice      { color: #fcd34d; background: rgba(146,64,14,0.15);  border-color: rgba(252,211,77,0.3);  }
+html[data-theme="dark"] .notes-tag--predictions { color: #5eead4; background: rgba(15,118,110,0.15); border-color: rgba(94,234,212,0.3);  }
+html[data-theme="dark"] .notes-tag--reference   { color: #94a3b8; background: rgba(71,85,105,0.15);  border-color: rgba(148,163,184,0.3);  }
 
 .notes-item {
   display: flex;

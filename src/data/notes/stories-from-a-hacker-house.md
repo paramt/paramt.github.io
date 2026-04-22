@@ -4,6 +4,7 @@ date: 2024-12-22
 description:
 unlisted: true
 tags:
+  - reflection
 ---
 some tidbits from working as a swe intern at ▓▓▓▓▓▓▓▓
 

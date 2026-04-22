@@ -3,6 +3,8 @@ title: the hedonic racetrack
 date: 2024-09-26
 description:
 unlisted: true
+tags:
+  - reflection
 ---
 I've observed the hedonic treadmill in my life, but used for constructive growth instead of materialistic displeasure. 
 

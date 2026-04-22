@@ -3,6 +3,8 @@ title: perspectives
 date: 2023-05-19
 description:
 unlisted: false
+tags:
+  - reflection
 ---
 everyone has a reason for doing what they do. no one is evil. i have no enemies. 
 

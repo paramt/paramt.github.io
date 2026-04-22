@@ -3,6 +3,8 @@ title: What makes writing enjoyable for me
 date: 2026-04-18
 description: How systems can guide behaviour
 unlisted: false
+tags:
+  - reflection
 ---
 Until recently, I didn't fully appreciate how much having a setup that made writing enjoyable contributed to my motivation to write. I've always had observations or reflections that I've wanted to write down, but I'd need to forcibly remind myself to journal it in my Obsidian vault. It wasn't a very exciting process because all of these notes were scattered throughout my vault with no real organization, and I couldn't point to something immediately after writing it.
 
