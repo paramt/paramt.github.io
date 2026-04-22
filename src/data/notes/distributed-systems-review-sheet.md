@@ -1,58 +1,61 @@
 ---
 title: Distributed Systems Review Sheet
 date: 2026-04-21
-description: CS454 Final Review notes
+description: My final review sheet, adapted to be useful to look back at in a few years
 unlisted: false
 tags:
   - reference
 ---
+Big ideas of the course: scaling horizontally, dealing with failures
+
 # Networking
-layers:
-- application (http / ftp / etc)
-- transport (TCP / UDP)
-- network (IP)
-- link (MAC)
-- physical 
+layers of the network stack:
+- **application** protocol (http / ftp / etc)
+- **transport** protocol (TCP / UDP)
+- **network** connects links (IP address)
+- **link** connects two physical nodes (MAC address)
+- **physical** nodes 
 
+
+Notes
 - tcp: ordering guarantees, retries
+- udp: used when real-time latency > correctness (e.g. livestreaming)
 - routing table lists next link for each destination IP 
-
 # Communication
+- raw message parsing: hard to program with 
+- distributed shared memory: high overhead, hard to deal with errors
+- RPC (remote procedure call): well known procedure call semantics, procedures are executed on remote nodes
 ## RPC
-registry holds fid, fname, callback_fn_ptr
-rebind on server restart with new `fid`s 
-
-prev_calls table holds client_ip, pid, seq_number
-Xerox RPC gives at most semantics: exactly once on success, at most once on failure
-
-dynamic binding: RPC server registers its existence to a binding server that clients can request info from
-
-gRPC
+- export table holds `fid`, `fname`, `callback_fn_ptr`
+- rebind functions on server restart with new `fid`s 
+	- this is necessary to allow clients to detect when a server failed and restarted, because it may have possible executed a previous function without providing an ack
+- `prev_calls` table holds `client_ip`, `pid`, `seq_number` to provide at-most-once semantics
+	- Xerox RPC gives at most semantics: exactly once on success, at most once on failure
+- dynamic binding: RPC server registers its existence and available functions to a registry that clients can request info from
+- gRPC: TCP, at most once semantics 
 ## RMI: Remote Method Invocation
 - OOP version of RPC 
 - server maintains objects and allows remote objects to access methods
 - Java RMI's garbage collection in distributed systems: reference listing, with leases to handle failures
-
 ## Message based communication
+ - allows space/time decoupling, separation of concerns
  - topologies: single broker, mesh, flexible, peer-to-peer
-# DFS 
-
+# Distributed File Systems
 NFS design principles: 
-- access transparency (no distinction between local and remote files)
+- access transparency: no distinction between local and remote files
 - performance
 - portable
 - simple design
 	- stateless requests
 	- idempotent operations
 
-
 implementation
 - iterative lookups (since any point can be a new mount point)
 - communication through RPC
 - no authentication in v3
-- session semantics (no changes are visible to other processes until the file is closed)
+- session semantics: no changes are visible to other processes until the file is closed
 
-Sun NFS client side caching: time based, same as watdfs 
+Sun NFS client side caching: time based, same as `watdfs` 
 
 Andrew File System: whole file caching
 - when client wants to write to a file, server sends whole file along with callback promise
@@ -61,28 +64,27 @@ Andrew File System: whole file caching
 - server can store multiple callback promises for the same file to multiple clients
 
 NFSv4 implemented AFS callback promise as "delegation"
-
-
 # Data Center 
+SMP's (symmetric multi-processor) edge over commodity hardware decreases as cluster size increases, because most time is spent in remote access
+
 Amdahl's law: 
 
 $$ T' = (p/s)T + (1-p)T  $$
 
-
 Storage design: 
-1. Network Attached Storage (lower network overhead)
-2. Distributed storage (higher data locality, infinitely scalable)
+1. Network Attached Storage: lower network overhead
+2. Distributed storage: higher data locality, infinitely scalable
 
-notes
+Notes
 - latency time is round trip
 - always draw out TOR, even when only moving within rack 
 - TOR is always pipelined 
 - DC latency includes rack latency
-
 # System Architecture
 
-Availability: (MTBF - MTTR) / MTBF
-
+Availability: `(MTBF - MTTR) / MTBF`
+`MTBF`: Mean Time Between Failures
+`MTTR`: Mean Time To Repair
 # Server Design 
 
 | Server Design                       | Throughput | Response time | Program |
@@ -101,12 +103,12 @@ Best option: SEDA
 - hybrid between iterative and recursive lookup
 	- recursive is high load on the server 
 	- iterative is too many requests
-
 # Synchronization
 ## Clocks
 ### Cristian's Algorithm
-time = server_time + RTT / 2
-
+```
+client_time = server_time + RTT / 2
+```
 ### Network Time Protocol
 
 ```
@@ -114,29 +116,28 @@ offset = ((T2 - T1) + (T3 - T4)) / 2
 ```
 
 gradually adjust clocks to maintain continuity 
-
 ### Internet Time Protocol (NTP)
 
 ### Berkeley algorithm
 centralized time server polls all servers, updates them with average time 
-
 ### Decentralized averaging algorithm
 broadcast time at beginning of fixed intervals, compute average time from received broadcasts 
-
 ### Lamport timestamps 
 increment logical clock before sending
 on receive, set logical clock to 1 + max(source, curr)
-
 ### Total ordered multicast 
+- goal: assign same order to all messages on all servers
+- protocol: only process a message if it has been `ack`ed by all nodes and is at the front of the queue. queue prioritizes lower timestamps (these can be arbitrary timestamps from different servers)
+
 Assumptions: 
 - reliable network 
 - no packet loss
 - nodes do not fail
-
 ### Vector clocks
 
 ### Causal ordered multicast 
-- realxes
+- protocol: only process a message if timestamp for all other servers is the same or lower, and timestamp from origin server is incremented by 1
+- relaxes 'no packet reordering' requirement
 
 # Mutual Exclusion
 ## Central Server Algorithm 
@@ -177,14 +178,11 @@ Assumptions:
 		- operations of each individual process appear in the sequence specified by its program
 - client centric consistency 
 	- eventual consistency 
-
 # 2PC (Two Phase Commit)
 - blocking, consensus 
 - if coordinator fails permanently, we block and need to resolve manually
 	- we don't know what it would've voted, so participants cant resolve themselves
 - 2 phase lock: participant locks between sending commit vote and receiving commit decion
-
-
 # Raft 
 - goal: replicated log
 - log consistency 
@@ -197,10 +195,14 @@ Assumptions:
 	- only vote for a candidate with a more complete log 
 	- for a new leader to commit a previous entry, it must also commit an entry from its own current term 
 
+wrinkle: slide 19 -- entry 2 not committed, even though its on the majority of servers 
+because S5 can become leader before 4 finishes replicating 
+
 config changes: joint consensus 
 - need majority of both old and new configurations for elections, commits
 - config change is a log entry applied immediately (committed or not)
-
+- when running C_old and you receive C_old+C_new, run C_old+C_new (added restriction)
+- once the C_old+C_new message is committed, we can drop C_old from the restriction set 
 
 # Chord
 - finger table: go to pointer that is less than the target key
@@ -218,6 +220,12 @@ replication via quorums (N, W, R)
 - R + W > N (guarantee that reads and writes overlap) 
 - W > N/2
 
+for an object to diverge: we need two separate coordinators to write to the same object (not possible unless the designated coordinator fails[^1])
+
+reads and writes for an object are done by the same coordinator (unless failure case -- sloppy quorum)
+
+sloppy quorum compromises on the set of N - it can use handoff nodes - but it always replicates to W / R nodes
+
 N is not total number of nodes, its total number of replicas for a given key, e.g. 3
 
 but dynamo is sloppy quorum: if for a key there aren't W-1 nodes reachable from the set of N, then we can handoff to other nodes. this breaks quorum because we can have disjoint W-1 acks => so we just maintain divergent updates (unordered)
@@ -234,15 +242,16 @@ gossip (epidemic) protocol to propagate membership
 optimizations
 - rerun all jobs when there's 5% left 
 - rename after writing
-
-# GFS 
-![[Pasted image 20260418031712.png]]
-
-metadata server holds `fileId` to `[chunkId]` map, and `chunkId` to `[replica]` map
-
+# GFS
+- metadata server holds `fileId` to `[chunkId]` map, and `chunkId` to `[replica]` map
 consistent: all replicas hold the same data 
-
 defined: consistent and clients see mutations in their entirety 
+
+|                    | write                 | append                                  |
+| ------------------ | --------------------- | --------------------------------------- |
+| single success     | defined               | defined, interspersed with inconsistent |
+| concurrent success | undefined, consistent | defined, interspersed with inconsistent |
+| failure            | inconsistent          | inconsistent                            |
 
 serial success: always defined 
 concurrent success:
@@ -250,7 +259,8 @@ concurrent success:
 - appends: defined, because there is only 1 chunk you append to at a time (interspersed with inconsistent caused by failures)
 failure: inconsistent 
 
-appends have at least once semantics
+appends have at least once semantics: retry on fail
+- application logic needs to handle duplicate entries
 
 concurrent writes can have consistent but undefined data: 
 - when data spans multiple chunks, the primary for each chunk is responsible for ordering the writes (e.g. chunk 1 has server A primary and chunk 2 has server B primary. client C and client D write to both chunks, server A can accept C then D, whereas server B can accept D then C => chunk 1 has only D and chunk 2 has only C)
@@ -261,15 +271,11 @@ concurrent writes can have consistent but undefined data:
 typical pattern in databases: consistency protocols within partition, and consistency protocol between partitions (ie raft over raft, or raft over 2pc, etc) - GFS doesnt do this just for avoiding this overhead
 
 ## Questions
-- what is subscription ratio 
-- when latency is given, and we need to transfer 1 way, do we half the latency time or always assume ack is part of it? 
 - does TOM update local logical clock to `1 + max(curr, incoming)` too? 
+	- no
+- does there need to be a failure for dynamo to have conflicts? 
+	- yes, as a conflict requires two separate coordinators managing the same object[^1]
 
 
-
-- how is chord finger table filled? for the first time - is it linear scan 
-- does SEDA say 1 resource per module? 
-
-
-check piazza 
+[^1]: Not considering the load balancing optimization in the Dynamo paper -- not covered in class
 
