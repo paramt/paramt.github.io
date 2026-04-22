@@ -129,31 +129,7 @@ The hero polaroid cycles through images in `heroPolaroids.js` — both on page l
 
 ## Adding an Image
 
-**1. Compress the photo.** This produces the only copy that gets served. Run from `src/data/images/`:
-
-```bash
-ffmpeg -y -i "input.jpg" -vf "scale='min(800,iw)':-1" "/tmp/thumb_tmp.png" 2>/dev/null && \
-cwebp -q 50 -quiet "/tmp/thumb_tmp.png" -o "input.thumb.webp" && \
-rm /tmp/thumb_tmp.png
-```
-
-Two steps (not ffmpeg alone) because ffmpeg preserves ICC color profiles in JPEG output, bloating the file. The PNG intermediate + cwebp strips it.
-
-Target: ~5–10% of original. Verify: `echo "scale=1; $(stat -f%z input.thumb.webp) * 100 / $(stat -f%z input.jpg)" | bc`
-
-Naming: `{original-name}.thumb.webp` in the same directory.
-
-**2. Compress the video (if any).** Run from the video's directory:
-
-```bash
-ffmpeg -y -i "input.mp4" -vf "scale='if(gt(iw,ih),640,-2)':'if(gt(iw,ih),-2,640)'" -c:v libx264 -crf 28 -preset fast -an -movflags +faststart "input.mp4"
-```
-
-Scales to max 640px on the longer dimension, strips audio (videos are muted). Expect ~90% size reduction.
-
-**3. Wire up:**
-- **Hero:** import the `.thumb.webp` in `src/data/heroPolaroids.js`, add entry with `image` (the thumb), `w`, `h`, and optional `video`, `location`, `date`.
-- **Timeline image:** import the `.thumb.webp` in `src/data/timeline.js`, use `img(src, w, h)` in the event's `attachments` array.
+Use the `/add-photo` skill — it handles compression, dimension extraction, rotation gotchas, and wiring into `heroPolaroids.js` or `timeline.js`.
 
 ## Adding a Timeline Note
 
