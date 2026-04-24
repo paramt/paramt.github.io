@@ -7,7 +7,7 @@ export default function NotFound() {
   return (
     <div className="not-found">
       <div className="not-found-gallery">
-        {heroPolaroids.map((p, i) => (
+        {heroPolaroids.filter(p => p?.displayIn404).map((p, i) => (
           <Polaroid
             key={i}
             src={p.image}

@@ -96,6 +96,8 @@ This overwrites the video in place, strips audio, scales to max 640px on the lon
    ```
    Include `video: videoXxx` if there's a video.
 
+   Omit `displayIn404`, so it defaults to false as intended.
+
 ### If target is **timeline** (`src/data/timeline.js`):
 
 1. Add an import at the top with the other thumb imports:
