@@ -1051,6 +1051,18 @@ html[data-theme="dark"] .notes-tag--reference   { color: #94a3b8; background: rg
   margin-bottom: 40px;
 }
 
+.note-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 40px;
+}
+
+.note-meta .note-date {
+  margin-bottom: 0;
+}
+
 .note-description {
   font-size: 15px;
   color: var(--fg-muted);

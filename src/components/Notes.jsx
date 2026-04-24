@@ -31,7 +31,12 @@ export default function Notes({ initialSlug = null }) {
           <article className="note-view">
             <a href="/notes" className="notes-back">← Notes</a>
             <h1 className="note-title">{note.title}</h1>
-            <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>
+            <div className="note-meta">
+              <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>
+              {note.tags.map(tag => (
+                <span key={tag} className={`notes-tag notes-tag--${tag}`}>{tag}</span>
+              ))}
+            </div>
             {note.description && <p className="note-description">{note.description}</p>}
             <div className="note-content">
               <ReactMarkdown

@@ -5,7 +5,7 @@ description:
 unlisted: false
 tags:
 ---
-Now that I've completed my 4A term at Waterloo, I thought I'd compile a list of my favourite and least-favourite courses.
+Now that I've completed my 4A term at Waterloo, I thought I'd compile a list of my favourite and least-favourite courses so far
 
 # banger courses
 in chronological order
@@ -16,7 +16,7 @@ F22 with Jeff Stacey
 - each class starts with a student-led activity
 - Jeff Stacey really makes the classroom feel like you're in high school again, in the sense that he makes sure everyone knows each other (and the class size is only 30)
 - super fun class, and also happens to be useful :) 
-## [MATH136: Linear Algebra 1](https://uwflow.com/course/math136)
+## [MATH 136: Linear Algebra 1](https://uwflow.com/course/math136)
 W23 with Blake Madill
 
 - I did not enjoy linear algebra before this, and I did not enjoy linear algebra after this. In fact, I don't even know if I enjoyed the linear algebra in this course. But I very much enjoyed Blake's teaching
@@ -36,7 +36,7 @@ S24 with Simon Wood
 - I discovered more than half my music taste through this course
 - favourite part was the counterculture movement
 - between this and MUSIC 246, take this one
-- fun fact I love sharing that I learned from this course: before all the Billboard charts, there used to only be 3: Race (renamed to R&B), Hillbilly (renamed to Western), and Pop. the way a song was categorized into one of these 3 was by the locations of the record stores selling most records: a predominantly white rural population meant the song was classified as Hillbilly, predominantly black => Race, and urban white population => Pop. these categories always correctly identified what we associate with R&B and Western music, even though the style of the music wasn't even considered. this is also why R&B/Western hits often get crosslisted onto Pop charts, but you almost never see it the other way around 
+- fun fact I love sharing that I learned from this course: before all the Billboard charts, there used to only be 3: Race (renamed to R&B), Hillbilly (renamed to Western), and Pop. the way they would find these trending songs was by calling a sample of record stores. the way a song was categorized into one of those 3 categories was by the locations of the record stores where that song was the most popular: a predominantly white rural population meant the song was classified as Hillbilly, predominantly black => Race, and urban white population => Pop. these categories always correctly identified what we associate with R&B and Western music, even though the style of the music wasn't even considered. this is also why R&B/Western hits often get crosslisted onto Pop charts, but you almost never see it the other way around 
 
 ## [CS241E: Foundations of Sequential Programs (Enriched)](https://uwflow.com/course/cs241e)
 F23 with Ondrej Lhotak
