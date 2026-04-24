@@ -239,6 +239,7 @@ optimizations
 | single success     | defined               | defined, interspersed with inconsistent |
 | concurrent success | undefined, consistent | defined, interspersed with inconsistent |
 | failure            | inconsistent          | inconsistent                            |
+
 consistent: all replicas hold the same data 
 
 defined: consistent and clients see mutations in their entirety 
