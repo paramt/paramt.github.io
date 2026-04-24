@@ -82,9 +82,9 @@ Notes
 - DC latency includes rack latency
 # System Architecture
 
-Availability: `(MTBF - MTTR) / MTBF`
-`MTBF`: Mean Time Between Failures
-`MTTR`: Mean Time To Repair
+- Availability: `(MTBF - MTTR) / MTBF`
+- `MTBF`: Mean Time Between Failures
+- `MTTR`: Mean Time To Repair
 # Server Design 
 
 | Server Design                       | Throughput | Response time | Program |
@@ -119,12 +119,12 @@ gradually adjust clocks to maintain continuity
 ### Internet Time Protocol (NTP)
 
 ### Berkeley algorithm
-centralized time server polls all servers, updates them with average time 
+- centralized time server polls all servers, updates them with average time 
 ### Decentralized averaging algorithm
-broadcast time at beginning of fixed intervals, compute average time from received broadcasts 
+- broadcast time at beginning of fixed intervals, compute average time from received broadcasts 
 ### Lamport timestamps 
-increment logical clock before sending
-on receive, set logical clock to 1 + max(source, curr)
+- increment logical clock before sending
+- on receive, set logical clock to 1 + max(source, curr)
 ### Total ordered multicast 
 - goal: assign same order to all messages on all servers
 - protocol: only process a message if it has been `ack`ed by all nodes and is at the front of the queue. queue prioritizes lower timestamps (these can be arbitrary timestamps from different servers)
@@ -134,11 +134,10 @@ Assumptions:
 - no packet loss
 - nodes do not fail
 ### Vector clocks
-
+- each node stores a vector of timestamps: its best knowledge of every other node's timestamp
 ### Causal ordered multicast 
-- protocol: only process a message if timestamp for all other servers is the same or lower, and timestamp from origin server is incremented by 1
+- protocol: maintain vector clocks, only process a message if its timestamp for all other nodes is the same or lower as current VC, and timestamp from origin node is incremented by 1
 - relaxes 'no packet reordering' requirement
-
 # Mutual Exclusion
 ## Central Server Algorithm 
 - single coordinator acts as the lock server
@@ -169,7 +168,6 @@ Assumptions:
 ## Ring Algorithm
 - initializing node builds a list, passes it on
 - total list of all servers given back to the starting node, it picks the leader to be the highest node
-
 # Replication
 - client pull based, server push based
 - data centric consistency
@@ -208,35 +206,26 @@ config changes: joint consensus
 - finger table: go to pointer that is less than the target key
 
 # Dynamo 
-consistent hashing ring like chord, but each node knows about every other node -> O(1) lookup
+- consistent hashing ring like chord, but each node knows about every other node -> O(1) lookup
+- client centric consistency 
+	- monotonic reads
+	- monotonic writes
+	- read your writes 
+	- pure eventual
 
-client centric consistency 
-- monotonic reads
-- monotonic writes
-- read your writes 
-- pure eventual
+- replication via quorums (N, W, R)
+	- R + W > N (guarantee that reads and writes overlap) 
+	- W > N/2
 
-replication via quorums (N, W, R)
-- R + W > N (guarantee that reads and writes overlap) 
-- W > N/2
-
-for an object to diverge: we need two separate coordinators to write to the same object (not possible unless the designated coordinator fails[^1])
-
-reads and writes for an object are done by the same coordinator (unless failure case -- sloppy quorum)
-
-sloppy quorum compromises on the set of N - it can use handoff nodes - but it always replicates to W / R nodes
-
-N is not total number of nodes, its total number of replicas for a given key, e.g. 3
-
-but dynamo is sloppy quorum: if for a key there aren't W-1 nodes reachable from the set of N, then we can handoff to other nodes. this breaks quorum because we can have disjoint W-1 acks => so we just maintain divergent updates (unordered)
-
-dynamo resolves conflicts on reads, and maintains always writable 
-
-merkle trees: hash tree per region to compare data (for replica synchronization)
-
-virtual nodes: support imbalanced load and heterogeneous nodes
-
-gossip (epidemic) protocol to propagate membership
+- for an object to diverge: we need two separate coordinators to write to the same object (not possible unless the designated coordinator fails[^1])
+- reads and writes for an object are done by the same coordinator (unless failure case -- sloppy quorum)
+- sloppy quorum compromises on the set of N: it can use handoff nodes if there aren't W reachable nodes within N - but it still always replicates to W nodes
+- this breaks quorum because we can have disjoint W-1 acks => so in that case we just maintain divergent updates (unordered)
+- (N is not total number of nodes, its total number of replicas for a given key, e.g. 3)
+- dynamo resolves conflicts on reads, and maintains always writable 
+- merkle trees: hash tree per region to compare data (for replica synchronization)
+- virtual nodes: support imbalanced load and heterogeneous nodes
+- gossip (epidemic) protocol to propagate membership
 
 # MapReduce 
 optimizations
@@ -244,20 +233,21 @@ optimizations
 - rename after writing
 # GFS
 - metadata server holds `fileId` to `[chunkId]` map, and `chunkId` to `[replica]` map
-consistent: all replicas hold the same data 
-defined: consistent and clients see mutations in their entirety 
 
 |                    | write                 | append                                  |
 | ------------------ | --------------------- | --------------------------------------- |
 | single success     | defined               | defined, interspersed with inconsistent |
 | concurrent success | undefined, consistent | defined, interspersed with inconsistent |
 | failure            | inconsistent          | inconsistent                            |
+consistent: all replicas hold the same data 
 
-serial success: always defined 
-concurrent success:
-- writes: consistent but undefined, because there is no ordering guarantee between chunks
-- appends: defined, because there is only 1 chunk you append to at a time (interspersed with inconsistent caused by failures)
-failure: inconsistent 
+defined: consistent and clients see mutations in their entirety 
+
+- serial success: always defined 
+- concurrent success:
+	- writes: consistent but undefined, because there is no ordering guarantee between chunks
+	- appends: defined, because there is only 1 chunk you append to at a time (interspersed with inconsistent caused by failures)
+- failure: inconsistent 
 
 appends have at least once semantics: retry on fail
 - application logic needs to handle duplicate entries
