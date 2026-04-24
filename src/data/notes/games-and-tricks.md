@@ -4,6 +4,7 @@ date: 2025-09-22
 description:
 unlisted: false
 tags:
+  - reference
 ---
 # magic tricks
 ## red black separator

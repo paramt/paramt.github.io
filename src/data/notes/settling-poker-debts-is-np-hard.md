@@ -3,6 +3,8 @@ title: Why Settling Poker Debts is NP-hard
 date: 2026-04-17
 description: Transaction settling and the Partition Problem
 unlisted: false
+tags:
+  - cs
 ---
 When I play poker with friends, we don't keep a designated banker who manages buy-ins before the game. Instead, we figure out the transactions later. This works well for our small group, but scaling this up to more players makes coordinating the transactions non-obvious. Imagine you have an outcome like this: 
 
