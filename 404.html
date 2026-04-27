@@ -1,30 +1,24 @@
----
-permalink: /404.html
----
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>Page not found</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {% include favicon.html %}
-    <script src="{{site.url}}/scripts/levenshtein.js" type="text/javascript" defer></script>
-    <script src="{{site.url}}/scripts/404.js" type="text/javascript" defer></script>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&family=Open+Sans:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link href="{{site.url}}/styles/404.css" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Param Thakkar</title>
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+    <script>
+      (function() {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
+      })();
+    </script>
   </head>
-
   <body>
-    <div id="error">
-      <h1>Whoops!</h1>
-      <h2>That page doesn't exist</h2>
-      <br />
-      <a href="/"> Go Back Home </a>
-    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/404-entry.jsx"></script>
   </body>
 </html>
