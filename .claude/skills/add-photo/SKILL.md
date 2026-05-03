@@ -33,14 +33,17 @@ Do not proceed until you have at least the source path and target.
 
 Run from the project root. Replace `INPUT` with the source path and `OUTPUT_DIR` with the destination directory inside `src/data/images/`.
 
+**Note:** HEIC files (and some others) use a complex filtergraph internally, which prevents ffmpeg from applying `-vf scale` in a single pass. Always use a two-step approach: extract a full-size PNG first, then scale it.
+
 ```bash
 INPUT="<source path>"
 BASENAME=$(basename "$INPUT" | sed 's/\.[^.]*$//')
 OUTPUT_DIR="src/data/images/<dest subdir>"
 mkdir -p "$OUTPUT_DIR"
-ffmpeg -y -i "$INPUT" -vf "scale='min(800,iw)':-1" "/tmp/thumb_tmp.png" 2>/dev/null && \
+ffmpeg -y -i "$INPUT" -frames:v 1 "/tmp/thumb_full.png" 2>/dev/null && \
+ffmpeg -y -i "/tmp/thumb_full.png" -vf "scale='min(800,iw)':-1" "/tmp/thumb_tmp.png" 2>/dev/null && \
 cwebp -q 50 -quiet "/tmp/thumb_tmp.png" -o "$OUTPUT_DIR/$BASENAME.thumb.webp" && \
-rm /tmp/thumb_tmp.png
+rm /tmp/thumb_full.png /tmp/thumb_tmp.png
 ```
 
 Verify the output exists and check compression ratio:
@@ -60,11 +63,11 @@ identify -format "%w %h" "$INPUT" 2>/dev/null
 
 Note the `width` (w) and `height` (h).
 
-**Rotation gotcha:** Phone photos often store portrait shots as landscape pixels + an EXIF rotation tag. `ffprobe` returns the raw pixel dimensions (before rotation), so a portrait photo may come back as e.g. `4032 3024` when it visually displays as `3024 4032`. To get the post-rotation (display) dimensions, check the `side_data` rotation or use `exiftool`:
+**Rotation gotcha:** Phone photos often store portrait shots as landscape pixels + an EXIF rotation tag. `ffprobe` returns the raw pixel dimensions (before rotation), so a portrait photo may come back as e.g. `4032 3024` when it visually displays as `3024 4032`. To get the post-rotation (display) dimensions, use `sips` (macOS built-in — do not use `exiftool`, it is not installed):
 ```bash
-exiftool -Orientation -ImageWidth -ImageHeight "$INPUT"
+sips -g pixelWidth -g pixelHeight -g orientation "$INPUT"
 ```
-If `Orientation` is `Rotate 90 CW` or `Rotate 270 CW`, swap w and h before wiring up.
+If `orientation` is `6` (Rotate 90 CW) or `8` (Rotate 270 CW), swap w and h before wiring up.
 
 ## Step 4 — Compress the video (if provided)
 

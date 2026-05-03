@@ -1,6 +1,7 @@
 import video3 from './images/hero/3/3.mp4';
 import video7 from './images/hero/7/IMG_3183.mp4';
 import video8 from './images/hero/8/IMG_1415.mp4';
+import video9 from './images/hero/9/9.mp4';
 
 import thumbLinkedin4 from './images/hero/linkedin-pfp-4.thumb.webp';
 import thumb1 from './images/hero/1.thumb.webp';
@@ -9,8 +10,10 @@ import thumb3 from './images/hero/3/3.thumb.webp';
 import thumb5 from './images/hero/5.thumb.webp';
 import thumb7 from './images/hero/7/IMG_3183.thumb.webp';
 import thumb8 from './images/hero/8/IMG_1415.thumb.webp';
+import thumb9 from './images/hero/9/9.thumb.webp';
 
 const heroPolaroids = [
+  { image: thumb9, video: video9, w: 4032, h: 3024, location: 'Painted Desert, AZ', date: '04/28/26' },
   { image: thumb3, video: video3, w: 4284, h: 5712, location: 'Key West, FL', date: '12/16/25', displayIn404: true },
   { image: thumb8, video: video8, w: 4032, h: 3024, location: 'Big Sur, CA', date: '05/26/25', displayIn404: true },
   { image: thumb1, w: 2539, h: 3386, location: 'Manhattan, NY', date: '03/19/26', displayIn404: true},
