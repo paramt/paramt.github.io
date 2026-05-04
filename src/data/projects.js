@@ -6,10 +6,10 @@ export const projects = [
     github: "https://github.com/1pt-co/1pt",
   },
   {
-    name: "URL Checker",
-    description: "A GitHub Action that tests markdown files for broken links",
-    link: "https://github.com/marketplace/actions/url-checker",
-    github: "https://github.com/paramt/url-checker",
+    name: "Route 66 Live Tracker",
+    description: "A live tracker for my SF->Toronto road trip, with an auto generated map and timeline",
+    link: "https://www.param.me/route-66/",
+    github: "https://github.com/paramt/trip-tracker",
   },
   {
     name: "Poker Solitaire",
