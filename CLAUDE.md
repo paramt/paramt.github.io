@@ -65,6 +65,12 @@ Light mode is the default. Dark mode is **only** activated by the manual toggle 
 
 ---
 
+# Archive Page
+
+`archive.html` is a Vite entry point at `/archive`. It loads `src/archive-entry.jsx` → `src/components/Archive.jsx`, a minimal list of previous site versions (2025.param.me, 2020.param.me, old.param.me). Uses a custom `Nav` with only a `← home` link. No sub-routes, so no dev-server shim needed.
+
+---
+
 # Preloading & Caching
 
 **GC pin:** Image/video objects are stored in a module-level `_preloaded` array in both `Hero.jsx` and `Timeline.jsx`. Without live references the GC can collect them and evict from the browser's memory cache, causing re-fetches. Keeping refs alive prevents this.

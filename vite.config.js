@@ -65,6 +65,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         '404': resolve(__dirname, '404.html'),
         notes: resolve(__dirname, 'notes.html'),
+        archive: resolve(__dirname, 'archive.html'),
       },
     },
   },

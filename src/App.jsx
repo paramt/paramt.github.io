@@ -26,9 +26,12 @@ export default function App() {
         <Projects />
       </main>
       <Timeline />
-      <footer className="footer">
+      <footer className="footer" style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr" }}>
         <span>param thakkar</span>
-        {lastUpdated && <span className="footer-updated">last updated {lastUpdated.toLowerCase()}</span>}
+        {lastUpdated && <span className="footer-updated">{`last updated ${lastUpdated.toLowerCase()}`}</span>}
+        <span style={{ textAlign: "right" }}>
+          <a href="/archive" style={{ fontSize: "13px", color: "var(--fg-faint)", textDecoration: "none" }}>archive</a>
+        </span>
       </footer>
     </>
   );
