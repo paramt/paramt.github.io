@@ -32,7 +32,7 @@ export default function Notes({ initialSlug = null }) {
             <a href="/notes" className="notes-back">← Notes</a>
             <h1 className="note-title">{note.title}</h1>
             <div className="note-meta">
-              <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>
+              {note.date && <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>}
               {note.tags.map(tag => (
                 <span key={tag} className={`notes-tag notes-tag--${tag}`}>{tag}</span>
               ))}
