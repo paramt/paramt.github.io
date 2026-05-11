@@ -30,7 +30,7 @@ export default function App() {
         <span>param thakkar</span>
         {lastUpdated && <span className="footer-updated">{`last updated ${lastUpdated.toLowerCase()}`}</span>}
         <span style={{ textAlign: "right" }}>
-          <a href="/archive" style={{ fontSize: "13px", color: "var(--fg-faint)", textDecoration: "none" }}>archive</a>
+          <a href="/notes/archive" style={{ fontSize: "13px", color: "var(--fg-faint)", textDecoration: "none" }}>archive</a>
         </span>
       </footer>
     </>

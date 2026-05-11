@@ -67,7 +67,7 @@ Light mode is the default. Dark mode is **only** activated by the manual toggle 
 
 # Archive Page
 
-`archive.html` is a Vite entry point at `/archive`. It loads `src/archive-entry.jsx` → `src/components/Archive.jsx`, a minimal list of previous site versions (2025.param.me, 2020.param.me, old.param.me). Uses a custom `Nav` with only a `← home` link. No sub-routes, so no dev-server shim needed.
+The archive lives at `/notes/archive` as an unlisted note (`src/data/notes/archive.md`). It has no `date` field. The footer "archive" link in `App.jsx` points there.
 
 ---
 

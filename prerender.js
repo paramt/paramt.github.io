@@ -61,8 +61,7 @@ function buildNoteHead({ title, description, slug, date, unlisted }) {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: title,
-    datePublished: date,
-    dateModified: date,
+    ...(date && { datePublished: date, dateModified: date }),
     author: { '@type': 'Person', name: 'Param Thakkar', url: SITE_URL },
     mainEntityOfPage: url,
     image: OG_IMAGE,
@@ -80,7 +79,9 @@ function buildNoteHead({ title, description, slug, date, unlisted }) {
     `<meta property="og:description" content="${escapeHtml(desc)}" />`,
     `<meta property="og:image" content="${OG_IMAGE}" />`,
     `<meta property="og:site_name" content="Param Thakkar" />`,
-    `<meta property="article:published_time" content="${date}" />`,
+  );
+  if (date) tags.push(`<meta property="article:published_time" content="${date}" />`);
+  tags.push(
     `<meta property="article:author" content="Param Thakkar" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:url" content="${url}" />`,
