@@ -72,10 +72,27 @@ function mercY(lat) {
   const r = (lat * Math.PI) / 180;
   return Math.log(Math.tan(Math.PI / 4 + r / 2));
 }
-function projX(lng, b) { return (lng - b.lngMin) / (b.lngMax - b.lngMin); }
-function projY(lat, b) {
-  const y = mercY(lat), yMin = mercY(b.latMin), yMax = mercY(b.latMax);
-  return 1 - (y - yMin) / (yMax - yMin);
+
+// Returns a projector (lng, lat) => [px, py] that preserves the Mercator
+// aspect ratio, fitting the bounds into the canvas with letterboxing.
+function makeProjector(b, w, h) {
+  const lngSpan  = (b.lngMax - b.lngMin) * Math.PI / 180;
+  const mercSpan = mercY(b.latMax) - mercY(b.latMin);
+  const natural  = lngSpan / mercSpan; // natural w/h in Mercator
+  const canvas   = w / h;
+  let mapW, mapH, offX, offY;
+  if (canvas > natural) {
+    // Canvas wider than map: letterbox left/right
+    mapH = h; mapW = h * natural; offX = (w - mapW) / 2; offY = 0;
+  } else {
+    // Canvas taller than map: letterbox top/bottom
+    mapW = w; mapH = w / natural; offX = 0; offY = (h - mapH) / 2;
+  }
+  const mercMin = mercY(b.latMin);
+  return (lng, lat) => [
+    offX + (lng - b.lngMin) / (b.lngMax - b.lngMin) * mapW,
+    offY + (1 - (mercY(lat) - mercMin) / mercSpan) * mapH,
+  ];
 }
 
 // ── Generic arc-path renderer ─────────────────────────────────────────────────
@@ -113,8 +130,8 @@ function eachGeom(geom, fn) {
 }
 
 // ── Country map renderer ──────────────────────────────────────────────────────
-function drawCountries(ctx, topo, w, h, isDark, bounds) {
-  const arcs = buildArcs(topo, (lng, lat) => [projX(lng, bounds) * w, projY(lat, bounds) * h]);
+function drawCountries(ctx, topo, proj, w, h, isDark, bounds) {
+  const arcs = buildArcs(topo, proj);
 
   ctx.fillStyle = isDark ? "#1a1a1a" : "#efefef";
   ctx.fillRect(0, 0, w, h);
@@ -138,10 +155,10 @@ function drawCountries(ctx, topo, w, h, isDark, bounds) {
 }
 
 // ── US state border renderer ──────────────────────────────────────────────────
-function drawStates(ctx, topo, w, h, isDark, bounds, opacity) {
+function drawStates(ctx, topo, proj, w, h, isDark, opacity) {
   if (opacity <= 0 || !topo) return;
 
-  const arcs = buildArcs(topo, (lng, lat) => [projX(lng, bounds) * w, projY(lat, bounds) * h]);
+  const arcs = buildArcs(topo, proj);
 
   ctx.strokeStyle = isDark ? `rgba(26,26,26,${opacity})` : `rgba(239,239,239,${opacity})`;
   ctx.lineWidth = 0.6;
@@ -158,23 +175,22 @@ function drawStates(ctx, topo, w, h, isDark, bounds, opacity) {
 }
 
 // ── Route polyline renderer ───────────────────────────────────────────────────
-function drawRoute(ctx, pts, w, h, b, alpha = 0.55) {
+function drawRoute(ctx, pts, proj, alpha = 0.55) {
   if (!pts || pts.length < 2) return;
-  const px = pts.map(c => projX(c.lng, b) * w);
-  const py = pts.map(c => projY(c.lat, b) * h);
+  const xy = pts.map(c => proj(c.lng, c.lat));
   ctx.save();
   ctx.beginPath();
-  ctx.moveTo(px[0], py[0]);
+  ctx.moveTo(xy[0][0], xy[0][1]);
   if (pts.length === 2) {
-    ctx.lineTo(px[1], py[1]);
+    ctx.lineTo(xy[1][0], xy[1][1]);
   } else {
     // Smooth corners: quadratic bezier with each waypoint as control point,
     // passing through the midpoints between consecutive waypoints.
-    ctx.lineTo((px[0] + px[1]) / 2, (py[0] + py[1]) / 2);
+    ctx.lineTo((xy[0][0] + xy[1][0]) / 2, (xy[0][1] + xy[1][1]) / 2);
     for (let i = 1; i < pts.length - 1; i++) {
-      ctx.quadraticCurveTo(px[i], py[i], (px[i] + px[i + 1]) / 2, (py[i] + py[i + 1]) / 2);
+      ctx.quadraticCurveTo(xy[i][0], xy[i][1], (xy[i][0] + xy[i+1][0]) / 2, (xy[i][1] + xy[i+1][1]) / 2);
     }
-    ctx.lineTo(px[pts.length - 1], py[pts.length - 1]);
+    ctx.lineTo(xy[pts.length - 1][0], xy[pts.length - 1][1]);
   }
   ctx.strokeStyle = '#eb4034';
   ctx.lineWidth = 1.5;
@@ -211,53 +227,66 @@ export default function WorldMap({ coords, allCoords = [], allRoutes = [], noZoo
   function renderFrame(b) {
     const canvas = canvasRef.current;
     const topo   = topoRef.current;
-    if (canvas && topo) {
+    const w = canvas ? canvas.offsetWidth : 0;
+    const h = canvas ? canvas.offsetHeight : 0;
+    const proj = (w && h) ? makeProjector(b, w, h) : null;
+
+    if (canvas && topo && proj) {
       const dpr = window.devicePixelRatio || 1;
-      const w = canvas.offsetWidth, h = canvas.offsetHeight;
-      if (w && h) {
-        canvas.width  = w * dpr;
-        canvas.height = h * dpr;
-        const ctx = canvas.getContext("2d");
-        ctx.scale(dpr, dpr);
-        drawCountries(ctx, topo, w, h, isDarkRef.current, b);
+      canvas.width  = w * dpr;
+      canvas.height = h * dpr;
+      const ctx = canvas.getContext("2d");
+      ctx.scale(dpr, dpr);
+      drawCountries(ctx, topo, proj, w, h, isDarkRef.current, b);
 
-        // State borders fade in at CA zoom (≈14×) from zoom 5× onward
-        const zoom = 360 / (b.lngMax - b.lngMin);
-        const stateOpacity = Math.min(1, Math.max(0, (zoom - 5) / 5));
-        drawStates(ctx, statesRef.current, w, h, isDarkRef.current, b, stateOpacity);
+      // State borders fade in at CA zoom (≈14×) from zoom 5× onward
+      const zoom = 360 / (b.lngMax - b.lngMin);
+      const stateOpacity = Math.min(1, Math.max(0, (zoom - 5) / 5));
+      drawStates(ctx, statesRef.current, proj, w, h, isDarkRef.current, stateOpacity);
 
-        const activePts = coordsPtsRef.current;
-        // Background routes: same visibility rule as static markers
-        if (!activePts || noZoomRef.current) {
-          allRoutesRef.current.forEach((route) => {
-            if (route !== activePts) drawRoute(ctx, route, w, h, b, 0.25);
-          });
+      const activePts = coordsPtsRef.current;
+      // Background routes: same visibility rule as static markers
+      if (!activePts || noZoomRef.current) {
+        allRoutesRef.current.forEach((route) => {
+          if (route !== activePts) drawRoute(ctx, route, proj, 0.25);
+        });
+      }
+      // Active route on top at full opacity
+      if (activePts && activePts.length > 1) drawRoute(ctx, activePts, proj, 0.55);
+    }
+
+    if (proj) {
+      const activeContainer = activeMarkersRef.current;
+      const pts = coordsPtsRef.current;
+      if (activeContainer && pts) {
+        const endpts = pts.length > 1 ? [pts[0], pts[pts.length - 1]] : pts;
+        const children = activeContainer.children;
+        for (let i = 0; i < children.length && i < endpts.length; i++) {
+          const [px, py] = proj(endpts[i].lng, endpts[i].lat);
+          children[i].style.left = `${px / w * 100}%`;
+          children[i].style.top  = `${py / h * 100}%`;
         }
-        // Active route on top at full opacity
-        if (activePts && activePts.length > 1) drawRoute(ctx, activePts, w, h, b, 0.55);
       }
-    }
 
-    const activeContainer = activeMarkersRef.current;
-    const pts = coordsPtsRef.current;
-    if (activeContainer && pts) {
-      const endpts = pts.length > 1 ? [pts[0], pts[pts.length - 1]] : pts;
-      const children = activeContainer.children;
-      for (let i = 0; i < children.length && i < endpts.length; i++) {
-        children[i].style.left = `${projX(endpts[i].lng, b) * 100}%`;
-        children[i].style.top  = `${projY(endpts[i].lat, b) * 100}%`;
+      const staticContainer = staticMarkersRef.current;
+      if (staticContainer && (!coordsPtsRef.current || noZoomRef.current)) {
+        const children = staticContainer.children;
+        const allPts = allCoordsRef.current;
+        for (let i = 0; i < children.length && i < allPts.length; i++) {
+          const [px, py] = proj(allPts[i].lng, allPts[i].lat);
+          children[i].style.left = `${px / w * 100}%`;
+          children[i].style.top  = `${py / h * 100}%`;
+        }
       }
     }
+  }
 
-    const staticContainer = staticMarkersRef.current;
-    if (staticContainer && (!coordsPtsRef.current || noZoomRef.current)) {
-      const children = staticContainer.children;
-      const allPts = allCoordsRef.current;
-      for (let i = 0; i < children.length && i < allPts.length; i++) {
-        children[i].style.left = `${projX(allPts[i].lng, b) * 100}%`;
-        children[i].style.top  = `${projY(allPts[i].lat, b) * 100}%`;
-      }
-    }
+  // Initial CSS position for a marker — corrected on the first renderFrame tick.
+  function pct(lng, lat) {
+    const w = canvasRef.current?.offsetWidth || 400;
+    const h = canvasRef.current?.offsetHeight || 260;
+    const [px, py] = makeProjector(curBounds.current, w, h)(lng, lat);
+    return { left: `${px / w * 100}%`, top: `${py / h * 100}%` };
   }
 
   function animateTo(target) {
@@ -307,10 +336,7 @@ export default function WorldMap({ coords, allCoords = [], allRoutes = [], noZoo
             <div
               key={i}
               className="map-marker"
-              style={{
-                left: `${projX(c.lng, curBounds.current) * 100}%`,
-                top:  `${projY(c.lat, curBounds.current) * 100}%`,
-              }}
+              style={pct(c.lng, c.lat)}
             >
               {coordsPts.length === 1 && <div className="map-marker-pulse" />}
               <div className="map-marker-dot" />
@@ -324,10 +350,7 @@ export default function WorldMap({ coords, allCoords = [], allRoutes = [], noZoo
             <div
               key={i}
               className="map-marker map-marker-static"
-              style={{
-                left: `${projX(c.lng, curBounds.current) * 100}%`,
-                top:  `${projY(c.lat, curBounds.current) * 100}%`,
-              }}
+              style={pct(c.lng, c.lat)}
               onMouseEnter={() => onMarkerHover?.(c.event)}
               onMouseLeave={() => onMarkerLeave?.()}
               onClick={() => onMarkerClick?.(c.event)}
