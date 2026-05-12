@@ -59,7 +59,7 @@ export const timeline = [
   {
     year: "2026",
     events: [
-      { month: "Apr", title: "Route 66 Road Trip", description: null, coords: route("Route 66 road trip"), attachments: [img(thumbRoute66Vinita, 4284, 5712), img(thumbRoute66Tucumcari, 4032, 3024), img(thumbRoute66Apache, 4032, 3024), img(thumbRoute66Oatman, 4032, 3024)] },
+      { month: "Apr", title: "Toronto→SF road trip", description: null, coords: route("Route 66 road trip"), attachments: [img(thumbRoute66Vinita, 4284, 5712), img(thumbRoute66Tucumcari, 4032, 3024), img(thumbRoute66Apache, 4032, 3024), img(thumbRoute66Oatman, 4032, 3024)] },
       { month: "Mar", title: "New York visit", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(thumbNyc2026a, 1762, 1322), img(thumbNyc2026b, 1386, 1848)] },
       { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, coords: { lat: 28.5729, lng: -80.6490 }, attachments: [img(thumbKsc1, 3072, 4096), img(thumbOrlando, 1600, 1200)] },
       // { month: "Jan", title: "Learned Piano Man on the harmonica", description: null, coords: null },
