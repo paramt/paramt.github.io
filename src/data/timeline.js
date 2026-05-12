@@ -25,6 +25,11 @@ import thumbBoston from './images/boston.thumb.webp';
 import thumbNyc2026a from './images/nyc 2026 1.thumb.webp';
 import thumbNyc2026b from './images/nyc 2026 2.thumb.webp';
 
+import thumbRoute66Vinita from './images/route 66/IMG_5577.thumb.webp';
+import thumbRoute66Tucumcari from './images/route 66/IMG_5755.thumb.webp';
+import thumbRoute66Apache from './images/route 66/IMG_6057.thumb.webp';
+import thumbRoute66Oatman from './images/route 66/IMG_6613.thumb.webp';
+
 import thumbNyc2023a from './images/nyc 2023.thumb.webp';
 import thumbNyc2023b from './images/nyc 2023 2.thumb.webp';
 import thumbNyc2023c from './images/nyc 2023 3.thumb.webp';
@@ -54,7 +59,7 @@ export const timeline = [
   {
     year: "2026",
     events: [
-      // { month: "Apr", title: "Route 66 road trip", description: null, coords: route("Route 66 road trip") },
+      { month: "Apr", title: "Route 66 Road Trip", description: null, coords: route("Route 66 road trip"), attachments: [img(thumbRoute66Vinita, 4284, 5712), img(thumbRoute66Tucumcari, 4032, 3024), img(thumbRoute66Apache, 4032, 3024), img(thumbRoute66Oatman, 4032, 3024)] },
       { month: "Mar", title: "New York visit", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(thumbNyc2026a, 1762, 1322), img(thumbNyc2026b, 1386, 1848)] },
       { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, coords: { lat: 28.5729, lng: -80.6490 }, attachments: [img(thumbKsc1, 3072, 4096), img(thumbOrlando, 1600, 1200)] },
       // { month: "Jan", title: "Learned Piano Man on the harmonica", description: null, coords: null },
