@@ -663,6 +663,12 @@ main {
   background: #eb4034;
 }
 
+.map-marker-mid .map-marker-dot {
+  width: 4px;
+  height: 4px;
+  opacity: 0.6;
+}
+
 .map-marker-static {
   pointer-events: auto;
   cursor: pointer;

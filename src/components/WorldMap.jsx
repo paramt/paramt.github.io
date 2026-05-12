@@ -193,7 +193,7 @@ function drawRoute(ctx, pts, proj, alpha = 0.55) {
     ctx.lineTo(xy[pts.length - 1][0], xy[pts.length - 1][1]);
   }
   ctx.strokeStyle = '#eb4034';
-  ctx.lineWidth = 1.5;
+  ctx.lineWidth = 3;
   ctx.globalAlpha = alpha;
   ctx.stroke();
   ctx.restore();
@@ -259,10 +259,9 @@ export default function WorldMap({ coords, allCoords = [], allRoutes = [], noZoo
       const activeContainer = activeMarkersRef.current;
       const pts = coordsPtsRef.current;
       if (activeContainer && pts) {
-        const endpts = pts.length > 1 ? [pts[0], pts[pts.length - 1]] : pts;
         const children = activeContainer.children;
-        for (let i = 0; i < children.length && i < endpts.length; i++) {
-          const [px, py] = proj(endpts[i].lng, endpts[i].lat);
+        for (let i = 0; i < children.length && i < pts.length; i++) {
+          const [px, py] = proj(pts[i].lng, pts[i].lat);
           children[i].style.left = `${px / w * 100}%`;
           children[i].style.top  = `${py / h * 100}%`;
         }
@@ -332,16 +331,15 @@ export default function WorldMap({ coords, allCoords = [], allRoutes = [], noZoo
       <canvas ref={canvasRef} className="world-map-canvas" />
       {coordsPts && (
         <div ref={activeMarkersRef} aria-hidden="true">
-          {(coordsPts.length > 1 ? [coordsPts[0], coordsPts[coordsPts.length - 1]] : coordsPts).map((c, i) => (
-            <div
-              key={i}
-              className="map-marker"
-              style={pct(c.lng, c.lat)}
-            >
-              {coordsPts.length === 1 && <div className="map-marker-pulse" />}
-              <div className="map-marker-dot" />
-            </div>
-          ))}
+          {coordsPts.map((c, i) => {
+            const isMid = coordsPts.length > 1 && i > 0 && i < coordsPts.length - 1;
+            return (
+              <div key={i} className={`map-marker${isMid ? ' map-marker-mid' : ''}`} style={pct(c.lng, c.lat)}>
+                {coordsPts.length === 1 && <div className="map-marker-pulse" />}
+                <div className="map-marker-dot" />
+              </div>
+            );
+          })}
         </div>
       )}
       {(!coordsPts || noZoom) && (
