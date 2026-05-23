@@ -2,6 +2,16 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+
+function remarkEmDash() {
+  return (tree) => {
+    function walk(node) {
+      if (node.type === 'text') node.value = node.value.replace(/--/g, '—');
+      if (node.children) node.children.forEach(walk);
+    }
+    walk(tree);
+  };
+}
 import 'katex/dist/katex.min.css';
 import Nav from './Nav.jsx';
 import { getAllNotes, getNote, resolveNoteAsset } from '../data/notes-loader.js';
@@ -40,7 +50,7 @@ export default function Notes({ initialSlug = null }) {
             {note.description && <p className="note-description">{note.description}</p>}
             <div className="note-content">
               <ReactMarkdown
-                remarkPlugins={[remarkGfm, remarkMath]}
+                remarkPlugins={[remarkGfm, remarkMath, remarkEmDash]}
                 rehypePlugins={[rehypeKatex]}
                 components={markdownComponents}
               >
