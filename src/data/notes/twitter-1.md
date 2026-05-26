@@ -1,8 +1,8 @@
 ---
-title: Why I like Twitter
+title: Twitter
 date: 2026-05-23
 description: twitter, part one
-unlisted: true
+unlisted: false
 tags:
 ---
 I recently switched my default medium of doomscrolling from Reddit to Twitter, and there's been a surprisingly big change in what I see as well as how I think. 
@@ -17,9 +17,7 @@ Of course, it's hard to generalize this phenomenon to the whole platform. I reca
 
 But still, I feel like I understand the general vibe of tech twitter. And I definitely understand the general vibe of tech Reddit, which I can say with confidence since it's more centralized. But I can't understand the reason for this difference. 
 
-
 Separately, it's probably not a good thing that my mindset is so malleable and so easily shaped by what I consume. But while I work on that, it wouldn't hurt changing what I consume, too. 
-
 
 [^1]: Technically they [already started moving from chronological to algorithmic feeds](https://techcrunch.com/2016/03/15/filteredgram/), but it was only re-ordering posts from accounts you already followed. It wasn't until later that they [started experimenting](https://techcrunch.com/2020/08/19/instagram-finds-new-ad-space-at-the-end-of-your-feed-with-launch-of-suggested-posts-feature/) with something closer to what we have today, concluding in the [launch of Reels](https://techcrunch.com/2020/08/05/instagram-reels-launches-globally-in-over-50-countries-including-u-s/). 
 
