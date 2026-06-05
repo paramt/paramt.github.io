@@ -6,7 +6,7 @@ import rehypeKatex from 'rehype-katex';
 function remarkEmDash() {
   return (tree) => {
     function walk(node) {
-      if (node.type === 'text') node.value = node.value.replace(/--/g, '—');
+      if (node.type === 'text') node.value = node.value.replace(/--/g, '—').replace(/->/g, '→');
       if (node.children) node.children.forEach(walk);
     }
     walk(tree);
@@ -43,6 +43,7 @@ export default function Notes({ initialSlug = null }) {
             <h1 className="note-title">{note.title}</h1>
             <div className="note-meta">
               {note.date && <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>}
+              {note.unlisted && <span className="notes-tag notes-tag--unlisted">unlisted</span>}
               {note.tags.map(tag => (
                 <span key={tag} className={`notes-tag notes-tag--${tag}`}>{tag}</span>
               ))}
