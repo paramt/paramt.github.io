@@ -68,7 +68,7 @@ export const timeline = [
       { month: "May", title: "Collected poker chips from 15 casinos in Las Vegas", description: null, coords: { lat: 36.1699, lng: -115.1398 }, attachments: [img(thumbVegas1, 5712, 4284), img(thumbVegas2, 2088, 1566)] },
       { month: "May", title: "Went hiking and kayaking in Lake Tahoe", description: null, coords: { lat: 39.0968, lng: -120.0324 }, attachments: [img(thumbTahoe1, 2048, 1536), img(thumbTahoe2, 4032, 3024)] },
       { month: "Apr", title: "Toronto→SF road trip", description: null, coords: route("Route 66 road trip"), attachments: [img(thumbRoute66Vinita, 4284, 5712), img(thumbRoute66Tucumcari, 4032, 3024), img(thumbRoute66Apache, 4032, 3024), img(thumbRoute66Oatman, 4032, 3024)] },
-      { month: "Mar", title: "New York visit", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(thumbNyc2026a, 1762, 1322), img(thumbNyc2026b, 1386, 1848)] },
+      { month: "Mar", title: "New York onsite", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(thumbNyc2026a, 1762, 1322), img(thumbNyc2026b, 1386, 1848)] },
       { month: "Feb", title: "Visited Orlando & Kennedy Space Center", description: null, coords: { lat: 28.5729, lng: -80.6490 }, attachments: [img(thumbKsc1, 3072, 4096), img(thumbOrlando, 1600, 1200)] },
       // { month: "Jan", title: "Learned Piano Man on the harmonica", description: null, coords: null },
     ],
