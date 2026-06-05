@@ -28,6 +28,9 @@ import thumbNyc2026b from './images/nyc 2026 2.thumb.webp';
 import thumbTahoe1 from './images/tahoe/tahoe.thumb.webp';
 import thumbTahoe2 from './images/tahoe/IMG_7697.thumb.webp';
 
+import thumbVegas1 from './images/vegas/IMG_7903.thumb.webp';
+import thumbVegas2 from './images/vegas/vegas2.thumb.webp';
+
 import thumbRoute66Vinita from './images/route 66/IMG_5577.thumb.webp';
 import thumbRoute66Tucumcari from './images/route 66/IMG_5755.thumb.webp';
 import thumbRoute66Apache from './images/route 66/IMG_6057.thumb.webp';
@@ -62,6 +65,7 @@ export const timeline = [
   {
     year: "2026",
     events: [
+      { month: "May", title: "Las Vegas trip", description: null, coords: { lat: 36.1699, lng: -115.1398 }, attachments: [img(thumbVegas1, 5712, 4284), img(thumbVegas2, 2088, 1566)] },
       { month: "May", title: "Cottage trip in Lake Tahoe", description: null, coords: { lat: 39.0968, lng: -120.0324 }, attachments: [img(thumbTahoe1, 2048, 1536), img(thumbTahoe2, 4032, 3024)] },
       { month: "Apr", title: "Toronto→SF road trip", description: null, coords: route("Route 66 road trip"), attachments: [img(thumbRoute66Vinita, 4284, 5712), img(thumbRoute66Tucumcari, 4032, 3024), img(thumbRoute66Apache, 4032, 3024), img(thumbRoute66Oatman, 4032, 3024)] },
       { month: "Mar", title: "New York visit", description: null, coords: { lat: 40.7128, lng: -74.0060 }, attachments: [img(thumbNyc2026a, 1762, 1322), img(thumbNyc2026b, 1386, 1848)] },
