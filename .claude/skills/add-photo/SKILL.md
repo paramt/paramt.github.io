@@ -24,7 +24,7 @@ Ask the user for everything you need before touching any files:
 2. **Destination directory** — where to put the compressed file inside `src/data/images/`. Suggest `src/data/images/hero/` for hero photos or ask which timeline event it belongs to.
 3. **Target** — is this for the **hero** polaroid carousel or a **timeline** event attachment?
    - If timeline: which event (month + title) does it attach to?
-4. **Video file** (optional) — path to a matching `.mp4` if any.
+4. **Video file** (optional, hero only) — path to a matching `.mp4` if any. Videos (including Live Photo companions) are only supported for hero polaroids, not timeline photos — skip for timeline targets.
 5. **Location label** (optional, e.g. `"Vancouver, BC"`) and **date label** (optional, e.g. `"08/16/24"`).
 
 Do not proceed until you have at least the source path and target.
@@ -69,7 +69,9 @@ sips -g pixelWidth -g pixelHeight -g orientation "$INPUT"
 ```
 If `orientation` is `6` (Rotate 90 CW) or `8` (Rotate 270 CW), swap w and h before wiring up.
 
-## Step 4 — Compress the video (if provided)
+## Step 4 — Compress the video (hero only, if provided)
+
+**Skip this step for timeline targets.** Videos (including Live Photo `.mov` companions) are only wired up on hero polaroids.
 
 ```bash
 ffmpeg -y -i "<video path>" \
