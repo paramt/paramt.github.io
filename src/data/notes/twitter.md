@@ -1,7 +1,7 @@
 ---
-title: Twitter
+title: On Twitter
 date: 2026-05-23
-description: twitter, part one
+description:
 unlisted: false
 tags:
 ---
