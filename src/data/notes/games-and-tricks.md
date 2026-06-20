@@ -77,6 +77,10 @@ each player is dealt 5 cards, regular betting. every time someone folds, their c
 2 card holdem, 1 card is revealed to the table, hidden to the player 
 ## tic tac toe
 9 cards in the middle, winner is whoever can make the best 5 card hand with 2 of their 4 hole cards + any row/column/diagonal 
-
 flop is 4 corners, turn completes the square, river is the center card
-
+## magnet 
+5 card omaha, 2 boards: the actual board and the "magnet"
+if you have a card with the same rank as anything on the magnet board, you have to publicly discard 
+pot is split between a regular high and the lowest sum of cards (A=1, monkey=10)
+## 3 cards 
+use 0-3 hole cards, changes the game dynamics - the nuts are always quads, even when board isn't paired
