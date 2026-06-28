@@ -58,6 +58,24 @@ viewer gets to pick which number card it is!
 Each player starts with a shuffled deck of cards with both jokers. To win the game, a player must either reach 6 points, or the other player must run out of cards. At the start of the game, both players put one card onto the table. From here, the action is on whichever player has the worse 5-card poker hand showing. Note that with <5 cards, you will have an incomplete poker hand and some hand ranks cannot be made (such as straight, flush, full house). When it is a player's turn, that player may either draw to try and improve their showing hand, or fold and give their opponent a point. If the showing hands are tied, both players must draw.
 ## 3 way best hand
 - todo
+
+## high hand 
+setup: start with a 52 card deck + 2 regular jokers + 2 added public jokers (visibly distinct cards)
+
+- each player starts with 4 cards
+- players go around in turns, during each turn a player must state a hand that is higher than the previously stated hand
+- at any point a player can challenge the most recently stated hand, at which point everyone turns over their cards and if the stated hand cannot be made, the player loses, otherwise the challenger loses
+- the losing player gains a chip, if they lose after already having 4 chips they're eliminated
+- each player is dealt an additional card per chip (so losing with 8 cards in your hand => elimination)
+
+hand strengths: high card, pair, two pair, set, **flush**, **straight**, full house, quads, straight flush, 5 of a kind, 6 of a kind, etc
+
+(note: flush and straight are swapped)
+
+when stating a hand, you must announce the cards that make it up exactly (e.g. "9 high straight", "aces over sevens", or for a flush: "flush with the 10 of hearts") 
+
+jokers are wildcards, can be used to make any hand
+
 ---
 # poker variants
 
