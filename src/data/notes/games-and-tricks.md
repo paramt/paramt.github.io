@@ -54,12 +54,26 @@ viewer gets to pick which number card it is!
 - this continues until the player has 5 cards
 - if at this point if the dealer has less than 8 cards, they draw until they get to 8
 - winner is whoever has the best 5 card poker hand
-## draw 
+
+## draw (2 player)
+
 Each player starts with a shuffled deck of cards with both jokers. To win the game, a player must either reach 6 points, or the other player must run out of cards. At the start of the game, both players put one card onto the table. From here, the action is on whichever player has the worse 5-card poker hand showing. Note that with <5 cards, you will have an incomplete poker hand and some hand ranks cannot be made (such as straight, flush, full house). When it is a player's turn, that player may either draw to try and improve their showing hand, or fold and give their opponent a point. If the showing hands are tied, both players must draw.
+
+### variant A
+
+no jokers, first to reach 5 points wins. when drawing, instead of taking the top card of the deck, the player looks at the top 3 cards of the deck and plays any card of their choosing. the remaining 2 cards go in an auxiliary deck (separate from the discard pile). when their main deck is exhausted, they shuffle the auxiliary deck and it becomes the main deck. when either player gets a point, both player's current hand still goes in the discard
+
+### variant B
+
+same as variant A, except instead of playing exactly 1 of 3 cards, players can play 1-3
+
+
 ## 3 way best hand
+
 - todo
 
 ## high hand 
+
 setup: start with a 52 card deck + 2 regular jokers + 2 added public jokers (visibly distinct cards)
 
 - each player starts with 4 cards
