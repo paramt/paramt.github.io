@@ -2,6 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { visit } from 'unist-util-visit';
 
 function remarkEmDash() {
   return (tree) => {
@@ -11,6 +12,56 @@ function remarkEmDash() {
     }
     walk(tree);
   };
+}
+
+function slugify(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+// Assigns slug ids to h1/h2 headings; runs before rehypeKatex so heading text
+// is read before math nodes are expanded into KaTeX's verbose markup.
+function rehypeHeadingSlugs() {
+  return (tree) => {
+    const seen = new Map();
+    visit(tree, 'element', (node) => {
+      if (node.tagName !== 'h1' && node.tagName !== 'h2') return;
+      let text = '';
+      visit(node, 'text', (textNode) => { text += textNode.value; });
+      let slug = slugify(text);
+      const count = seen.get(slug) ?? 0;
+      seen.set(slug, count + 1);
+      if (count > 0) slug = `${slug}-${count}`;
+      node.properties = { ...node.properties, id: slug };
+    });
+  };
+}
+
+function HeadingAnchor({ id, symbol }) {
+  return (
+    <a href={`#${id}`} className="note-heading-anchor" aria-label="Link to this heading">{symbol}</a>
+  );
+}
+
+function NoteH1({ node: _node, children, ...props }) {
+  return (
+    <h1 {...props}>
+      <HeadingAnchor id={props.id} symbol="#" />
+      {children}
+    </h1>
+  );
+}
+
+function NoteH2({ node: _node, children, ...props }) {
+  return (
+    <h2 {...props}>
+      <HeadingAnchor id={props.id} symbol="##" />
+      {children}
+    </h2>
+  );
 }
 import 'katex/dist/katex.min.css';
 import Nav from './Nav.jsx';
@@ -30,6 +81,8 @@ export default function Notes({ initialSlug = null }) {
         img({ node: _node, src, alt, ...props }) {
           return <img {...props} src={resolveNoteAsset(src)} alt={alt ?? ''} loading="lazy" />;
         },
+        h1: NoteH1,
+        h2: NoteH2,
       }
     : undefined;
 
@@ -52,7 +105,7 @@ export default function Notes({ initialSlug = null }) {
             <div className="note-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkMath, remarkEmDash]}
-                rehypePlugins={[rehypeKatex]}
+                rehypePlugins={[rehypeHeadingSlugs, rehypeKatex]}
                 components={markdownComponents}
               >
                 {note.content}

@@ -45,6 +45,10 @@ Unlisted notes behave like unlisted YouTube videos. The permalink works (the `in
 - The slug is excluded from `dist/sitemap.xml`.
 - It's filtered from the `/notes` listing UI (`Notes.jsx`).
 
+## Heading Anchors
+
+`Notes.jsx` runs a custom `rehypeHeadingSlugs` plugin (before `rehypeKatex`, so heading text is read before KaTeX expands math into its verbose annotated markup) that assigns each `h1`/`h2` in note content a slug `id`, lowercased with non-alphanumeric runs collapsed to a single dash. IDs are unique document-wide; duplicate headings get `-1`, `-2`, ... suffixes (shared counter across h1 and h2, matching how `rehype-slug` works). Custom `h1`/`h2` renderers (`NoteH1`/`NoteH2`) prepend a `#` anchor (`.note-heading-anchor` in `index.css`) that's hidden until the heading is hovered/focused. `h3` and below are left untouched (no id, no anchor).
+
 ## Sitemap
 
 Generated at `dist/sitemap.xml` during prerender. Static routes (`/`, `/notes`, `/poker`, `/poker-analytics`) are hardcoded in `STATIC_SITEMAP_ROUTES` in `prerender.js`. Notes are appended from `getAllNotes()`, skipping `unlisted`.

@@ -1096,6 +1096,34 @@ html[data-theme="dark"] .notes-tag--unlisted    { color: #9ca3af; background: rg
 .note-content h2 { font-size: 17px; }
 .note-content h3 { font-size: 15px; }
 
+.note-content h1,
+.note-content h2 {
+  position: relative;
+  scroll-margin-top: calc(var(--nav-height) + 16px);
+}
+
+.note-heading-anchor {
+  position: absolute;
+  right: 100%;
+  margin-right: 0.4em;
+  white-space: nowrap;
+  opacity: 0;
+  font-weight: 400;
+  color: var(--fg-faint);
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.note-content h1:hover .note-heading-anchor,
+.note-content h2:hover .note-heading-anchor,
+.note-heading-anchor:focus {
+  opacity: 0.55;
+}
+
+.note-heading-anchor:hover {
+  text-decoration: underline;
+}
+
 .note-content a {
   color: var(--fg);
 }
