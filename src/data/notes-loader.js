@@ -81,6 +81,11 @@ export function parseFrontmatter(raw) {
   return { meta, content: match[2] };
 }
 
+function dateValue(date) {
+  const time = new Date(date).getTime();
+  return Number.isNaN(time) ? -Infinity : time;
+}
+
 const notes = Object.entries(noteModules)
   .map(([path, raw]) => {
     const slug = path.replace('./notes/', '').replace('.md', '');
@@ -95,7 +100,7 @@ const notes = Object.entries(noteModules)
       tags: Array.isArray(meta.tags) ? meta.tags : [],
     };
   })
-  .sort((a, b) => new Date(b.date) - new Date(a.date));
+  .sort((a, b) => dateValue(b.date) - dateValue(a.date));
 
 export function getAllNotes() {
   return notes;
