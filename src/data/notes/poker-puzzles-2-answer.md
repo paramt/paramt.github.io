@@ -5,6 +5,13 @@ description:
 unlisted: true
 tags:
 ---
+What configuration of 5 board cards and 2 hole cards make it such that: 
+1. Looking back, you know that you had the best possible hand on the flop
+2. *and* the turn
+3. On the river, you are guaranteed to lose the pot to any other hand -- not even a chop 
+
+# Answer
+
 Board: 223 2 2
 
 Hand: 33
