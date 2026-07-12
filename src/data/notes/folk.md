@@ -1,6 +1,6 @@
 ---
 title: Thoughts on folk
-date: 2026-07-11
+date: 2026-07-10
 description:
 unlisted: false
 tags:
@@ -19,7 +19,7 @@ you have access to your own sandbox with its own persistent files along with the
 - usually I'll text myself on discord random bits of info I need to remember - can I text folk instead and have it build it as part of its knowledge graph of me? 
 - it can join meetings - expand its knowledge graph - become my personal secretary? 
 
-I tried asking it if it can order something off amazon for me. it seems that amazon was not a first party connector, but it still tried setting up a rmeote browser and giving me a link to control the remote browser and log in, after which it claimed it could continue for me. I think this is a promising idea, if they can figure out: 
+I tried asking it if it can order something off amazon for me. it seems that amazon was not a first party connector, but it still tried setting up a remote browser and giving me a link to control the remote browser and log in, after which it claimed it could continue for me. I think this is a promising idea, if they can figure out: 
 1. having this actually work for logins -- I got a websocket disconnected error after clicking on log in 
 2. persisting browser sessions - I don't want to have to log in every time 
 
