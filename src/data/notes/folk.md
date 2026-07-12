@@ -30,3 +30,4 @@ overall I think this product category (managed openclaw) will be really big, and
 
 so far this is one of the better implementations of it. in principle owning this myself with openclaw would be nice, but I tried it a couple months ago and it wasn't very useful (I definitely needed to invest more time to make it more useful). but there is value in offering plug-and-play support for this kind of thing 
 
+update: I was able to get folk to update this site after all. the original first edit commit was https://github.com/paramt/paramt.github.io/commit/e2b76b9431220574706c67d2b6582001f63834ee
