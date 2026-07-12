@@ -1,0 +1,8 @@
+---
+title:
+date: 2026-07-11
+description:
+unlisted: true
+tags:
+---
+Point 1 says **looking back**. As in, they don't have to be the nuts in the moment on the flop and turn.
