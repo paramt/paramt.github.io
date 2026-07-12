@@ -16,7 +16,7 @@ you have access to your own sandbox with its own persistent files along with the
 	- codex agent came pre configured, but it was stuck on an old CLI 
 	- its voice when drafting the note was not that good. maybe it didn't have access to my other notes actually 
 - how well can it handle browser use? 
-- can it run little automations for me? e.g. a cron that keeps checking for newly open seats during course enrollment
+- can it run little automations for me? e.g. could folk replace [scripts like this](https://gist.github.com/paramt/beb5d4fa2e8cadc3bb8b25c024bb7564) that keep checking for newly open seats during course enrollment
 - usually I'll text myself on discord random bits of info I need to remember - can I text folk instead and have it build it as part of its knowledge graph of me? 
 - it can join meetings - expand its knowledge graph - become my personal secretary? 
 
