@@ -1,5 +1,5 @@
 ---
-title: Lowest nuts
+title:
 date: 2026-07-11
 description:
 unlisted: true
@@ -9,8 +9,6 @@ What configuration of community cards and hole cards gives you the lowest possib
 
 # Answer
 Set of Queens
-
-Explanation:
 
 Board: Q2378
 
