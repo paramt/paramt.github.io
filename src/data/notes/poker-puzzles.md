@@ -27,7 +27,7 @@ The answer is unique (up to suits)
 
 [Hint 1](https://www.param.me/notes/poker-puzzles-2-hint-1)
 
-[Hint 2](https://www.param.me/notes/poker-puzzles-2-hint-1)
+[Hint 2](https://www.param.me/notes/poker-puzzles-2-hint-2)
 
 [Answer](https://www.param.me/notes/poker-puzzles-2-answer)
 
