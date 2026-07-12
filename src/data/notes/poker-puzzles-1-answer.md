@@ -13,6 +13,7 @@ Set of Queens
 Explanation:
 
 Board: Q2378
+
 Hole cards: QQ
 
 A set is always possible on any board, so that's the lower bound on the nuts. 

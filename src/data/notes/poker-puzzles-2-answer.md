@@ -6,7 +6,10 @@ unlisted: true
 tags:
 ---
 Board: 223 2 2
+
 Hand: 33
+
+Satisfies all three conditions:
 
 1. You have the best possible hand on the flop. The nuts are 22, but since we're looking back, we know that's on the board so no one can have this. Second nuts are 33 for 3s full of 2s, which is our hand 
 2. Same logic on the turn, the best possible hand (looking back) is 3s full of 2s.
