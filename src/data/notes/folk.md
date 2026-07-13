@@ -18,7 +18,10 @@ you have access to your own sandbox with its own persistent files along with the
 - how well can it handle browser use? 
 - can it run little automations for me? e.g. could folk replace [scripts like this](https://gist.github.com/paramt/beb5d4fa2e8cadc3bb8b25c024bb7564) that keep checking for newly open seats during course enrollment
 - usually I'll text myself on discord random bits of info I need to remember - can I text folk instead and have it build it as part of its knowledge graph of me? 
-- it can join meetings - expand its knowledge graph - become my personal secretary? 
+- it can join meetings - expand its knowledge graph - become my personal secretary?
+- can it update my pokerbase data entry? this is always really tedious
+	- could it read through my emails to see how much I sent/recieved and infer the blinds based on who I'm playing with? even if not, being able to add it with a simple text would be much nicer (and I could probably have it remember certain presets of blinds, venues, etc.
+ 	- if pokerbase doesn't have an API, I could always create my own poker tracker 
 
 I tried asking it if it can order something off amazon for me. it seems that amazon was not a first party connector, but it still tried setting up a remote browser and giving me a link to control the remote browser and log in, after which it claimed it could continue for me. I think this is a promising idea, if they can figure out: 
 1. having this actually work for logins -- I got a websocket disconnected error after clicking on log in 
