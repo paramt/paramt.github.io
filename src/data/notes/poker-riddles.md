@@ -38,7 +38,7 @@ Credit to [Johns Hopkins Poker Course](https://youtu.be/iewwuF_kaBY?si=iGx1fTXfY
 
 Using only this information, identify the board, Adam’s hole cards, and Bob’s hole cards.
 
-[Hint 1](https://www.param.me/notes/poker-puzzles-3-hint-1), [Hint 2](https://www.param.me/notes/poker-puzzles-3-hint-2), [Hint 2](https://www.param.me/notes/poker-puzzles-3-hint-3)
+[Hint 1](https://www.param.me/notes/poker-puzzles-3-hint-1), [Hint 2](https://www.param.me/notes/poker-puzzles-3-hint-2), [Hint 3](https://www.param.me/notes/poker-puzzles-3-hint-3)
 
 [Answer](https://www.param.me/notes/poker-puzzles-3-answer)
 
