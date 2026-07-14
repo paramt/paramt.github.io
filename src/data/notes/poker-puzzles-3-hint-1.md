@@ -1,8 +1,8 @@
 ---
 title:
-date: 2026-07-14
+date:
 description:
-unlisted: false
+unlisted: true
 tags:
 ---
 > No matter what card in the deck falls on the river, Adam cannot win the pot.

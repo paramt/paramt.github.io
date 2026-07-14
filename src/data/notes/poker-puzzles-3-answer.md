@@ -1,8 +1,8 @@
 ---
 title:
-date: 2026-07-14
+date:
 description:
-unlisted: false
+unlisted: true
 tags:
 ---
 - There is a hold'em heads up pot between Adam and Bob. Four cards are on the board. 

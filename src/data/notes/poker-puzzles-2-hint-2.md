@@ -1,6 +1,6 @@
 ---
 title:
-date: 2026-07-11
+date:
 description:
 unlisted: true
 tags:
