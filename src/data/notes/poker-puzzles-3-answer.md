@@ -11,18 +11,19 @@ tags:
 
 Using only this information, identify the board, Adam’s hole cards, and Bob’s hole cards.
 
-# Answer 
+# Answer 1
+Board: AAKK 
 
-Board: 2 A 4 K 
+Adam's hand: 32
 
-Adam's hand: 25
-Bob's hand: 23
+Bob's hand: 22
 
-Currently, Adam's hand is best: 22AK5 beats 22AK4
+Currently, Adam's hand is best: AAKK3 beats AAKK2
 
 If the river is: 
-- 2: both players have trips with AK kickers => pot is chopped
-- 3: Bob hits two pair and wins
-- 4: Both players hit two pair with A kicker => pot is chopped 
-- 5: Adam hits two pair but Bob hits a straight
-- Any other card $x>5$: Both players have 22AK$x$ => pot is chopped
+- 2: Bob hits a boat and wins 
+- 3: Both play the board AAKK3 => pot is chopped 
+- Any other card $x>3$: Both players play the board AAKK$x$ => pot is chopped
+
+# Answer 2
+I think there are more answers possible. Coming soon!

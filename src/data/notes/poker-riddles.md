@@ -40,6 +40,9 @@ Using only this information, identify the board, Adam’s hole cards, and Bob’
 
 [Hint 1](https://www.param.me/notes/poker-puzzles-3-hint-1), [Hint 2](https://www.param.me/notes/poker-puzzles-3-hint-2), [Hint 3](https://www.param.me/notes/poker-puzzles-3-hint-3)
 
+[Wrong Answer](https://www.param.me/notes/poker-puzzles-3-wrong-answers)
+
 [Answer](https://www.param.me/notes/poker-puzzles-3-answer)
 
 Credit to [u/Banyah](https://www.reddit.com/r/poker/comments/bzg3s1/holdem_brainteaser/) 
+
