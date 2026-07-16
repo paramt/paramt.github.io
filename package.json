@@ -4,7 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/sync-notes.js",
     "dev": "vite",
+    "prebuild": "node scripts/sync-notes.js",
     "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-server && node prerender.js",
     "lint": "eslint .",
     "preview": "vite preview",
