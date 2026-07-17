@@ -22,6 +22,23 @@ function slugify(text) {
     .replace(/^-+|-+$/g, '');
 }
 
+// remark-gfm's footnote backref id/href default to user-content-fnref-N
+// (the user-content- prefix guards against DOM clobbering); rename to
+// footnote-N. Leaves the fn-N footnote-definition id/href untouched.
+function rehypeFootnoteIds() {
+  return (tree) => {
+    visit(tree, 'element', (node) => {
+      const { id, href } = node.properties ?? {};
+      if (typeof id === 'string' && id.startsWith('user-content-fnref-')) {
+        node.properties.id = id.replace('user-content-fnref-', 'footnote-');
+      }
+      if (typeof href === 'string' && href.startsWith('#user-content-fnref-')) {
+        node.properties.href = href.replace('#user-content-fnref-', '#footnote-');
+      }
+    });
+  };
+}
+
 // Assigns slug ids to h1/h2 headings; runs before rehypeKatex so heading text
 // is read before math nodes are expanded into KaTeX's verbose markup.
 function rehypeHeadingSlugs() {
@@ -105,7 +122,7 @@ export default function Notes({ initialSlug = null }) {
             <div className="note-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkMath, remarkEmDash]}
-                rehypePlugins={[rehypeHeadingSlugs, rehypeKatex]}
+                rehypePlugins={[rehypeHeadingSlugs, rehypeFootnoteIds, rehypeKatex]}
                 components={markdownComponents}
               >
                 {note.content}
