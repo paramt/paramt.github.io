@@ -63,6 +63,8 @@ Unlisted notes behave like unlisted YouTube videos. The permalink works (the `in
 - The slug is excluded from `dist/sitemap.xml`.
 - It's filtered from the `/notes` listing UI (`Notes.jsx`).
 
+**Defaults to unlisted, not listed** (`notes-loader.js`: `unlisted: meta.unlisted !== 'false'`) — a note only stays listed if its frontmatter explicitly says `unlisted: false`. This matters because the vault sync copies whatever's on disk, including a blank/malformed file (no parseable frontmatter, e.g. an empty Obsidian-created draft) with zero validation. Before this default was flipped, such a file's `unlisted` silently evaluated to `false` (listed), and the listing page unconditionally did `n.date.split('-')` — a blank file has no `date` either, crashing the SSR build. The listing page's date usage (`isNew` calc and the `<time>` element) is now also null-guarded as defense in depth.
+
 ## Heading Anchors
 
 `Notes.jsx` runs a custom `rehypeHeadingSlugs` plugin (before `rehypeKatex`, so heading text is read before KaTeX expands math into its verbose annotated markup) that assigns each `h1`/`h2` in note content a slug `id`, lowercased with non-alphanumeric runs collapsed to a single dash. IDs are unique document-wide; duplicate headings get `-1`, `-2`, ... suffixes (shared counter across h1 and h2, matching how `rehype-slug` works). Custom `h1`/`h2` renderers (`NoteH1`/`NoteH2`) prepend a `#` anchor (`.note-heading-anchor` in `index.css`) that's hidden until the heading is hovered/focused. `h3` and below are left untouched (no id, no anchor).

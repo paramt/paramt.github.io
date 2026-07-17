@@ -136,8 +136,11 @@ export default function Notes({ initialSlug = null }) {
             <p className="notes-description">This is a place for my thoughts and musings. Ideas, reflections, or just random things I want to write down. Some will be structured, others more like a stream of consciousness, but mostly written as notes for myself.</p>
             <ul className="notes-list">
               {notes.filter(n => !n.unlisted).map(n => {
-              const [y, m, d] = n.date.split('-').map(Number);
-              const isNew = (Date.now() - new Date(y, m - 1, d).getTime()) < 7 * 24 * 60 * 60 * 1000;
+              let isNew = false;
+              if (n.date) {
+                const [y, m, d] = n.date.split('-').map(Number);
+                isNew = (Date.now() - new Date(y, m - 1, d).getTime()) < 7 * 24 * 60 * 60 * 1000;
+              }
               return (
                 <li key={n.slug} className="notes-list-item">
                   <a href={`/notes/${n.slug}`} className="notes-item">
@@ -148,7 +151,7 @@ export default function Notes({ initialSlug = null }) {
                         <span key={tag} className={`notes-tag notes-tag--${tag}`}>{tag}</span>
                       ))}
                     </span>
-                    <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>
+                    {n.date && <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>}
                   </a>
                   {n.description && <p className="notes-item-desc">{n.description}</p>}
                 </li>
