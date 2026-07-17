@@ -54,7 +54,6 @@ function buildNotesListingHead() {
 }
 
 function buildNoteHead({ title, description, slug, date, unlisted }) {
-  const fullTitle = `${title} — Param Thakkar`;
   const desc = description || title;
   const url = `${SITE_URL}/notes/${slug}`;
   const jsonLd = {
@@ -67,7 +66,7 @@ function buildNoteHead({ title, description, slug, date, unlisted }) {
     image: OG_IMAGE,
   };
   const tags = [
-    `<title>${escapeHtml(fullTitle)}</title>`,
+    `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(desc)}" />`,
     `<link rel="canonical" href="${url}" />`,
   ];
