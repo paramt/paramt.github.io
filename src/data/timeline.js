@@ -24,6 +24,7 @@ import thumbTrinidad1 from './images/trinidad 1.thumb.webp';
 import thumbBoston from './images/boston.thumb.webp';
 import thumbNyc2026a from './images/nyc 2026 1.thumb.webp';
 import thumbNyc2026b from './images/nyc 2026 2.thumb.webp';
+import thumbFifa from './images/fifa.thumb.webp';
 
 import thumbTahoe1 from './images/tahoe/tahoe.thumb.webp';
 import thumbTahoe2 from './images/tahoe/IMG_7697.thumb.webp';
@@ -65,6 +66,7 @@ export const timeline = [
   {
     year: "2026",
     events: [
+      { month: "Jun", title: "Attended a FIFA game at Levi's Stadium", description: null, coords: { lat: 37.4033, lng: -121.9694 }, attachments: [img(thumbFifa, 5712, 4284)] },
       { month: "May", title: "Collected poker chips from 15 casinos in Las Vegas", description: null, coords: { lat: 36.1699, lng: -115.1398 }, attachments: [img(thumbVegas1, 5712, 4284), img(thumbVegas2, 2088, 1566)] },
       { month: "May", title: "Went hiking and kayaking in Lake Tahoe", description: null, coords: { lat: 39.0968, lng: -120.0324 }, attachments: [img(thumbTahoe1, 2048, 1536), img(thumbTahoe2, 4032, 3024)] },
       { month: "Apr", title: "Toronto→SF road trip", description: null, coords: route("Route 66 road trip"), attachments: [img(thumbRoute66Vinita, 4284, 5712), img(thumbRoute66Tucumcari, 4032, 3024), img(thumbRoute66Apache, 4032, 3024), img(thumbRoute66Oatman, 4032, 3024)] },
