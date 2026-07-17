@@ -962,12 +962,21 @@ main {
   border-top: 1px solid var(--border);
 }
 
+.tag-group + .tag-group {
+  margin-top: 32px;
+}
+
+.tag-group-heading {
+  margin-bottom: 8px;
+}
+
 .notes-tag {
   display: inline-block;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-decoration: none;
   border-radius: 3px;
   padding: 1px 5px;
   margin-left: 6px;

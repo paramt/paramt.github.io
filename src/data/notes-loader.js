@@ -109,3 +109,20 @@ export function getAllNotes() {
 export function getNote(slug) {
   return notes.find((n) => n.slug === slug) ?? null;
 }
+
+// Only from listed notes, and excluding the reserved "unlisted" pseudo-tag,
+// so tag browsing can't be used to discover hidden content.
+export function getAllTags() {
+  const tagMap = new Map();
+  for (const note of notes) {
+    if (note.unlisted) continue;
+    for (const tag of note.tags) {
+      if (tag === 'unlisted') continue;
+      if (!tagMap.has(tag)) tagMap.set(tag, []);
+      tagMap.get(tag).push(note);
+    }
+  }
+  return [...tagMap.entries()]
+    .map(([tag, taggedNotes]) => ({ tag, notes: taggedNotes }))
+    .sort((a, b) => a.tag.localeCompare(b.tag));
+}

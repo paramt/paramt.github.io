@@ -82,9 +82,10 @@ function NoteH2({ node: _node, children, ...props }) {
 }
 import 'katex/dist/katex.min.css';
 import Nav from './Nav.jsx';
-import { getAllNotes, getNote, resolveNoteAsset } from '../data/notes-loader.js';
+import { getAllNotes, getNote, getAllTags, resolveNoteAsset } from '../data/notes-loader.js';
 
 const notes = getAllNotes();
+const tagGroups = getAllTags();
 
 function formatDate(dateStr) {
   const [y, m, d] = dateStr.split('-').map(Number);
@@ -92,7 +93,8 @@ function formatDate(dateStr) {
 }
 
 export default function Notes({ initialSlug = null }) {
-  const note = initialSlug ? getNote(initialSlug) : null;
+  const isTagsPage = initialSlug === 'tags';
+  const note = !isTagsPage && initialSlug ? getNote(initialSlug) : null;
   const markdownComponents = note
     ? {
         img({ node: _node, src, alt, ...props }) {
@@ -115,7 +117,7 @@ export default function Notes({ initialSlug = null }) {
               {note.date && <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>}
               {note.unlisted && <span className="notes-tag notes-tag--unlisted">unlisted</span>}
               {note.tags.map(tag => (
-                <span key={tag} className={`notes-tag notes-tag--${tag}`}>{tag}</span>
+                <a key={tag} href={`/notes/tags#${tag}`} className={`notes-tag notes-tag--${tag}`}>{tag}</a>
               ))}
             </div>
             {note.description && <p className="note-description">{note.description}</p>}
@@ -129,11 +131,34 @@ export default function Notes({ initialSlug = null }) {
               </ReactMarkdown>
             </div>
           </article>
+        ) : isTagsPage ? (
+          <div className="notes-listing">
+            <a href="/notes" className="notes-back">← Notes</a>
+            <h1 className="notes-heading">Tags</h1>
+            {tagGroups.map(({ tag, notes: taggedNotes }) => (
+              <section key={tag} id={tag} className="tag-group">
+                <h2 className="tag-group-heading">
+                  <span className={`notes-tag notes-tag--${tag}`}>{tag}</span>
+                </h2>
+                <ul className="notes-list">
+                  {taggedNotes.map(n => (
+                    <li key={n.slug} className="notes-list-item">
+                      <a href={`/notes/${n.slug}`} className="notes-item">
+                        <span className="notes-item-title">{n.title}</span>
+                        {n.date && <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
         ) : (
           <div className="notes-listing">
             <a href="/" className="notes-back">← Home</a>
             <h1 className="notes-heading">Notes</h1>
             <p className="notes-description">This is a place for my thoughts and musings. Ideas, reflections, or just random things I want to write down. Some will be structured, others more like a stream of consciousness, but mostly written as notes for myself.</p>
+            <p><a href="/notes/tags">Browse by tag →</a></p>
             <ul className="notes-list">
               {notes.filter(n => !n.unlisted).map(n => {
               let isNew = false;

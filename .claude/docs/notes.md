@@ -69,6 +69,14 @@ Unlisted notes behave like unlisted YouTube videos. The permalink works (the `in
 
 `Notes.jsx` runs a custom `rehypeHeadingSlugs` plugin (before `rehypeKatex`, so heading text is read before KaTeX expands math into its verbose annotated markup) that assigns each `h1`/`h2` in note content a slug `id`, lowercased with non-alphanumeric runs collapsed to a single dash. IDs are unique document-wide; duplicate headings get `-1`, `-2`, ... suffixes (shared counter across h1 and h2, matching how `rehype-slug` works). Custom `h1`/`h2` renderers (`NoteH1`/`NoteH2`) prepend a `#` anchor (`.note-heading-anchor` in `index.css`) that's hidden until the heading is hovered/focused. `h3` and below are left untouched (no id, no anchor).
 
+## Tags Page (`/notes/tags`)
+
+`getAllTags()` in `notes-loader.js` groups notes by tag, built only from **listed** notes, with the literal string `"unlisted"` filtered out of the tag set too — this is deliberate: `unlisted` is a real badge rendered next to tags (`note.unlisted && <span class="notes-tag notes-tag--unlisted">`) that must never become a browsable/linkable "tag," since that would make hidden content discoverable via tag navigation.
+
+`"tags"` is a reserved slug — `Notes.jsx` checks `initialSlug === 'tags'` before falling back to `getNote(initialSlug)`, so a real note file named `tags.md` would be shadowed by this route and become unreachable.
+
+Tag badges link to `/notes/tags#<tag>` only where they aren't already nested inside another `<a>` (the individual note page's meta row). The `/notes` listing's inline per-note tag badges stay plain `<span>`s — they sit inside the `.notes-item` link wrapping the whole row, and a nested `<a>` there would be invalid HTML.
+
 ## Sitemap
 
 Generated at `dist/sitemap.xml` during prerender. Static routes (`/`, `/notes`, `/poker`, `/poker-analytics`) are hardcoded in `STATIC_SITEMAP_ROUTES` in `prerender.js`. Notes are appended from `getAllNotes()`, skipping `unlisted`.

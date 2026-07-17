@@ -31,10 +31,7 @@ function escapeHtml(s) {
   }[c]));
 }
 
-function buildNotesListingHead() {
-  const title = 'Param\'s Notes';
-  const description = 'Notes, ideas, and things I figured out';
-  const url = `${SITE_URL}/notes`;
+function buildPageHead({ title, description, url }) {
   return [
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}" />`,
@@ -51,6 +48,22 @@ function buildNotesListingHead() {
     `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
     `<meta name="twitter:image" content="${OG_IMAGE}" />`,
   ].join('\n    ');
+}
+
+function buildNotesListingHead() {
+  return buildPageHead({
+    title: 'Param\'s Notes',
+    description: 'Notes, ideas, and things I figured out',
+    url: `${SITE_URL}/notes`,
+  });
+}
+
+function buildTagsHead() {
+  return buildPageHead({
+    title: 'Tags — Param\'s Notes',
+    description: 'Notes grouped by tag',
+    url: `${SITE_URL}/notes/tags`,
+  });
 }
 
 function buildNoteHead({ title, description, slug, date, unlisted }) {
@@ -109,6 +122,7 @@ function buildSitemap(notes) {
   const routes = [
     { loc: '/', lastmod: gitLastMod(), priority: '1.0', changefreq: 'monthly' },
     { loc: '/notes', lastmod: notesListingLastMod, priority: '0.8', changefreq: 'weekly' },
+    { loc: '/notes/tags', lastmod: notesListingLastMod, priority: '0.5', changefreq: 'weekly' },
     { loc: '/poker', priority: '0.7', changefreq: 'monthly' },
     { loc: '/poker-analytics', priority: '0.7', changefreq: 'monthly' },
     { loc: '/resume', lastmod: gitLastMod('public/resume'), priority: '0.5', changefreq: 'yearly' },
@@ -181,6 +195,14 @@ async function prerender() {
     .replace('<div id="root"></div>', `<div id="root">${renderNotes(null)}</div>`);
   fs.writeFileSync(path.join(notesDir, 'index.html'), listingHtml);
   console.log('  /notes');
+
+  const tagsHtml = notesTemplate
+    .replace('<!--ssr-head-->', buildTagsHead())
+    .replace('<div id="root"></div>', `<div id="root">${renderNotes('tags')}</div>`);
+  const tagsDir = path.join(notesDir, 'tags');
+  fs.mkdirSync(tagsDir, { recursive: true });
+  fs.writeFileSync(path.join(tagsDir, 'index.html'), tagsHtml);
+  console.log('  /notes/tags');
 
   const notes = getAllNotes();
   for (const note of notes) {
