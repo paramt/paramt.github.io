@@ -154,18 +154,23 @@ export default function Notes({ initialSlug = null, initialTag = null }) {
           <div className="notes-listing">
             <a href="/notes" className="notes-back">← Notes</a>
             <h1 className="notes-heading">Tags</h1>
-            <ul className="notes-list">
-              {tagGroups.map(({ tag, notes: taggedNotes }) => (
-                <li key={tag} className="notes-list-item">
-                  <a href={`/notes/tags/${tag}`} className="notes-item">
-                    <span className="notes-item-title">
-                      <span className={`notes-tag notes-tag--${tag}`}>{tag}</span>
-                    </span>
-                    <span className="notes-item-date">{taggedNotes.length} note{taggedNotes.length === 1 ? '' : 's'}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {tagGroups.map(({ tag, notes: taggedNotes }) => (
+              <section key={tag} id={tag} className="tag-group">
+                <h2 className="tag-group-heading">
+                  <a href={`/notes/tags/${tag}`} className={`notes-tag notes-tag--${tag}`}>{tag}</a>
+                </h2>
+                <ul className="notes-list">
+                  {taggedNotes.map(n => (
+                    <li key={n.slug} className="notes-list-item">
+                      <a href={`/notes/${n.slug}`} className="notes-item">
+                        <span className="notes-item-title">{n.title}</span>
+                        {n.date && <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
           </div>
         ) : (
           <div className="notes-listing">
