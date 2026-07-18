@@ -66,6 +66,30 @@ function buildTagsHead() {
   });
 }
 
+function buildTagHead({ tag, notes: taggedNotes }) {
+  const title = `${tag} — Param's Notes`;
+  const description = `Notes tagged "${tag}"`;
+  const url = `${SITE_URL}/notes/tags/${tag}`;
+  const head = buildPageHead({ title, description, url });
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: title,
+    description,
+    url,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: taggedNotes.map((n, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `${SITE_URL}/notes/${n.slug}`,
+        name: n.title,
+      })),
+    },
+  };
+  return `${head}\n    <script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, '\\u003c')}</script>`;
+}
+
 function buildNoteHead({ title, description, slug, date, unlisted }) {
   const desc = description || title;
   const url = `${SITE_URL}/notes/${slug}`;
@@ -113,7 +137,7 @@ function sitemapEntry({ loc, lastmod, changefreq, priority }) {
   return `  <url>\n${parts.join('\n')}\n  </url>`;
 }
 
-function buildSitemap(notes) {
+function buildSitemap(notes, tagGroups) {
   const listedNotes = notes.filter((n) => !n.unlisted);
   const notesListingLastMod = listedNotes.length
     ? listedNotes.reduce((max, n) => (n.date > max ? n.date : max), listedNotes[0].date)
@@ -135,6 +159,14 @@ function buildSitemap(notes) {
       lastmod: n.date,
       changefreq: 'monthly',
       priority: '0.6',
+    }));
+  }
+  for (const { tag, notes: taggedNotes } of tagGroups) {
+    entries.push(sitemapEntry({
+      loc: `/notes/tags/${tag}`,
+      lastmod: taggedNotes[0].date,
+      changefreq: 'weekly',
+      priority: '0.4',
     }));
   }
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`;
@@ -162,7 +194,7 @@ function copyNoteMedia() {
 }
 
 async function prerender() {
-  const { renderHome, renderNotes, getAllNotes } = await import('./dist-server/entry-server.js');
+  const { renderHome, renderNotes, getAllNotes, getAllTags } = await import('./dist-server/entry-server.js');
   copyNoteMedia();
 
   // --- Home ---
@@ -204,6 +236,19 @@ async function prerender() {
   fs.writeFileSync(path.join(tagsDir, 'index.html'), tagsHtml);
   console.log('  /notes/tags');
 
+  // getAllTags() already excludes the "unlisted" pseudo-tag; filtered again
+  // here so it's obvious at the generation site that no page is ever written for it.
+  const tagGroups = getAllTags().filter((g) => g.tag !== 'unlisted');
+  for (const group of tagGroups) {
+    const html = notesTemplate
+      .replace('<!--ssr-head-->', buildTagHead(group))
+      .replace('<div id="root"></div>', `<div id="root">${renderNotes(null, group.tag)}</div>`);
+    const tagDir = path.join(tagsDir, group.tag);
+    fs.mkdirSync(tagDir, { recursive: true });
+    fs.writeFileSync(path.join(tagDir, 'index.html'), html);
+    console.log(`  /notes/tags/${group.tag}`);
+  }
+
   const notes = getAllNotes();
   for (const note of notes) {
     const html = notesTemplate
@@ -216,7 +261,7 @@ async function prerender() {
   }
 
   // --- Sitemap ---
-  fs.writeFileSync(path.join(distClient, 'sitemap.xml'), buildSitemap(notes));
+  fs.writeFileSync(path.join(distClient, 'sitemap.xml'), buildSitemap(notes, tagGroups));
   console.log('  sitemap.xml');
 
   // --- Cleanup ---

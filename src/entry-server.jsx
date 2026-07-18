@@ -11,12 +11,12 @@ export function renderHome() {
   );
 }
 
-export function renderNotes(slug = null) {
+export function renderNotes(slug = null, tag = null) {
   return renderToString(
     <StrictMode>
-      <Notes initialSlug={slug} />
+      <Notes initialSlug={slug} initialTag={tag} />
     </StrictMode>
   );
 }
 
-export { getAllNotes } from './data/notes-loader.js';
+export { getAllNotes, getAllTags } from './data/notes-loader.js';

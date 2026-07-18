@@ -92,9 +92,10 @@ function formatDate(dateStr) {
   return new Date(y, m - 1, d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 }
 
-export default function Notes({ initialSlug = null }) {
+export default function Notes({ initialSlug = null, initialTag = null }) {
   const isTagsPage = initialSlug === 'tags';
-  const note = !isTagsPage && initialSlug ? getNote(initialSlug) : null;
+  const tagGroup = initialTag ? tagGroups.find(g => g.tag === initialTag) : null;
+  const note = !isTagsPage && !initialTag && initialSlug ? getNote(initialSlug) : null;
   const markdownComponents = note
     ? {
         img({ node: _node, src, alt, ...props }) {
@@ -117,7 +118,7 @@ export default function Notes({ initialSlug = null }) {
               {note.date && <time className="note-date" dateTime={note.date}>{formatDate(note.date)}</time>}
               {note.unlisted && <span className="notes-tag notes-tag--unlisted">unlisted</span>}
               {note.tags.map(tag => (
-                <a key={tag} href={`/notes/tags#${tag}`} className={`notes-tag notes-tag--${tag}`}>{tag}</a>
+                <a key={tag} href={`/notes/tags/${tag}`} className={`notes-tag notes-tag--${tag}`}>{tag}</a>
               ))}
             </div>
             {note.description && <p className="note-description">{note.description}</p>}
@@ -131,27 +132,40 @@ export default function Notes({ initialSlug = null }) {
               </ReactMarkdown>
             </div>
           </article>
+        ) : tagGroup ? (
+          <div className="notes-listing">
+            <a href="/notes/tags" className="notes-back">← Tags</a>
+            <h1 className="notes-heading">
+              <span className={`notes-tag notes-tag--${tagGroup.tag}`}>{tagGroup.tag}</span>
+            </h1>
+            <ul className="notes-list">
+              {tagGroup.notes.map(n => (
+                <li key={n.slug} className="notes-list-item">
+                  <a href={`/notes/${n.slug}`} className="notes-item">
+                    <span className="notes-item-title">{n.title}</span>
+                    {n.date && <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>}
+                  </a>
+                  {n.description && <p className="notes-item-desc">{n.description}</p>}
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : isTagsPage ? (
           <div className="notes-listing">
             <a href="/notes" className="notes-back">← Notes</a>
             <h1 className="notes-heading">Tags</h1>
-            {tagGroups.map(({ tag, notes: taggedNotes }) => (
-              <section key={tag} id={tag} className="tag-group">
-                <h2 className="tag-group-heading">
-                  <span className={`notes-tag notes-tag--${tag}`}>{tag}</span>
-                </h2>
-                <ul className="notes-list">
-                  {taggedNotes.map(n => (
-                    <li key={n.slug} className="notes-list-item">
-                      <a href={`/notes/${n.slug}`} className="notes-item">
-                        <span className="notes-item-title">{n.title}</span>
-                        {n.date && <time className="notes-item-date" dateTime={n.date}>{formatDate(n.date)}</time>}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
+            <ul className="notes-list">
+              {tagGroups.map(({ tag, notes: taggedNotes }) => (
+                <li key={tag} className="notes-list-item">
+                  <a href={`/notes/tags/${tag}`} className="notes-item">
+                    <span className="notes-item-title">
+                      <span className={`notes-tag notes-tag--${tag}`}>{tag}</span>
+                    </span>
+                    <span className="notes-item-date">{taggedNotes.length} note{taggedNotes.length === 1 ? '' : 's'}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         ) : (
           <div className="notes-listing">

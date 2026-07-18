@@ -5,11 +5,13 @@ import '@fontsource/coming-soon';
 import './index.css';
 import Notes from './components/Notes.jsx';
 
-const match = window.location.pathname.match(/^\/notes\/([^/]+)\/?$/);
-const initialSlug = match ? match[1] : null;
+const tagMatch = window.location.pathname.match(/^\/notes\/tags\/([^/]+)\/?$/);
+const noteMatch = window.location.pathname.match(/^\/notes\/([^/]+)\/?$/);
+const initialTag = tagMatch ? decodeURIComponent(tagMatch[1]) : null;
+const initialSlug = !initialTag && noteMatch ? noteMatch[1] : null;
 
 const container = document.getElementById('root');
-const app = <StrictMode><Notes initialSlug={initialSlug} /></StrictMode>;
+const app = <StrictMode><Notes initialSlug={initialSlug} initialTag={initialTag} /></StrictMode>;
 
 if (container.innerHTML) {
   hydrateRoot(container, app);
