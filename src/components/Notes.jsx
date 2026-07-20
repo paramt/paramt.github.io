@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -86,6 +87,7 @@ import { getAllNotes, getNote, getAllTags, resolveNoteAsset } from '../data/note
 
 const notes = getAllNotes();
 const tagGroups = getAllTags();
+const listedNotes = notes.filter(n => !n.unlisted);
 
 function formatDate(dateStr) {
   const [y, m, d] = dateStr.split('-').map(Number);
@@ -96,6 +98,29 @@ export default function Notes({ initialSlug = null, initialTag = null }) {
   const isTagsPage = initialSlug === 'tags';
   const tagGroup = initialTag ? tagGroups.find(g => g.tag === initialTag) : null;
   const note = !isTagsPage && !initialTag && initialSlug ? getNote(initialSlug) : null;
+
+  // j/k navigate to the next/previous note, in the same order as the /notes
+  // listing. Only listed notes participate, so this can't be used to browse
+  // into unlisted content from a listed note.
+  useEffect(() => {
+    if (!note) return;
+    const idx = listedNotes.findIndex(n => n.slug === note.slug);
+    if (idx === -1) return;
+
+    function handleKeyDown(e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const target = e.target;
+      if (target?.tagName === 'INPUT' || target?.tagName === 'TEXTAREA' || target?.isContentEditable) return;
+      if (e.key === 'j' && idx < listedNotes.length - 1) {
+        window.location.href = `/notes/${listedNotes[idx + 1].slug}`;
+      } else if (e.key === 'k' && idx > 0) {
+        window.location.href = `/notes/${listedNotes[idx - 1].slug}`;
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [note]);
+
   const markdownComponents = note
     ? {
         img({ node: _node, src, alt, ...props }) {
@@ -178,7 +203,7 @@ export default function Notes({ initialSlug = null, initialTag = null }) {
             <h1 className="notes-heading">Notes</h1>
             <p className="notes-description">This is a place for my thoughts and musings. Ideas, reflections, or just random things I want to write down. Some will be structured, others more like a stream of consciousness, but mostly written as notes for myself. <a href="/notes/tags">Browse by tag →</a></p>
             <ul className="notes-list">
-              {notes.filter(n => !n.unlisted).map(n => {
+              {listedNotes.map(n => {
               let isNew = false;
               if (n.date) {
                 const [y, m, d] = n.date.split('-').map(Number);

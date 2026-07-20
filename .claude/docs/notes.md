@@ -40,7 +40,11 @@ Markdown note images live alongside the `.md` files in `src/data/notes/`. Local 
 
 ## SSR-safety in `Notes.jsx`
 
-The component accepts `initialSlug` as a prop — it must **not** touch `window` at render time. Client entry (`src/notes-entry.jsx`) parses `window.location.pathname` once and passes it in; SSR passes the slug directly. The `popstate` handler reads `window.location` inside `useEffect`, which is safe because effects don't run during SSR. Both client entries (`main.jsx` and `notes-entry.jsx`) use `hydrateRoot` when server-rendered markup is present.
+The component accepts `initialSlug` as a prop — it must **not** touch `window` at render time. Client entry (`src/notes-entry.jsx`) parses `window.location.pathname` once and passes it in; SSR passes the slug directly. The j/k keyboard-navigation effect (see below) reads/writes `window.location` inside `useEffect`, which is safe because effects don't run during SSR — there's no `popstate`/client-side routing beyond that; every navigation, including j/k, is a full page load. Both client entries (`main.jsx` and `notes-entry.jsx`) use `hydrateRoot` when server-rendered markup is present.
+
+## Keyboard Navigation
+
+On an individual note page, `j`/`k` navigate to the next/previous note (vim-style: `j` down/older, `k` up/newer), walking `listedNotes` — the same array and order the `/notes` listing renders, computed once at module load. Ignored with a modifier key held, or while focus is in an `<input>`/`<textarea>`/`contenteditable`. Deliberately scoped to **listed** notes only: the lookup is `listedNotes.findIndex(n => n.slug === note.slug)`, which returns `-1` (effect no-ops) when viewing an unlisted note, so it can't be used to sequence into unlisted content from a listed neighbor, and viewing an unlisted note directly gives no j/k sequence at all.
 
 ## Meta Injection
 
