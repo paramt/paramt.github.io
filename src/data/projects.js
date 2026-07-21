@@ -14,7 +14,7 @@ export const projects = [
   {
     name: "Poker Solitaire",
     description: "Create a higher 5-card poker hand than the dealer",
-    link: "https://www.param.me/poker/",
+    link: "https://www.param.me/poker-solitaire/",
     github: "https://github.com/paramt/poker",
   },
   {
