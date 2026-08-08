@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -58,6 +58,94 @@ function rehypeHeadingSlugs() {
   };
 }
 
+// The highlight target preceding a footnote ref: a trailing quoted phrase,
+// or the trailing word — hyphens/apostrophes are word-internal so compounds
+// like "state-of-the-art" highlight whole. Surrounding punctuation is split
+// off into `before`/`trail` rather than highlighted.
+function splitTrailingPhrase(value) {
+  const quoted = value.match(/["“][^"“”]*["”]$/);
+  if (quoted) {
+    return { before: value.slice(0, -quoted[0].length), phrase: quoted[0], trail: '' };
+  }
+  const token = value.match(/\S+$/)?.[0];
+  if (!token) return { phrase: null };
+  const lead = token.match(/^[^\p{L}\p{N}]*/u)[0];
+  const trail = token.match(/[^\p{L}\p{N}]*$/u)[0];
+  const phrase = token.slice(lead.length, token.length - trail.length);
+  if (!phrase) return { phrase: null };
+  return { before: value.slice(0, value.length - token.length) + lead, phrase, trail };
+}
+
+const FNHL_INLINE_TAGS = new Set(['em', 'strong', 'code', 'a']);
+
+function fnhlSpan(children) {
+  return { type: 'element', tagName: 'span', properties: { className: ['note-fnhl'] }, children };
+}
+
+// Rich mode only: wraps each footnote ref (sup > a[data-footnote-ref]) together
+// with the word/phrase/inline-element before it in a .note-fnhl span — one
+// hover target for the footnote popup, highlighted as a whole (footnote number
+// included). Runs before rehypeKatex so preceding text is still plain.
+function rehypeFootnoteHighlights() {
+  return (tree) => {
+    const refs = [];
+    visit(tree, 'element', (node, index, parent) => {
+      if (node.tagName !== 'sup' || !parent) return;
+      const link = node.children?.[0];
+      if (link?.tagName === 'a' && link.properties?.dataFootnoteRef) refs.push({ node, index, parent });
+    });
+    // Reverse order so splices don't invalidate earlier collected indexes.
+    for (const { node, index, parent } of refs.reverse()) {
+      const prev = parent.children[index - 1];
+      if (prev?.type === 'element' && FNHL_INLINE_TAGS.has(prev.tagName)) {
+        parent.children.splice(index - 1, 2, fnhlSpan([prev, node]));
+        continue;
+      }
+      const wrapChildren = [node];
+      let start = index;
+      let removed = 1;
+      if (prev?.type === 'text') {
+        const { before, phrase, trail } = splitTrailingPhrase(prev.value);
+        if (phrase) {
+          wrapChildren.unshift({ type: 'text', value: phrase });
+          if (trail) wrapChildren.splice(1, 0, { type: 'text', value: trail });
+          if (before) {
+            prev.value = before;
+          } else {
+            start = index - 1;
+            removed = 2;
+          }
+        }
+      }
+      parent.children.splice(start, removed, fnhlSpan(wrapChildren));
+    }
+  };
+}
+
+// Mirrors rehypeHeadingSlugs (same slugify + dedup counter) so TOC anchors
+// match the ids assigned to rendered headings. Fenced code is stripped so a
+// `# comment` line inside a code block isn't picked up as a heading.
+function extractHeadings(content) {
+  const seen = new Map();
+  const headings = [];
+  for (const line of content.replace(/```[\s\S]*?```/g, '').split('\n')) {
+    const match = line.match(/^(#{1,2})\s+(.+)/);
+    if (!match) continue;
+    const text = match[2]
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+      .replace(/[*_`~]/g, '')
+      .replace(/--/g, '—')
+      .replace(/->/g, '→')
+      .trim();
+    let slug = slugify(text);
+    const count = seen.get(slug) ?? 0;
+    seen.set(slug, count + 1);
+    if (count > 0) slug = `${slug}-${count}`;
+    headings.push({ level: match[1].length, text, id: slug });
+  }
+  return headings;
+}
+
 function HeadingAnchor({ id, symbol }) {
   return (
     <a href={`#${id}`} className="note-heading-anchor" aria-label="Link to this heading">{symbol}</a>
@@ -98,6 +186,40 @@ export default function Notes({ initialSlug = null, initialTag = null }) {
   const isTagsPage = initialSlug === 'tags';
   const tagGroup = initialTag ? tagGroups.find(g => g.tag === initialTag) : null;
   const note = !isTagsPage && !initialTag && initialSlug ? getNote(initialSlug) : null;
+  const tocHeadings = note?.rich ? extractHeadings(note.content) : [];
+  const [footnotePopup, setFootnotePopup] = useState(null);
+
+  // Rich mode: hovering a .note-fnhl shows its footnote in a fixed box at the
+  // bottom of the TOC column. It persists on unhover until the page scrolls or
+  // another footnote is hovered.
+  useEffect(() => {
+    if (!note?.rich) return;
+    const content = document.querySelector('.note-content');
+    if (!content) return;
+
+    function handleMouseOver(e) {
+      const wrap = e.target.closest?.('.note-fnhl');
+      if (!wrap) return;
+      const ref = wrap.querySelector('a[data-footnote-ref]');
+      const href = ref?.getAttribute('href');
+      if (!href?.startsWith('#')) return;
+      const def = document.getElementById(decodeURIComponent(href.slice(1)));
+      if (!def) return;
+      const clone = def.cloneNode(true);
+      clone.querySelectorAll('a[data-footnote-backref]').forEach(a => a.remove());
+      setFootnotePopup({ num: ref.textContent, html: clone.innerHTML });
+    }
+    function handleScroll() {
+      setFootnotePopup(null);
+    }
+
+    content.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      content.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [note]);
 
   // j/k navigate to the next/previous note, in the same order as the /notes
   // listing. Only listed notes participate, so this can't be used to browse
@@ -134,9 +256,20 @@ export default function Notes({ initialSlug = null, initialTag = null }) {
   return (
     <>
       <Nav links={[]} />
-      <main className="notes-page">
+      <main className={note?.rich ? 'notes-page notes-page--rich' : 'notes-page'}>
         {note ? (
           <article className="note-view">
+            {tocHeadings.length > 0 && (
+              <nav className="note-toc" aria-label="Table of contents">
+                <ul>
+                  {tocHeadings.map(h => (
+                    <li key={h.id} className={h.level === 2 ? 'note-toc-sub' : undefined}>
+                      <a href={`#${h.id}`}>{h.text}</a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
             <a href="/notes" className="notes-back">← Notes</a>
             <h1 className="note-title">{note.title}</h1>
             <div className="note-meta">
@@ -150,12 +283,20 @@ export default function Notes({ initialSlug = null, initialTag = null }) {
             <div className="note-content">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm, remarkMath, remarkEmDash]}
-                rehypePlugins={[rehypeHeadingSlugs, rehypeFootnoteIds, rehypeKatex]}
+                rehypePlugins={note.rich
+                  ? [rehypeHeadingSlugs, rehypeFootnoteIds, rehypeFootnoteHighlights, rehypeKatex]
+                  : [rehypeHeadingSlugs, rehypeFootnoteIds, rehypeKatex]}
                 components={markdownComponents}
               >
                 {note.content}
               </ReactMarkdown>
             </div>
+            {footnotePopup && (
+              <aside className="note-footnote-popup">
+                <span className="note-footnote-popup-num">{footnotePopup.num}</span>
+                <div dangerouslySetInnerHTML={{ __html: footnotePopup.html }} />
+              </aside>
+            )}
           </article>
         ) : tagGroup ? (
           <div className="notes-listing">

@@ -97,6 +97,7 @@ const notes = Object.entries(noteModules)
       date: meta.date,
       description: meta.description,
       unlisted: meta.unlisted !== 'false',
+      rich: meta.rich === 'true',
       tags: Array.isArray(meta.tags) ? meta.tags : [],
     };
   })
