@@ -58,11 +58,16 @@ function rehypeHeadingSlugs() {
   };
 }
 
-// The highlight target preceding a footnote ref: a trailing quoted phrase,
-// or the trailing word — hyphens/apostrophes are word-internal so compounds
-// like "state-of-the-art" highlight whole. Surrounding punctuation is split
-// off into `before`/`trail` rather than highlighted.
+// The highlight target preceding a footnote ref: a trailing (bracketed)
+// phrase — highlighted without the brackets, which don't render — a trailing
+// quoted phrase, or the trailing word — hyphens/apostrophes are word-internal
+// so compounds like "state-of-the-art" highlight whole. Surrounding
+// punctuation is split off into `before`/`trail` rather than highlighted.
 function splitTrailingPhrase(value) {
+  const bracketed = value.match(/\(([^()]+)\)$/);
+  if (bracketed) {
+    return { before: value.slice(0, -bracketed[0].length), phrase: bracketed[1], trail: '' };
+  }
   const quoted = value.match(/["“][^"“”]*["”]$/);
   if (quoted) {
     return { before: value.slice(0, -quoted[0].length), phrase: quoted[0], trail: '' };
