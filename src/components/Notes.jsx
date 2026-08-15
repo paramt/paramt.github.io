@@ -15,6 +15,33 @@ function remarkEmDash() {
   };
 }
 
+// remark-math is greedier than Obsidian: it pairs any two single dollars, so
+// "$100 raise into a pot of $100" becomes math. Obsidian follows Pandoc's
+// rules: the opening $ must be immediately followed by a non-space, the
+// closing $ immediately preceded by a non-space, and the closing $ must not
+// be immediately followed by a digit. Runs after remarkMath and demotes any
+// single-dollar inlineMath node violating those rules back to literal text,
+// checking the raw source via node offsets ($$ display math is left alone).
+function remarkObsidianMath() {
+  return (tree, file) => {
+    const src = String(file);
+    visit(tree, 'inlineMath', (node) => {
+      const start = node.position?.start?.offset;
+      const end = node.position?.end?.offset;
+      if (start == null || end == null) return;
+      if (src[start + 1] === '$') return; // $$...$$ inline display math
+      const afterOpen = src[start + 1];
+      const beforeClose = src[end - 2];
+      const afterClose = src[end];
+      if (/\s/.test(afterOpen) || /\s/.test(beforeClose) || /[0-9]/.test(afterClose)) {
+        node.type = 'text';
+        node.value = src.slice(start, end);
+        delete node.data;
+      }
+    });
+  };
+}
+
 function slugify(text) {
   return text
     .toLowerCase()
@@ -287,7 +314,7 @@ export default function Notes({ initialSlug = null, initialTag = null }) {
             {note.description && <p className="note-description">{note.description}</p>}
             <div className="note-content">
               <ReactMarkdown
-                remarkPlugins={[remarkGfm, remarkMath, remarkEmDash]}
+                remarkPlugins={[remarkGfm, remarkMath, remarkObsidianMath, remarkEmDash]}
                 rehypePlugins={note.rich
                   ? [rehypeHeadingSlugs, rehypeFootnoteIds, rehypeFootnoteHighlights, rehypeKatex]
                   : [rehypeHeadingSlugs, rehypeFootnoteIds, rehypeKatex]}
