@@ -39,9 +39,12 @@ export default function Hero() {
       <div className="hero-content">
         <h1>Param Thakkar</h1>
         <p className="hero-sub">
-          I study CS @ Waterloo, and in the summer I'll be working on Vector Search at Databricks. In the past, I've worked on:
+          Building{" "}
+          <a href="https://oversine.com/" target="_blank" rel="noopener noreferrer">Oversine</a> (YC F26) – the auth layer that lets agents securely act on your behalf.
         </p>
+        <p className="hero-sub">Currently on leave from Waterloo. Previously worked on:</p>
         <ul className="hero-experience">
+          <li>Vector Search @ Databricks</li>
           <li>ML-driven ads targeting @ Quora</li>
           <li>
             <a href="https://www.glean.com/blog/intern-life-at-glean#deep-research" target="_blank" rel="noopener noreferrer">
