@@ -40,7 +40,7 @@ export default function Hero() {
         <h1>Param Thakkar</h1>
         <p className="hero-sub">
           Building{" "}
-          <a href="https://oversine.com/" target="_blank" rel="noopener noreferrer">Oversine</a> (YC F26) – the auth layer that lets agents securely act on your behalf.
+          <a href="https://versine.com/" target="_blank" rel="noopener noreferrer">Versine</a> (YC F26) – the auth layer that lets agents securely act on your behalf.
         </p>
         <p className="hero-sub">Currently on leave from Waterloo. Previously worked on:</p>
         <ul className="hero-experience">
