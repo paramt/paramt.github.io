@@ -1266,6 +1266,15 @@ html[data-theme="dark"] .note-fnhl:hover {
   color: var(--fg);
 }
 
+/* Long unbroken strings (bare URLs, long inline code) would otherwise widen the
+   page and cause horizontal scroll. `anywhere` (not `break-word`) also lowers the
+   min-content width, so it works inside table cells and flex items too. */
+.note-content a,
+.note-content :not(pre) > code,
+.note-footnote-popup a {
+  overflow-wrap: anywhere;
+}
+
 .note-content code {
   font-family: var(--mono);
   font-size: 13px;
