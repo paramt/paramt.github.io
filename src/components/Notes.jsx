@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import { visit } from 'unist-util-visit';
+import { NotePre } from './note-widgets/index.jsx';
 
 function remarkEmDash() {
   return (tree) => {
@@ -282,6 +283,7 @@ export default function Notes({ initialSlug = null, initialTag = null }) {
         },
         h1: NoteH1,
         h2: NoteH2,
+        pre: NotePre,
       }
     : undefined;
 
