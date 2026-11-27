@@ -4,14 +4,17 @@
 //   key: value
 //   ```
 //
-// The first word after `widget` names the component in WIDGETS below; the
-// block body is parsed as simple `key: value` lines and passed as props.
-// See .claude/docs/note-widgets.md.
-import MacStudioResaleChart from './MacStudioResaleChart.jsx';
+// The first word after `widget` names the widget; the block body is parsed as
+// simple `key: value` lines and passed as props.
+//
+// Widgets live in the notes repo under widgets/<name>/index.jsx. The notes
+// sync copies them to src/data/notes/widgets/, and they're registered here by
+// folder name. See .claude/docs/note-widgets.md.
+const widgetModules = import.meta.glob('../../data/notes/widgets/*/index.jsx', { import: 'default', eager: true });
 
-const WIDGETS = {
-  'mac-studio-resale': MacStudioResaleChart,
-};
+const WIDGETS = Object.fromEntries(
+  Object.entries(widgetModules).map(([path, mod]) => [path.split('/').at(-2), mod]),
+);
 
 function parseProps(body) {
   const props = {};
