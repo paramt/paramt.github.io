@@ -1090,6 +1090,20 @@ html[data-theme="dark"] .notes-tag--unlisted    { color: #9ca3af; background: rg
   }
 }
 
+/* The footnote a #user-content-fn-N link points at. Footnotes sit at the end
+   of the page, so the browser usually can't scroll one to the top; it lands
+   wherever the page bottom allows. Highlight it so it's clear which one. */
+.note-content .footnotes li:target {
+  background: #fef3c7;
+  border-radius: 4px;
+  outline: 4px solid #fef3c7;
+}
+
+html[data-theme="dark"] .note-content .footnotes li:target {
+  background: rgba(217, 119, 6, 0.22);
+  outline-color: rgba(217, 119, 6, 0.22);
+}
+
 /* Footnote highlights + popup (rich rendering mode) */
 .note-fnhl {
   background: #fef3c7;
