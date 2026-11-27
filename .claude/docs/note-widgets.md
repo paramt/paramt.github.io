@@ -24,6 +24,8 @@ some-prop: value
 
 ## Writing a widget
 
+- **Must work on mobile** (notes are read on phones, ~320–430px). Size to the container. At small widths, shorten, stack or right-align labels so nothing overlaps, clips or causes horizontal page scroll. `mac-studio-resale` shows the pattern: a `small = W < 520` branch with short labels, stacked event rows, extra y headroom, and a `fit()` helper that right-aligns any label that would run past the edge.
+- **Verify before shipping**: `npm run build && npx vite preview`, then use Playwright to screenshot the note at 320px, `devices['iPhone 13']` and ~1100px, in light and dark. Check for no overlapping or clipped labels, `scrollWidth <= innerWidth`, and no console errors.
 - Must be SSR-safe: no `window`/`document` during render. Do DOM/measurement work in `useEffect`.
 - Dark mode is `html[data-theme="dark"]`, not `prefers-color-scheme` (see CLAUDE.md). Scope colour tokens on the widget root and override them under `html[data-theme="dark"] .widget-root`. A widget that reads colours in JS (d3 via `getComputedStyle`) must redraw on theme change, e.g. a `MutationObserver` on `<html>`'s `data-theme` (see `mac-studio-resale`).
 - Widgets are eagerly imported, so their code (and `d3`) ships in the notes bundle for every note. Switch to lazy loading with a client-only mount if this gets heavy; `renderToString` doesn't wait for Suspense.
