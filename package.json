@@ -16,6 +16,7 @@
   "dependencies": {
     "@fontsource-variable/caveat": "^5.2.8",
     "@fontsource/coming-soon": "^5.2.8",
+    "d3": "^7.9.0",
     "gh-pages": "^6.3.0",
     "katex": "^0.16.45",
     "react": "^19.2.4",

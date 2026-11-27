@@ -1,0 +1,48 @@
+.mac-chart {
+  --mc-bg: var(--bg);
+  --mc-fg: var(--fg);
+  --mc-muted: #6b6a65;
+  --mc-grid: #e8e6df;
+  --mc-axis: #b4b2a9;
+  --mc-ref: #9c9a92;
+  --mc-blue: #2a78d6;
+  --mc-orange: #eb6834;
+  --mc-pop: #ffffff;
+  --mc-bd: #dedcd4;
+  margin: 2em 0;
+}
+html[data-theme="dark"] .mac-chart {
+  --mc-muted: #a3a29b;
+  --mc-grid: #2a2a28;
+  --mc-axis: #4a4a46;
+  --mc-ref: #7d7c76;
+  --mc-blue: #3987e5;
+  --mc-orange: #d95926;
+  --mc-pop: #1e1e1d;
+  --mc-bd: #3a3a37;
+}
+.mac-chart-title {
+  font-size: 1.05em;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+.mac-chart-fig { position: relative; height: 400px; }
+.mac-chart-fig svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.mac-chart-fig text { font-size: 12px; fill: var(--mc-muted); font-variant-numeric: tabular-nums; }
+.mac-chart-halo { paint-order: stroke; stroke: var(--mc-bg); stroke-width: 4px; stroke-linejoin: round; }
+.mac-chart-legend {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 20px;
+  list-style: none; padding: 0; margin: 10px 0 0; color: var(--mc-muted); font-size: 12px;
+}
+.mac-chart-legend li { display: flex; align-items: center; gap: 6px; margin: 0; }
+.mac-chart-sw { width: 16px; height: 2px; display: inline-block; }
+.mac-chart-tip {
+  position: absolute; pointer-events: none; background: var(--mc-pop); border: 1px solid var(--mc-bd);
+  border-radius: 8px; padding: 8px 10px; font-size: 12px; line-height: 1.45; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .12); color: var(--mc-fg);
+}
+.mac-chart-tip b { display: block; }
+.mac-chart-src { color: var(--mc-muted); font-size: 11px; text-align: center; margin-top: 14px; line-height: 1.4; }
+@media (max-width: 520px) { .mac-chart-fig { height: 320px; } }
