@@ -66,6 +66,9 @@ export const timeline = [
   {
     year: "2026",
     events: [
+      { month: "Sep", title: "Joined the Y Combinator Fall batch with Versine", description: null, coords: { lat: 37.7749, lng: -122.4194 }, attachments: [note("Building [Versine ↗](https://versine.com/), the payments infrastructure to let your AI send and receive money", "orange")] },
+      { month: "Aug", title: "Visited the Eternal Flame in Buffalo", description: null, coords: { lat: 42.7017, lng: -78.7514 } },
+      { month: "Jul", title: "Hiked Mt Tam", description: null, coords: { lat: 37.9235, lng: -122.5965 } },
       { month: "Jun", title: "Attended a FIFA game at Levi's Stadium", description: null, coords: { lat: 37.4033, lng: -121.9694 }, attachments: [img(thumbFifa, 5712, 4284)] },
       { month: "May", title: "Collected poker chips from 15 casinos in Las Vegas", description: null, coords: { lat: 36.1699, lng: -115.1398 }, attachments: [img(thumbVegas1, 5712, 4284), img(thumbVegas2, 2088, 1566)] },
       { month: "May", title: "Went hiking and kayaking in Lake Tahoe", description: null, coords: { lat: 39.0968, lng: -120.0324 }, attachments: [img(thumbTahoe1, 2048, 1536), img(thumbTahoe2, 4032, 3024)] },
