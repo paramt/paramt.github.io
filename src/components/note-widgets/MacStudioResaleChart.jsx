@@ -133,10 +133,10 @@ function draw(el) {
     .on('pointerleave', hide);
 }
 
-export default function MacStudioResaleChart({ title = '512GB Mac Studio Resale Price vs. Memory Spot Price' }) {
+export default function MacStudioResaleChart() {
   const figRef = useRef(null);
 
-  // Client-only: SSR emits the empty, fixed-height figure plus legend/caption.
+  // Client-only: SSR emits the empty, fixed-height figure plus legend.
   useEffect(() => {
     const el = figRef.current;
     const redraw = () => draw(el);
@@ -151,7 +151,6 @@ export default function MacStudioResaleChart({ title = '512GB Mac Studio Resale 
 
   return (
     <figure className="mac-chart">
-      {title && <figcaption className="mac-chart-title">{title}</figcaption>}
       <div
         ref={figRef}
         className="mac-chart-fig"
@@ -162,10 +161,6 @@ export default function MacStudioResaleChart({ title = '512GB Mac Studio Resale 
         <li><span className="mac-chart-sw" style={{ background: 'var(--mc-blue)' }} />M3 Ultra 512GB median resale price (eBay, 90-day window)</li>
         <li><span className="mac-chart-sw" style={{ background: 'var(--mc-orange)' }} />Spot value of 512GB DRAM</li>
       </ul>
-      <p className="mac-chart-src">
-        Sources: eBay sold listings via Terapeak (512GB memory / 1TB SSD); DRAM: TrendForce/DRAMeXchange DDR5 16Gb spot
-        session average × 256 chips. Apple prices and dates from Apple and MacRumors.
-      </p>
     </figure>
   );
 }

@@ -21,13 +21,6 @@ html[data-theme="dark"] .mac-chart {
   --mc-pop: #1e1e1d;
   --mc-bd: #3a3a37;
 }
-.mac-chart-title {
-  font-size: 1.05em;
-  font-weight: 600;
-  text-align: center;
-  margin: 0 0 12px;
-  text-wrap: balance;
-}
 .mac-chart-fig { position: relative; height: 400px; }
 .mac-chart-fig svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .mac-chart-fig text { font-size: 12px; fill: var(--mc-muted); font-variant-numeric: tabular-nums; }
@@ -44,5 +37,4 @@ html[data-theme="dark"] .mac-chart {
   box-shadow: 0 4px 14px rgba(0, 0, 0, .12); color: var(--mc-fg);
 }
 .mac-chart-tip b { display: block; }
-.mac-chart-src { color: var(--mc-muted); font-size: 11px; text-align: center; margin-top: 14px; line-height: 1.4; }
 @media (max-width: 520px) { .mac-chart-fig { height: 320px; } }
