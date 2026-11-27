@@ -12,7 +12,7 @@ The vault lives in the sibling repo `~/Documents/GitHub/notes`, not here. Edit n
 
 ## Adding an Interactive Widget to a Note
 
-In the note, add a fenced block: ```` ```widget <name> ```` with optional `key: value` prop lines. Components live in `src/components/note-widgets/` and are registered by name there. See `.claude/docs/note-widgets.md`.
+In the note, add a fenced block: ```` ```widget <name> ```` with optional `key: value` prop lines. Widget components live in the **notes repo** at `widgets/<name>/index.jsx` and are auto-registered by folder name; this repo only holds the loader (`src/components/note-widgets/`). See `.claude/docs/note-widgets.md`.
 
 ## Adding an Image
 
