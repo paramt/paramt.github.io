@@ -4,7 +4,7 @@ Interactive React components embedded in notes via a fenced code block:
 
 ````md
 ```widget mac-studio-resale
-title: Optional override
+some-prop: value
 ```
 ````
 
@@ -16,6 +16,6 @@ title: Optional override
 
 ## Writing a widget
 
-- Must be SSR-safe: no `window`/`document` during render. Do DOM/measurement work in `useEffect`. SSR emits only the static shell (title, empty fixed-height figure, legend, caption).
+- Must be SSR-safe: no `window`/`document` during render. Do DOM/measurement work in `useEffect`. SSR emits only the static shell (e.g. an empty fixed-height figure and legend).
 - Dark mode is `html[data-theme="dark"]`, not `prefers-color-scheme` (see CLAUDE.md). Scope colour tokens on the widget root and override them under `html[data-theme="dark"] .widget-root`. A widget that reads colours in JS (e.g. d3 charts via `getComputedStyle`) must redraw on theme change: `MacStudioResaleChart` uses a `MutationObserver` on `<html>`'s `data-theme`.
 - Widgets are statically imported, so their code (and `d3`) ships in the notes bundle for every note. Switch to `React.lazy` with a client-only mount if this gets heavy; `renderToString` doesn't wait for Suspense.
