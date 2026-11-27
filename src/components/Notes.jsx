@@ -374,7 +374,7 @@ export default function Notes({ initialSlug = null, initialTag = null }) {
           <div className="notes-listing">
             <a href="/" className="notes-back">← Home</a>
             <h1 className="notes-heading">Notes</h1>
-            <p className="notes-description">This is a place for my thoughts and musings. Ideas, reflections, or just random things I want to write down. Some will be structured, others more like a stream of consciousness, but mostly written as notes for myself. <a href="/notes/tags">Browse by tag →</a></p>
+            <p className="notes-description">Personal blog, mostly written as notes to myself. <a href="/notes/tags">Browse by tag →</a></p>
             <ul className="notes-list">
               {listedNotes.map(n => {
               let isNew = false;
