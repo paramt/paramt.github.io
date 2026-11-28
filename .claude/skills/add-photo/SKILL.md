@@ -69,6 +69,8 @@ sips -g pixelWidth -g pixelHeight -g orientation "$INPUT"
 ```
 If `orientation` is `6` (Rotate 90 CW) or `8` (Rotate 270 CW), swap w and h before wiring up.
 
+**HEIC gotcha:** iPhone HEICs can store rotation in the HEIF container (`irot`) instead of EXIF, so `sips` reports `orientation: <nil>` with landscape pixels even for a portrait shot. Always cross-check against the generated thumb (`sips -g pixelWidth -g pixelHeight "$OUTPUT_DIR/$BASENAME.thumb.webp"`): ffmpeg applies the rotation, so if the thumb is portrait, use portrait w/h.
+
 ## Step 4 — Compress the video (hero only, if provided)
 
 **Skip this step for timeline targets.** Videos (including Live Photo `.mov` companions) are only wired up on hero polaroids.
