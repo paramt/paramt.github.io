@@ -58,6 +58,7 @@ import thumbSfDatacurve1 from './images/sf (datacurve).thumb.webp';
 import thumbSfDatacurve2 from './images/sf (datacurve) 2.thumb.webp';
 
 import thumbSfDatacurve3 from './images/sf/IMG_0941.thumb.webp';
+import thumbYc from './images/yc.thumb.webp';
 
 const img = (src, w, h) => ({ type: 'image', src, w, h });
 const note = (text, color = 'yellow') => ({ type: 'note', text, color });
@@ -66,7 +67,7 @@ export const timeline = [
   {
     year: "2026",
     events: [
-      { month: "Sep", title: "Joined the Y Combinator Fall batch with Versine", description: null, coords: { lat: 37.7749, lng: -122.4194 }, attachments: [note("Building [Versine ↗](https://versine.com/), the payments infrastructure to let your AI send and receive money", "orange")] },
+      { month: "Sep", title: "Joined the Y Combinator Fall batch with Versine", description: null, coords: { lat: 37.7749, lng: -122.4194 }, attachments: [img(thumbYc, 5712, 4284), note("Building [Versine ↗](https://versine.com/), the payments infrastructure to let your AI send and receive money", "orange")] },
       { month: "Aug", title: "Visited the Eternal Flame in Buffalo", description: null, coords: { lat: 42.7017, lng: -78.7514 } },
       { month: "Jul", title: "Hiked Mt Tam", description: null, coords: { lat: 37.9235, lng: -122.5965 } },
       { month: "Jun", title: "Attended a FIFA game at Levi's Stadium", description: null, coords: { lat: 37.4033, lng: -121.9694 }, attachments: [img(thumbFifa, 5712, 4284)] },
